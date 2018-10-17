@@ -25,8 +25,9 @@ he.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
+
     <groupId>org.glassfish.web</groupId>
     <artifactId>jstl</artifactId>
     <version>1.2</version>
@@ -36,12 +37,71 @@ he.org/maven-v4_0_0.xsd">
     <description>JavaServer Pages(TM) Standard Tag Library API</description>
     <url>https://projects.eclipse.org/projects/ee4j.jstl</url>
 
+    <licenses>
+        <license>
+            <name>EPL 2.0</name>
+            <url>http://www.eclipse.org/legal/epl-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>GPL2 w/ CPE</name>
+            <url>https://www.gnu.org/software/classpath/license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/eclipse-ee4j/jstl-api.git</connection>
+        <developerConnection>scm:git:git@github.com:eclipse-ee4j/jstl-api.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/jstl-api</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/jstl-api/issues</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+            <name>JSTL mailing list</name>
+            <post>jstl-dev@eclipse.org</post>
+            <subscribe>https://dev.eclipse.org/mailman/listinfo/jstl-dev</subscribe>
+            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/jstl-dev</unsubscribe>
+            <archive>https://dev.eclipse.org/mhonarc/lists/jstl-dev</archive>
+        </mailingList>
+    </mailingLists>
+
     <properties>
         <findbugs.exclude></findbugs.exclude>
-        <findbugs.version>2.5.2</findbugs.version>
+        <findbugs.version>3.0.5</findbugs.version>
     </properties>
 
+
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>${findbugs.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -53,7 +113,6 @@ he.org/maven-v4_0_0.xsd">
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version> 2.1 </version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -69,7 +128,6 @@ he.org/maven-v4_0_0.xsd">
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
                 <configuration>
                     <threshold>High</threshold>
                     <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>

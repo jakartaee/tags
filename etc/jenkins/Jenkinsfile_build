@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('H H * * *')
+    }
+    tools {
+        jdk 'oracle-jdk8-latest'
+        maven 'apache-maven-latest'
+    }
+    environment {
+        MVN = 'mvn -B -q -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'
+        REPO = 'github.com/eclipse-ee4j/jstl-api.git'
+    }
+    stages {
+        stage('Fetch from git') {
+            steps {
+                git "https://${REPO}"
+            }
+        }
+        stage('Nightly Build') {
+            steps {
+                configFileProvider([configFile(fileId: 'bb2b60c3-3444-4a60-9253-769fbffab593', variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh "$MVN -s $MAVEN_SETTINGS_XML clean install"
+                }
+            }
+        }
+    }
+}
+

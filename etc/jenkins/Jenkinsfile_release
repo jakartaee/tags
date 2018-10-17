@@ -1,0 +1,134 @@
+node {
+
+    def   MVN_HOME='/opt/tools/apache-maven/latest'
+    def   HELP_PLUGIN='org.apache.maven.plugins:maven-help-plugin:2.1.1'
+    def   TARGET = 'deploy'
+    def   RELEASE_VERSION=''
+    def   NEXT_VERSION=''
+    def   RELEASE_TAG=''
+    def   OVERWRITE='false'
+    def   LOGIN='jerseyrobot'
+    def   PASSWORD='01Jer\\$eyRock\\$!'
+    def   REPO='github.com/eclipse-ee4j/jersey.git'
+
+    env.JAVA_HOME="/opt/tools/java/oracle/jdk-8/1.8.0_181"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    sh '/opt/tools/java/oracle/jdk-8/1.8.0_181/bin/java -version'
+    sh 'java -version'
+
+    stage('Fetch from git') {
+        git "https://${REPO}"
+    }
+    stage('Prepare environment') {
+
+
+        //# Check whether top level pom.xml contains SNAPSHOT version
+        if (!sh(returnStdout: true, script: "grep '<version>' pom.xml | grep 'SNAPSHOT'")?.trim()){
+            error ('-[ Missing SNAPSHOT version in POM! ]-------------------------------------------')
+        }
+
+        //# Compute release versions
+        def SNAPSHOT_VERSION=sh(returnStdout: true, script: "${MVN_HOME}/bin/mvn -B ${HELP_PLUGIN}:evaluate -Dexpression=project.version 2> /dev/null | grep -E '^[0-9]+(.[0-9]+)+-SNAPSHOT\$'").trim()
+
+        if (!SNAPSHOT_VERSION?.trim()) {
+            error('-[ Missing required snapshot version number! ]----------------------------------')
+        } else {
+            def versionTokens = SNAPSHOT_VERSION.split('-')
+            RELEASE_VERSION = versionTokens[0]
+        }
+
+        def (MAJOR_VERSION, MINOR_VERSION) = RELEASE_VERSION.tokenize('.')
+        def NEXT_MINOR_VERSION=(MINOR_VERSION as Integer) + 1
+        NEXT_VERSION=MAJOR_VERSION+'.'+NEXT_MINOR_VERSION+'-SNAPSHOT'
+        RELEASE_TAG=RELEASE_VERSION+'-RELEASE'
+
+        echo "Current version: ${SNAPSHOT_VERSION}"
+        echo "Release version: ${RELEASE_VERSION}"
+        echo "Next version:    ${NEXT_VERSION}"
+        echo "Release tag:     ${RELEASE_TAG}"
+
+        if (!SNAPSHOT_VERSION?.trim() || !RELEASE_VERSION?.trim() || !NEXT_VERSION?.trim()) {
+            error '-[ Missing required version numbers! ]------------------------------------------'
+        }
+
+        if (DRY_RUN == 'true') {
+            echo '-[ Dry run turned on ]----------------------------------------------------------'
+            TARGET = 'install'
+        }
+
+    }
+    stage ('Prepare branch') {
+        echo '-[ Prepare branch ]-------------------------------------------------------------'
+        def GIT_ORIGIN=sh(returnStdout: true, script: "git remote").trim()
+        def BRANCH_CHECK = sh(returnStdout: true, script: "git branch -r").trim().contains(GIT_ORIGIN+'/'+RELEASE_VERSION)
+
+        if (BRANCH_CHECK) {
+            if ( OVERWRITE == 'true' ) {
+                echo "${GIT_ORIGIN}/${RELEASE_VERSION} branch already exists, deleting"
+                sh 'git push --delete ${GIT_ORIGIN} ${RELEASE_VERSION} && true'
+            } else {
+                error "${GIT_ORIGIN}/${RELEASE_VERSION} branch already exists"
+            }
+        }
+        echo '-[ Swiching to release branch ]-------------------------------------------------'
+        sh """
+     git checkout ${RELEASE_BRANCH} && true
+     git reset --hard ${GIT_ORIGIN}/${RELEASE_BRANCH} && true
+     # Always delete local branch if exists
+     git branch --delete ${RELEASE_VERSION} && true
+     git checkout -b ${RELEASE_VERSION}
+     """
+        echo '-[ Release tag cleanup ]--------------------------------------------------------'
+        def TAG_CHECK = sh(returnStdout: true, script: "git tag").trim().contains(RELEASE_TAG)
+        if (TAG_CHECK) {
+            if (OVERWRITE == 'true' ) {
+                echo "${RELEASE_TAG} tag already exists, deleting"
+                sh "git push --delete origin ${RELEASE_TAG} && true"
+            } else {
+                error "${RELEASE_TAG} tag already exists"
+            }
+            //# Always delete local tag if exists
+            sh """
+            git tag --delete ${RELEASE_TAG} && true
+            """
+        }
+
+    }
+    stage('Build Jersey') {
+        echo env.JAVA_HOME
+        echo '-[ Run maven release ]---------------------------------------------------------'
+        echo '-[ Set Release version ]-------------------------------------------------------'
+        sh """
+        ${MVN_HOME}/bin/mvn -q versions:set -DremoveSnapshot
+        ${MVN_HOME}/bin/mvn -q versions:commit
+     """
+        echo '-[ Run release build ]---------------------------------------------------------'
+        sh "${MVN_HOME}/bin/mvn -q -U -C ${TARGET} -DskipTests"
+    }
+    stage ('Prepare release') {
+        echo '-[ Configure git user ]--------------------------------------------------------'
+        sh 'git config --local user.email "jerseyrobot@java.net"'
+        sh 'git config --local user.name "jerseyrobot"'
+        echo '-[ Perform release commit to git ]---------------------------------------------'
+        sh "git commit -a -m ${RELEASE_VERSION}"
+        sh "git tag -m ${RELEASE_TAG} -a ${RELEASE_TAG}"
+        echo '-[ Set next snapshot version ]-------------------------------------------------'
+        sh "${MVN_HOME}/bin/mvn -q versions:set -DnextSnapshot"
+        sh "${MVN_HOME}/bin/mvn -q versions:commit"
+        echo '-[ Perform commit to git ]-----------------------------------------------------'
+        sh "git commit -a -m ${NEXT_VERSION}"
+    }
+    stage('Publish release') {
+        if (DRY_RUN == 'true') {
+            echo '-[ Prepared branch ]----------------------------------------------------------'
+            sh "git branch --list ${RELEASE_VERSION}"
+            echo '-[ Prepared tag ]-------------------------------------------------------------'
+            sh "git tag --list ${RELEASE_TAG}"
+            echo '-[ Prepared commits ]---------------------------------------------------------'
+            sh 'git log -n 5'
+            sh "git push https://${LOGIN}:${PASSWORD}@${REPO} ${RELEASE_VERSION} --dry-run"
+            return
+        }
+        sh "git push https://${LOGIN}:${PASSWORD}@${REPO} ${RELEASE_VERSION} --follow-tags"
+    }
+}
