@@ -39,7 +39,7 @@
         <extensionName>javax.servlet.jsp.jstl</extensionName>
         <bundle.symbolicName>javax.servlet.jsp.jstl-api</bundle.symbolicName>
         <vendorName>Eclipse Foundation</vendorName>
-        <findbugs.version>2.5.2</findbugs.version>
+        <findbugs.version>3.0.5</findbugs.version>
         <findbugs.exclude />
         <findbugs.threshold>High</findbugs.threshold>
     </properties>
@@ -169,7 +169,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.1</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -183,6 +183,7 @@
                                     <packages>javax.servlet.jsp.jstl</packages>
                                 </group>
                             </groups>
+                            <doclint>none</doclint>
                         </configuration>
                     </execution>
                 </executions>
