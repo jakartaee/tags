@@ -2,14 +2,19 @@ node {
 
     def   MVN_HOME='/opt/tools/apache-maven/latest'
     def   HELP_PLUGIN='org.apache.maven.plugins:maven-help-plugin:2.1.1'
-    def   TARGET = 'deploy'
+    def   TARGET = 'deploy:deploy'
     def   RELEASE_VERSION=''
     def   NEXT_VERSION=''
     def   RELEASE_TAG=''
     def   OVERWRITE='false'
-    def   LOGIN='jerseyrobot'
-    def   PASSWORD='01Jer\\$eyRock\\$!'
-    def   REPO='github.com/eclipse-ee4j/jersey.git'
+    def   PROJECT_NAME='JSTL-API'
+    def   LOGIN='jstl-bot'
+    def   EMAIL = 'jstl-bot@eclipse.org'
+    def   REPO='git@github.com:eclipse-ee4j/jstl-api.git'
+    def   CREDENTIALS_ID='github-bot-ssh'
+    def   GIT_ORIGIN='origin'
+    def   RELEASE_FOLDER='api'
+    def   RELEASE_BRANCH=BRANCH
 
     env.JAVA_HOME="/opt/tools/java/oracle/jdk-8/1.8.0_181"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
@@ -17,49 +22,65 @@ node {
     sh 'java -version'
 
     stage('Fetch from git') {
-        git "https://${REPO}"
+        git(branch: RELEASE_BRANCH, credentialsId: CREDENTIALS_ID, url: REPO)
     }
     stage('Prepare environment') {
 
+        dir (RELEASE_FOLDER) {
+            //# Check whether top level pom.xml contains SNAPSHOT version
+            if (!sh(returnStdout: true, script: "grep '<version>' pom.xml | grep 'SNAPSHOT'")?.trim()) {
+                error('-[ Missing SNAPSHOT version in POM! ]-------------------------------------------')
+            }
 
-        //# Check whether top level pom.xml contains SNAPSHOT version
-        if (!sh(returnStdout: true, script: "grep '<version>' pom.xml | grep 'SNAPSHOT'")?.trim()){
-            error ('-[ Missing SNAPSHOT version in POM! ]-------------------------------------------')
-        }
+            //# Compute release versions
+            def SNAPSHOT_VERSION = sh(returnStdout: true, script: "${MVN_HOME}/bin/mvn -B ${HELP_PLUGIN}:evaluate -Dexpression=project.version 2> /dev/null | grep -E '^[0-9]+(.[0-9]+)+-SNAPSHOT\$'").trim()
 
-        //# Compute release versions
-        def SNAPSHOT_VERSION=sh(returnStdout: true, script: "${MVN_HOME}/bin/mvn -B ${HELP_PLUGIN}:evaluate -Dexpression=project.version 2> /dev/null | grep -E '^[0-9]+(.[0-9]+)+-SNAPSHOT\$'").trim()
+            if (!SNAPSHOT_VERSION?.trim()) {
+                error('-[ Missing required snapshot version number! ]----------------------------------')
+            } else {
+                def versionTokens = SNAPSHOT_VERSION.split('-')
+                RELEASE_VERSION = versionTokens[0]
+            }
 
-        if (!SNAPSHOT_VERSION?.trim()) {
-            error('-[ Missing required snapshot version number! ]----------------------------------')
-        } else {
-            def versionTokens = SNAPSHOT_VERSION.split('-')
-            RELEASE_VERSION = versionTokens[0]
-        }
+            def (MAJOR_VERSION, MINOR_VERSION) = RELEASE_VERSION.tokenize('.')
+            def NEXT_MINOR_VERSION = (MINOR_VERSION as Integer) + 1
+            NEXT_VERSION = MAJOR_VERSION + '.' + NEXT_MINOR_VERSION + '-SNAPSHOT'
+            RELEASE_TAG = RELEASE_VERSION + '-RELEASE'
 
-        def (MAJOR_VERSION, MINOR_VERSION) = RELEASE_VERSION.tokenize('.')
-        def NEXT_MINOR_VERSION=(MINOR_VERSION as Integer) + 1
-        NEXT_VERSION=MAJOR_VERSION+'.'+NEXT_MINOR_VERSION+'-SNAPSHOT'
-        RELEASE_TAG=RELEASE_VERSION+'-RELEASE'
+            echo "Current version: ${SNAPSHOT_VERSION}"
+            echo "Release version: ${RELEASE_VERSION}"
+            echo "Next version:    ${NEXT_VERSION}"
+            echo "Release tag:     ${RELEASE_TAG}"
 
-        echo "Current version: ${SNAPSHOT_VERSION}"
-        echo "Release version: ${RELEASE_VERSION}"
-        echo "Next version:    ${NEXT_VERSION}"
-        echo "Release tag:     ${RELEASE_TAG}"
+            if (!SNAPSHOT_VERSION?.trim() || !RELEASE_VERSION?.trim() || !NEXT_VERSION?.trim()) {
+                error '-[ Missing required version numbers! ]------------------------------------------'
+            }
 
-        if (!SNAPSHOT_VERSION?.trim() || !RELEASE_VERSION?.trim() || !NEXT_VERSION?.trim()) {
-            error '-[ Missing required version numbers! ]------------------------------------------'
-        }
-
-        if (DRY_RUN == 'true') {
-            echo '-[ Dry run turned on ]----------------------------------------------------------'
-            TARGET = 'install'
+            if (DRY_RUN == 'true') {
+                echo '-[ Dry run turned on ]----------------------------------------------------------'
+                TARGET = 'install:install'
+            }
         }
 
     }
+    stage ('Prepare GPG') {
+        withCredentials([file(credentialsId: '6a0be846-7284-4044-82de-6f4b02863628', variable: 'KEYRING')]) {
+            configFileProvider([configFile(fileId: '4dc08734-ea7f-4e97-8877-c76332d62377', targetLocation: '/home/jenkins/.m2/')]) {
+
+                //# Workaround: GPG initialization
+                sh("gpg --batch --import ${KEYRING}")
+                sh '''
+                for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u);
+                do
+                    echo -e "5\\ny\\n" |  gpg --batch --command-fd 0 --expert --edit-key $fpr trust;
+                done
+                '''
+            }
+        }
+    }
     stage ('Prepare branch') {
         echo '-[ Prepare branch ]-------------------------------------------------------------'
-        def GIT_ORIGIN=sh(returnStdout: true, script: "git remote").trim()
+
         def BRANCH_CHECK = sh(returnStdout: true, script: "git branch -r").trim().contains(GIT_ORIGIN+'/'+RELEASE_VERSION)
 
         if (BRANCH_CHECK) {
@@ -72,12 +93,12 @@ node {
         }
         echo '-[ Swiching to release branch ]-------------------------------------------------'
         sh """
-     git checkout ${RELEASE_BRANCH} && true
-     git reset --hard ${GIT_ORIGIN}/${RELEASE_BRANCH} && true
-     # Always delete local branch if exists
-     git branch --delete ${RELEASE_VERSION} && true
-     git checkout -b ${RELEASE_VERSION}
-     """
+        git checkout ${GIT_ORIGIN}/${RELEASE_BRANCH} && true
+        git reset --hard ${GIT_ORIGIN}/${RELEASE_BRANCH} && true
+        # Always delete local branch if exists
+        git branch --delete ${RELEASE_VERSION} && true
+        git checkout -b ${RELEASE_VERSION}
+        """
         echo '-[ Release tag cleanup ]--------------------------------------------------------'
         def TAG_CHECK = sh(returnStdout: true, script: "git tag").trim().contains(RELEASE_TAG)
         if (TAG_CHECK) {
@@ -94,27 +115,35 @@ node {
         }
 
     }
-    stage('Build Jersey') {
+    stage("Build ${PROJECT_NAME}") {
         echo env.JAVA_HOME
         echo '-[ Run maven release ]---------------------------------------------------------'
         echo '-[ Set Release version ]-------------------------------------------------------'
         sh """
+        cd ${RELEASE_FOLDER}
         ${MVN_HOME}/bin/mvn -q versions:set -DremoveSnapshot
         ${MVN_HOME}/bin/mvn -q versions:commit
-     """
+        """
         echo '-[ Run release build ]---------------------------------------------------------'
-        sh "${MVN_HOME}/bin/mvn -q -U -C ${TARGET} -DskipTests"
+        dir (RELEASE_FOLDER) {
+            configFileProvider([configFile(fileId: 'bb2b60c3-3444-4a60-9253-769fbffab593', variable: 'MAVEN_SETTINGS_XML')]) {
+                sh "${MVN_HOME}/bin/mvn -q -s ${MAVEN_SETTINGS_XML} -DskipTests -Ddoclint=none -Dadditionalparam='-Xdoclint:none' " +
+                        " -U -C clean package source:jar javadoc:jar gpg:sign ${TARGET}"
+            }
+        }
     }
     stage ('Prepare release') {
         echo '-[ Configure git user ]--------------------------------------------------------'
-        sh 'git config --local user.email "jerseyrobot@java.net"'
-        sh 'git config --local user.name "jerseyrobot"'
+        sh "git config --local user.email \"${EMAIL}\""
+        sh "git config --local user.name \"$LOGIN\""
         echo '-[ Perform release commit to git ]---------------------------------------------'
         sh "git commit -a -m ${RELEASE_VERSION}"
         sh "git tag -m ${RELEASE_TAG} -a ${RELEASE_TAG}"
         echo '-[ Set next snapshot version ]-------------------------------------------------'
-        sh "${MVN_HOME}/bin/mvn -q versions:set -DnextSnapshot"
-        sh "${MVN_HOME}/bin/mvn -q versions:commit"
+        dir (RELEASE_FOLDER) {
+            sh "${MVN_HOME}/bin/mvn -q versions:set -DnextSnapshot"
+            sh "${MVN_HOME}/bin/mvn -q versions:commit"
+        }
         echo '-[ Perform commit to git ]-----------------------------------------------------'
         sh "git commit -a -m ${NEXT_VERSION}"
     }
@@ -126,9 +155,13 @@ node {
             sh "git tag --list ${RELEASE_TAG}"
             echo '-[ Prepared commits ]---------------------------------------------------------'
             sh 'git log -n 5'
-            sh "git push https://${LOGIN}:${PASSWORD}@${REPO} ${RELEASE_VERSION} --dry-run"
+            sshagent([CREDENTIALS_ID]) {
+                sh "git push ${GIT_ORIGIN} ${RELEASE_VERSION} --dry-run"
+            }
             return
         }
-        sh "git push https://${LOGIN}:${PASSWORD}@${REPO} ${RELEASE_VERSION} --follow-tags"
+        sshagent([CREDENTIALS_ID]) {
+            sh "git push ${GIT_ORIGIN} ${RELEASE_VERSION} --follow-tags"
+        }
     }
 }
