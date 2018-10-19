@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -39,7 +39,7 @@
         <extensionName>javax.servlet.jsp.jstl</extensionName>
         <bundle.symbolicName>javax.servlet.jsp.jstl-api</bundle.symbolicName>
         <vendorName>Eclipse Foundation</vendorName>
-        <findbugs.version>2.5.2</findbugs.version>
+        <findbugs.version>3.0.5</findbugs.version>
         <findbugs.exclude />
         <findbugs.threshold>High</findbugs.threshold>
     </properties>
@@ -169,7 +169,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.1</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -183,6 +183,7 @@
                                     <packages>javax.servlet.jsp.jstl</packages>
                                 </group>
                             </groups>
+                            <doclint>none</doclint>
                         </configuration>
                     </execution>
                 </executions>
@@ -207,7 +208,27 @@
                     <arguments>${release.arguments}</arguments>
                 </configuration>
             </plugin>
-    	</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
