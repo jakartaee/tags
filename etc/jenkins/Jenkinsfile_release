@@ -1,17 +1,21 @@
+#!/usr/bin/env groovy
+
 node {
 
     def   MVN_HOME='/opt/tools/apache-maven/latest'
     def   HELP_PLUGIN='org.apache.maven.plugins:maven-help-plugin:2.1.1'
-    def   CONFIG_FILE='~/etc/jenkins/Jenkinsfile_release_config'
     def   TARGET = 'deploy'
     def   RELEASE_VERSION=RELEASE_VERSION
     def   NEXT_VERSION=NEXT_VERSION
     def   RELEASE_TAG=''
-    def   OVERWRITE='false'
+    def   OVERWRITE=OVERWRITE
     def   PROJECT_NAME='JSTL-API'
     def   LOGIN='jstl-bot'
     def   EMAIL = 'jstl-bot@eclipse.org'
     def   REPO='git@github.com:eclipse-ee4j/jstl-api.git'
+    def   SECRET_FILE_ID='6a0be846-7284-4044-82de-6f4b02863628'
+    def   SECURITY_FILE_ID='4dc08734-ea7f-4e97-8877-c76332d62377'
+    def   CONFIG_FILE_ID='bb2b60c3-3444-4a60-9253-769fbffab593'
     def   CREDENTIALS_ID='github-bot-ssh'
     def   GIT_ORIGIN='origin'
     def   RELEASE_FOLDER=RELEASE_OPTION
@@ -66,11 +70,15 @@ node {
                 echo '-[ Dry run turned on ]----------------------------------------------------------'
                 TARGET = 'install'
             }
+            echo '-[ Configure git user ]--------------------------------------------------------'
+            sh "git config --local user.email \"${EMAIL}\""
+            sh "git config --local user.name \"$LOGIN\""
+
         }
 
     }
     stage ('Prepare GPG') {
-        withCredentials([file(credentialsId: '6a0be846-7284-4044-82de-6f4b02863628', variable: 'KEYRING')]) {
+        withCredentials([file(credentialsId: SECRET_FILE_ID, variable: 'KEYRING')]) {
             //# Workaround: GPG initialization
             sh("gpg --batch --import ${KEYRING}")
             sh '''
@@ -89,7 +97,9 @@ node {
         if (BRANCH_CHECK) {
             if ( OVERWRITE == 'true' ) {
                 echo "${GIT_ORIGIN}/${RELEASE_VERSION} branch already exists, deleting"
-                sh 'git push --delete ${GIT_ORIGIN} ${RELEASE_VERSION} && true'
+                sshagent([CREDENTIALS_ID]) {
+                    sh "git push ${GIT_ORIGIN} :${RELEASE_VERSION} && true"
+                }
             } else {
                 error "${GIT_ORIGIN}/${RELEASE_VERSION} branch already exists"
             }
@@ -107,7 +117,9 @@ node {
         if (TAG_CHECK) {
             if (OVERWRITE == 'true' ) {
                 echo "${RELEASE_TAG} tag already exists, deleting"
-                sh "git push --delete origin ${RELEASE_TAG} && true"
+                sshagent([CREDENTIALS_ID]) {
+                    sh "git push --delete origin ${RELEASE_TAG} && true"
+                }
             } else {
                 error "${RELEASE_TAG} tag already exists"
             }
@@ -129,29 +141,17 @@ node {
         """
         echo '-[ Run release build ]---------------------------------------------------------'
         dir (RELEASE_FOLDER) {
-            withCredentials([file(credentialsId: '6a0be846-7284-4044-82de-6f4b02863628', variable: 'KEYRING')]) {
-                configFileProvider([configFile(fileId: '4dc08734-ea7f-4e97-8877-c76332d62377', targetLocation: '/home/jenkins/.m2/')]) {
+            configFileProvider([configFile(fileId: SECURITY_FILE_ID, targetLocation: '/home/jenkins/.m2/')]) {
 
-                    //# Workaround: GPG initialization
-                    sh("gpg --batch --import ${KEYRING}")
-                    sh '''
-                        for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u);
-                        do
-                            echo -e "5\ny\n" |  gpg --batch --command-fd 0 --expert --edit-key $fpr trust;
-                        done
-                       '''
-                    configFileProvider([configFile(fileId: 'bb2b60c3-3444-4a60-9253-769fbffab593', variable: 'MAVEN_SETTINGS_XML')]) {
-                        sh "${MVN_HOME}/bin/mvn -q -B -s ${MAVEN_SETTINGS_XML} -DskipTests -Ddoclint=none -Dadditionalparam='-Xdoclint:none' " +
-                                " -U -C clean package source:jar javadoc:jar ${TARGET}"
-                    }
+                configFileProvider([configFile(fileId: CONFIG_FILE_ID, variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh "${MVN_HOME}/bin/mvn -q -B -s ${MAVEN_SETTINGS_XML} -Pstaging -Poss-release -DskipTests " +
+                            " -Ddoclint=none -Dadditionalparam='-Xdoclint:none' " +
+                            " -U -C clean package source:jar javadoc:jar ${TARGET}"
                 }
             }
         }
     }
     stage ('Prepare release') {
-        echo '-[ Configure git user ]--------------------------------------------------------'
-        sh "git config --local user.email \"${EMAIL}\""
-        sh "git config --local user.name \"$LOGIN\""
         echo '-[ Perform release commit to git ]---------------------------------------------'
         sh "git commit -a -m ${RELEASE_VERSION}"
         sh "git tag -m ${RELEASE_TAG} -a ${RELEASE_TAG}"
@@ -175,9 +175,10 @@ node {
                 sh "git push ${GIT_ORIGIN} ${RELEASE_VERSION} --dry-run"
             }
             return
-        }
-        sshagent([CREDENTIALS_ID]) {
-            sh "git push ${GIT_ORIGIN} ${RELEASE_VERSION} --follow-tags"
+        } else {
+            sshagent([CREDENTIALS_ID]) {
+                sh "git push ${GIT_ORIGIN} ${RELEASE_VERSION} --follow-tags"
+            }
         }
     }
 }
