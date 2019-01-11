@@ -26,7 +26,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish.web</groupId>
-    <artifactId>javax.servlet.jsp.jstl</artifactId>
+    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
     <version>1.2.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>JavaServer Pages (TM) TagLib Implementation</name>
