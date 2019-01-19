@@ -3,7 +3,7 @@
   <parent>
     <artifactId>project</artifactId>
     <groupId>org.eclipse.ee4j</groupId>
-    <version>1.0.1</version>
+    <version>1.0.5</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.glassfish.web</groupId>
@@ -212,7 +212,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.1</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -226,6 +226,7 @@
                   <packages>org.apache.taglibs</packages>
                 </group>
               </groups>
+              <doclint>none</doclint>
             </configuration>
           </execution>
         </executions>
@@ -264,6 +265,32 @@
           <arguments>${release.arguments}</arguments>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>add-legal-resource</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-resource</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${legal.doc.source}</directory>
+                  <includes>
+                    <include>NOTICE.md</include>
+                    <include>LICENSE.md</include>
+                  </includes>
+                  <targetPath>META-INF</targetPath>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -274,21 +301,21 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.2</version>
+      <groupId>jakarta.servlet.jsp</groupId>
+      <artifactId>jakarta.servlet.jsp-api</artifactId>
+      <version>2.3.4</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.el</groupId>
-      <artifactId>el-api</artifactId>
-      <version>2.2</version>
+      <groupId>jakarta.el</groupId>
+      <artifactId>jakarta.el-api</artifactId>
+      <version>3.0.2</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp.jstl</groupId>
-      <artifactId>jstl-api</artifactId>
-      <version>1.2</version>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>1.2.3</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -307,7 +334,8 @@
   </reporting>
   <properties>
     <bundle.symbolicName>org.glassfish.web.javax.servlet.jsp.jstl</bundle.symbolicName>
-    <findbugs.version>2.5.2</findbugs.version>
+    <legal.doc.source>${maven.multiModuleProjectDirectory}/..</legal.doc.source>
+    <findbugs.version>3.0.5</findbugs.version>
     <extensionName>javax.servlet.jsp.jstl</extensionName>
     <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
     <vendorName>Eclipse Foundation</vendorName>
