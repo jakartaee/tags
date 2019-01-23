@@ -28,7 +28,7 @@
     <groupId>jakarta.servlet.jsp.jstl</groupId>
     <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.4</version>
     <name>JavaServer Pages(TM) Standard Tag Library API</name>
 
     <description>JavaServer Pages(TM) Standard Tag Library API</description>
