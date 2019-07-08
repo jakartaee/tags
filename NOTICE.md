@@ -1,12 +1,12 @@
-# Notices for Eclipse Project for Jakarta Standard Tag Library(JSTL)
+# Notices for Eclipse Project for Jakarta Standard Tag Library
 
-This content is produced and maintained by the Eclipse Project for Jakarta Standard Tag Library(JSTL) project.
+This content is produced and maintained by the Eclipse Project for Jakarta Standard Tag Library project.
 
 * Project home: https://projects.eclipse.org/projects/ee4j.jstl
 
 ## Trademarks
 
-Eclipse Project for Jakarta Standard Tag Library(JSTL) is a trademark of the Eclipse Foundation.
+Eclipse Project for Jakarta Standard Tag Library is a trademark of the Eclipse Foundation.
 
 ## Copyright
 
