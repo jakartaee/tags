@@ -1,10 +1,10 @@
-# Contributing to Eclipse Project for JSTL
+# Contributing to Eclipse Project for Jakarta Standard Tag Library(JSTL)
 
 Thanks for your interest in this project.
 
 ## Project description
 
-JavaServer Pages Standard Tag Library (JSTL) encapsulates as simple tags the
+Jakarta Standard Tag Library(JSTL) encapsulates as simple tags the
 core functionality common to many Web applications. JSTL has support for common,
 structural tasks such as iteration and conditionals, tags for manipulating XML
 documents, internationalization tags, and SQL tags. It also provides a framework
