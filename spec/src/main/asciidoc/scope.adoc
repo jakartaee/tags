@@ -1,0 +1,3 @@
+== Specification Scope
+
+Jakarta Standard Tag Library defines a framework and simple tags for Jakarta Server Pages that provide support for common, structural tasks such as iteration and conditionals, tags for manipulating XML documents, internationalization tags, and SQL tags.
