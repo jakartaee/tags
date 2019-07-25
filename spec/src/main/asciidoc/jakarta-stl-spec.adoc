@@ -1,11 +1,28 @@
-== Introduction
+//
+// Copyright (c) 2017, 2019 Oracle and/or its affiliates. All rights reserved.
+//
 
-Jakarta Standard Tag Library provides a specification document, API and TCK that extends the 
-Jakarta Server Pages specification by adding a tag library of JSP tags for common tasks, 
-such as XML data processing, conditional execution, database access, loops and internationalization. 
+= Jakarta Standard Tag Library
+:authors: Jakarta Standard Tag Library Team, https://projects.eclipse.org/projects/ee4j.jstl
+:email: https://dev.eclipse.org/mailman/listinfo/jstl-dev
+:version-label!:
+:doctype: book
+:license: Eclipse Foundation Specification License v1.0
+:source-highlighter: coderay
+:toc: left
+:toclevels: 4
+:sectnumlevels: 4
+:sectanchors:
+ifdef::backend-pdf[]
+:pagenums:
+:numbered:
+:title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
+endif::[]
 
-=== Picture
+// == License
+:sectnums!:
+include::license-efsl.adoc[]
 
-Just an example of how images appear in the project.
-
-image:jakartastl_1.png[image]
+// == Mail
+:sectnums:
+include::jakarta-stl.adoc[]

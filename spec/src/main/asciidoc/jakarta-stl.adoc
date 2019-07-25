@@ -1,0 +1,5 @@
+== Introduction
+
+Jakarta Standard Tag Library provides a specification document, API and TCK that extends the 
+Jakarta Server Pages specification by adding a tag library of JSP tags for common tasks, 
+such as XML data processing, conditional execution, database access, loops and internationalization. 
