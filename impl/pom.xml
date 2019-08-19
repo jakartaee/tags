@@ -268,7 +268,7 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                     <docfilessubdirs>true</docfilessubdirs>
                     <groups>
                         <group>
-                            <title>Jakarta Standard Tag Library API Documentation</title>
+                            <title>Jakarta Standard Tag Library Documentation</title>
                             <packages>javax.servlet.jsp.jstl*</packages>
                         </group>
                     </groups>
