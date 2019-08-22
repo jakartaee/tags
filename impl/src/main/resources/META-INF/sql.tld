@@ -22,9 +22,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
     version="2.0">
     
-  <description>JSTL 1.1 sql library</description>
+  <description>JSTL 1.2 sql library</description>
   <display-name>JSTL sql</display-name>
-  <tlib-version>1.1</tlib-version>
+  <tlib-version>1.2</tlib-version>
   <short-name>sql</short-name>
   <uri>http://java.sun.com/jsp/jstl/sql</uri>
 
