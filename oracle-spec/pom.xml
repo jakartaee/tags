@@ -20,15 +20,15 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.5</version>
         <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jakarta.stl</groupId>
-    <artifactId>jakarta-stl-spec</artifactId>
+    <groupId>jakarta.tag-library</groupId>
+    <artifactId>tag-library-spec</artifactId>
     <packaging>pom</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>Jakarta Standard Tag Library Specification</name>
+    <version>1.2-SNAPSHOT</version>
+    <name>Jakarta Tag Library Specification</name>
 
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
@@ -38,21 +38,19 @@
         <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
-        <status>Final Release</status>
-        <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
-        <revisiondate>${maven.build.timestamp}</revisiondate>
+        <status>DRAFT</status>
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:eclipse-ee4j/jakarta-stl-spec.git</connection>
-        <developerConnection>scm:git:git@github.com:eclipse-ee4j/jakarta-stl-spec.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/jakarta-stl-spec</url>
+        <connection>scm:git:git@github.com:eclipse-ee4j/jakarta-tag-library.git</connection>
+        <developerConnection>scm:git:git@github.com:eclipse-ee4j/jakarta-tag-library.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/jakarta-tag-library</url>
         <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:eclipse-ee4j/jakarta-stl-spec.git</url>
+            <url>scm:git:git@github.com:eclipse-ee4j/jakarta-tag-library.git</url>
         </site>
     </distributionManagement>
 
@@ -109,8 +107,7 @@
                             <goal>process-asciidoc</goal>
                         </goals>
                         <configuration>
-                            <backend>html5</backend>
-                            <outputFile>${project.build.directory}/generated-docs/jstl-spec-${project.version}.html</outputFile>
+                            <backend>xhtml</backend>
                             <attributes>
                                 <doctype>book</doctype>
                                 <status>${status}</status>
@@ -133,7 +130,6 @@
                         </goals>
                         <configuration>
                             <backend>pdf</backend>
-                            <outputFile>${project.build.directory}/generated-docs/jstl-spec-${project.version}.pdf</outputFile>
                             <attributes>
                                 <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
                                 <pdf-style>jakartaee</pdf-style>
@@ -153,16 +149,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <sourceDocumentName>jakarta-stl-spec.adoc</sourceDocumentName>
-                    <sourceHighlighter>coderay</sourceHighlighter>
-                    <attributes>
-                        <revnumber>${project.version}</revnumber>
-                        <revremark>${status}</revremark>
-                        <revdate>${revisiondate}</revdate>
-                    </attributes>
-                </configuration>
-
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
