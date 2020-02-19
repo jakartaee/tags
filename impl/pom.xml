@@ -331,6 +331,7 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
+                <!--
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -340,16 +341,19 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                         </goals>
                         <configuration>
                             <gpgArguments>
-                                <arg>--pinentry-mode</arg>
+                            --> <!-- put minus-minus before pinentry..
+                                <arg>pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
+            -->
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>exec-maven-plugin</artifactId>
+               <version>1.6.0</version>
                <executions>
                 <execution>
                     <id>generateTldDoc</id>
@@ -368,21 +372,21 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                             <argument>Jakarta Tags Doc</argument>
                             <argument>-d</argument>
                             <argument>${project.build.directory}/tlddoc</argument>
-                            <!--<argument>src/main/resources/META-INF/fmt-1_0-rt.tld</argument>-->
-                            <!--<argument>src/main/resources/META-INF/c-1_0-rt.tld</argument>-->
-                            <!--<argument>src/main/resources/META-INF/x-1_0-rt.tld</argument>-->
-                            <argument>src/main/resources/META-INF/sql.tld</argument>
-                            <argument>src/main/resources/META-INF/x.tld</argument>
-                            <!--<argument>src/main/resources/META-INF/x-1_0.tld</argument>-->
-                            <!--<argument>src/main/resources/META-INF/scriptfree.tld</argument>-->
-                            <argument>src/main/resources/META-INF/fmt.tld</argument>
-                            <!--<argument>src/main/resources/META-INF/permittedTaglibs.tld</argument>-->
-                            <!--<argument>src/main/resources/META-INF/sql-1_0.tld</argument>-->
-                            <argument>src/main/resources/META-INF/c.tld</argument>
-                            <!--<argument>src/main/resources/META-INF/sql-1_0-rt.tld</argument>-->
-                            <argument>src/main/resources/META-INF/fn.tld</argument>
-                            <!--<argument>src/main/resources/META-INF/c-1_0.tld</argument>-->
-                            <!--<argument>src/main/resources/META-INF/fmt-1_0.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/fmt-1_0-rt.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/c-1_0-rt.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/x-1_0-rt.tld</argument>-->
+                            <argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
+                            <argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/x-1_0.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/scriptfree.tld</argument>-->
+                            <argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/permittedTaglibs.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/sql-1_0.tld</argument>-->
+                            <argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/sql-1_0-rt.tld</argument>-->
+                            <argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/c-1_0.tld</argument>-->
+                            <!--<argument>${project.basedir}/src/main/resources/META-INF/fmt-1_0.tld</argument>-->
                         </arguments>
                     </configuration>
                 </execution>
