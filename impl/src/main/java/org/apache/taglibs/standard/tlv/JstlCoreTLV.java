@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,8 +20,8 @@ package org.apache.taglibs.standard.tlv;
 import java.util.Set;
 import java.util.Stack;
 
-import javax.servlet.jsp.tagext.PageData;
-import javax.servlet.jsp.tagext.ValidationMessage;
+import jakarta.servlet.jsp.tagext.PageData;
+import jakarta.servlet.jsp.tagext.ValidationMessage;
 
 import org.apache.taglibs.standard.resources.Resources;
 import org.xml.sax.Attributes;

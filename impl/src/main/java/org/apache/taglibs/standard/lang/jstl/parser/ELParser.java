@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -770,7 +770,7 @@ public class ELParser implements ELParserConstants {
       ;
     }
     jj_consume_token(RPAREN);
-    String allowed = System.getProperty("javax.servlet.jsp.functions.allowed");
+    String allowed = System.getProperty("jakarta.servlet.jsp.functions.allowed");
     if (allowed == null || !allowed.equalsIgnoreCase("true"))
       {if (true) throw new ParseException("EL functions are not supported.");}
     {if (true) return new FunctionInvocation(qualifiedName, argumentList);}

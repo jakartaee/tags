@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,18 +33,19 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.WriteListener;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
 
 import org.apache.taglibs.standard.resources.Resources;
 
@@ -415,13 +416,24 @@ public abstract class ImportSupport extends BodyTagSupport
 
 	/** A ServletOutputStream we convey, tied to this Writer. */
 	private ServletOutputStream sos = new ServletOutputStream() {
-	    public void write(int b) throws IOException {
-		bos.write(b);
+        @Override
+        public boolean isReady() {
+            return false;
+        }
+
+        @Override
+        public void setWriteListener(WriteListener writeListener) {
+
+        }
+
+        public void write(int b) throws IOException {
+		    bos.write(b);
 	    }
-            public void flush() throws IOException {
-                pageContext.getOut().write(getString());
-                bos.reset();
-            }
+
+        public void flush() throws IOException {
+            pageContext.getOut().write(getString());
+            bos.reset();
+        }
 	};
 
 	/** 'True' if getWriter() was called; false otherwise. */

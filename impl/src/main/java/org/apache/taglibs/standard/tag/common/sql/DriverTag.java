@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,11 @@
 
 package org.apache.taglibs.standard.tag.common.sql;
 
-import javax.servlet.ServletContext;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * <p>Tag handler for &lt;Driver&gt; in JSTL, used to create
@@ -31,13 +31,13 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DriverTag extends TagSupport {
     private static final String DRIVER_CLASS_NAME =
-	"javax.servlet.jsp.jstl.sql.driver";
+	"jakarta.servlet.jsp.jstl.sql.driver";
     private static final String JDBC_URL =
-	"javax.servlet.jsp.jstl.sql.jdbcURL";
+	"jakarta.servlet.jsp.jstl.sql.jdbcURL";
     private static final String USER_NAME =
-	"javax.servlet.jsp.jstl.sql.userName";
+	"jakarta.servlet.jsp.jstl.sql.userName";
     private static final String PASSWORD =
-	"javax.servlet.jsp.jstl.sql.password";
+	"jakarta.servlet.jsp.jstl.sql.password";
 
     private String driverClassName;
     private String jdbcURL;

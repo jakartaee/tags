@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.core;
+package jakarta.servlet.jsp.jstl.core;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.jsp.PageContext;
 
 /**
  * Class supporting access to configuration settings.
@@ -36,25 +36,25 @@ public class Config {
      * based preferred locale
      */
     public static final String FMT_LOCALE
-	= "javax.servlet.jsp.jstl.fmt.locale";
+	= "jakarta.servlet.jsp.jstl.fmt.locale";
 
     /**
      * Name of configuration setting for fallback locale
      */
     public static final String FMT_FALLBACK_LOCALE
-	= "javax.servlet.jsp.jstl.fmt.fallbackLocale";
+	= "jakarta.servlet.jsp.jstl.fmt.fallbackLocale";
 
     /**
      * Name of configuration setting for i18n localization context
      */
     public static final String FMT_LOCALIZATION_CONTEXT
-	= "javax.servlet.jsp.jstl.fmt.localizationContext";
+	= "jakarta.servlet.jsp.jstl.fmt.localizationContext";
 
     /**
      * Name of localization setting for time zone
      */
     public static final String FMT_TIME_ZONE
-	= "javax.servlet.jsp.jstl.fmt.timeZone";
+	= "jakarta.servlet.jsp.jstl.fmt.timeZone";
 
     /*
      * SQL actions related configuration data
@@ -64,14 +64,14 @@ public class Config {
      * Name of configuration setting for SQL data source
      */
     public static final String SQL_DATA_SOURCE
-	= "javax.servlet.jsp.jstl.sql.dataSource";
+	= "jakarta.servlet.jsp.jstl.sql.dataSource";
 
     /**
      * Name of configuration setting for maximum number of rows to be included
      * in SQL query result
      */
     public static final String SQL_MAX_ROWS
-	= "javax.servlet.jsp.jstl.sql.maxRows";
+	= "jakarta.servlet.jsp.jstl.sql.maxRows";
 	
     /*
      * Private constants

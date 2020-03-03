@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,9 +18,9 @@
 package org.apache.taglibs.standard.tag.common.core;
 
 import java.util.StringTokenizer;
-import javax.el.ValueExpression;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.jstl.core.LoopTagSupport;
+import jakarta.el.ValueExpression;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.jstl.core.LoopTagSupport;
 import org.apache.taglibs.standard.resources.Resources;
 
 /**
@@ -30,7 +30,7 @@ import org.apache.taglibs.standard.resources.Resources;
  * expression-evaluating libraries each have handlers that extend this
  * class.</p>
  *
- * @see javax.servlet.jsp.jstl.core.LoopTagSupport
+ * @see jakarta.servlet.jsp.jstl.core.LoopTagSupport
  * @author Shawn Bayern
  */
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.fmt;
+package jakarta.servlet.jsp.jstl.fmt;
 
 import java.text.MessageFormat;
 import java.util.Enumeration;
@@ -23,10 +23,10 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.jstl.core.Config;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.jstl.core.Config;
 
 /**
  * Class which exposes the locale-determination logic for resource bundles
@@ -46,7 +46,7 @@ public class LocaleSupport {
     private static final char HYPHEN = '-';
     private static final char UNDERSCORE = '_';
     private static final String REQUEST_CHAR_SET =
-        "javax.servlet.jsp.jstl.fmt.request.charset";
+        "jakarta.servlet.jsp.jstl.fmt.request.charset";
     private static final Locale EMPTY_LOCALE = new Locale("", "");
 
     /** 
@@ -54,7 +54,7 @@ public class LocaleSupport {
      *
      * <p> The given key is looked up in the resource bundle of the default
      * I18N localization context, which is retrieved from the
-     * <tt>javax.servlet.jsp.jstl.fmt.localizationContext</tt> configuration
+     * <tt>jakarta.servlet.jsp.jstl.fmt.localizationContext</tt> configuration
      * setting.
      *
      * <p> If the configuration setting is empty, or the default I18N
@@ -105,7 +105,7 @@ public class LocaleSupport {
      * of how parametric replacement is implemented.
      *
      * <p> The localized message is retrieved as in
-     * {@link #getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String) getLocalizedMessage(pageContext, key)}.
+     * {@link #getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String) getLocalizedMessage(pageContext, key)}.
      *
      * @param pageContext the page in which to get the localized message
      * corresponding to the given key  
@@ -129,7 +129,7 @@ public class LocaleSupport {
      * of how parametric replacement is implemented.
      *
      * <p> The localized message is retrieved as in
-     * {@link #getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String, java.lang.String) getLocalizedMessage(pageContext, key, basename)}.
+     * {@link #getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String, java.lang.String) getLocalizedMessage(pageContext, key, basename)}.
      * 
      * @param pageContext the page in which to get the localized message
      * corresponding to the given key  
@@ -204,13 +204,13 @@ public class LocaleSupport {
      * Check if a match exists between the ordered set of preferred
      * locales and the available locales, for the given base name.
      * The set of preferred locales consists of a single locale
-     * (if the <tt>javax.servlet.jsp.jstl.fmt.locale</tt> configuration
+     * (if the <tt>jakarta.servlet.jsp.jstl.fmt.locale</tt> configuration
      * setting is present) or is equal to the client's preferred locales
      * determined from the client's browser settings.
      *
      * <p> If no match was found in the previous step, check if a match
      * exists between the fallback locale (given by the
-     * <tt>javax.servlet.jsp.jstl.fmt.fallbackLocale</tt> configuration
+     * <tt>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</tt> configuration
      * setting) and the available locales, for the given base name.
      *
      * @param pageContext Page in which the resource bundle with the
@@ -416,7 +416,7 @@ public class LocaleSupport {
     /*
      * Stores the given locale in the response object of the given page
      * context, and stores the locale's associated charset in the
-     * javax.servlet.jsp.jstl.fmt.request.charset session attribute, which
+     * jakarta.servlet.jsp.jstl.fmt.request.charset session attribute, which
      * may be used by the <requestEncoding> action in a page invoked by a
      * form included in the response to set the request charset to the same as
      * the response charset (this makes it possible for the container to

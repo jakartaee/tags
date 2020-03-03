@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.core;
+package jakarta.servlet.jsp.jstl.core;
 
-import javax.el.ELContext;
-import javax.el.ValueExpression;
+import jakarta.el.ELContext;
+import jakarta.el.ValueExpression;
 
 /**
  * @author Jacob Hookom
@@ -44,7 +44,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.ValueExpression#getValue(javax.el.ELContext)
+     * @see jakarta.el.ValueExpression#getValue(jakarta.el.ELContext)
      */
     public Object getValue(ELContext context) {
         Object base = this.orig.getValue(context);
@@ -58,7 +58,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.ValueExpression#setValue(javax.el.ELContext,
+     * @see jakarta.el.ValueExpression#setValue(jakarta.el.ELContext,
      *      java.lang.Object)
      */
     public void setValue(ELContext context, Object value) {
@@ -72,7 +72,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.ValueExpression#isReadOnly(javax.el.ELContext)
+     * @see jakarta.el.ValueExpression#isReadOnly(jakarta.el.ELContext)
      */
     public boolean isReadOnly(ELContext context) {
         Object base = this.orig.getValue(context);
@@ -86,7 +86,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.ValueExpression#getType(javax.el.ELContext)
+     * @see jakarta.el.ValueExpression#getType(jakarta.el.ELContext)
      */
     public Class getType(ELContext context) {
         Object base = this.orig.getValue(context);
@@ -100,7 +100,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.ValueExpression#getExpectedType()
+     * @see jakarta.el.ValueExpression#getExpectedType()
      */
     public Class getExpectedType() {
         return Object.class;
@@ -109,7 +109,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.Expression#getExpressionString()
+     * @see jakarta.el.Expression#getExpressionString()
      */
     public String getExpressionString() {
         return this.orig.getExpressionString();
@@ -118,7 +118,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.Expression#equals(java.lang.Object)
+     * @see jakarta.el.Expression#equals(java.lang.Object)
      */
     public boolean equals(Object obj) {
         return this.orig.equals(obj);
@@ -127,7 +127,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.Expression#hashCode()
+     * @see jakarta.el.Expression#hashCode()
      */
     public int hashCode() {
         return this.orig.hashCode();
@@ -136,7 +136,7 @@ public final class IndexedValueExpression extends ValueExpression {
     /*
      * (non-Javadoc)
      * 
-     * @see javax.el.Expression#isLiteralText()
+     * @see jakarta.el.Expression#isLiteralText()
      */
     public boolean isLiteralText() {
         return false;

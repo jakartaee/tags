@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ package org.apache.taglibs.standard.tag.rt.fmt;
 
 import java.util.Locale;
 
-import javax.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.JspTagException;
 
 import org.apache.taglibs.standard.tag.common.fmt.ParseDateSupport;
 import org.apache.taglibs.standard.tag.common.fmt.SetLocaleSupport;
