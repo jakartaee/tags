@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,9 +19,9 @@ package org.apache.taglibs.standard.lang.support;
 
 import java.util.HashMap;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.Tag;
 
 import org.apache.taglibs.standard.lang.jstl.Coercions;
 import org.apache.taglibs.standard.lang.jstl.ELException;
@@ -46,7 +46,7 @@ public class ExpressionEvaluatorManager {
     public static final String EVALUATOR_CLASS =
         "org.apache.taglibs.standard.lang.jstl.Evaluator";
     // private static final String EVALUATOR_PARAMETER =
-    //    "javax.servlet.jsp.jstl.temp.ExpressionEvaluatorClass";
+    //    "jakarta.servlet.jsp.jstl.temp.ExpressionEvaluatorClass";
 
     //*********************************************************************
     // Internal, static state

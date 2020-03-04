@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,10 +25,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javax.el.ValueExpression;
+import jakarta.el.ValueExpression;
 
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.jstl.core.LoopTagSupport;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.jstl.core.LoopTagSupport;
 
 import org.apache.taglibs.standard.resources.Resources;
 
@@ -42,10 +42,10 @@ import org.apache.taglibs.standard.resources.Resources;
  * <p>Localized here is the logic for handling the veritable smorgasbord
  * of types supported by &lt;forEach&gt;, including arrays,
  * Collections, and others.  To see how the actual iteration is controlled,
- * review the javax.servlet.jsp.jstl.core.LoopTagSupport class instead.
+ * review the jakarta.servlet.jsp.jstl.core.LoopTagSupport class instead.
  * </p>
  *
- * @see javax.servlet.jsp.jstl.core.LoopTagSupport
+ * @see jakarta.servlet.jsp.jstl.core.LoopTagSupport
  * @author Shawn Bayern
  */
 

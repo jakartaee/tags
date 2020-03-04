@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish.web</groupId>
-    <artifactId>javax.servlet.jsp.jstl</artifactId>
+    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>JavaServer Pages (TM) TagLib Implementation</name>
@@ -36,12 +36,13 @@
 
     <properties>
         <spec.version>2.0-SNAPSHOT</spec.version>
-        <extensionName>javax.servlet.jsp.jstl</extensionName>
-        <bundle.symbolicName>org.glassfish.web.javax.servlet.jsp.jstl</bundle.symbolicName>
+        <extensionName>jakarta.servlet.jsp.jstl</extensionName>
+        <bundle.symbolicName>org.glassfish.web.jakarta.servlet.jsp.jstl</bundle.symbolicName>
         <vendorName>Eclipse Foundation</vendorName>
         <findbugs.version>3.0.5</findbugs.version>
         <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
         <findbugs.threshold>High</findbugs.threshold>
+	<legal.doc.source>${maven.multiModuleProjectDirectory}/..</legal.doc.source>
     </properties>
 
     <contributors>
@@ -98,8 +99,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>6</source>
+                    <target>6</target>
 <!--
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
 -->
@@ -138,6 +139,7 @@
                            <goal>shade</goal>
                        </goals>
                        <configuration>
+                           <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
                            <artifactSet>
                                   <includes>
                                       <include>xalan:xalan</include>
@@ -234,9 +236,11 @@
                               !org.apache.xpath.objects,
                               !org.apache.xpath.jaxp,
                               !org.apache.xml,
+                              !org.apache.xml.dtm,
                               !org.apache.xml.utils,
                               !org.apache.xalan,
                               !org.apache.xalan.res,
+                              !org.apache.xpath.res,
                               !org.apache.regexp,
                               !org.apache.bcel,
                               !java_cup.runtime,
@@ -269,7 +273,7 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                     <groups>
                         <group>
                             <title>Jakarta Standard Tag Library Documentation</title>
-                            <packages>javax.servlet.jsp.jstl*</packages>
+                            <packages>jakarta.servlet.jsp.jstl*</packages>
                         </group>
                     </groups>
                 </configuration>
@@ -282,8 +286,8 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                     <configuration>
                       <groups>
                         <group>
-                          <title>JavaServer Pages Tag Libraries Documentation</title>
-                          <packages>org.apache.taglibs</packages>
+                            <title>JavaServer Pages Tag Libraries Documentation</title>
+                            <packages>org.apache.taglibs</packages>
                         </group>
                       </groups>
                         <doclint>none</doclint>
@@ -295,17 +299,6 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version> 2.1 </version>
-                <configuration>
-                    <includePom>true</includePom>
-                </configuration>
-                <executions>
-                    <execution>
-                       <id>attach-sources</id>
-                       <goals>
-                           <goal>jar-no-fork</goal>
-                       </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -319,13 +312,30 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>${release.arguments}</arguments>
-                </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>add-legal-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${legal.doc.source}</directory>
+                                    <includes>
+                                        <include>NOTICE.md</include>
+                                        <include>LICENSE.md</include>
+                                    </includes>
+                                    <targetPath>META-INF</targetPath>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -426,27 +436,27 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0-M1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>3.0.0-M1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>2.2</version>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <version>4.0.0-RC1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
-            <version>1.2</version>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>xalan</groupId>

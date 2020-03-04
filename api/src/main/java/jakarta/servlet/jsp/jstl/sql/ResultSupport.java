@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.sql;
+package jakarta.servlet.jsp.jstl.sql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * <p>Supports the creation of a javax.servlet.jsp.jstl.sql.Result object 
+ * <p>Supports the creation of a jakarta.servlet.jsp.jstl.sql.Result object
  * from a source java.sql.ResultSet object. A Result object makes it much 
  * easier for page authors to access and manipulate the data resulting 
  * from a SQL query.</p>

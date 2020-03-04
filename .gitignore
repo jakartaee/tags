@@ -1,3 +1,5 @@
 .m2/
 target/
 .idea
+/api/target/
+/impl/target/

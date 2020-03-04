@@ -632,7 +632,7 @@ FunctionInvocation FunctionInvocation () :
    <RPAREN>
   )
   {
-    String allowed = System.getProperty("javax.servlet.jsp.functions.allowed");
+    String allowed = System.getProperty("jakarta.servlet.jsp.functions.allowed");
     if (allowed == null || !allowed.equalsIgnoreCase("true"))
       throw new ParseException("EL functions are not supported.");
     return new FunctionInvocation(qualifiedName, argumentList);

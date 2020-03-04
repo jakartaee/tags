@@ -682,7 +682,7 @@ _var_ is removed if no exception has occurred.
 
 When this specification requires an action to
 throw an exception, this exception must be an instance of
-_javax.servlet.jsp.JspException_ or a subclass. If an action catches any
+_jakarta.servlet.jsp.JspException_ or a subclass. If an action catches any
 exceptions that occur in its body, its tag handler must provide the
 caught exception as the root cause of the _JspException_ it re-throws.
 
@@ -711,7 +711,7 @@ a|
  <context-param>
 
 
-<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+<param-name>jakarta.servlet.jsp.jstl.fmt.localizationContext</param-name>
 
 
 <param-value>com.acme.MyResources</param-value>
@@ -752,7 +752,7 @@ JSP specification.
 When setting configuration data via the
 deployment descriptor, the name associated with the context
 initialization parameter (e.g.
-javax.servlet.jsp.jstl.fmt.localizationContext) must be used and only
+jakarta.servlet.jsp.jstl.fmt.localizationContext) must be used and only
 _String_ values may be specified. Configuration data that can be set
 both through a context initialization parameter and configuration
 variables is referred to as a configuration setting in this
@@ -2173,15 +2173,15 @@ a list of comma separated values (e.g.
 “Monday,Tuesday,Wednesday,Thursday,Friday”).link:#a3270[3]
 
 Absent from the list of supported types is
-_java.sql.ResultSet_ (which includes _javax.sql.RowSet_ ). The reason
+_java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_ ). The reason
 for this is that the SQL actions described in
 link:jstl.html#a1805[See Overview] use the
-_javax.servlet.jsp.jstl.sql.Result_ interface to access the data
+_jakarta.servlet.jsp.jstl.sql.Result_ interface to access the data
 returned from an SQL query. Class
-_javax.servlet.jsp.jstl.sql.ResultSupport_ (see
+_jakarta.servlet.jsp.jstl.sql.ResultSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]") allows business logic
 developers to easily convert a _ResultSet_ object into a
-_javax.servlet.jsp.jstl.sql.Result_ object, making life much easier for
+_jakarta.servlet.jsp.jstl.sql.Result_ object, making life much easier for
 a page author that needs to manipulate the data returned from a SQL
 query.
 
@@ -2443,7 +2443,7 @@ of items to iterate over.
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -2659,7 +2659,7 @@ separate the tokens in the string).
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -3740,7 +3740,7 @@ I18n default localization context
 
 The i18n localization context whose resource
 bundle is to be used for localization is specified via the
-javax.servlet.jsp.jstl.fmt.localizationContext configuration setting
+jakarta.servlet.jsp.jstl.fmt.localizationContext configuration setting
 (see link:jstl.html#a1361[See I18n Localization Context]). If
 the configuration setting is of type _LocalizationContext_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”) its resource bundle
@@ -3799,7 +3799,7 @@ is characterized as either application-based or browser-based.
 
 Application-based locale setting has priority
 over browser-based locale setting. In this mode, the locale is set via
-the _javax.servlet.jsp.jstl.fmt.locale_ configuration setting (see
+the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration setting (see
 link:jstl.html#a1340[See Locale]). Setting the locale this way
 is useful in situations where an application lets its users pick their
 preferred locale and then sets the scoped variable accordingly. This may
@@ -3808,7 +3808,7 @@ retrieved from a database and installed for the page using the
 <fmt:setLocale> action.
 
 The <fmt:setLocale> action may be used to set
-the _javax.servlet.jsp.jstl.fmt.locale_ configuration variable as
+the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable as
 follows:
 
 [width="100%",cols="100%",]
@@ -3925,7 +3925,7 @@ Step 2: Find a match with the fallback locale
 A resource bundle lookup (see
 link:jstl.html#a1051[See Resource Bundle Lookup]) is performed
 for the fallback locale specified in the
-_javax.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
+_jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match is found, the fallback locale and the matched resource bundle are
 stored in the i18n localization context.
 
@@ -4136,7 +4136,7 @@ _ServletResponse.setLocale()_ , if a session exists and has not been
 invalidated, it must determine the character encoding associated with
 the response locale (by calling _ServletResponse.getCharacterEncoding()_
 ) and store it in the scoped variable
-_javax.servlet.jsp.jstl.fmt.request.charset_ in session scope. This
+_jakarta.servlet.jsp.jstl.fmt.request.charset_ in session scope. This
 attribute may be used by the <fmt:requestEncoding> action (see
 link:jstl.html#a1321[See <fmt:requestEncoding>]) in a page
 invoked by a form included in the response to set the request charset to
@@ -4170,7 +4170,7 @@ image:taglib-31.png[image]
 [[a1147]]<fmt:setLocale>
 
 Stores the specified locale in the
-_javax.servlet.jsp.jstl.fmt.locale_ configuration variable.
+_jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 
 === Syntax
 
@@ -4233,7 +4233,7 @@ image:taglib-32.png[image]
 
 The <fmt:setLocale> action stores the locale
 specified by the _value_ attribute in the
-_javax.servlet.jsp.jstl.fmt.locale_ configuration variable in the scope
+_jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable in the scope
 given by the _scope_ attribute. If _value_ is of type _java.util.Locale_
 , _variant_ is ignored.
 
@@ -4367,7 +4367,7 @@ image:taglib-31.png[image]
 
 Creates an i18n localization context and
 stores it in the scoped variable or the
-_javax.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 
 === Syntax
 
@@ -4401,7 +4401,7 @@ component separator and does not have any file type (such as ".class" or
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable which stores the i18n localization
-context of type _javax.servlet.jsp.jstl.fmt.LocalizationContext_ .
+context of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_ .
 
 | _scope_ |
 _false_ | _String_
@@ -4434,7 +4434,7 @@ Algorithm].
 The i18n localization context is stored in
 the scoped variable whose name is given by _var_ . If _var_ is not
 specified, it is stored in the
-_javax.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
 scope.
 
@@ -4748,7 +4748,7 @@ values was determined dynamically), the _value_ attribute must not be
 specified. In this case, the <fmt:requestEncoding> action first checks
 if there is a charset defined in the request _Content-Type_ header. If
 not, it uses the character encoding from the
-_javax.servlet.jsp.jstl.fmt.request.charset_ scoped variable which is
+_jakarta.servlet.jsp.jstl.fmt.request.charset_ scoped variable which is
 searched in session scope. If this scoped variable is not found, the
 default character encoding (ISO-8859-1) is used.
 
@@ -4770,7 +4770,7 @@ configuration data.
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
-| _javax.servlet.jsp.jstl.fmt.locale_
+| _jakarta.servlet.jsp.jstl.fmt.locale_
 
 |Java Constant |
 _Config.FMT_LOCALE_
@@ -4799,7 +4799,7 @@ locales. A _String_ value is interpreted as defined in action
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
-| _javax.servlet.jsp.jstl.fmt.fallbackLocale_
+| _jakarta.servlet.jsp.jstl.fmt.fallbackLocale_
 
 |Java Constant |
 _Config.FMT_FALLBACK_LOCALE_
@@ -4829,13 +4829,13 @@ action <fmt:setLocale> (see link:jstl.html#a1147[See
 |===
 | _Variable name_
 |
-_javax.servlet.jsp.jstl.fmt.localizationContext_
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_
 
 |Java Constant |
 _Config.FMT_LOCALIZATION_CONTEXT_
 
 |Type |String or
-javax.servlet.jsp.jstl.fmt.LocalizationContext
+jakarta.servlet.jsp.jstl.fmt.LocalizationContext
 
 |Set by
 |<fmt:setBundle>
@@ -5041,7 +5041,7 @@ next step.
 I18n default localization context
 
 The default i18n localization context may be
-specified via the javax.servlet.jsp.jstl.fmt.localizationContext
+specified via the jakarta.servlet.jsp.jstl.fmt.localizationContext
 configuration setting. If such a configuration setting exists, and its
 value is of type _LocalizationContext_ , its locale is used as the
 formatting locale. Otherwise, if the configuration setting is of type
@@ -5168,7 +5168,7 @@ Step 2: Find a match with the fallback locale
 A locale lookup (see
 link:jstl.html#a1441[See Locale Lookup]) is performed for the
 fallback locale specified in the
-_javax.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
+_jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match exists, it is used as the formatting locale.
 
 If no match is found after the above two
@@ -5205,7 +5205,7 @@ the action is nested inside an <fmt:timeZone> action, use the time zone
 from the enclosing <fmt:timeZone> action.
 
 Use the time zone given by the
-_javax.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
+_jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
 Use the JSP container’s time zone.
 
@@ -5346,7 +5346,7 @@ image:taglib-36.png[image]
 The <fmt:setTimeZone> action stores the given
 time zone in the scoped variable whose name is given by _var_ . If _var_
 is not specified, the time zone is stored in the
-_javax.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
+_jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
 making it the new default time zone in the given scope.
 
 If the time zone is given as a string, it is
@@ -6141,7 +6141,7 @@ configuration data.
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
-| _javax.servlet.jsp.jstl.fmt.timeZone_
+| _jakarta.servlet.jsp.jstl.fmt.timeZone_
 
 |Java Constant |
 _Config.FMT_TIMEZONE_
@@ -6205,7 +6205,7 @@ transaction
 === [[a1811]]Data Source
 
 SQL actions operate on a data source, as
-defined by the Java class _javax.sql.DataSource_ . A _DataSource_ object
+defined by the Java class _jakarta.sql.DataSource_ . A _DataSource_ object
 provides connections to the physical data source it represents. Within
 the context of a _Connection_ retrieved from the _DataSource_ , SQL
 statements are executed and results are returned.
@@ -6213,7 +6213,7 @@ statements are executed and results are returned.
 A data source can be specified explicitly via
 the _dataSource_ attribute in SQL actions, or it can be totally
 transparent to a page author by taking advantage of the data source
-configuration setting ( _javax.servlet.jsp.jstl.sql.dataSource_ ).
+configuration setting ( _jakarta.servlet.jsp.jstl.sql.dataSource_ ).
 
 There are two ways a data source can be
 specified as a string.
@@ -6464,7 +6464,7 @@ If the attribute _dataSource_ is specified,
 use the value specified for that attribute as the data source.
 
 Otherwise, get the configuration setting
-associated with _javax.servlet.jsp.jstl.sql.dataSource_ using
+associated with _jakarta.servlet.jsp.jstl.sql.dataSource_ using
 _Config.find()_ (see link:jstl.html#a194[See Configuration
 Data]). Use the value found as the data source if it is not null.
 
@@ -6594,7 +6594,7 @@ statement.
 
 | _dataSource_
 |true
-|javax.sql.DataSource or String
+|jakarta.sql.DataSource or String
 |Data source associated with the database to
 query. A _String_ value represents a relative path to a JNDI resource or
 the parameters for the _DriverManager_ class.
@@ -6615,7 +6615,7 @@ specified, rows are included starting from the first row at index 0.
 Name of the exported scoped variable for the
 query result. The type of the scoped variable is
 
- _javax.servlet.jsp.jstl.sql._
+ _jakarta.servlet.jsp.jstl.sql._
 
  _Result_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”).
@@ -6674,7 +6674,7 @@ to be supplied by custom parameter actions.
 The maximum number of rows to be included in
 the query result may be specified by the _maxRows_ attribute (for a
 specific <sql:query> action) or by the configuration setting
-_javax.servlet.jsp.jstl.sql.maxRows_ (see
+_jakarta.servlet.jsp.jstl.sql.maxRows_ (see
 link:jstl.html#a194[See Configuration Data] and
 link:jstl.html#a2164[See Configuration Settings]). Attribute
 _maxRows_ has priority over the configuration setting. A value of -1
@@ -6790,7 +6790,7 @@ update statement.
 
 |dataSource |true
 a|
-javax.sql.
+jakarta.sql.
 
 DataSource or String
 
@@ -6907,7 +6907,7 @@ image:taglib-40.png[image]
 |Type |Description
 | _dataSource_
 |true a|
-javax.sql.
+jakarta.sql.
 
 DataSource
 
@@ -7018,7 +7018,7 @@ image:taglib-39.png[image]
 
 Exports a data source either as a scoped
 variable or as the data source configuration variable (
-_javax.servlet.jsp.jstl.sql.dataSource_ ).
+_jakarta.servlet.jsp.jstl.sql.dataSource_ ).
 
 === Syntax
 
@@ -7057,7 +7057,7 @@ image:taglib-40.png[image]
 |Type |Description
 | _dataSource_
 |true |String or
-javax.sql.DataSource |Data source. If
+jakarta.sql.DataSource |Data source. If
 specified as a string, it can either be a relative path to a JNDI
 resource, or a JDBC parameters string as defined in
 link:jstl.html#a1811[See Data Source].
@@ -7105,7 +7105,7 @@ If the _var_ attribute is specified, the
 <sql:setDataSource> action exports the data source specified (either as
 a _DataSource_ object or as a String) as a scoped variable. Otherwise,
 the data source is exported in the
-_javax.servlet.jsp.jstl.sql.dataSource_ configuration variable.
+_jakarta.servlet.jsp.jstl.sql.dataSource_ configuration variable.
 
 The data source may be specified either via
 the _dataSource_ attribute (as a _DataSource_ object, JNDI relative
@@ -7306,13 +7306,13 @@ information on how JSTL processes configuration data.
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
-| _javax.servlet.jsp.jstl.sql.dataSource_
+| _jakarta.servlet.jsp.jstl.sql.dataSource_
 
 |Java Constant |
 _Config.SQL_DATA_SOURCE_
 
 |Type |String or
-javax.sql.DataSource
+jakarta.sql.DataSource
 
 |Set by
 |<sql:setDataSource>, Deployment Descriptor,
@@ -7326,14 +7326,14 @@ The data source to be accessed by the SQL
 actions. It can be specified as a string representing either a JNDI
 relative path or a JDBC parameters string (as defined in
 link:jstl.html#a1811[See Data Source]), or as a
-_javax.sql.DataSource_ object.
+_jakarta.sql.DataSource_ object.
 
 === MaxRows
 
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
-| _javax.servlet.jsp.jstl.sql.maxRows_
+| _jakarta.servlet.jsp.jstl.sql.maxRows_
 
 |Java Constant |
 _Config.SQL_MAX_ROWS_
@@ -8408,7 +8408,7 @@ _false_ | _String_
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -8620,20 +8620,20 @@ image:taglib-52.png[image]
 |Type |Description
 | _doc_ | _true_
 | _String, Reader,
-javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
+jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_ . |Source XML document to
 be transformed. (If exported by <x:set>, it must correspond to a
 well-formed XML document, not a partial document.)
 
 | _xml_ | _true_
 | _String, Reader,
-javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
+jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_ . |
 _Deprecatedlink:#a3280[13]_ . Use attribute _doc_ instead.
 
 | _xslt_ | _true_
 | _String, Reader or
-javax.xml.transform.Source_ |Transformation
+jakarta.xml.transform.Source_ |Transformation
 stylesheet as a _String_ , _Reader_ , or _Source_ object.
 
 |docSystemId |true
@@ -8660,7 +8660,7 @@ _false_ | _String_
 
 | _result_ |
 _true_ a|
- _javax.xml.transform._
+ _jakarta.xml.transform._
 
  _Result_
 
@@ -8699,7 +8699,7 @@ The result of the transformation is written
 to the page by default. It is also possible to capture the result of the
 transformation in two other ways:
 
- _javax.xml.transform.Result_ object
+ _jakarta.xml.transform.Result_ object
 specified by the _result_ attribute _._
 
  _org.w3c.dom.Document_ object saved in the
@@ -8859,7 +8859,7 @@ scripting elements.
 
  <validator-class>
 
- javax.servlet.jsp.jstl.tlv.ScriptFreeTLV
+ jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
 
  </validator-class>
 
@@ -8949,7 +8949,7 @@ libraries
  <validator-class>
 
 
-javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
 
  </validator-class>
 
@@ -10501,8 +10501,8 @@ _endSpecified_ , and _stepSpecified_ to class _LoopTagSupport_ .
 Chapter 8 - I18N Actions
 
 Left over references to
-_javax.servlet.jsp.jstl.fmt.bundle_ have been changed to
-_javax.servlet.jsp.jstl.fmt.localizationContext_ .
+_jakarta.servlet.jsp.jstl.fmt.bundle_ have been changed to
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ .
 
 Added the three constructors to class
 _LocalizationContext_ and clarified the behavior of methods
@@ -10627,8 +10627,8 @@ A new class _LocalizationContext_ has been
 defined which represents an I18N localization context containg a
 _java.util.ResourceBundle_ and a _java.util.Locale_ .
 
- _javax.servlet.jsp.jstl.fmt.basename_ has been
-replaced with _javax.servlet.jsp.jstl.fmt.localizationContext_ .
+ _jakarta.servlet.jsp.jstl.fmt.basename_ has been
+replaced with _jakarta.servlet.jsp.jstl.fmt.localizationContext_ .
 
 Chapter 9 - Formatting Actions
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import javax.servlet.jsp.jstl.sql.Result;
+import jakarta.servlet.jsp.jstl.sql.Result;
 
 /**
  * <p>This class creates a cached version of a <tt>ResultSet</tt>.
@@ -34,7 +34,7 @@ import javax.servlet.jsp.jstl.sql.Result;
  * instance for each column in the row.</p>
  *
  * <p>Note -- this is a private copy for the RI to avoid making the
- * corresponding class in javax.servlet.* public.</p>
+ * corresponding class in jakarta.servlet.* public.</p>
  *
  * @author Hans Bergsten
  * @author Justyna Horwat

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,12 +23,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.jstl.sql.SQLExecutionTag;
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.jstl.sql.SQLExecutionTag;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
 import javax.sql.DataSource;
 
 import org.apache.taglibs.standard.resources.Resources;
@@ -132,7 +132,7 @@ public abstract class UpdateTagSupport extends BodyTagSupport
      * from the <code>DataSource</code> specified by the
      * <code>dataSource</code> attribute, provided by a parent action
      * element, or is retrieved from a JSP scope  attribute
-     * named <code>javax.servlet.jsp.jstl.sql.dataSource</code>.
+     * named <code>jakarta.servlet.jsp.jstl.sql.dataSource</code>.
      */
     public int doEndTag() throws JspException {
 	/*

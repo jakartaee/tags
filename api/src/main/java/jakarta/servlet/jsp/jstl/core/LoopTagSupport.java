@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package javax.servlet.jsp.jstl.core;
+package jakarta.servlet.jsp.jstl.core;
 
 import java.util.List;
 import java.util.Collection;
@@ -23,16 +23,16 @@ import java.util.Enumeration;
 import java.util.Map;
 import java.util.Iterator;
 
-import javax.el.ValueExpression;
-import javax.el.VariableMapper;
-import javax.el.ELException;
+import jakarta.el.ValueExpression;
+import jakarta.el.VariableMapper;
+import jakarta.el.ELException;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.IterationTag;
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.IterationTag;
+import jakarta.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * <p>Base support class to facilitate implementation of iteration tags.</p>
@@ -187,7 +187,7 @@ public abstract class LoopTagSupport
      * @return the java.lang.Object to use in the next round of iteration
      * @exception java.util.NoSuchElementException
      *            if next() is called but no new elements are available
-     * @exception javax.servlet.jsp.JspTagException
+     * @exception jakarta.servlet.jsp.JspTagException
      *            for other, unexpected exceptions
      */
     protected abstract Object next() throws JspTagException;
@@ -203,7 +203,7 @@ public abstract class LoopTagSupport
      *
      * @return <tt>true</tt> if there is at least one more item to iterate
      *         over, <tt>false</tt> otherwise
-     * @exception javax.servlet.jsp.JspTagException
+     * @exception jakarta.servlet.jsp.JspTagException
      * @see #next
      */
     protected abstract boolean hasNext() throws JspTagException;
@@ -214,7 +214,7 @@ public abstract class LoopTagSupport
      * Subclasses can assume that prepare() will be called once for
      * each invocation of doStartTag() in the superclass.</p>
      *
-     * @exception javax.servlet.jsp.JspTagException
+     * @exception jakarta.servlet.jsp.JspTagException
      */
     protected abstract void prepare() throws JspTagException;
 

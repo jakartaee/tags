@@ -495,7 +495,7 @@ fn:trim 188]
 
 ======= [#50561093_pgfId-1029364]##link:jstl.htm#50561073_pgfId-999291[Java APIs 189]
 
-======= [#50561093_pgfId-1029366]##link:jstl.htm#50561071_pgfId-20534[javax.servlet.jsp.jstl.core 191]
+======= [#50561093_pgfId-1029366]##link:jstl.htm#50561071_pgfId-20534[jakarta.servlet.jsp.jstl.core 191]
 
 {empty}[#50561093_pgfId-1029368]##link:jstl.htm#50561071_pgfId-20549[ConditionalTagSupport
 192]
@@ -524,7 +524,7 @@ fn:trim 188]
 {empty}[#50561093_pgfId-1029384]##link:jstl.htm#50561071_pgfId-22276[StringTokenValueExpression
 220]
 
-======= [#50561093_pgfId-1029386]##link:jstl.htm#50561050_pgfId-628448[javax.servlet.jsp.jstl.fmt 223]
+======= [#50561093_pgfId-1029386]##link:jstl.htm#50561050_pgfId-628448[jakarta.servlet.jsp.jstl.fmt 223]
 
 {empty}[#50561093_pgfId-1029388]##link:jstl.htm#50561050_pgfId-628463[LocaleSupport
 224]
@@ -532,7 +532,7 @@ fn:trim 188]
 {empty}[#50561093_pgfId-1029390]##link:jstl.htm#50561050_pgfId-628635[LocalizationContext
 227]
 
-======= [#50561093_pgfId-1029392]##link:jstl.htm#50561052_pgfId-250309[javax.servlet.jsp.jstl.sql 229]
+======= [#50561093_pgfId-1029392]##link:jstl.htm#50561052_pgfId-250309[jakarta.servlet.jsp.jstl.sql 229]
 
 {empty}[#50561093_pgfId-1029394]##link:jstl.htm#50561052_pgfId-250324[Result
 230]
@@ -543,7 +543,7 @@ fn:trim 188]
 {empty}[#50561093_pgfId-1029398]##link:jstl.htm#50561052_pgfId-250541[SQLExecutionTag
 234]
 
-======= [#50561093_pgfId-1029400]##link:jstl.htm#50561054_pgfId-927144[javax.servlet.jsp.jstl.tlv 235]
+======= [#50561093_pgfId-1029400]##link:jstl.htm#50561054_pgfId-927144[jakarta.servlet.jsp.jstl.tlv 235]
 
 {empty}[#50561093_pgfId-1029402]##link:jstl.htm#50561054_pgfId-927159[PermittedTaglibsTLV
 236]
@@ -1233,7 +1233,7 @@ _var_ is removed if no exception has occurred.
 
 [#50561096_pgfId-1006036]##When this specification requires an action to
 throw an exception, this exception must be an instance of
-_javax.servlet.jsp.JspException_ or a subclass. If an action catches any
+_jakarta.servlet.jsp.JspException_ or a subclass. If an action catches any
 exceptions that occur in its body, its tag handler must provide the
 caught exception as the root cause of the _JspException_ it re-throws.
 
@@ -1262,7 +1262,7 @@ a|
 [#50561096_pgfId-1001614]## <context-param>
 
 [#50561096_pgfId-1001631]##
-<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+<param-name>jakarta.servlet.jsp.jstl.fmt.localizationContext</param-name>
 
 [#50561096_pgfId-1001632]##
 <param-value>com.acme.MyResources</param-value>
@@ -1303,7 +1303,7 @@ JSP specification.
 [#50561096_pgfId-1005047]##When setting configuration data via the
 deployment descriptor, the name associated with the context
 initialization parameter (e.g.
-javax.servlet.jsp.jstl.fmt.localizationContext) must be used and only
+jakarta.servlet.jsp.jstl.fmt.localizationContext) must be used and only
 _String_ values may be specified. Configuration data that can be set
 both through a context initialization parameter and configuration
 variables is referred to as a configuration setting in this
@@ -2724,15 +2724,15 @@ a list of comma separated values (e.g.
 “Monday,Tuesday,Wednesday,Thursday,Friday”).link:#pgfId-1008877[3]
 
 [#50561100_pgfId-1007971]##Absent from the list of supported types is
-_java.sql.ResultSet_ (which includes _javax.sql.RowSet_ ). The reason
+_java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_ ). The reason
 for this is that the SQL actions described in
 link:jstl.htm#50561104_47767[See Overview] use the
-_javax.servlet.jsp.jstl.sql.Result_ interface to access the data
+_jakarta.servlet.jsp.jstl.sql.Result_ interface to access the data
 returned from an SQL query. Class
-_javax.servlet.jsp.jstl.sql.ResultSupport_ (see
+_jakarta.servlet.jsp.jstl.sql.ResultSupport_ (see
 link:jstl.htm#50561073_93849[See Java APIs]") allows business logic
 developers to easily convert a _ResultSet_ object into a
-_javax.servlet.jsp.jstl.sql.Result_ object, making life much easier for
+_jakarta.servlet.jsp.jstl.sql.Result_ object, making life much easier for
 a page author that needs to manipulate the data returned from a SQL
 query.
 
@@ -2994,7 +2994,7 @@ of items to iterate over.
 _false_ |[#50561100_pgfId-1007666]## _String_
 |[#50561100_pgfId-1007668]##Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 |[#50561100_pgfId-1007670]## _begin_ |[#50561100_pgfId-1007672]## _true_
@@ -3210,7 +3210,7 @@ separate the tokens in the string).
 _false_ |[#50561100_pgfId-1007737]## _String_
 |[#50561100_pgfId-1007739]##Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 |[#50561100_pgfId-1007741]## _begin_ |[#50561100_pgfId-1007743]## _true_
@@ -4291,7 +4291,7 @@ resource bundle basename.
 
 [#50561102_pgfId-1018412]##The i18n localization context whose resource
 bundle is to be used for localization is specified via the
-javax.servlet.jsp.jstl.fmt.localizationContext configuration setting
+jakarta.servlet.jsp.jstl.fmt.localizationContext configuration setting
 (see link:jstl.htm#50561102_37988[See I18n Localization Context]). If
 the configuration setting is of type _LocalizationContext_ (see
 link:jstl.htm#50561073_93849[See Java APIs]”) its resource bundle
@@ -4350,7 +4350,7 @@ is characterized as either application-based or browser-based.
 
 [#50561102_pgfId-1013389]##Application-based locale setting has priority
 over browser-based locale setting. In this mode, the locale is set via
-the _javax.servlet.jsp.jstl.fmt.locale_ configuration setting (see
+the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration setting (see
 link:jstl.htm#50561102_62564[See Locale]). Setting the locale this way
 is useful in situations where an application lets its users pick their
 preferred locale and then sets the scoped variable accordingly. This may
@@ -4359,7 +4359,7 @@ retrieved from a database and installed for the page using the
 <fmt:setLocale> action.
 
 [#50561102_pgfId-1013396]##The <fmt:setLocale> action may be used to set
-the _javax.servlet.jsp.jstl.fmt.locale_ configuration variable as
+the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable as
 follows:
 
 [width="100%",cols="100%",]
@@ -4476,7 +4476,7 @@ bundle are stored in the i18n localization context.
 [#50561102_pgfId-1016128]##A resource bundle lookup (see
 link:jstl.htm#50561102_30600[See Resource Bundle Lookup]) is performed
 for the fallback locale specified in the
-_javax.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
+_jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match is found, the fallback locale and the matched resource bundle are
 stored in the i18n localization context.
 
@@ -4687,7 +4687,7 @@ _ServletResponse.setLocale()_ , if a session exists and has not been
 invalidated, it must determine the character encoding associated with
 the response locale (by calling _ServletResponse.getCharacterEncoding()_
 ) and store it in the scoped variable
-_javax.servlet.jsp.jstl.fmt.request.charset_ in session scope. This
+_jakarta.servlet.jsp.jstl.fmt.request.charset_ in session scope. This
 attribute may be used by the <fmt:requestEncoding> action (see
 link:jstl.htm#50561102_36816[See <fmt:requestEncoding>]) in a page
 invoked by a form included in the response to set the request charset to
@@ -4721,7 +4721,7 @@ image:jstl-31.gif[image]
 [#50561102_72123]##<fmt:setLocale>
 
 [#50561102_pgfId-1010953]##Stores the specified locale in the
-_javax.servlet.jsp.jstl.fmt.locale_ configuration variable.
+_jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 
 ======= [#50561102_pgfId-1010954]##Syntax
 
@@ -4784,7 +4784,7 @@ image:jstl-32.gif[image]
 
 [#50561102_pgfId-1011006]##The <fmt:setLocale> action stores the locale
 specified by the _value_ attribute in the
-_javax.servlet.jsp.jstl.fmt.locale_ configuration variable in the scope
+_jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable in the scope
 given by the _scope_ attribute. If _value_ is of type _java.util.Locale_
 , _variant_ is ignored.
 
@@ -4918,7 +4918,7 @@ image:jstl-31.gif[image]
 
 [#50561102_pgfId-1017963]##Creates an i18n localization context and
 stores it in the scoped variable or the
-_javax.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 
 ======= [#50561102_pgfId-1017861]##Syntax
 
@@ -4952,7 +4952,7 @@ component separator and does not have any file type (such as ".class" or
 |[#50561102_pgfId-1017902]## _var_ |[#50561102_pgfId-1017904]## _false_
 |[#50561102_pgfId-1017906]## _String_ |[#50561102_pgfId-1017908]##Name
 of the exported scoped variable which stores the i18n localization
-context of type _javax.servlet.jsp.jstl.fmt.LocalizationContext_ .
+context of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_ .
 
 |[#50561102_pgfId-1017910]## _scope_ |[#50561102_pgfId-1017912]##
 _false_ |[#50561102_pgfId-1017914]## _String_
@@ -4985,7 +4985,7 @@ Algorithm].
 [#50561102_pgfId-1018180]##The i18n localization context is stored in
 the scoped variable whose name is given by _var_ . If _var_ is not
 specified, it is stored in the
-_javax.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
 scope.
 
@@ -5299,7 +5299,7 @@ values was determined dynamically), the _value_ attribute must not be
 specified. In this case, the <fmt:requestEncoding> action first checks
 if there is a charset defined in the request _Content-Type_ header. If
 not, it uses the character encoding from the
-_javax.servlet.jsp.jstl.fmt.request.charset_ scoped variable which is
+_jakarta.servlet.jsp.jstl.fmt.request.charset_ scoped variable which is
 searched in session scope. If this scoped variable is not found, the
 default character encoding (ISO-8859-1) is used.
 
@@ -5321,7 +5321,7 @@ configuration data.
 [width="100%",cols="50%,50%",]
 |===
 |[#50561102_pgfId-1018704]## _Variable name_
-|[#50561102_pgfId-1018706]## _javax.servlet.jsp.jstl.fmt.locale_
+|[#50561102_pgfId-1018706]## _jakarta.servlet.jsp.jstl.fmt.locale_
 
 |[#50561102_pgfId-1018708]##Java Constant |[#50561102_pgfId-1018710]##
 _Config.FMT_LOCALE_
@@ -5350,7 +5350,7 @@ locales. A _String_ value is interpreted as defined in action
 [width="100%",cols="50%,50%",]
 |===
 |[#50561102_pgfId-1018737]## _Variable name_
-|[#50561102_pgfId-1018739]## _javax.servlet.jsp.jstl.fmt.fallbackLocale_
+|[#50561102_pgfId-1018739]## _jakarta.servlet.jsp.jstl.fmt.fallbackLocale_
 
 |[#50561102_pgfId-1018741]##Java Constant |[#50561102_pgfId-1018743]##
 _Config.FMT_FALLBACK_LOCALE_
@@ -5380,13 +5380,13 @@ action <fmt:setLocale> (see link:jstl.htm#50561102_72123[See
 |===
 |[#50561102_pgfId-1018995]## _Variable name_
 |[#50561102_pgfId-1019022]##
-_javax.servlet.jsp.jstl.fmt.localizationContext_
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_
 
 |[#50561102_pgfId-1018999]##Java Constant |[#50561102_pgfId-1019028]##
 _Config.FMT_LOCALIZATION_CONTEXT_
 
 |[#50561102_pgfId-1019003]##Type |[#50561102_pgfId-1019034]##String or
-javax.servlet.jsp.jstl.fmt.LocalizationContext
+jakarta.servlet.jsp.jstl.fmt.LocalizationContext
 
 |[#50561102_pgfId-1019007]##Set by
 |[#50561102_pgfId-1019009]##<fmt:setBundle>
@@ -5592,7 +5592,7 @@ next step.
 [#50561103_pgfId-1022220]##I18n default localization context
 
 [#50561103_pgfId-1022234]##The default i18n localization context may be
-specified via the javax.servlet.jsp.jstl.fmt.localizationContext
+specified via the jakarta.servlet.jsp.jstl.fmt.localizationContext
 configuration setting. If such a configuration setting exists, and its
 value is of type _LocalizationContext_ , its locale is used as the
 formatting locale. Otherwise, if the configuration setting is of type
@@ -5719,7 +5719,7 @@ used as the formatting locale.
 [#50561103_pgfId-1019126]##A locale lookup (see
 link:jstl.htm#50561103_56713[See Locale Lookup]) is performed for the
 fallback locale specified in the
-_javax.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
+_jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match exists, it is used as the formatting locale.
 
 [#50561103_pgfId-1019144]##If no match is found after the above two
@@ -5756,7 +5756,7 @@ the action is nested inside an <fmt:timeZone> action, use the time zone
 from the enclosing <fmt:timeZone> action.
 
 [#50561103_pgfId-1021147]##Use the time zone given by the
-_javax.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
+_jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
 [#50561103_pgfId-1021163]##Use the JSP container’s time zone.
 
@@ -5897,7 +5897,7 @@ image:jstl-36.gif[image]
 [#50561103_pgfId-1021714]##The <fmt:setTimeZone> action stores the given
 time zone in the scoped variable whose name is given by _var_ . If _var_
 is not specified, the time zone is stored in the
-_javax.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
+_jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
 making it the new default time zone in the given scope.
 
 [#50561103_pgfId-1022573]##If the time zone is given as a string, it is
@@ -6692,7 +6692,7 @@ configuration data.
 [width="100%",cols="50%,50%",]
 |===
 |[#50561103_pgfId-1021449]## _Variable name_
-|[#50561103_pgfId-1021451]## _javax.servlet.jsp.jstl.fmt.timeZone_
+|[#50561103_pgfId-1021451]## _jakarta.servlet.jsp.jstl.fmt.timeZone_
 
 |[#50561103_pgfId-1021453]##Java Constant |[#50561103_pgfId-1021455]##
 _Config.FMT_TIMEZONE_
@@ -6756,7 +6756,7 @@ transaction
 ======= [#50561104_pgfId-1010081]##[#50561104_45882]##Data Source
 
 [#50561104_pgfId-1008558]##SQL actions operate on a data source, as
-defined by the Java class _javax.sql.DataSource_ . A _DataSource_ object
+defined by the Java class _jakarta.sql.DataSource_ . A _DataSource_ object
 provides connections to the physical data source it represents. Within
 the context of a _Connection_ retrieved from the _DataSource_ , SQL
 statements are executed and results are returned.
@@ -6764,7 +6764,7 @@ statements are executed and results are returned.
 [#50561104_pgfId-1016853]##A data source can be specified explicitly via
 the _dataSource_ attribute in SQL actions, or it can be totally
 transparent to a page author by taking advantage of the data source
-configuration setting ( _javax.servlet.jsp.jstl.sql.dataSource_ ).
+configuration setting ( _jakarta.servlet.jsp.jstl.sql.dataSource_ ).
 
 [#50561104_pgfId-1019437]##There are two ways a data source can be
 specified as a string.
@@ -7015,7 +7015,7 @@ follows:
 use the value specified for that attribute as the data source.
 
 [#50561104_pgfId-1016554]##Otherwise, get the configuration setting
-associated with _javax.servlet.jsp.jstl.sql.dataSource_ using
+associated with _jakarta.servlet.jsp.jstl.sql.dataSource_ using
 _Config.find()_ (see link:jstl.htm#50561096_18174[See Configuration
 Data]). Use the value found as the data source if it is not null.
 
@@ -7145,7 +7145,7 @@ statement.
 
 |[#50561104_pgfId-1015254]## _dataSource_
 |[#50561104_pgfId-1015256]##true
-|[#50561104_pgfId-1015258]##javax.sql.DataSource or String
+|[#50561104_pgfId-1015258]##jakarta.sql.DataSource or String
 |[#50561104_pgfId-1019710]##Data source associated with the database to
 query. A _String_ value represents a relative path to a JNDI resource or
 the parameters for the _DriverManager_ class.
@@ -7166,7 +7166,7 @@ specified, rows are included starting from the first row at index 0.
 [#50561104_pgfId-1015284]##Name of the exported scoped variable for the
 query result. The type of the scoped variable is
 
-[#50561104_pgfId-1015285]## _javax.servlet.jsp.jstl.sql._
+[#50561104_pgfId-1015285]## _jakarta.servlet.jsp.jstl.sql._
 
 [#50561104_pgfId-1015289]## _Result_ (see
 link:jstl.htm#50561073_93849[See Java APIs]”).
@@ -7225,7 +7225,7 @@ to be supplied by custom parameter actions.
 [#50561104_pgfId-1014941]##The maximum number of rows to be included in
 the query result may be specified by the _maxRows_ attribute (for a
 specific <sql:query> action) or by the configuration setting
-_javax.servlet.jsp.jstl.sql.maxRows_ (see
+_jakarta.servlet.jsp.jstl.sql.maxRows_ (see
 link:jstl.htm#50561096_18174[See Configuration Data] and
 link:jstl.htm#50561104_37392[See Configuration Settings]). Attribute
 _maxRows_ has priority over the configuration setting. A value of -1
@@ -7341,7 +7341,7 @@ update statement.
 
 |[#50561104_pgfId-1015319]##dataSource |[#50561104_pgfId-1015321]##true
 a|
-[#50561104_pgfId-1015323]##javax.sql.
+[#50561104_pgfId-1015323]##jakarta.sql.
 
 [#50561104_pgfId-1015324]##DataSource or String
 
@@ -7458,7 +7458,7 @@ image:jstl-40.gif[image]
 |[#50561104_pgfId-1015349]##Type |[#50561104_pgfId-1015351]##Description
 |[#50561104_pgfId-1015353]## _dataSource_
 |[#50561104_pgfId-1015355]##true a|
-[#50561104_pgfId-1015357]##javax.sql.
+[#50561104_pgfId-1015357]##jakarta.sql.
 
 [#50561104_pgfId-1015358]##DataSource
 
@@ -7569,7 +7569,7 @@ image:jstl-39.gif[image]
 
 [#50561104_pgfId-1002242]##Exports a data source either as a scoped
 variable or as the data source configuration variable (
-_javax.servlet.jsp.jstl.sql.dataSource_ ).
+_jakarta.servlet.jsp.jstl.sql.dataSource_ ).
 
 ======= [#50561104_pgfId-1020175]##Syntax
 
@@ -7608,7 +7608,7 @@ image:jstl-40.gif[image]
 |[#50561104_pgfId-1020189]##Type |[#50561104_pgfId-1020191]##Description
 |[#50561104_pgfId-1020283]## _dataSource_
 |[#50561104_pgfId-1020285]##true |[#50561104_pgfId-1020287]##String or
-javax.sql.DataSource |[#50561104_pgfId-1020289]##Data source. If
+jakarta.sql.DataSource |[#50561104_pgfId-1020289]##Data source. If
 specified as a string, it can either be a relative path to a JNDI
 resource, or a JDBC parameters string as defined in
 link:jstl.htm#50561104_45882[See Data Source].
@@ -7656,7 +7656,7 @@ image:jstl-40.gif[image]
 <sql:setDataSource> action exports the data source specified (either as
 a _DataSource_ object or as a String) as a scoped variable. Otherwise,
 the data source is exported in the
-_javax.servlet.jsp.jstl.sql.dataSource_ configuration variable.
+_jakarta.servlet.jsp.jstl.sql.dataSource_ configuration variable.
 
 [#50561104_pgfId-1020379]##The data source may be specified either via
 the _dataSource_ attribute (as a _DataSource_ object, JNDI relative
@@ -7857,13 +7857,13 @@ information on how JSTL processes configuration data.
 [width="100%",cols="50%,50%",]
 |===
 |[#50561104_pgfId-1019179]## _Variable name_
-|[#50561104_pgfId-1019181]## _javax.servlet.jsp.jstl.sql.dataSource_
+|[#50561104_pgfId-1019181]## _jakarta.servlet.jsp.jstl.sql.dataSource_
 
 |[#50561104_pgfId-1019183]##Java Constant |[#50561104_pgfId-1019185]##
 _Config.SQL_DATA_SOURCE_
 
 |[#50561104_pgfId-1019187]##Type |[#50561104_pgfId-1019189]##String or
-javax.sql.DataSource
+jakarta.sql.DataSource
 
 |[#50561104_pgfId-1019883]##Set by
 |[#50561104_pgfId-1019885]##<sql:setDataSource>, Deployment Descriptor,
@@ -7877,14 +7877,14 @@ Config class
 actions. It can be specified as a string representing either a JNDI
 relative path or a JDBC parameters string (as defined in
 link:jstl.htm#50561104_45882[See Data Source]), or as a
-_javax.sql.DataSource_ object.
+_jakarta.sql.DataSource_ object.
 
 ======= [#50561104_pgfId-1017811]##MaxRows
 
 [width="100%",cols="50%,50%",]
 |===
 |[#50561104_pgfId-1017837]## _Variable name_
-|[#50561104_pgfId-1017839]## _javax.servlet.jsp.jstl.sql.maxRows_
+|[#50561104_pgfId-1017839]## _jakarta.servlet.jsp.jstl.sql.maxRows_
 
 |[#50561104_pgfId-1017841]##Java Constant |[#50561104_pgfId-1017843]##
 _Config.SQL_MAX_ROWS_
@@ -8959,7 +8959,7 @@ _false_ |[#50561106_pgfId-1011994]## _String_
 _false_ |[#50561106_pgfId-1012467]## _String_
 |[#50561106_pgfId-1012469]##Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_javax.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
 nested visibility.
 
 |[#50561106_pgfId-1012452]## _begin_ |[#50561106_pgfId-1012454]## _true_
@@ -9171,20 +9171,20 @@ image:jstl-52.gif[image]
 |[#50561107_pgfId-1011248]##Type |[#50561107_pgfId-1011250]##Description
 |[#50561107_pgfId-1011260]## _doc_ |[#50561107_pgfId-1011262]## _true_
 |[#50561107_pgfId-1011264]## _String, Reader,
-javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
+jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_ . |[#50561107_pgfId-1012066]##Source XML document to
 be transformed. (If exported by <x:set>, it must correspond to a
 well-formed XML document, not a partial document.)
 
 |[#50561107_pgfId-1012374]## _xml_ |[#50561107_pgfId-1012376]## _true_
 |[#50561107_pgfId-1012378]## _String, Reader,
-javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
+jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_ . |[#50561107_pgfId-1012380]##
 _Deprecatedlink:#pgfId-1012432[13]_ . Use attribute _doc_ instead.
 
 |[#50561107_pgfId-1011277]## _xslt_ |[#50561107_pgfId-1011279]## _true_
 |[#50561107_pgfId-1011281]## _String, Reader or
-javax.xml.transform.Source_ |[#50561107_pgfId-1011284]##Transformation
+jakarta.xml.transform.Source_ |[#50561107_pgfId-1011284]##Transformation
 stylesheet as a _String_ , _Reader_ , or _Source_ object.
 
 |[#50561107_pgfId-1011971]##docSystemId |[#50561107_pgfId-1011973]##true
@@ -9211,7 +9211,7 @@ _false_ |[#50561107_pgfId-1011298]## _String_
 
 |[#50561107_pgfId-1011302]## _result_ |[#50561107_pgfId-1011304]##
 _true_ a|
-[#50561107_pgfId-1011306]## _javax.xml.transform._
+[#50561107_pgfId-1011306]## _jakarta.xml.transform._
 
 [#50561107_pgfId-1012237]## _Result_
 
@@ -9250,7 +9250,7 @@ change values during the life of the application.
 to the page by default. It is also possible to capture the result of the
 transformation in two other ways:
 
-[#50561107_pgfId-1009715]## _javax.xml.transform.Result_ object
+[#50561107_pgfId-1009715]## _jakarta.xml.transform.Result_ object
 specified by the _result_ attribute _._
 
 [#50561107_pgfId-1009723]## _org.w3c.dom.Document_ object saved in the
@@ -9410,7 +9410,7 @@ scripting elements.
 
 [#50561108_pgfId-1016778]## <validator-class>
 
-[#50561108_pgfId-1016779]## javax.servlet.jsp.jstl.tlv.ScriptFreeTLV
+[#50561108_pgfId-1016779]## jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
 
 [#50561108_pgfId-1016780]## </validator-class>
 
@@ -9500,7 +9500,7 @@ libraries
 [#50561108_pgfId-1016851]## <validator-class>
 
 [#50561108_pgfId-1016852]##
-javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
 
 [#50561108_pgfId-1016853]## </validator-class>
 
@@ -10655,7 +10655,7 @@ specification and implementation are synchronized.
 
 ==== [#50561071_pgfId-20528]##[#50561071_marker-20526]##Package
 
-== [#50561071_pgfId-20534]##[#50561071_PackageHead]##[#50561071_javax.servlet.jsp.jstl.core]##javax.servlet.jsp.jstl.core
+== [#50561071_pgfId-20534]##[#50561071_PackageHead]##[#50561071_jakarta.servlet.jsp.jstl.core]##jakarta.servlet.jsp.jstl.core
 
 ====== [#50561071_pgfId-20536]##Description
 
@@ -10666,14 +10666,14 @@ specification and implementation are synchronized.
 == [#50561071_pgfId-18429]##Interfaces
 
 [#50561071_pgfId-18441]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
 LoopTag]_
 
 [#50561071_pgfId-18443]##JSTL allows developers to write custom
 iteration tags by implementing the LoopTag interface.
 
 [#50561071_pgfId-18455]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus[LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus[LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
 LoopTagStatus]_
 
 [#50561071_pgfId-18457]##Exposes the current status of an iteration.
@@ -10681,7 +10681,7 @@ LoopTagStatus]_
 == [#50561071_pgfId-18463]##Classes
 
 [#50561071_pgfId-18475]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport[ConditionalTagSupport]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport[ConditionalTagSupport]link:jstl.htm#50561071_ClassHead[See
 ConditionalTagSupport]_
 
 [#50561071_pgfId-18477]##Abstract class that facilitates implementation
@@ -10689,51 +10689,51 @@ of conditional actions where the boolean result is exposed as a JSP
 scoped variable.
 
 [#50561071_pgfId-18489]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config[Config]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config[Config]link:jstl.htm#50561071_ClassHead[See
 Config]_
 
 [#50561071_pgfId-18491]##Class supporting access to configuration
 settings.
 
 [#50561071_pgfId-18503]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression[IndexedValueExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression[IndexedValueExpression]link:jstl.htm#50561071_ClassHead[See
 IndexedValueExpression]_
 
 == [#50561071_pgfId-18495]## 
 
 [#50561071_pgfId-18515]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression[IteratedExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression[IteratedExpression]link:jstl.htm#50561071_ClassHead[See
 IteratedExpression]_
 
 == [#50561071_pgfId-18507]## 
 
 [#50561071_pgfId-18527]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression[IteratedValueExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression[IteratedValueExpression]link:jstl.htm#50561071_ClassHead[See
 IteratedValueExpression]_
 
 == [#50561071_pgfId-18519]## 
 
 [#50561071_pgfId-18539]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport[LoopTagSupport]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport[LoopTagSupport]link:jstl.htm#50561071_ClassHead[See
 LoopTagSupport]_
 
 [#50561071_pgfId-18541]##Base support class to facilitate implementation
 of iteration tags.
 
 [#50561071_pgfId-18553]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression[StringTokenValueExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression[StringTokenValueExpression]link:jstl.htm#50561071_ClassHead[See
 StringTokenValueExpression]_
 
 == [#50561071_pgfId-18545]## 
 
-==== [#50561071_pgfId-20541]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-20541]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-20549]##[#50561071_marker-20543]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport]##ConditionalTagSupport
+== [#50561071_pgfId-20549]##[#50561071_marker-20543]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport]##ConditionalTagSupport
 
 ====== [#50561071_pgfId-20551]##Declaration
 
 [#50561071_pgfId-20553]##public abstract class _ConditionalTagSupport_
-extends _javax.servlet.jsp.tagext.TagSupport_
+extends _jakarta.servlet.jsp.tagext.TagSupport_
 
 [#50561071_pgfId-20555]##  
 
@@ -10741,18 +10741,18 @@ extends _javax.servlet.jsp.tagext.TagSupport_
 
 [#50561071_pgfId-20559]## |
 
-[#50561071_pgfId-20561]## +-- _javax.servlet.jsp.tagext.TagSupport_
+[#50561071_pgfId-20561]## +-- _jakarta.servlet.jsp.tagext.TagSupport_
 
 [#50561071_pgfId-20563]## |
 
 [#50561071_pgfId-20565]## +--
-_javax.servlet.jsp.jstl.core.ConditionalTagSupport_
+_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport_
 
 ======= [#50561071_pgfId-20567]##All Implemented Interfaces:
 
-[#50561071_pgfId-20569]## _javax.servlet.jsp.tagext.IterationTag_ ,
-_javax.servlet.jsp.tagext.JspTag_ , _java.io.Serializable_ ,
-_javax.servlet.jsp.tagext.Tag_
+[#50561071_pgfId-20569]## _jakarta.servlet.jsp.tagext.IterationTag_ ,
+_jakarta.servlet.jsp.tagext.JspTag_ , _java.io.Serializable_ ,
+_jakarta.servlet.jsp.tagext.Tag_
 
 ====== [#50561071_pgfId-20571]##Description
 
@@ -10779,7 +10779,7 @@ _var_ and _scope_ .
 [#50561071_pgfId-18572]## 
 
 [#50561071_pgfId-18580]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.ConditionalTagSupport()[ConditionalTagSupport()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.ConditionalTagSupport()[ConditionalTagSupport()]link:jstl.htm#50561071_MemberHead[See
 ConditionalTagSupport()]_
 
 == [#50561071_pgfId-18586]##Methods
@@ -10787,31 +10787,31 @@ ConditionalTagSupport()]_
 [#50561071_pgfId-18592]##protected abstract boolean
 
 [#50561071_pgfId-18600]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.condition()[condition()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.condition()[condition()]link:jstl.htm#50561071_MemberHead[See
 condition()]_
 
 [#50561071_pgfId-18606]## int
 
 [#50561071_pgfId-18614]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.doStartTag()[doStartTag()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.doStartTag()[doStartTag()]link:jstl.htm#50561071_MemberHead[See
 doStartTag()]_
 
 [#50561071_pgfId-18620]## void
 
 [#50561071_pgfId-18628]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.release()[release()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.release()[release()]link:jstl.htm#50561071_MemberHead[See
 release()]_
 
 [#50561071_pgfId-18634]## void
 
 [#50561071_pgfId-18642]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.setScope(java.lang.String)[setScope(java.lang.String
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.setScope(java.lang.String)[setScope(java.lang.String
 scope)]link:jstl.htm#50561071_MemberHead[See setScope(String)]_
 
 [#50561071_pgfId-18648]## void
 
 [#50561071_pgfId-18656]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.setVar(java.lang.String)[setVar(java.lang.String
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.setVar(java.lang.String)[setVar(java.lang.String
 var)]link:jstl.htm#50561071_MemberHead[See setVar(String)]_
 
 [#50561071_pgfId-20585]## 
@@ -10860,7 +10860,7 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-20595]##[#50561071_marker-20589]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.ConditionalTagSupport()]##ConditionalTagSupport()
+======= [#50561071_pgfId-20595]##[#50561071_marker-20589]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.ConditionalTagSupport()]##ConditionalTagSupport()
 
 [#50561071_pgfId-20597]##public _ConditionalTagSupport_ ()
 
@@ -10875,7 +10875,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-20609]##[#50561071_marker-20603]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.condition()]##condition()
+======= [#50561071_pgfId-20609]##[#50561071_marker-20603]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.condition()]##condition()
 
 [#50561071_pgfId-20611]##protected abstract boolean _condition_ () +
 throws JspTagException
@@ -10891,9 +10891,9 @@ particular subclass uses to drive its conditional logic.
 
 ======= [#50561071_pgfId-20619]##Throws:
 
-[#50561071_pgfId-20621]## _javax.servlet.jsp.JspTagException_
+[#50561071_pgfId-20621]## _jakarta.servlet.jsp.JspTagException_
 
-======= [#50561071_pgfId-20629]##[#50561071_marker-20623]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.doStartTag()]##doStartTag()
+======= [#50561071_pgfId-20629]##[#50561071_marker-20623]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.doStartTag()]##doStartTag()
 
 [#50561071_pgfId-20631]##public int _doStartTag_ () +
 throws JspException
@@ -10907,9 +10907,9 @@ true.
 
 ======= [#50561071_pgfId-20639]##Throws:
 
-[#50561071_pgfId-20641]## _javax.servlet.jsp.JspException_
+[#50561071_pgfId-20641]## _jakarta.servlet.jsp.JspException_
 
-======= [#50561071_pgfId-20649]##[#50561071_marker-20643]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.release()]##release()
+======= [#50561071_pgfId-20649]##[#50561071_marker-20643]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.release()]##release()
 
 [#50561071_pgfId-20651]##public void _release_ ()
 
@@ -10920,7 +10920,7 @@ ConditionalTagSupport may have (or inherit).
 
 [#50561071_pgfId-20657]## _release_ in class _TagSupport_
 
-======= [#50561071_pgfId-20665]##[#50561071_marker-20659]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.setScope(java.lang.String)]##setScope(String)
+======= [#50561071_pgfId-20665]##[#50561071_marker-20659]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.setScope(java.lang.String)]##setScope(String)
 
 [#50561071_pgfId-20667]##public void _setScope_ ( _java.lang.String_
 scope)
@@ -10931,7 +10931,7 @@ scope)
 
 [#50561071_pgfId-20673]## _scope_ - Scope of the ’var’ attribute
 
-======= [#50561071_pgfId-20681]##[#50561071_marker-20675]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.ConditionalTagSupport.setVar(java.lang.String)]##setVar(String)
+======= [#50561071_pgfId-20681]##[#50561071_marker-20675]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.ConditionalTagSupport.setVar(java.lang.String)]##setVar(String)
 
 [#50561071_pgfId-20683]##public void _setVar_ ( _java.lang.String_ var)
 
@@ -10942,9 +10942,9 @@ scope)
 [#50561071_pgfId-20689]## _var_ - Name of the exported scoped variable
 storing the result of _condition()_ .
 
-==== [#50561071_pgfId-20691]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-20691]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-20699]##[#50561071_marker-20693]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.Config]##Config
+== [#50561071_pgfId-20699]##[#50561071_marker-20693]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config]##Config
 
 ====== [#50561071_pgfId-20701]##Declaration
 
@@ -10956,7 +10956,7 @@ storing the result of _condition()_ .
 
 [#50561071_pgfId-20709]## |
 
-[#50561071_pgfId-20711]## +-- _javax.servlet.jsp.jstl.core.Config_
+[#50561071_pgfId-20711]## +-- _jakarta.servlet.jsp.jstl.core.Config_
 
 ====== [#50561071_pgfId-20713]##Description
 
@@ -10972,37 +10972,37 @@ settings.
 [#50561071_pgfId-18720]##static java.lang.String
 
 [#50561071_pgfId-18728]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE[FMT_FALLBACK_LOCALE]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE[FMT_FALLBACK_LOCALE]link:jstl.htm#50561071_MemberHead[See
 FMT_FALLBACK_LOCALE]_
 
 [#50561071_pgfId-18734]##static java.lang.String
 
 [#50561071_pgfId-18742]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.FMT_LOCALE[FMT_LOCALE]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALE[FMT_LOCALE]link:jstl.htm#50561071_MemberHead[See
 FMT_LOCALE]_
 
 [#50561071_pgfId-18748]##static java.lang.String
 
 [#50561071_pgfId-18756]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT[FMT_LOCALIZATION_CONTEXT]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT[FMT_LOCALIZATION_CONTEXT]link:jstl.htm#50561071_MemberHead[See
 FMT_LOCALIZATION_CONTEXT]_
 
 [#50561071_pgfId-18762]##static java.lang.String
 
 [#50561071_pgfId-18770]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE[FMT_TIME_ZONE]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE[FMT_TIME_ZONE]link:jstl.htm#50561071_MemberHead[See
 FMT_TIME_ZONE]_
 
 [#50561071_pgfId-18776]##static java.lang.String
 
 [#50561071_pgfId-18784]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE[SQL_DATA_SOURCE]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE[SQL_DATA_SOURCE]link:jstl.htm#50561071_MemberHead[See
 SQL_DATA_SOURCE]_
 
 [#50561071_pgfId-18790]##static java.lang.String
 
 [#50561071_pgfId-18798]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS[SQL_MAX_ROWS]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS[SQL_MAX_ROWS]link:jstl.htm#50561071_MemberHead[See
 SQL_MAX_ROWS]_
 
 == [#50561071_pgfId-18804]##Constructors
@@ -11010,7 +11010,7 @@ SQL_MAX_ROWS]_
 [#50561071_pgfId-18810]## 
 
 [#50561071_pgfId-18818]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.Config()[Config()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.Config()[Config()]link:jstl.htm#50561071_MemberHead[See
 Config()]_
 
 == [#50561071_pgfId-18824]##Methods
@@ -11018,21 +11018,21 @@ Config()]_
 [#50561071_pgfId-18830]##static java.lang.Object
 
 [#50561071_pgfId-18838]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.find(javax.servlet.jsp.PageContext,%20java.lang.String)[find(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.find(jakarta.servlet.jsp.PageContext,%20java.lang.String)[find(jakarta.servlet.jsp.PageContext
 pc, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 find(PageContext, String)]_
 
 [#50561071_pgfId-18844]##static java.lang.Object
 
 [#50561071_pgfId-18852]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.http.HttpSession,%20java.lang.String)[get(javax.servlet.http.HttpSession
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.http.HttpSession,%20java.lang.String)[get(jakarta.servlet.http.HttpSession
 session, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 get(HttpSession, String)]_
 
 [#50561071_pgfId-18858]##static java.lang.Object
 
 [#50561071_pgfId-18866]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.jsp.PageContext,%20java.lang.String,%20int)[get(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20int)[get(jakarta.servlet.jsp.PageContext
 pc, java.lang.String name, int
 scope)]link:jstl.htm#50561071_MemberHead[See get(PageContext, String,
 int)]_
@@ -11040,28 +11040,28 @@ int)]_
 [#50561071_pgfId-18872]##static java.lang.Object
 
 [#50561071_pgfId-18880]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.ServletContext,%20java.lang.String)[get(javax.servlet.ServletContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.ServletContext,%20java.lang.String)[get(jakarta.servlet.ServletContext
 context, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 get(ServletContext, String)]_
 
 [#50561071_pgfId-18886]##static java.lang.Object
 
 [#50561071_pgfId-18894]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.ServletRequest,%20java.lang.String)[get(javax.servlet.ServletRequest
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.ServletRequest,%20java.lang.String)[get(jakarta.servlet.ServletRequest
 request, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 get(ServletRequest, String)]_
 
 [#50561071_pgfId-18900]##static void
 
 [#50561071_pgfId-18908]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.http.HttpSession,%20java.lang.String)[remove(javax.servlet.http.HttpSession
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.http.HttpSession,%20java.lang.String)[remove(jakarta.servlet.http.HttpSession
 session, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 remove(HttpSession, String)]_
 
 [#50561071_pgfId-18914]##static void
 
 [#50561071_pgfId-18922]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.jsp.PageContext,%20java.lang.String,%20int)[remove(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20int)[remove(jakarta.servlet.jsp.PageContext
 pc, java.lang.String name, int
 scope)]link:jstl.htm#50561071_MemberHead[See remove(PageContext, String,
 int)]_
@@ -11069,21 +11069,21 @@ int)]_
 [#50561071_pgfId-18928]##static void
 
 [#50561071_pgfId-18936]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.ServletContext,%20java.lang.String)[remove(javax.servlet.ServletContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.ServletContext,%20java.lang.String)[remove(jakarta.servlet.ServletContext
 context, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 remove(ServletContext, String)]_
 
 [#50561071_pgfId-18942]##static void
 
 [#50561071_pgfId-18950]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.ServletRequest,%20java.lang.String)[remove(javax.servlet.ServletRequest
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.ServletRequest,%20java.lang.String)[remove(jakarta.servlet.ServletRequest
 request, java.lang.String name)]link:jstl.htm#50561071_MemberHead[See
 remove(ServletRequest, String)]_
 
 [#50561071_pgfId-18956]##static void
 
 [#50561071_pgfId-18964]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.http.HttpSession,%20java.lang.String,%20java.lang.Object)[set(javax.servlet.http.HttpSession
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.http.HttpSession,%20java.lang.String,%20java.lang.Object)[set(jakarta.servlet.http.HttpSession
 session, java.lang.String name, java.lang.Object
 value)]link:jstl.htm#50561071_MemberHead[See set(HttpSession, String,
 Object)]_
@@ -11091,7 +11091,7 @@ Object)]_
 [#50561071_pgfId-18970]##static void
 
 [#50561071_pgfId-18978]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object,%20int)[set(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object,%20int)[set(jakarta.servlet.jsp.PageContext
 pc, java.lang.String name, java.lang.Object value, int
 scope)]link:jstl.htm#50561071_MemberHead[See set(PageContext, String,
 Object, int)]_
@@ -11099,7 +11099,7 @@ Object, int)]_
 [#50561071_pgfId-18984]##static void
 
 [#50561071_pgfId-18992]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.ServletContext,%20java.lang.String,%20java.lang.Object)[set(javax.servlet.ServletContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.ServletContext,%20java.lang.String,%20java.lang.Object)[set(jakarta.servlet.ServletContext
 context, java.lang.String name, java.lang.Object
 value)]link:jstl.htm#50561071_MemberHead[See set(ServletContext, String,
 Object)]_
@@ -11107,7 +11107,7 @@ Object)]_
 [#50561071_pgfId-18998]##static void
 
 [#50561071_pgfId-19006]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.ServletRequest,%20java.lang.String,%20java.lang.Object)[set(javax.servlet.ServletRequest
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.ServletRequest,%20java.lang.String,%20java.lang.Object)[set(jakarta.servlet.ServletRequest
 request, java.lang.String name, java.lang.Object
 value)]link:jstl.htm#50561071_MemberHead[See set(ServletRequest, String,
 Object)]_
@@ -11133,7 +11133,7 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-20731]##[#50561071_marker-20725]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE]##FMT_FALLBACK_LOCALE
+======= [#50561071_pgfId-20731]##[#50561071_marker-20725]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE]##FMT_FALLBACK_LOCALE
 
 [#50561071_pgfId-20733]##public static final _java.lang.String_
 _FMT_FALLBACK_LOCALE_
@@ -11141,7 +11141,7 @@ _FMT_FALLBACK_LOCALE_
 [#50561071_pgfId-20735]##Name of configuration setting for fallback
 locale
 
-======= [#50561071_pgfId-20743]##[#50561071_marker-20737]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.FMT_LOCALE]##FMT_LOCALE
+======= [#50561071_pgfId-20743]##[#50561071_marker-20737]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALE]##FMT_LOCALE
 
 [#50561071_pgfId-20745]##public static final _java.lang.String_
 _FMT_LOCALE_
@@ -11149,7 +11149,7 @@ _FMT_LOCALE_
 [#50561071_pgfId-20747]##Name of configuration setting for application-
 (as opposed to browser-) based preferred locale
 
-======= [#50561071_pgfId-20755]##[#50561071_marker-20749]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT]##FMT_LOCALIZATION_CONTEXT
+======= [#50561071_pgfId-20755]##[#50561071_marker-20749]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT]##FMT_LOCALIZATION_CONTEXT
 
 [#50561071_pgfId-20757]##public static final _java.lang.String_
 _FMT_LOCALIZATION_CONTEXT_
@@ -11157,14 +11157,14 @@ _FMT_LOCALIZATION_CONTEXT_
 [#50561071_pgfId-20759]##Name of configuration setting for i18n
 localization context
 
-======= [#50561071_pgfId-20767]##[#50561071_marker-20761]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE]##FMT_TIME_ZONE
+======= [#50561071_pgfId-20767]##[#50561071_marker-20761]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE]##FMT_TIME_ZONE
 
 [#50561071_pgfId-20769]##public static final _java.lang.String_
 _FMT_TIME_ZONE_
 
 [#50561071_pgfId-20771]##Name of localization setting for time zone
 
-======= [#50561071_pgfId-20779]##[#50561071_marker-20773]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE]##SQL_DATA_SOURCE
+======= [#50561071_pgfId-20779]##[#50561071_marker-20773]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE]##SQL_DATA_SOURCE
 
 [#50561071_pgfId-20781]##public static final _java.lang.String_
 _SQL_DATA_SOURCE_
@@ -11172,7 +11172,7 @@ _SQL_DATA_SOURCE_
 [#50561071_pgfId-20783]##Name of configuration setting for SQL data
 source
 
-======= [#50561071_pgfId-20791]##[#50561071_marker-20785]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS]##SQL_MAX_ROWS
+======= [#50561071_pgfId-20791]##[#50561071_marker-20785]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS]##SQL_MAX_ROWS
 
 [#50561071_pgfId-20793]##public static final _java.lang.String_
 _SQL_MAX_ROWS_
@@ -11186,7 +11186,7 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-20805]##[#50561071_marker-20799]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.Config()]##Config()
+======= [#50561071_pgfId-20805]##[#50561071_marker-20799]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.Config()]##Config()
 
 [#50561071_pgfId-20807]##public _Config_ ()
 
@@ -11196,10 +11196,10 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-20817]##[#50561071_marker-20811]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.find(javax.servlet.jsp.PageContext, java.lang.String)]##find(PageContext, String)
+======= [#50561071_pgfId-20817]##[#50561071_marker-20811]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.find(jakarta.servlet.jsp.PageContext, java.lang.String)]##find(PageContext, String)
 
 [#50561071_pgfId-20819]##public static _java.lang.Object_ _find_ (
-_javax.servlet.jsp.PageContext_ pc, _java.lang.String_ name)
+_jakarta.servlet.jsp.PageContext_ pc, _java.lang.String_ name)
 
 [#50561071_pgfId-20821]##Finds the value associated with a specific
 configuration setting identified by its context initialization parameter
@@ -11225,10 +11225,10 @@ of the configuration setting
 configuration setting identified by _name_ , or null if it is not
 defined.
 
-======= [#50561071_pgfId-20841]##[#50561071_marker-20835]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.jsp.PageContext, java.lang.String, int)]##get(PageContext, String, int)
+======= [#50561071_pgfId-20841]##[#50561071_marker-20835]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.jsp.PageContext, java.lang.String, int)]##get(PageContext, String, int)
 
 [#50561071_pgfId-20843]##public static _java.lang.Object_ _get_ (
-_javax.servlet.jsp.PageContext_ pc, _java.lang.String_ name, int scope)
+_jakarta.servlet.jsp.PageContext_ pc, _java.lang.String_ name, int scope)
 
 [#50561071_pgfId-20845]##Looks up a configuration variable in the given
 scope.
@@ -11253,10 +11253,10 @@ variable is to be looked up
 [#50561071_pgfId-20859]##The _java.lang.Object_ associated with the
 configuration variable, or null if it is not defined.
 
-======= [#50561071_pgfId-20867]##[#50561071_marker-20861]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.ServletRequest, java.lang.String)]##get(ServletRequest, String)
+======= [#50561071_pgfId-20867]##[#50561071_marker-20861]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.ServletRequest, java.lang.String)]##get(ServletRequest, String)
 
 [#50561071_pgfId-20869]##public static _java.lang.Object_ _get_ (
-_javax.servlet.ServletRequest_ request, _java.lang.String_ name)
+_jakarta.servlet.ServletRequest_ request, _java.lang.String_ name)
 
 [#50561071_pgfId-20871]##Looks up a configuration variable in the
 “request” scope.
@@ -11278,10 +11278,10 @@ configuration variable is to be looked up
 [#50561071_pgfId-20883]##The _java.lang.Object_ associated with the
 configuration variable, or null if it is not defined.
 
-======= [#50561071_pgfId-20891]##[#50561071_marker-20885]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.http.HttpSession, java.lang.String)]##get(HttpSession, String)
+======= [#50561071_pgfId-20891]##[#50561071_marker-20885]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.http.HttpSession, java.lang.String)]##get(HttpSession, String)
 
 [#50561071_pgfId-20893]##public static _java.lang.Object_ _get_ (
-_javax.servlet.http.HttpSession_ session, _java.lang.String_ name)
+_jakarta.servlet.http.HttpSession_ session, _java.lang.String_ name)
 
 [#50561071_pgfId-20895]##Looks up a configuration variable in the
 “session” scope.
@@ -11304,10 +11304,10 @@ configuration variable is to be looked up
 configuration variable, or null if it is not defined, if session is
 null, or if the session is invalidated.
 
-======= [#50561071_pgfId-20915]##[#50561071_marker-20909]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.get(javax.servlet.ServletContext, java.lang.String)]##get(ServletContext, String)
+======= [#50561071_pgfId-20915]##[#50561071_marker-20909]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.get(jakarta.servlet.ServletContext, java.lang.String)]##get(ServletContext, String)
 
 [#50561071_pgfId-20917]##public static _java.lang.Object_ _get_ (
-_javax.servlet.ServletContext_ context, _java.lang.String_ name)
+_jakarta.servlet.ServletContext_ context, _java.lang.String_ name)
 
 [#50561071_pgfId-20919]##Looks up a configuration variable in the
 “application” scope.
@@ -11329,10 +11329,10 @@ configuration variable is to be looked up
 [#50561071_pgfId-20931]##The _java.lang.Object_ associated with the
 configuration variable, or null if it is not defined.
 
-======= [#50561071_pgfId-20939]##[#50561071_marker-20933]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.jsp.PageContext, java.lang.String, int)]##remove(PageContext, String, int)
+======= [#50561071_pgfId-20939]##[#50561071_marker-20933]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.jsp.PageContext, java.lang.String, int)]##remove(PageContext, String, int)
 
 [#50561071_pgfId-20941]##public static void _remove_ (
-_javax.servlet.jsp.PageContext_ pc, _java.lang.String_ name, int scope)
+_jakarta.servlet.jsp.PageContext_ pc, _java.lang.String_ name, int scope)
 
 [#50561071_pgfId-20943]##Removes a configuration variable from the given
 scope.
@@ -11352,10 +11352,10 @@ configuration variable is to be removed
 [#50561071_pgfId-20953]## _scope_ - Scope from which the configuration
 variable is to be removed
 
-======= [#50561071_pgfId-20961]##[#50561071_marker-20955]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.ServletRequest, java.lang.String)]##remove(ServletRequest, String)
+======= [#50561071_pgfId-20961]##[#50561071_marker-20955]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.ServletRequest, java.lang.String)]##remove(ServletRequest, String)
 
 [#50561071_pgfId-20963]##public static void _remove_ (
-_javax.servlet.ServletRequest_ request, _java.lang.String_ name)
+_jakarta.servlet.ServletRequest_ request, _java.lang.String_ name)
 
 [#50561071_pgfId-20965]##Removes a configuration variable from the
 “request” scope.
@@ -11372,10 +11372,10 @@ configuration variable is to be removed
 
 [#50561071_pgfId-20973]## _name_ - Configuration variable name
 
-======= [#50561071_pgfId-20981]##[#50561071_marker-20975]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.http.HttpSession, java.lang.String)]##remove(HttpSession, String)
+======= [#50561071_pgfId-20981]##[#50561071_marker-20975]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.http.HttpSession, java.lang.String)]##remove(HttpSession, String)
 
 [#50561071_pgfId-20983]##public static void _remove_ (
-_javax.servlet.http.HttpSession_ session, _java.lang.String_ name)
+_jakarta.servlet.http.HttpSession_ session, _java.lang.String_ name)
 
 [#50561071_pgfId-20985]##Removes a configuration variable from the
 “session” scope.
@@ -11392,10 +11392,10 @@ configuration variable is to be removed
 
 [#50561071_pgfId-20993]## _name_ - Configuration variable name
 
-======= [#50561071_pgfId-21001]##[#50561071_marker-20995]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.remove(javax.servlet.ServletContext, java.lang.String)]##remove(ServletContext, String)
+======= [#50561071_pgfId-21001]##[#50561071_marker-20995]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.remove(jakarta.servlet.ServletContext, java.lang.String)]##remove(ServletContext, String)
 
 [#50561071_pgfId-21003]##public static void _remove_ (
-_javax.servlet.ServletContext_ context, _java.lang.String_ name)
+_jakarta.servlet.ServletContext_ context, _java.lang.String_ name)
 
 [#50561071_pgfId-21005]##Removes a configuration variable from the
 “application” scope.
@@ -11412,10 +11412,10 @@ configuration variable is to be removed
 
 [#50561071_pgfId-21013]## _name_ - Configuration variable name
 
-======= [#50561071_pgfId-21021]##[#50561071_marker-21015]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.jsp.PageContext, java.lang.String, java.lang.Object, int)]##set(PageContext, String, Object, int)
+======= [#50561071_pgfId-21021]##[#50561071_marker-21015]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.jsp.PageContext, java.lang.String, java.lang.Object, int)]##set(PageContext, String, Object, int)
 
 [#50561071_pgfId-21023]##public static void _set_ (
-_javax.servlet.jsp.PageContext_ pc, _java.lang.String_ name,
+_jakarta.servlet.jsp.PageContext_ pc, _java.lang.String_ name,
 _java.lang.Object_ value, int scope)
 
 [#50561071_pgfId-21025]##Sets the value of a configuration variable in
@@ -11438,10 +11438,10 @@ variable is to be set
 [#50561071_pgfId-21037]## _scope_ - Scope in which the configuration
 variable is to be set
 
-======= [#50561071_pgfId-21045]##[#50561071_marker-21039]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.ServletRequest, java.lang.String, java.lang.Object)]##set(ServletRequest, String, Object)
+======= [#50561071_pgfId-21045]##[#50561071_marker-21039]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.ServletRequest, java.lang.String, java.lang.Object)]##set(ServletRequest, String, Object)
 
 [#50561071_pgfId-21047]##public static void _set_ (
-_javax.servlet.ServletRequest_ request, _java.lang.String_ name,
+_jakarta.servlet.ServletRequest_ request, _java.lang.String_ name,
 _java.lang.Object_ value)
 
 [#50561071_pgfId-21049]##Sets the value of a configuration variable in
@@ -11461,10 +11461,10 @@ configuration variable is to be set
 
 [#50561071_pgfId-21059]## _value_ - Configuration variable value
 
-======= [#50561071_pgfId-21067]##[#50561071_marker-21061]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.http.HttpSession, java.lang.String, java.lang.Object)]##set(HttpSession, String, Object)
+======= [#50561071_pgfId-21067]##[#50561071_marker-21061]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.http.HttpSession, java.lang.String, java.lang.Object)]##set(HttpSession, String, Object)
 
 [#50561071_pgfId-21069]##public static void _set_ (
-_javax.servlet.http.HttpSession_ session, _java.lang.String_ name,
+_jakarta.servlet.http.HttpSession_ session, _java.lang.String_ name,
 _java.lang.Object_ value)
 
 [#50561071_pgfId-21071]##Sets the value of a configuration variable in
@@ -11484,10 +11484,10 @@ configuration variable is to be set
 
 [#50561071_pgfId-21081]## _value_ - Configuration variable value
 
-======= [#50561071_pgfId-21089]##[#50561071_marker-21083]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.Config.set(javax.servlet.ServletContext, java.lang.String, java.lang.Object)]##set(ServletContext, String, Object)
+======= [#50561071_pgfId-21089]##[#50561071_marker-21083]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.Config.set(jakarta.servlet.ServletContext, java.lang.String, java.lang.Object)]##set(ServletContext, String, Object)
 
 [#50561071_pgfId-21091]##public static void _set_ (
-_javax.servlet.ServletContext_ context, _java.lang.String_ name,
+_jakarta.servlet.ServletContext_ context, _java.lang.String_ name,
 _java.lang.Object_ value)
 
 [#50561071_pgfId-21093]##Sets the value of a configuration variable in
@@ -11507,14 +11507,14 @@ configuration variable is to be set
 
 [#50561071_pgfId-21103]## _value_ - Configuration variable value
 
-==== [#50561071_pgfId-21105]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21105]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21113]##[#50561071_marker-21107]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression]##IndexedValueExpression
+== [#50561071_pgfId-21113]##[#50561071_marker-21107]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression]##IndexedValueExpression
 
 ====== [#50561071_pgfId-21115]##Declaration
 
 [#50561071_pgfId-21117]##public final class _IndexedValueExpression_
-extends _javax.el.ValueExpression_
+extends _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-21119]##  
 
@@ -11522,16 +11522,16 @@ extends _javax.el.ValueExpression_
 
 [#50561071_pgfId-21123]## |
 
-[#50561071_pgfId-21125]## +-- _javax.el.Expression_
+[#50561071_pgfId-21125]## +-- _jakarta.el.Expression_
 
 [#50561071_pgfId-21127]## |
 
-[#50561071_pgfId-21129]## +-- _javax.el.ValueExpression_
+[#50561071_pgfId-21129]## +-- _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-21131]## |
 
 [#50561071_pgfId-21133]## +--
-_javax.servlet.jsp.jstl.core.IndexedValueExpression_
+_jakarta.servlet.jsp.jstl.core.IndexedValueExpression_
 
 ======= [#50561071_pgfId-21135]##All Implemented Interfaces:
 
@@ -11546,13 +11546,13 @@ _javax.servlet.jsp.jstl.core.IndexedValueExpression_
 [#50561071_pgfId-19038]##protected java.lang.Integer
 
 [#50561071_pgfId-19046]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
 i]_
 
-[#50561071_pgfId-19052]##protected javax.el.ValueExpression
+[#50561071_pgfId-19052]##protected jakarta.el.ValueExpression
 
 [#50561071_pgfId-19060]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
 orig]_
 
 == [#50561071_pgfId-19066]##Constructors
@@ -11560,7 +11560,7 @@ orig]_
 [#50561071_pgfId-19072]## 
 
 [#50561071_pgfId-19080]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.IndexedValueExpression(javax.el.ValueExpression,%20int)[IndexedValueExpression(javax.el.ValueExpression
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.IndexedValueExpression(jakarta.el.ValueExpression,%20int)[IndexedValueExpression(jakarta.el.ValueExpression
 orig, int i)]link:jstl.htm#50561071_MemberHead[See
 IndexedValueExpression(ValueExpression, int)]_
 
@@ -11569,55 +11569,55 @@ IndexedValueExpression(ValueExpression, int)]_
 [#50561071_pgfId-19092]## boolean
 
 [#50561071_pgfId-19100]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.equals(java.lang.Object)[equals(java.lang.Object
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.equals(java.lang.Object)[equals(java.lang.Object
 obj)]link:jstl.htm#50561071_MemberHead[See equals(Object)]_
 
 [#50561071_pgfId-19106]## java.lang.Class
 
 [#50561071_pgfId-19114]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
 getExpectedType()]_
 
 [#50561071_pgfId-19120]## java.lang.String
 
 [#50561071_pgfId-19128]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
 getExpressionString()]_
 
 [#50561071_pgfId-19134]## java.lang.Class
 
 [#50561071_pgfId-19142]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getType(javax.el.ELContext)[getType(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getType(jakarta.el.ELContext)[getType(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getType(ELContext)]_
 
 [#50561071_pgfId-19148]## java.lang.Object
 
 [#50561071_pgfId-19156]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getValue(javax.el.ELContext)[getValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getValue(jakarta.el.ELContext)[getValue(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getValue(ELContext)]_
 
 [#50561071_pgfId-19162]## int
 
 [#50561071_pgfId-19170]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
 hashCode()]_
 
 [#50561071_pgfId-19176]## boolean
 
 [#50561071_pgfId-19184]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
 isLiteralText()]_
 
 [#50561071_pgfId-19190]## boolean
 
 [#50561071_pgfId-19198]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.isReadOnly(javax.el.ELContext)[isReadOnly(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.isReadOnly(jakarta.el.ELContext)[isReadOnly(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See isReadOnly(ELContext)]_
 
 [#50561071_pgfId-19204]## void
 
 [#50561071_pgfId-19212]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.setValue(javax.el.ELContext,%20java.lang.Object)[setValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.setValue(jakarta.el.ELContext,%20java.lang.Object)[setValue(jakarta.el.ELContext
 context, java.lang.Object value)]link:jstl.htm#50561071_MemberHead[See
 setValue(ELContext, Object)]_
 
@@ -11642,13 +11642,13 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-21153]##[#50561071_marker-21147]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.i]##i
+======= [#50561071_pgfId-21153]##[#50561071_marker-21147]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.i]##i
 
 [#50561071_pgfId-21155]##protected final _java.lang.Integer_ _i_
 
-======= [#50561071_pgfId-21163]##[#50561071_marker-21157]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.orig]##orig
+======= [#50561071_pgfId-21163]##[#50561071_marker-21157]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.orig]##orig
 
-[#50561071_pgfId-21165]##protected final _javax.el.ValueExpression_
+[#50561071_pgfId-21165]##protected final _jakarta.el.ValueExpression_
 _orig_
 
 ======= [#50561071_pgfId-21167]##
@@ -11657,10 +11657,10 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-21175]##[#50561071_marker-21169]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.IndexedValueExpression(javax.el.ValueExpression, int)]##IndexedValueExpression(ValueExpression, int)
+======= [#50561071_pgfId-21175]##[#50561071_marker-21169]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.IndexedValueExpression(jakarta.el.ValueExpression, int)]##IndexedValueExpression(ValueExpression, int)
 
 [#50561071_pgfId-21177]##public _IndexedValueExpression_ (
-_javax.el.ValueExpression_ orig, int i)
+_jakarta.el.ValueExpression_ orig, int i)
 
 ======= [#50561071_pgfId-21179]##
 
@@ -11668,7 +11668,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21187]##[#50561071_marker-21181]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.equals(java.lang.Object)]##equals(Object)
+======= [#50561071_pgfId-21187]##[#50561071_marker-21181]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.equals(java.lang.Object)]##equals(Object)
 
 [#50561071_pgfId-21189]##public boolean _equals_ ( _java.lang.Object_
 obj)
@@ -11677,26 +11677,26 @@ obj)
 
 [#50561071_pgfId-21193]## _equals_ in class _Object_
 
-======= [#50561071_pgfId-21201]##[#50561071_marker-21195]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getExpectedType()]##getExpectedType()
+======= [#50561071_pgfId-21201]##[#50561071_marker-21195]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getExpectedType()]##getExpectedType()
 
 [#50561071_pgfId-21203]##public _java.lang.Class_ _getExpectedType_ ()
 
-======= [#50561071_pgfId-21211]##[#50561071_marker-21205]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getExpressionString()]##getExpressionString()
+======= [#50561071_pgfId-21211]##[#50561071_marker-21205]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getExpressionString()]##getExpressionString()
 
 [#50561071_pgfId-21213]##public _java.lang.String_ _getExpressionString_
 ()
 
-======= [#50561071_pgfId-21221]##[#50561071_marker-21215]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getType(javax.el.ELContext)]##getType(ELContext)
+======= [#50561071_pgfId-21221]##[#50561071_marker-21215]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getType(jakarta.el.ELContext)]##getType(ELContext)
 
 [#50561071_pgfId-21223]##public _java.lang.Class_ _getType_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21231]##[#50561071_marker-21225]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.getValue(javax.el.ELContext)]##getValue(ELContext)
+======= [#50561071_pgfId-21231]##[#50561071_marker-21225]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.getValue(jakarta.el.ELContext)]##getValue(ELContext)
 
 [#50561071_pgfId-21233]##public _java.lang.Object_ _getValue_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21241]##[#50561071_marker-21235]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.hashCode()]##hashCode()
+======= [#50561071_pgfId-21241]##[#50561071_marker-21235]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.hashCode()]##hashCode()
 
 [#50561071_pgfId-21243]##public int _hashCode_ ()
 
@@ -11704,23 +11704,23 @@ _javax.el.ELContext_ context)
 
 [#50561071_pgfId-21247]## _hashCode_ in class _Object_
 
-======= [#50561071_pgfId-21255]##[#50561071_marker-21249]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.isLiteralText()]##isLiteralText()
+======= [#50561071_pgfId-21255]##[#50561071_marker-21249]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.isLiteralText()]##isLiteralText()
 
 [#50561071_pgfId-21257]##public boolean _isLiteralText_ ()
 
-======= [#50561071_pgfId-21265]##[#50561071_marker-21259]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.isReadOnly(javax.el.ELContext)]##isReadOnly(ELContext)
+======= [#50561071_pgfId-21265]##[#50561071_marker-21259]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.isReadOnly(jakarta.el.ELContext)]##isReadOnly(ELContext)
 
 [#50561071_pgfId-21267]##public boolean _isReadOnly_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21275]##[#50561071_marker-21269]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IndexedValueExpression.setValue(javax.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
+======= [#50561071_pgfId-21275]##[#50561071_marker-21269]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IndexedValueExpression.setValue(jakarta.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
 
-[#50561071_pgfId-21277]##public void _setValue_ ( _javax.el.ELContext_
+[#50561071_pgfId-21277]##public void _setValue_ ( _jakarta.el.ELContext_
 context, _java.lang.Object_ value)
 
-==== [#50561071_pgfId-21279]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21279]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21287]##[#50561071_marker-21281]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedExpression]##IteratedExpression
+== [#50561071_pgfId-21287]##[#50561071_marker-21281]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression]##IteratedExpression
 
 ====== [#50561071_pgfId-21289]##Declaration
 
@@ -11733,7 +11733,7 @@ context, _java.lang.Object_ value)
 [#50561071_pgfId-21297]## |
 
 [#50561071_pgfId-21299]## +--
-_javax.servlet.jsp.jstl.core.IteratedExpression_
+_jakarta.servlet.jsp.jstl.core.IteratedExpression_
 
 [#50561071_pgfId-21302]## 
 
@@ -11741,10 +11741,10 @@ _javax.servlet.jsp.jstl.core.IteratedExpression_
 
 == [#50561071_pgfId-19238]##Fields
 
-[#50561071_pgfId-19244]##protected javax.el.ValueExpression
+[#50561071_pgfId-19244]##protected jakarta.el.ValueExpression
 
 [#50561071_pgfId-19252]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
 orig]_
 
 == [#50561071_pgfId-19258]##Constructors
@@ -11752,7 +11752,7 @@ orig]_
 [#50561071_pgfId-19264]## 
 
 [#50561071_pgfId-19272]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.IteratedExpression(javax.el.ValueExpression)[IteratedExpression(javax.el.ValueExpression
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.IteratedExpression(jakarta.el.ValueExpression)[IteratedExpression(jakarta.el.ValueExpression
 orig)]link:jstl.htm#50561071_MemberHead[See
 IteratedExpression(ValueExpression)]_
 
@@ -11761,14 +11761,14 @@ IteratedExpression(ValueExpression)]_
 [#50561071_pgfId-19284]## java.lang.Object
 
 [#50561071_pgfId-19292]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.getItem(javax.el.ELContext,%20int)[getItem(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.getItem(jakarta.el.ELContext,%20int)[getItem(jakarta.el.ELContext
 context, int i)]link:jstl.htm#50561071_MemberHead[See getItem(ELContext,
 int)]_
 
-[#50561071_pgfId-19298]## javax.el.ValueExpression
+[#50561071_pgfId-19298]## jakarta.el.ValueExpression
 
 [#50561071_pgfId-19306]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.getValueExpression()[getValueExpression()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.getValueExpression()[getValueExpression()]link:jstl.htm#50561071_MemberHead[See
 getValueExpression()]_
 
 [#50561071_pgfId-21305]## 
@@ -11792,9 +11792,9 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-21315]##[#50561071_marker-21309]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.orig]##orig
+======= [#50561071_pgfId-21315]##[#50561071_marker-21309]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.orig]##orig
 
-[#50561071_pgfId-21317]##protected final _javax.el.ValueExpression_
+[#50561071_pgfId-21317]##protected final _jakarta.el.ValueExpression_
 _orig_
 
 ======= [#50561071_pgfId-21319]##
@@ -11803,10 +11803,10 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-21327]##[#50561071_marker-21321]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.IteratedExpression(javax.el.ValueExpression)]##IteratedExpression(ValueExpression)
+======= [#50561071_pgfId-21327]##[#50561071_marker-21321]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.IteratedExpression(jakarta.el.ValueExpression)]##IteratedExpression(ValueExpression)
 
 [#50561071_pgfId-21329]##public _IteratedExpression_ (
-_javax.el.ValueExpression_ orig)
+_jakarta.el.ValueExpression_ orig)
 
 ======= [#50561071_pgfId-21331]##
 
@@ -11814,10 +11814,10 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21339]##[#50561071_marker-21333]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.getItem(javax.el.ELContext, int)]##getItem(ELContext, int)
+======= [#50561071_pgfId-21339]##[#50561071_marker-21333]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.getItem(jakarta.el.ELContext, int)]##getItem(ELContext, int)
 
 [#50561071_pgfId-21341]##public _java.lang.Object_ _getItem_ (
-_javax.el.ELContext_ context, int i)
+_jakarta.el.ELContext_ context, int i)
 
 [#50561071_pgfId-21343]##Evaluates the stored ValueExpression and return
 the indexed item.
@@ -11829,19 +11829,19 @@ ValueExpression
 
 [#50561071_pgfId-21349]## _i_ - The index of the item to be retrieved
 
-======= [#50561071_pgfId-21357]##[#50561071_marker-21351]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedExpression.getValueExpression()]##getValueExpression()
+======= [#50561071_pgfId-21357]##[#50561071_marker-21351]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression.getValueExpression()]##getValueExpression()
 
-[#50561071_pgfId-21359]##public _javax.el.ValueExpression_
+[#50561071_pgfId-21359]##public _jakarta.el.ValueExpression_
 _getValueExpression_ ()
 
-==== [#50561071_pgfId-21361]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21361]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21369]##[#50561071_marker-21363]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression]##IteratedValueExpression
+== [#50561071_pgfId-21369]##[#50561071_marker-21363]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression]##IteratedValueExpression
 
 ====== [#50561071_pgfId-21371]##Declaration
 
 [#50561071_pgfId-21373]##public final class _IteratedValueExpression_
-extends _javax.el.ValueExpression_
+extends _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-21375]##  
 
@@ -11849,16 +11849,16 @@ extends _javax.el.ValueExpression_
 
 [#50561071_pgfId-21379]## |
 
-[#50561071_pgfId-21381]## +-- _javax.el.Expression_
+[#50561071_pgfId-21381]## +-- _jakarta.el.Expression_
 
 [#50561071_pgfId-21383]## |
 
-[#50561071_pgfId-21385]## +-- _javax.el.ValueExpression_
+[#50561071_pgfId-21385]## +-- _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-21387]## |
 
 [#50561071_pgfId-21389]## +--
-_javax.servlet.jsp.jstl.core.IteratedValueExpression_
+_jakarta.servlet.jsp.jstl.core.IteratedValueExpression_
 
 ======= [#50561071_pgfId-21391]##All Implemented Interfaces:
 
@@ -11873,13 +11873,13 @@ _javax.servlet.jsp.jstl.core.IteratedValueExpression_
 [#50561071_pgfId-19338]##protected int
 
 [#50561071_pgfId-19346]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
 i]_
 
 [#50561071_pgfId-19352]##protected IteratedExpression
 
 [#50561071_pgfId-19360]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.iteratedExpression[iteratedExpression]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.iteratedExpression[iteratedExpression]link:jstl.htm#50561071_MemberHead[See
 iteratedExpression]_
 
 == [#50561071_pgfId-19366]##Constructors
@@ -11887,7 +11887,7 @@ iteratedExpression]_
 [#50561071_pgfId-19372]## 
 
 [#50561071_pgfId-19380]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.IteratedValueExpression(javax.servlet.jsp.jstl.core.IteratedExpression,%20int)[IteratedValueExpression(IteratedExpression
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.IteratedValueExpression(jakarta.servlet.jsp.jstl.core.IteratedExpression,%20int)[IteratedValueExpression(IteratedExpression
 iteratedExpr, int i)]link:jstl.htm#50561071_MemberHead[See
 IteratedValueExpression(IteratedExpression, int)]_
 
@@ -11896,55 +11896,55 @@ IteratedValueExpression(IteratedExpression, int)]_
 [#50561071_pgfId-19392]## boolean
 
 [#50561071_pgfId-19400]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.equals(java.lang.Object)[equals(java.lang.Object
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.equals(java.lang.Object)[equals(java.lang.Object
 obj)]link:jstl.htm#50561071_MemberHead[See equals(Object)]_
 
 [#50561071_pgfId-19406]## java.lang.Class
 
 [#50561071_pgfId-19414]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
 getExpectedType()]_
 
 [#50561071_pgfId-19420]## java.lang.String
 
 [#50561071_pgfId-19428]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
 getExpressionString()]_
 
 [#50561071_pgfId-19434]## java.lang.Class
 
 [#50561071_pgfId-19442]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getType(javax.el.ELContext)[getType(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getType(jakarta.el.ELContext)[getType(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getType(ELContext)]_
 
 [#50561071_pgfId-19448]## java.lang.Object
 
 [#50561071_pgfId-19456]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getValue(javax.el.ELContext)[getValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getValue(jakarta.el.ELContext)[getValue(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getValue(ELContext)]_
 
 [#50561071_pgfId-19462]## int
 
 [#50561071_pgfId-19470]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
 hashCode()]_
 
 [#50561071_pgfId-19476]## boolean
 
 [#50561071_pgfId-19484]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
 isLiteralText()]_
 
 [#50561071_pgfId-19490]## boolean
 
 [#50561071_pgfId-19498]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.isReadOnly(javax.el.ELContext)[isReadOnly(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.isReadOnly(jakarta.el.ELContext)[isReadOnly(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See isReadOnly(ELContext)]_
 
 [#50561071_pgfId-19504]## void
 
 [#50561071_pgfId-19512]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.setValue(javax.el.ELContext,%20java.lang.Object)[setValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.setValue(jakarta.el.ELContext,%20java.lang.Object)[setValue(jakarta.el.ELContext
 context, java.lang.Object value)]link:jstl.htm#50561071_MemberHead[See
 setValue(ELContext, Object)]_
 
@@ -11969,14 +11969,14 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-21409]##[#50561071_marker-21403]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.i]##i
+======= [#50561071_pgfId-21409]##[#50561071_marker-21403]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.i]##i
 
 [#50561071_pgfId-21411]##protected final int _i_
 
-======= [#50561071_pgfId-21419]##[#50561071_marker-21413]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.iteratedExpression]##iteratedExpression
+======= [#50561071_pgfId-21419]##[#50561071_marker-21413]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.iteratedExpression]##iteratedExpression
 
 [#50561071_pgfId-21427]##protected final
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression[javax.servlet.jsp.jstl.core.IteratedExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression[jakarta.servlet.jsp.jstl.core.IteratedExpression]link:jstl.htm#50561071_ClassHead[See
 IteratedExpression] _iteratedExpression__
 
 ======= [#50561071_pgfId-21429]##
@@ -11985,10 +11985,10 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-21437]##[#50561071_marker-21431]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.IteratedValueExpression(javax.servlet.jsp.jstl.core.IteratedExpression, int)]##IteratedValueExpression(IteratedExpression, int)
+======= [#50561071_pgfId-21437]##[#50561071_marker-21431]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.IteratedValueExpression(jakarta.servlet.jsp.jstl.core.IteratedExpression, int)]##IteratedValueExpression(IteratedExpression, int)
 
 [#50561071_pgfId-21445]##public _IteratedValueExpression_ (
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.IteratedExpression[javax.servlet.jsp.jstl.core.IteratedExpression]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.IteratedExpression[jakarta.servlet.jsp.jstl.core.IteratedExpression]link:jstl.htm#50561071_ClassHead[See
 IteratedExpression] iteratedExpr, int i)_
 
 ======= [#50561071_pgfId-21447]##
@@ -11997,7 +11997,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21455]##[#50561071_marker-21449]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.equals(java.lang.Object)]##equals(Object)
+======= [#50561071_pgfId-21455]##[#50561071_marker-21449]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.equals(java.lang.Object)]##equals(Object)
 
 [#50561071_pgfId-21457]##public boolean _equals_ ( _java.lang.Object_
 obj)
@@ -12006,26 +12006,26 @@ obj)
 
 [#50561071_pgfId-21461]## _equals_ in class _Object_
 
-======= [#50561071_pgfId-21469]##[#50561071_marker-21463]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getExpectedType()]##getExpectedType()
+======= [#50561071_pgfId-21469]##[#50561071_marker-21463]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getExpectedType()]##getExpectedType()
 
 [#50561071_pgfId-21471]##public _java.lang.Class_ _getExpectedType_ ()
 
-======= [#50561071_pgfId-21479]##[#50561071_marker-21473]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getExpressionString()]##getExpressionString()
+======= [#50561071_pgfId-21479]##[#50561071_marker-21473]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getExpressionString()]##getExpressionString()
 
 [#50561071_pgfId-21481]##public _java.lang.String_ _getExpressionString_
 ()
 
-======= [#50561071_pgfId-21489]##[#50561071_marker-21483]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getType(javax.el.ELContext)]##getType(ELContext)
+======= [#50561071_pgfId-21489]##[#50561071_marker-21483]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getType(jakarta.el.ELContext)]##getType(ELContext)
 
 [#50561071_pgfId-21491]##public _java.lang.Class_ _getType_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21499]##[#50561071_marker-21493]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.getValue(javax.el.ELContext)]##getValue(ELContext)
+======= [#50561071_pgfId-21499]##[#50561071_marker-21493]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.getValue(jakarta.el.ELContext)]##getValue(ELContext)
 
 [#50561071_pgfId-21501]##public _java.lang.Object_ _getValue_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21509]##[#50561071_marker-21503]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.hashCode()]##hashCode()
+======= [#50561071_pgfId-21509]##[#50561071_marker-21503]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.hashCode()]##hashCode()
 
 [#50561071_pgfId-21511]##public int _hashCode_ ()
 
@@ -12033,45 +12033,45 @@ _javax.el.ELContext_ context)
 
 [#50561071_pgfId-21515]## _hashCode_ in class _Object_
 
-======= [#50561071_pgfId-21523]##[#50561071_marker-21517]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.isLiteralText()]##isLiteralText()
+======= [#50561071_pgfId-21523]##[#50561071_marker-21517]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.isLiteralText()]##isLiteralText()
 
 [#50561071_pgfId-21525]##public boolean _isLiteralText_ ()
 
-======= [#50561071_pgfId-21533]##[#50561071_marker-21527]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.isReadOnly(javax.el.ELContext)]##isReadOnly(ELContext)
+======= [#50561071_pgfId-21533]##[#50561071_marker-21527]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.isReadOnly(jakarta.el.ELContext)]##isReadOnly(ELContext)
 
 [#50561071_pgfId-21535]##public boolean _isReadOnly_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-21543]##[#50561071_marker-21537]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.IteratedValueExpression.setValue(javax.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
+======= [#50561071_pgfId-21543]##[#50561071_marker-21537]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.IteratedValueExpression.setValue(jakarta.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
 
-[#50561071_pgfId-21545]##public void _setValue_ ( _javax.el.ELContext_
+[#50561071_pgfId-21545]##public void _setValue_ ( _jakarta.el.ELContext_
 context, _java.lang.Object_ value)
 
-==== [#50561071_pgfId-21547]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21547]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21555]##[#50561071_marker-21549]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTag]##LoopTag
+== [#50561071_pgfId-21555]##[#50561071_marker-21549]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTag]##LoopTag
 
 ====== [#50561071_pgfId-21557]##Declaration
 
 [#50561071_pgfId-21559]##public interface _LoopTag extends_
-_javax.servlet.jsp.tagext.Tag_
+_jakarta.servlet.jsp.tagext.Tag_
 
 ======= [#50561071_pgfId-21561]##All Superinterfaces:
 
-[#50561071_pgfId-21563]## _javax.servlet.jsp.tagext.JspTag_ ,
-_javax.servlet.jsp.tagext.Tag_
+[#50561071_pgfId-21563]## _jakarta.servlet.jsp.tagext.JspTag_ ,
+_jakarta.servlet.jsp.tagext.Tag_
 
 ======= [#50561071_pgfId-21565]##All Known Implementing Classes:
 
 [#50561071_pgfId-21573]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport[LoopTagSupport]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport[LoopTagSupport]link:jstl.htm#50561071_ClassHead[See
 LoopTagSupport]_
 
 ====== [#50561071_pgfId-21575]##Description
 
 [#50561071_pgfId-21577]##JSTL allows developers to write custom
 iteration tags by implementing the LoopTag interface. This is not to be
-confused with _javax.servlet.jsp.tagext.IterationTag_ as defined in JSP
+confused with _jakarta.servlet.jsp.tagext.IterationTag_ as defined in JSP
 1.2. LoopTag establishes a mechanism for iteration tags to be recognized
 and for type-safe implicit collaboration with custom subtags.
 
@@ -12088,13 +12088,13 @@ _LoopTagSupport_ ) is provided to facilitate implementation.
 [#50561071_pgfId-19544]## java.lang.Object
 
 [#50561071_pgfId-19552]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTag.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTag.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
 getCurrent()]_
 
 [#50561071_pgfId-19558]## LoopTagStatus
 
 [#50561071_pgfId-19566]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTag.getLoopStatus()[getLoopStatus()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTag.getLoopStatus()[getLoopStatus()]link:jstl.htm#50561071_MemberHead[See
 getLoopStatus()]_
 
 [#50561071_pgfId-21585]## 
@@ -12123,7 +12123,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21595]##[#50561071_marker-21589]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTag.getCurrent()]##getCurrent()
+======= [#50561071_pgfId-21595]##[#50561071_marker-21589]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTag.getCurrent()]##getCurrent()
 
 [#50561071_pgfId-21597]##public _java.lang.Object_ _getCurrent_ ()
 
@@ -12136,10 +12136,10 @@ getCurrent() does _not_ advance the iteration.)
 
 [#50561071_pgfId-21603]##the current item as an object
 
-======= [#50561071_pgfId-21611]##[#50561071_marker-21605]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTag.getLoopStatus()]##getLoopStatus()
+======= [#50561071_pgfId-21611]##[#50561071_marker-21605]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTag.getLoopStatus()]##getLoopStatus()
 
 [#50561071_pgfId-21619]##public
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus[javax.servlet.jsp.jstl.core.LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus[jakarta.servlet.jsp.jstl.core.LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
 LoopTagStatus] _getLoopStatus_ ()_
 
 [#50561071_pgfId-21621]##Retrieves a ’status’ object to provide
@@ -12149,9 +12149,9 @@ information about the current round of the iteration.
 
 [#50561071_pgfId-21625]##The LoopTagStatus for the current _LoopTag_ .
 
-==== [#50561071_pgfId-21627]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21627]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21635]##[#50561071_marker-21629]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus]##LoopTagStatus
+== [#50561071_pgfId-21635]##[#50561071_marker-21629]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus]##LoopTagStatus
 
 ====== [#50561071_pgfId-21637]##Declaration
 
@@ -12178,49 +12178,49 @@ extend this interface.
 [#50561071_pgfId-19606]## java.lang.Integer
 
 [#50561071_pgfId-19614]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getBegin()[getBegin()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getBegin()[getBegin()]link:jstl.htm#50561071_MemberHead[See
 getBegin()]_
 
 [#50561071_pgfId-19620]## int
 
 [#50561071_pgfId-19628]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getCount()[getCount()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getCount()[getCount()]link:jstl.htm#50561071_MemberHead[See
 getCount()]_
 
 [#50561071_pgfId-19634]## java.lang.Object
 
 [#50561071_pgfId-19642]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
 getCurrent()]_
 
 [#50561071_pgfId-19648]## java.lang.Integer
 
 [#50561071_pgfId-19656]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getEnd()[getEnd()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getEnd()[getEnd()]link:jstl.htm#50561071_MemberHead[See
 getEnd()]_
 
 [#50561071_pgfId-19662]## int
 
 [#50561071_pgfId-19670]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getIndex()[getIndex()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getIndex()[getIndex()]link:jstl.htm#50561071_MemberHead[See
 getIndex()]_
 
 [#50561071_pgfId-19676]## java.lang.Integer
 
 [#50561071_pgfId-19684]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getStep()[getStep()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getStep()[getStep()]link:jstl.htm#50561071_MemberHead[See
 getStep()]_
 
 [#50561071_pgfId-19690]## boolean
 
 [#50561071_pgfId-19698]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.isFirst()[isFirst()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.isFirst()[isFirst()]link:jstl.htm#50561071_MemberHead[See
 isFirst()]_
 
 [#50561071_pgfId-19704]## boolean
 
 [#50561071_pgfId-19712]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.isLast()[isLast()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.isLast()[isLast()]link:jstl.htm#50561071_MemberHead[See
 isLast()]_
 
 ======= [#50561071_pgfId-21650]##
@@ -12229,7 +12229,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21658]##[#50561071_marker-21652]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getBegin()]##getBegin()
+======= [#50561071_pgfId-21658]##[#50561071_marker-21652]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getBegin()]##getBegin()
 
 [#50561071_pgfId-21660]##public _java.lang.Integer_ _getBegin_ ()
 
@@ -12241,7 +12241,7 @@ the associated tag, or null if no ’begin’ attribute was specified.
 [#50561071_pgfId-21666]##the ’begin’ value for the associated tag, or
 null if no ’begin’ attribute was specified
 
-======= [#50561071_pgfId-21674]##[#50561071_marker-21668]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getCount()]##getCount()
+======= [#50561071_pgfId-21674]##[#50561071_marker-21668]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getCount()]##getCount()
 
 [#50561071_pgfId-21676]##public int _getCount_ ()
 
@@ -12258,7 +12258,7 @@ the current iteration will perform).
 [#50561071_pgfId-21684]##the 1-based count of the current round of the
 iteration
 
-======= [#50561071_pgfId-21692]##[#50561071_marker-21686]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getCurrent()]##getCurrent()
+======= [#50561071_pgfId-21692]##[#50561071_marker-21686]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getCurrent()]##getCurrent()
 
 [#50561071_pgfId-21694]##public _java.lang.Object_ _getCurrent_ ()
 
@@ -12271,7 +12271,7 @@ getCurrent() does _not_ advance the iteration.)
 
 [#50561071_pgfId-21700]##the current item as an object
 
-======= [#50561071_pgfId-21708]##[#50561071_marker-21702]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getEnd()]##getEnd()
+======= [#50561071_pgfId-21708]##[#50561071_marker-21702]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getEnd()]##getEnd()
 
 [#50561071_pgfId-21710]##public _java.lang.Integer_ _getEnd_ ()
 
@@ -12283,7 +12283,7 @@ the associated tag, or null if no ’end’ attribute was specified.
 [#50561071_pgfId-21716]##the ’end’ value for the associated tag, or null
 if no ’end’ attribute was specified
 
-======= [#50561071_pgfId-21724]##[#50561071_marker-21718]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getIndex()]##getIndex()
+======= [#50561071_pgfId-21724]##[#50561071_marker-21718]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getIndex()]##getIndex()
 
 [#50561071_pgfId-21726]##public int _getIndex_ ()
 
@@ -12298,7 +12298,7 @@ are 0-based.
 [#50561071_pgfId-21732]##the 0-based index of the current round of the
 iteration
 
-======= [#50561071_pgfId-21740]##[#50561071_marker-21734]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.getStep()]##getStep()
+======= [#50561071_pgfId-21740]##[#50561071_marker-21734]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.getStep()]##getStep()
 
 [#50561071_pgfId-21742]##public _java.lang.Integer_ _getStep_ ()
 
@@ -12310,7 +12310,7 @@ the associated tag, or null if no ’step’ attribute was specified.
 [#50561071_pgfId-21748]##the ’step’ value for the associated tag, or
 null if no ’step’ attribute was specified
 
-======= [#50561071_pgfId-21756]##[#50561071_marker-21750]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.isFirst()]##isFirst()
+======= [#50561071_pgfId-21756]##[#50561071_marker-21750]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.isFirst()]##isFirst()
 
 [#50561071_pgfId-21758]##public boolean _isFirst_ ()
 
@@ -12326,7 +12326,7 @@ getCount() == 1.
 [#50561071_pgfId-21764]## _true_ if the current round is the first in
 the iteration, _false_ otherwise.
 
-======= [#50561071_pgfId-21772]##[#50561071_marker-21766]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus.isLast()]##isLast()
+======= [#50561071_pgfId-21772]##[#50561071_marker-21766]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus.isLast()]##isLast()
 
 [#50561071_pgfId-21774]##public boolean _isLast_ ()
 
@@ -12342,17 +12342,17 @@ LoopTagStatus.
 [#50561071_pgfId-21780]## _true_ if the current round is the last in the
 iteration, _false_ otherwise.
 
-==== [#50561071_pgfId-21782]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-21782]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-21790]##[#50561071_marker-21784]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport]##LoopTagSupport
+== [#50561071_pgfId-21790]##[#50561071_marker-21784]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport]##LoopTagSupport
 
 ====== [#50561071_pgfId-21792]##Declaration
 
 [#50561071_pgfId-21800]##public abstract class _LoopTagSupport_ extends
-_javax.servlet.jsp.tagext.TagSupport_ implements
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
-LoopTag], _javax.servlet.jsp.tagext.IterationTag_ ,
-_javax.servlet.jsp.tagext.TryCatchFinally__
+_jakarta.servlet.jsp.tagext.TagSupport_ implements
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
+LoopTag], _jakarta.servlet.jsp.tagext.IterationTag_ ,
+_jakarta.servlet.jsp.tagext.TryCatchFinally__
 
 [#50561071_pgfId-21802]##  
 
@@ -12360,20 +12360,20 @@ _javax.servlet.jsp.tagext.TryCatchFinally__
 
 [#50561071_pgfId-21806]## |
 
-[#50561071_pgfId-21808]## +-- _javax.servlet.jsp.tagext.TagSupport_
+[#50561071_pgfId-21808]## +-- _jakarta.servlet.jsp.tagext.TagSupport_
 
 [#50561071_pgfId-21810]## |
 
 [#50561071_pgfId-21812]## +--
-_javax.servlet.jsp.jstl.core.LoopTagSupport_
+_jakarta.servlet.jsp.jstl.core.LoopTagSupport_
 
 ======= [#50561071_pgfId-21814]##All Implemented Interfaces:
 
-[#50561071_pgfId-21822]## _javax.servlet.jsp.tagext.IterationTag_ ,
-_javax.servlet.jsp.tagext.JspTag_ ,
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
-LoopTag], _java.io.Serializable_ , _javax.servlet.jsp.tagext.Tag_ ,
-_javax.servlet.jsp.tagext.TryCatchFinally__
+[#50561071_pgfId-21822]## _jakarta.servlet.jsp.tagext.IterationTag_ ,
+_jakarta.servlet.jsp.tagext.JspTag_ ,
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTag[LoopTag]link:jstl.htm#50561071_ClassHead[See
+LoopTag], _java.io.Serializable_ , _jakarta.servlet.jsp.tagext.Tag_ ,
+_jakarta.servlet.jsp.tagext.TryCatchFinally__
 
 ====== [#50561071_pgfId-21824]##Description
 
@@ -12424,55 +12424,55 @@ control.
 [#50561071_pgfId-19731]##protected int
 
 [#50561071_pgfId-19739]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.begin[begin]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.begin[begin]link:jstl.htm#50561071_MemberHead[See
 begin]_
 
 [#50561071_pgfId-19745]##protected boolean
 
 [#50561071_pgfId-19753]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.beginSpecified[beginSpecified]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.beginSpecified[beginSpecified]link:jstl.htm#50561071_MemberHead[See
 beginSpecified]_
 
-[#50561071_pgfId-19759]##protected javax.el.ValueExpression
+[#50561071_pgfId-19759]##protected jakarta.el.ValueExpression
 
 [#50561071_pgfId-19767]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.deferredExpression[deferredExpression]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.deferredExpression[deferredExpression]link:jstl.htm#50561071_MemberHead[See
 deferredExpression]_
 
 [#50561071_pgfId-19773]##protected int
 
 [#50561071_pgfId-19781]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.end[end]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.end[end]link:jstl.htm#50561071_MemberHead[See
 end]_
 
 [#50561071_pgfId-19787]##protected boolean
 
 [#50561071_pgfId-19795]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.endSpecified[endSpecified]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.endSpecified[endSpecified]link:jstl.htm#50561071_MemberHead[See
 endSpecified]_
 
 [#50561071_pgfId-19801]##protected java.lang.String
 
 [#50561071_pgfId-19809]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.itemId[itemId]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.itemId[itemId]link:jstl.htm#50561071_MemberHead[See
 itemId]_
 
 [#50561071_pgfId-19815]##protected java.lang.String
 
 [#50561071_pgfId-19823]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.statusId[statusId]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.statusId[statusId]link:jstl.htm#50561071_MemberHead[See
 statusId]_
 
 [#50561071_pgfId-19829]##protected int
 
 [#50561071_pgfId-19837]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.step[step]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.step[step]link:jstl.htm#50561071_MemberHead[See
 step]_
 
 [#50561071_pgfId-19843]##protected boolean
 
 [#50561071_pgfId-19851]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.stepSpecified[stepSpecified]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.stepSpecified[stepSpecified]link:jstl.htm#50561071_MemberHead[See
 stepSpecified]_
 
 == [#50561071_pgfId-19857]##Constructors
@@ -12480,7 +12480,7 @@ stepSpecified]_
 [#50561071_pgfId-19863]## 
 
 [#50561071_pgfId-19871]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.LoopTagSupport()[LoopTagSupport()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.LoopTagSupport()[LoopTagSupport()]link:jstl.htm#50561071_MemberHead[See
 LoopTagSupport()]_
 
 == [#50561071_pgfId-19877]##Methods
@@ -12488,91 +12488,91 @@ LoopTagSupport()]_
 [#50561071_pgfId-19883]## int
 
 [#50561071_pgfId-19891]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doAfterBody()[doAfterBody()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doAfterBody()[doAfterBody()]link:jstl.htm#50561071_MemberHead[See
 doAfterBody()]_
 
 [#50561071_pgfId-19897]## void
 
 [#50561071_pgfId-19905]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doCatch(java.lang.Throwable)[doCatch(java.lang.Throwable
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doCatch(java.lang.Throwable)[doCatch(java.lang.Throwable
 t)]link:jstl.htm#50561071_MemberHead[See doCatch(Throwable)]_
 
 [#50561071_pgfId-19911]## void
 
 [#50561071_pgfId-19919]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doFinally()[doFinally()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doFinally()[doFinally()]link:jstl.htm#50561071_MemberHead[See
 doFinally()]_
 
 [#50561071_pgfId-19925]## int
 
 [#50561071_pgfId-19933]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doStartTag()[doStartTag()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doStartTag()[doStartTag()]link:jstl.htm#50561071_MemberHead[See
 doStartTag()]_
 
 [#50561071_pgfId-19939]## java.lang.Object
 
 [#50561071_pgfId-19947]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.getCurrent()[getCurrent()]link:jstl.htm#50561071_MemberHead[See
 getCurrent()]_
 
 [#50561071_pgfId-19953]## LoopTagStatus
 
 [#50561071_pgfId-19961]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.getLoopStatus()[getLoopStatus()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.getLoopStatus()[getLoopStatus()]link:jstl.htm#50561071_MemberHead[See
 getLoopStatus()]_
 
 [#50561071_pgfId-19967]##protected abstract boolean
 
 [#50561071_pgfId-19975]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.hasNext()[hasNext()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.hasNext()[hasNext()]link:jstl.htm#50561071_MemberHead[See
 hasNext()]_
 
 [#50561071_pgfId-19981]##protected abstract java.lang.Object
 
 [#50561071_pgfId-19989]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.next()[next()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.next()[next()]link:jstl.htm#50561071_MemberHead[See
 next()]_
 
 [#50561071_pgfId-19995]##protected abstract void
 
 [#50561071_pgfId-20003]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.prepare()[prepare()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.prepare()[prepare()]link:jstl.htm#50561071_MemberHead[See
 prepare()]_
 
 [#50561071_pgfId-20009]## void
 
 [#50561071_pgfId-20017]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.release()[release()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.release()[release()]link:jstl.htm#50561071_MemberHead[See
 release()]_
 
 [#50561071_pgfId-20023]## void
 
 [#50561071_pgfId-20031]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.setVar(java.lang.String)[setVar(java.lang.String
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.setVar(java.lang.String)[setVar(java.lang.String
 id)]link:jstl.htm#50561071_MemberHead[See setVar(String)]_
 
 [#50561071_pgfId-20037]## void
 
 [#50561071_pgfId-20045]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.setVarStatus(java.lang.String)[setVarStatus(java.lang.String
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.setVarStatus(java.lang.String)[setVarStatus(java.lang.String
 statusId)]link:jstl.htm#50561071_MemberHead[See setVarStatus(String)]_
 
 [#50561071_pgfId-20051]##protected void
 
 [#50561071_pgfId-20059]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateBegin()[validateBegin()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateBegin()[validateBegin()]link:jstl.htm#50561071_MemberHead[See
 validateBegin()]_
 
 [#50561071_pgfId-20065]##protected void
 
 [#50561071_pgfId-20073]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateEnd()[validateEnd()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateEnd()[validateEnd()]link:jstl.htm#50561071_MemberHead[See
 validateEnd()]_
 
 [#50561071_pgfId-20079]##protected void
 
 [#50561071_pgfId-20087]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateStep()[validateStep()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateStep()[validateStep()]link:jstl.htm#50561071_MemberHead[See
 validateStep()]_
 
 [#50561071_pgfId-21848]## 
@@ -12627,27 +12627,27 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-21858]##[#50561071_marker-21852]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.begin]##begin
+======= [#50561071_pgfId-21858]##[#50561071_marker-21852]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.begin]##begin
 
 [#50561071_pgfId-21860]##protected int _begin_
 
 [#50561071_pgfId-21862]##Starting index (’begin’ attribute)
 
-======= [#50561071_pgfId-21870]##[#50561071_marker-21864]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.beginSpecified]##beginSpecified
+======= [#50561071_pgfId-21870]##[#50561071_marker-21864]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.beginSpecified]##beginSpecified
 
 [#50561071_pgfId-21872]##protected boolean _beginSpecified_
 
 [#50561071_pgfId-21874]##Boolean flag indicating whether ’begin’ was
 specified.
 
-======= [#50561071_pgfId-21882]##[#50561071_marker-21876]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.deferredExpression]##deferredExpression
+======= [#50561071_pgfId-21882]##[#50561071_marker-21876]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.deferredExpression]##deferredExpression
 
-[#50561071_pgfId-21884]##protected _javax.el.ValueExpression_
+[#50561071_pgfId-21884]##protected _jakarta.el.ValueExpression_
 _deferredExpression_
 
 [#50561071_pgfId-21886]##The deferred expression if any
 
-======= [#50561071_pgfId-21894]##[#50561071_marker-21888]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.end]##end
+======= [#50561071_pgfId-21894]##[#50561071_marker-21888]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.end]##end
 
 [#50561071_pgfId-21896]##protected int _end_
 
@@ -12656,32 +12656,32 @@ attribute). A value of -1 internally indicates ’no end specified’,
 although accessors for the core JSTL tags do not allow this value to be
 supplied directly by the user.
 
-======= [#50561071_pgfId-21906]##[#50561071_marker-21900]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.endSpecified]##endSpecified
+======= [#50561071_pgfId-21906]##[#50561071_marker-21900]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.endSpecified]##endSpecified
 
 [#50561071_pgfId-21908]##protected boolean _endSpecified_
 
 [#50561071_pgfId-21910]##Boolean flag indicating whether ’end’ was
 specified.
 
-======= [#50561071_pgfId-21918]##[#50561071_marker-21912]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.itemId]##itemId
+======= [#50561071_pgfId-21918]##[#50561071_marker-21912]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.itemId]##itemId
 
 [#50561071_pgfId-21920]##protected _java.lang.String_ _itemId_
 
 [#50561071_pgfId-21922]##Attribute-exposing control
 
-======= [#50561071_pgfId-21930]##[#50561071_marker-21924]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.statusId]##statusId
+======= [#50561071_pgfId-21930]##[#50561071_marker-21924]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.statusId]##statusId
 
 [#50561071_pgfId-21932]##protected _java.lang.String_ _statusId_
 
 [#50561071_pgfId-21934]##Attribute-exposing control
 
-======= [#50561071_pgfId-21942]##[#50561071_marker-21936]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.step]##step
+======= [#50561071_pgfId-21942]##[#50561071_marker-21936]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.step]##step
 
 [#50561071_pgfId-21944]##protected int _step_
 
 [#50561071_pgfId-21946]##Iteration step (’step’ attribute)
 
-======= [#50561071_pgfId-21954]##[#50561071_marker-21948]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.stepSpecified]##stepSpecified
+======= [#50561071_pgfId-21954]##[#50561071_marker-21948]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.stepSpecified]##stepSpecified
 
 [#50561071_pgfId-21956]##protected boolean _stepSpecified_
 
@@ -12694,7 +12694,7 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-21968]##[#50561071_marker-21962]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.LoopTagSupport()]##LoopTagSupport()
+======= [#50561071_pgfId-21968]##[#50561071_marker-21962]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.LoopTagSupport()]##LoopTagSupport()
 
 [#50561071_pgfId-21970]##public _LoopTagSupport_ ()
 
@@ -12709,7 +12709,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-21982]##[#50561071_marker-21976]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doAfterBody()]##doAfterBody()
+======= [#50561071_pgfId-21982]##[#50561071_marker-21976]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doAfterBody()]##doAfterBody()
 
 [#50561071_pgfId-21984]##public int _doAfterBody_ () +
 throws JspException
@@ -12728,9 +12728,9 @@ that is, if we (a) have more items and (b) don’t run over our ’end’
 
 ======= [#50561071_pgfId-21996]##Throws:
 
-[#50561071_pgfId-21998]## _javax.servlet.jsp.JspException_
+[#50561071_pgfId-21998]## _jakarta.servlet.jsp.JspException_
 
-======= [#50561071_pgfId-22006]##[#50561071_marker-22000]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doCatch(java.lang.Throwable)]##doCatch(Throwable)
+======= [#50561071_pgfId-22006]##[#50561071_marker-22000]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doCatch(java.lang.Throwable)]##doCatch(Throwable)
 
 [#50561071_pgfId-22008]##public void _doCatch_ ( _java.lang.Throwable_
 t) +
@@ -12746,7 +12746,7 @@ throws Throwable
 
 [#50561071_pgfId-22018]## _java.lang.Throwable_
 
-======= [#50561071_pgfId-22026]##[#50561071_marker-22020]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doFinally()]##doFinally()
+======= [#50561071_pgfId-22026]##[#50561071_marker-22020]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doFinally()]##doFinally()
 
 [#50561071_pgfId-22028]##public void _doFinally_ ()
 
@@ -12761,7 +12761,7 @@ attribute space by leaving them lying around.
 
 [#50561071_pgfId-22036]## _doFinally_ in interface _TryCatchFinally_
 
-======= [#50561071_pgfId-22044]##[#50561071_marker-22038]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.doStartTag()]##doStartTag()
+======= [#50561071_pgfId-22044]##[#50561071_marker-22038]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.doStartTag()]##doStartTag()
 
 [#50561071_pgfId-22046]##public int _doStartTag_ () +
 throws JspException
@@ -12778,9 +12778,9 @@ throws JspException
 
 ======= [#50561071_pgfId-22058]##Throws:
 
-[#50561071_pgfId-22060]## _javax.servlet.jsp.JspException_
+[#50561071_pgfId-22060]## _jakarta.servlet.jsp.JspException_
 
-======= [#50561071_pgfId-22068]##[#50561071_marker-22062]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.getCurrent()]##getCurrent()
+======= [#50561071_pgfId-22068]##[#50561071_marker-22062]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.getCurrent()]##getCurrent()
 
 [#50561071_pgfId-22070]##public _java.lang.Object_ _getCurrent_ ()
 
@@ -12793,10 +12793,10 @@ getCurrent() does _not_ advance the iteration.)
 
 [#50561071_pgfId-22076]##the current item as an object
 
-======= [#50561071_pgfId-22084]##[#50561071_marker-22078]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.getLoopStatus()]##getLoopStatus()
+======= [#50561071_pgfId-22084]##[#50561071_marker-22078]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.getLoopStatus()]##getLoopStatus()
 
 [#50561071_pgfId-22092]##public
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagStatus[javax.servlet.jsp.jstl.core.LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagStatus[jakarta.servlet.jsp.jstl.core.LoopTagStatus]link:jstl.htm#50561071_ClassHead[See
 LoopTagStatus] _getLoopStatus_ ()_
 
 [#50561071_pgfId-22094]##Retrieves a ’status’ object to provide
@@ -12806,7 +12806,7 @@ information about the current round of the iteration.
 
 [#50561071_pgfId-22098]##The LoopTagStatus for the current _LoopTag_ .
 
-======= [#50561071_pgfId-22106]##[#50561071_marker-22100]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.hasNext()]##hasNext()
+======= [#50561071_pgfId-22106]##[#50561071_marker-22100]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.hasNext()]##hasNext()
 
 [#50561071_pgfId-22108]##protected abstract boolean _hasNext_ () +
 throws JspTagException
@@ -12829,10 +12829,10 @@ iterate over, _false_ otherwise
 ======= [#50561071_pgfId-22120]##See Also:
 
 [#50561071_pgfId-22128]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.next()[next()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.next()[next()]link:jstl.htm#50561071_MemberHead[See
 next()]_
 
-======= [#50561071_pgfId-22136]##[#50561071_marker-22130]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.next()]##next()
+======= [#50561071_pgfId-22136]##[#50561071_marker-22130]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.next()]##next()
 
 [#50561071_pgfId-22138]##protected abstract _java.lang.Object_ _next_
 () +
@@ -12861,10 +12861,10 @@ of iteration
 [#50561071_pgfId-22150]## _java.util.NoSuchElementException_ - if next()
 is called but no new elements are available
 
-[#50561071_pgfId-22152]## _javax.servlet.jsp.JspTagException_ - for
+[#50561071_pgfId-22152]## _jakarta.servlet.jsp.JspTagException_ - for
 other, unexpected exceptions
 
-======= [#50561071_pgfId-22160]##[#50561071_marker-22154]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.prepare()]##prepare()
+======= [#50561071_pgfId-22160]##[#50561071_marker-22154]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.prepare()]##prepare()
 
 [#50561071_pgfId-22162]##protected abstract void _prepare_ () +
 throws JspTagException
@@ -12876,7 +12876,7 @@ each invocation of doStartTag() in the superclass.
 
 ======= [#50561071_pgfId-22166]##Throws:
 
-======= [#50561071_pgfId-22174]##[#50561071_marker-22168]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.release()]##release()
+======= [#50561071_pgfId-22174]##[#50561071_marker-22168]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.release()]##release()
 
 [#50561071_pgfId-22176]##public void _release_ ()
 
@@ -12891,7 +12891,7 @@ have (or inherit).
 
 [#50561071_pgfId-22186]## _release_ in class _TagSupport_
 
-======= [#50561071_pgfId-22194]##[#50561071_marker-22188]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.setVar(java.lang.String)]##setVar(String)
+======= [#50561071_pgfId-22194]##[#50561071_marker-22188]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.setVar(java.lang.String)]##setVar(String)
 
 [#50561071_pgfId-22196]##public void _setVar_ ( _java.lang.String_ id)
 
@@ -12902,7 +12902,7 @@ have (or inherit).
 [#50561071_pgfId-22202]## _id_ - Name of the exported scoped variable
 storing the current item of the iteration.
 
-======= [#50561071_pgfId-22210]##[#50561071_marker-22204]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.setVarStatus(java.lang.String)]##setVarStatus(String)
+======= [#50561071_pgfId-22210]##[#50561071_marker-22204]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.setVarStatus(java.lang.String)]##setVarStatus(String)
 
 [#50561071_pgfId-22212]##public void _setVarStatus_ ( _java.lang.String_
 statusId)
@@ -12914,7 +12914,7 @@ statusId)
 [#50561071_pgfId-22218]## _statusId_ - Name of the exported scoped
 variable storing the status of the iteration.
 
-======= [#50561071_pgfId-22226]##[#50561071_marker-22220]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateBegin()]##validateBegin()
+======= [#50561071_pgfId-22226]##[#50561071_marker-22220]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateBegin()]##validateBegin()
 
 [#50561071_pgfId-22228]##protected void _validateBegin_ () +
 throws JspTagException
@@ -12924,9 +12924,9 @@ throwing an exception expected to propagate up if it isn’t
 
 ======= [#50561071_pgfId-22232]##Throws:
 
-[#50561071_pgfId-22234]## _javax.servlet.jsp.JspTagException_
+[#50561071_pgfId-22234]## _jakarta.servlet.jsp.JspTagException_
 
-======= [#50561071_pgfId-22242]##[#50561071_marker-22236]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateEnd()]##validateEnd()
+======= [#50561071_pgfId-22242]##[#50561071_marker-22236]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateEnd()]##validateEnd()
 
 [#50561071_pgfId-22244]##protected void _validateEnd_ () +
 throws JspTagException
@@ -12936,9 +12936,9 @@ throwing an exception expected to propagate up if it isn’t
 
 ======= [#50561071_pgfId-22248]##Throws:
 
-[#50561071_pgfId-22250]## _javax.servlet.jsp.JspTagException_
+[#50561071_pgfId-22250]## _jakarta.servlet.jsp.JspTagException_
 
-======= [#50561071_pgfId-22258]##[#50561071_marker-22252]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.LoopTagSupport.validateStep()]##validateStep()
+======= [#50561071_pgfId-22258]##[#50561071_marker-22252]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.LoopTagSupport.validateStep()]##validateStep()
 
 [#50561071_pgfId-22260]##protected void _validateStep_ () +
 throws JspTagException
@@ -12948,16 +12948,16 @@ throwing an exception expected to propagate up if it isn’t
 
 ======= [#50561071_pgfId-22264]##Throws:
 
-[#50561071_pgfId-22266]## _javax.servlet.jsp.JspTagException_
+[#50561071_pgfId-22266]## _jakarta.servlet.jsp.JspTagException_
 
-==== [#50561071_pgfId-22268]##javax.servlet.jsp.jstl.core
+==== [#50561071_pgfId-22268]##jakarta.servlet.jsp.jstl.core
 
-== [#50561071_pgfId-22276]##[#50561071_marker-22270]##[#50561071_ClassHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression]##StringTokenValueExpression
+== [#50561071_pgfId-22276]##[#50561071_marker-22270]##[#50561071_ClassHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression]##StringTokenValueExpression
 
 ====== [#50561071_pgfId-22278]##Declaration
 
 [#50561071_pgfId-22280]##public final class _StringTokenValueExpression_
-extends _javax.el.ValueExpression_
+extends _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-22282]##  
 
@@ -12965,16 +12965,16 @@ extends _javax.el.ValueExpression_
 
 [#50561071_pgfId-22286]## |
 
-[#50561071_pgfId-22288]## +-- _javax.el.Expression_
+[#50561071_pgfId-22288]## +-- _jakarta.el.Expression_
 
 [#50561071_pgfId-22290]## |
 
-[#50561071_pgfId-22292]## +-- _javax.el.ValueExpression_
+[#50561071_pgfId-22292]## +-- _jakarta.el.ValueExpression_
 
 [#50561071_pgfId-22294]## |
 
 [#50561071_pgfId-22296]## +--
-_javax.servlet.jsp.jstl.core.StringTokenValueExpression_
+_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression_
 
 ======= [#50561071_pgfId-22298]##All Implemented Interfaces:
 
@@ -12989,13 +12989,13 @@ _javax.servlet.jsp.jstl.core.StringTokenValueExpression_
 [#50561071_pgfId-20159]##protected java.lang.Integer
 
 [#50561071_pgfId-20167]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.i[i]link:jstl.htm#50561071_MemberHead[See
 i]_
 
-[#50561071_pgfId-20173]##protected javax.el.ValueExpression
+[#50561071_pgfId-20173]##protected jakarta.el.ValueExpression
 
 [#50561071_pgfId-20181]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.orig[orig]link:jstl.htm#50561071_MemberHead[See
 orig]_
 
 == [#50561071_pgfId-20187]##Constructors
@@ -13003,7 +13003,7 @@ orig]_
 [#50561071_pgfId-20193]## 
 
 [#50561071_pgfId-20201]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.StringTokenValueExpression(javax.el.ValueExpression,%20int)[StringTokenValueExpression(javax.el.ValueExpression
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.StringTokenValueExpression(jakarta.el.ValueExpression,%20int)[StringTokenValueExpression(jakarta.el.ValueExpression
 orig, int i)]link:jstl.htm#50561071_MemberHead[See
 StringTokenValueExpression(ValueExpression, int)]_
 
@@ -13012,55 +13012,55 @@ StringTokenValueExpression(ValueExpression, int)]_
 [#50561071_pgfId-20213]## boolean
 
 [#50561071_pgfId-20221]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.equals(java.lang.Object)[equals(java.lang.Object
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.equals(java.lang.Object)[equals(java.lang.Object
 obj)]link:jstl.htm#50561071_MemberHead[See equals(Object)]_
 
 [#50561071_pgfId-20227]## java.lang.Class
 
 [#50561071_pgfId-20235]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getExpectedType()[getExpectedType()]link:jstl.htm#50561071_MemberHead[See
 getExpectedType()]_
 
 [#50561071_pgfId-20241]## java.lang.String
 
 [#50561071_pgfId-20249]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getExpressionString()[getExpressionString()]link:jstl.htm#50561071_MemberHead[See
 getExpressionString()]_
 
 [#50561071_pgfId-20255]## java.lang.Class
 
 [#50561071_pgfId-20263]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getType(javax.el.ELContext)[getType(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getType(jakarta.el.ELContext)[getType(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getType(ELContext)]_
 
 [#50561071_pgfId-20269]## java.lang.Object
 
 [#50561071_pgfId-20277]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getValue(javax.el.ELContext)[getValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getValue(jakarta.el.ELContext)[getValue(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See getValue(ELContext)]_
 
 [#50561071_pgfId-20283]## int
 
 [#50561071_pgfId-20291]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.hashCode()[hashCode()]link:jstl.htm#50561071_MemberHead[See
 hashCode()]_
 
 [#50561071_pgfId-20297]## boolean
 
 [#50561071_pgfId-20305]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.isLiteralText()[isLiteralText()]link:jstl.htm#50561071_MemberHead[See
 isLiteralText()]_
 
 [#50561071_pgfId-20311]## boolean
 
 [#50561071_pgfId-20319]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.isReadOnly(javax.el.ELContext)[isReadOnly(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.isReadOnly(jakarta.el.ELContext)[isReadOnly(jakarta.el.ELContext
 context)]link:jstl.htm#50561071_MemberHead[See isReadOnly(ELContext)]_
 
 [#50561071_pgfId-20325]## void
 
 [#50561071_pgfId-20333]##
-_link:jstl.htm#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.setValue(javax.el.ELContext,%20java.lang.Object)[setValue(javax.el.ELContext
+_link:jstl.htm#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.setValue(jakarta.el.ELContext,%20java.lang.Object)[setValue(jakarta.el.ELContext
 context, java.lang.Object value)]link:jstl.htm#50561071_MemberHead[See
 setValue(ELContext, Object)]_
 
@@ -13085,13 +13085,13 @@ image:jstl-60.gif[image]
 
 Fields
 
-======= [#50561071_pgfId-22316]##[#50561071_marker-22310]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.i]##i
+======= [#50561071_pgfId-22316]##[#50561071_marker-22310]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.i]##i
 
 [#50561071_pgfId-22318]##protected final _java.lang.Integer_ _i_
 
-======= [#50561071_pgfId-22326]##[#50561071_marker-22320]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.orig]##orig
+======= [#50561071_pgfId-22326]##[#50561071_marker-22320]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.orig]##orig
 
-[#50561071_pgfId-22328]##protected final _javax.el.ValueExpression_
+[#50561071_pgfId-22328]##protected final _jakarta.el.ValueExpression_
 _orig_
 
 ======= [#50561071_pgfId-22330]##
@@ -13100,10 +13100,10 @@ image:jstl-60.gif[image]
 
 Constructors
 
-======= [#50561071_pgfId-22338]##[#50561071_marker-22332]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.StringTokenValueExpression(javax.el.ValueExpression, int)]##StringTokenValueExpression(ValueExpression, int)
+======= [#50561071_pgfId-22338]##[#50561071_marker-22332]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.StringTokenValueExpression(jakarta.el.ValueExpression, int)]##StringTokenValueExpression(ValueExpression, int)
 
 [#50561071_pgfId-22340]##public _StringTokenValueExpression_ (
-_javax.el.ValueExpression_ orig, int i)
+_jakarta.el.ValueExpression_ orig, int i)
 
 ======= [#50561071_pgfId-22342]##
 
@@ -13111,7 +13111,7 @@ image:jstl-60.gif[image]
 
 Methods
 
-======= [#50561071_pgfId-22350]##[#50561071_marker-22344]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.equals(java.lang.Object)]##equals(Object)
+======= [#50561071_pgfId-22350]##[#50561071_marker-22344]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.equals(java.lang.Object)]##equals(Object)
 
 [#50561071_pgfId-22352]##public boolean _equals_ ( _java.lang.Object_
 obj)
@@ -13120,26 +13120,26 @@ obj)
 
 [#50561071_pgfId-22356]## _equals_ in class _Object_
 
-======= [#50561071_pgfId-22364]##[#50561071_marker-22358]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getExpectedType()]##getExpectedType()
+======= [#50561071_pgfId-22364]##[#50561071_marker-22358]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getExpectedType()]##getExpectedType()
 
 [#50561071_pgfId-22366]##public _java.lang.Class_ _getExpectedType_ ()
 
-======= [#50561071_pgfId-22374]##[#50561071_marker-22368]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getExpressionString()]##getExpressionString()
+======= [#50561071_pgfId-22374]##[#50561071_marker-22368]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getExpressionString()]##getExpressionString()
 
 [#50561071_pgfId-22376]##public _java.lang.String_ _getExpressionString_
 ()
 
-======= [#50561071_pgfId-22384]##[#50561071_marker-22378]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getType(javax.el.ELContext)]##getType(ELContext)
+======= [#50561071_pgfId-22384]##[#50561071_marker-22378]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getType(jakarta.el.ELContext)]##getType(ELContext)
 
 [#50561071_pgfId-22386]##public _java.lang.Class_ _getType_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-22394]##[#50561071_marker-22388]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.getValue(javax.el.ELContext)]##getValue(ELContext)
+======= [#50561071_pgfId-22394]##[#50561071_marker-22388]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.getValue(jakarta.el.ELContext)]##getValue(ELContext)
 
 [#50561071_pgfId-22396]##public _java.lang.Object_ _getValue_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-22404]##[#50561071_marker-22398]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.hashCode()]##hashCode()
+======= [#50561071_pgfId-22404]##[#50561071_marker-22398]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.hashCode()]##hashCode()
 
 [#50561071_pgfId-22406]##public int _hashCode_ ()
 
@@ -13147,23 +13147,23 @@ _javax.el.ELContext_ context)
 
 [#50561071_pgfId-22410]## _hashCode_ in class _Object_
 
-======= [#50561071_pgfId-22418]##[#50561071_marker-22412]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.isLiteralText()]##isLiteralText()
+======= [#50561071_pgfId-22418]##[#50561071_marker-22412]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.isLiteralText()]##isLiteralText()
 
 [#50561071_pgfId-22420]##public boolean _isLiteralText_ ()
 
-======= [#50561071_pgfId-22428]##[#50561071_marker-22422]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.isReadOnly(javax.el.ELContext)]##isReadOnly(ELContext)
+======= [#50561071_pgfId-22428]##[#50561071_marker-22422]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.isReadOnly(jakarta.el.ELContext)]##isReadOnly(ELContext)
 
 [#50561071_pgfId-22430]##public boolean _isReadOnly_ (
-_javax.el.ELContext_ context)
+_jakarta.el.ELContext_ context)
 
-======= [#50561071_pgfId-22438]##[#50561071_marker-22432]##[#50561071_MemberHead]##[#50561071_javax.servlet.jsp.jstl.core.StringTokenValueExpression.setValue(javax.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
+======= [#50561071_pgfId-22438]##[#50561071_marker-22432]##[#50561071_MemberHead]##[#50561071_jakarta.servlet.jsp.jstl.core.StringTokenValueExpression.setValue(jakarta.el.ELContext, java.lang.Object)]##setValue(ELContext, Object)
 
-[#50561071_pgfId-22440]##public void _setValue_ ( _javax.el.ELContext_
+[#50561071_pgfId-22440]##public void _setValue_ ( _jakarta.el.ELContext_
 context, _java.lang.Object_ value)
 
 ==== [#50561050_pgfId-628442]##[#50561050_marker-628440]##Package
 
-== [#50561050_pgfId-628448]##[#50561050_PackageHead]##[#50561050_javax.servlet.jsp.jstl.fmt]##javax.servlet.jsp.jstl.fmt
+== [#50561050_pgfId-628448]##[#50561050_PackageHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt]##jakarta.servlet.jsp.jstl.fmt
 
 ====== [#50561050_pgfId-628450]##Description
 
@@ -13174,22 +13174,22 @@ context, _java.lang.Object_ value)
 == [#50561050_pgfId-628028]##Classes
 
 [#50561050_pgfId-628040]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport[LocaleSupport]link:jstl.htm#50561050_ClassHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport[LocaleSupport]link:jstl.htm#50561050_ClassHead[See
 LocaleSupport]_
 
 [#50561050_pgfId-628042]##Class which exposes the locale-determination
 logic for resource bundles through convenience methods.
 
 [#50561050_pgfId-628054]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext[LocalizationContext]link:jstl.htm#50561050_ClassHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext[LocalizationContext]link:jstl.htm#50561050_ClassHead[See
 LocalizationContext]_
 
 [#50561050_pgfId-628056]##Class representing an I18N localization
 context.
 
-==== [#50561050_pgfId-628455]##javax.servlet.jsp.jstl.fmt
+==== [#50561050_pgfId-628455]##jakarta.servlet.jsp.jstl.fmt
 
-== [#50561050_pgfId-628463]##[#50561050_marker-628457]##[#50561050_ClassHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport]##LocaleSupport
+== [#50561050_pgfId-628463]##[#50561050_marker-628457]##[#50561050_ClassHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport]##LocaleSupport
 
 ====== [#50561050_pgfId-628465]##Declaration
 
@@ -13202,7 +13202,7 @@ context.
 [#50561050_pgfId-628473]## |
 
 [#50561050_pgfId-628475]## +--
-_javax.servlet.jsp.jstl.fmt.LocaleSupport_
+_jakarta.servlet.jsp.jstl.fmt.LocaleSupport_
 
 ====== [#50561050_pgfId-628477]##Description
 
@@ -13223,7 +13223,7 @@ for user consumption on an error page.
 [#50561050_pgfId-628075]## 
 
 [#50561050_pgfId-628083]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.LocaleSupport()[LocaleSupport()]link:jstl.htm#50561050_MemberHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.LocaleSupport()[LocaleSupport()]link:jstl.htm#50561050_MemberHead[See
 LocaleSupport()]_
 
 == [#50561050_pgfId-628089]##Methods
@@ -13231,14 +13231,14 @@ LocaleSupport()]_
 [#50561050_pgfId-628095]##static java.lang.String
 
 [#50561050_pgfId-628103]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String)[getLocalizedMessage(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String)[getLocalizedMessage(jakarta.servlet.jsp.PageContext
 pageContext, java.lang.String key)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String)]_
 
 [#50561050_pgfId-628109]##static java.lang.String
 
 [#50561050_pgfId-628117]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object\%5B\%5D)[getLocalizedMessage(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object\%5B\%5D)[getLocalizedMessage(jakarta.servlet.jsp.PageContext
 pageContext, java.lang.String key, java.lang.Object[]
 args)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String, Object[])]_
@@ -13246,7 +13246,7 @@ getLocalizedMessage(PageContext, String, Object[])]_
 [#50561050_pgfId-628123]##static java.lang.String
 
 [#50561050_pgfId-628131]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object\%5B\%5D,%20java.lang.String)[getLocalizedMessage(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.Object\%5B\%5D,%20java.lang.String)[getLocalizedMessage(jakarta.servlet.jsp.PageContext
 pageContext, java.lang.String key, java.lang.Object[] args,
 java.lang.String basename)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String, Object[], String)]_
@@ -13254,7 +13254,7 @@ getLocalizedMessage(PageContext, String, Object[], String)]_
 [#50561050_pgfId-628137]##static java.lang.String
 
 [#50561050_pgfId-628145]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.String)[getLocalizedMessage(javax.servlet.jsp.PageContext
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.String)[getLocalizedMessage(jakarta.servlet.jsp.PageContext
 pageContext, java.lang.String key, java.lang.String
 basename)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String, String)]_
@@ -13280,7 +13280,7 @@ image:jstl-61.gif[image]
 
 Constructors
 
-======= [#50561050_pgfId-628497]##[#50561050_marker-628491]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.LocaleSupport()]##LocaleSupport()
+======= [#50561050_pgfId-628497]##[#50561050_marker-628491]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.LocaleSupport()]##LocaleSupport()
 
 [#50561050_pgfId-628499]##public _LocaleSupport_ ()
 
@@ -13290,10 +13290,10 @@ image:jstl-61.gif[image]
 
 Methods
 
-======= [#50561050_pgfId-628509]##[#50561050_marker-628503]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext, java.lang.String)]##getLocalizedMessage(PageContext, String)
+======= [#50561050_pgfId-628509]##[#50561050_marker-628503]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext, java.lang.String)]##getLocalizedMessage(PageContext, String)
 
 [#50561050_pgfId-628511]##public static _java.lang.String_
-_getLocalizedMessage_ ( _javax.servlet.jsp.PageContext_ pageContext,
+_getLocalizedMessage_ ( _jakarta.servlet.jsp.PageContext_ pageContext,
 _java.lang.String_ key)
 
 [#50561050_pgfId-628513]##Retrieves the localized message corresponding
@@ -13301,7 +13301,7 @@ to the given key.
 
 [#50561050_pgfId-628515]##The given key is looked up in the resource
 bundle of the default I18N localization context, which is retrieved from
-the _javax.servlet.jsp.jstl.fmt.localizationContext_ configuration
+the _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration
 setting.
 
 [#50561050_pgfId-628517]##If the configuration setting is empty, or the
@@ -13321,10 +13321,10 @@ localized message corresponding to the given key
 [#50561050_pgfId-628527]##the localized message corresponding to the
 given key
 
-======= [#50561050_pgfId-628535]##[#50561050_marker-628529]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext, java.lang.String, java.lang.String)]##getLocalizedMessage(PageContext, String, String)
+======= [#50561050_pgfId-628535]##[#50561050_marker-628529]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext, java.lang.String, java.lang.String)]##getLocalizedMessage(PageContext, String, String)
 
 [#50561050_pgfId-628537]##public static _java.lang.String_
-_getLocalizedMessage_ ( _javax.servlet.jsp.PageContext_ pageContext,
+_getLocalizedMessage_ ( _jakarta.servlet.jsp.PageContext_ pageContext,
 _java.lang.String_ key, _java.lang.String_ basename)
 
 [#50561050_pgfId-628539]##Retrieves the localized message corresponding
@@ -13351,10 +13351,10 @@ localized message corresponding to the given key
 [#50561050_pgfId-628555]##the localized message corresponding to the
 given key
 
-======= [#50561050_pgfId-628563]##[#50561050_marker-628557]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext, java.lang.String, java.lang.Object\[\])]##getLocalizedMessage(PageContext, String, Object[])
+======= [#50561050_pgfId-628563]##[#50561050_marker-628557]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext, java.lang.String, java.lang.Object\[\])]##getLocalizedMessage(PageContext, String, Object[])
 
 [#50561050_pgfId-628565]##public static _java.lang.String_
-_getLocalizedMessage_ ( _javax.servlet.jsp.PageContext_ pageContext,
+_getLocalizedMessage_ ( _jakarta.servlet.jsp.PageContext_ pageContext,
 _java.lang.String_ key, _java.lang.Object[]_ args)
 
 [#50561050_pgfId-628567]##Retrieves the localized message corresponding
@@ -13365,7 +13365,7 @@ arguments specified via _args_ .
 action for a description of how parametric replacement is implemented.
 
 [#50561050_pgfId-628577]##The localized message is retrieved as in
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String)[getLocalizedMessage(pageContext,
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String)[getLocalizedMessage(pageContext,
 key)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String)]._
 
@@ -13384,10 +13384,10 @@ replacement
 [#50561050_pgfId-628589]##the localized message corresponding to the
 given key
 
-======= [#50561050_pgfId-628597]##[#50561050_marker-628591]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext, java.lang.String, java.lang.Object\[\], java.lang.String)]##getLocalizedMessage(PageContext, String, Object[], String)
+======= [#50561050_pgfId-628597]##[#50561050_marker-628591]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext, java.lang.String, java.lang.Object\[\], java.lang.String)]##getLocalizedMessage(PageContext, String, Object[], String)
 
 [#50561050_pgfId-628599]##public static _java.lang.String_
-_getLocalizedMessage_ ( _javax.servlet.jsp.PageContext_ pageContext,
+_getLocalizedMessage_ ( _jakarta.servlet.jsp.PageContext_ pageContext,
 _java.lang.String_ key, _java.lang.Object[]_ args, _java.lang.String_
 basename)
 
@@ -13399,7 +13399,7 @@ arguments specified via _args_ .
 action for a description of how parametric replacement is implemented.
 
 [#50561050_pgfId-628611]##The localized message is retrieved as in
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(javax.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.String)[getLocalizedMessage(pageContext,
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocaleSupport.getLocalizedMessage(jakarta.servlet.jsp.PageContext,%20java.lang.String,%20java.lang.String)[getLocalizedMessage(pageContext,
 key, basename)]link:jstl.htm#50561050_MemberHead[See
 getLocalizedMessage(PageContext, String, String)]._
 
@@ -13420,9 +13420,9 @@ replacement
 [#50561050_pgfId-628625]##the localized message corresponding to the
 given key
 
-==== [#50561050_pgfId-628627]##javax.servlet.jsp.jstl.fmt
+==== [#50561050_pgfId-628627]##jakarta.servlet.jsp.jstl.fmt
 
-== [#50561050_pgfId-628635]##[#50561050_marker-628629]##[#50561050_ClassHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext]##LocalizationContext
+== [#50561050_pgfId-628635]##[#50561050_marker-628629]##[#50561050_ClassHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext]##LocalizationContext
 
 ====== [#50561050_pgfId-628637]##Declaration
 
@@ -13435,7 +13435,7 @@ given key
 [#50561050_pgfId-628645]## |
 
 [#50561050_pgfId-628647]## +--
-_javax.servlet.jsp.jstl.fmt.LocalizationContext_
+_jakarta.servlet.jsp.jstl.fmt.LocalizationContext_
 
 ====== [#50561050_pgfId-628649]##Description
 
@@ -13461,20 +13461,20 @@ their formatting or parsing locale, respectively.
 [#50561050_pgfId-628177]## 
 
 [#50561050_pgfId-628185]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext()[LocalizationContext()]link:jstl.htm#50561050_MemberHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext()[LocalizationContext()]link:jstl.htm#50561050_MemberHead[See
 LocalizationContext()]_
 
 [#50561050_pgfId-628191]## 
 
 [#50561050_pgfId-628199]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle)[LocalizationContext(java.util.ResourceBundle
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle)[LocalizationContext(java.util.ResourceBundle
 bundle)]link:jstl.htm#50561050_MemberHead[See
 LocalizationContext(ResourceBundle)]_
 
 [#50561050_pgfId-628205]## 
 
 [#50561050_pgfId-628213]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle,%20java.util.Locale)[LocalizationContext(java.util.ResourceBundle
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle,%20java.util.Locale)[LocalizationContext(java.util.ResourceBundle
 bundle, java.util.Locale locale)]link:jstl.htm#50561050_MemberHead[See
 LocalizationContext(ResourceBundle, Locale)]_
 
@@ -13483,13 +13483,13 @@ LocalizationContext(ResourceBundle, Locale)]_
 [#50561050_pgfId-628225]## java.util.Locale
 
 [#50561050_pgfId-628233]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.getLocale()[getLocale()]link:jstl.htm#50561050_MemberHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.getLocale()[getLocale()]link:jstl.htm#50561050_MemberHead[See
 getLocale()]_
 
 [#50561050_pgfId-628239]## java.util.ResourceBundle
 
 [#50561050_pgfId-628247]##
-_link:jstl.htm#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.getResourceBundle()[getResourceBundle()]link:jstl.htm#50561050_MemberHead[See
+_link:jstl.htm#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.getResourceBundle()[getResourceBundle()]link:jstl.htm#50561050_MemberHead[See
 getResourceBundle()]_
 
 [#50561050_pgfId-628661]## 
@@ -13513,13 +13513,13 @@ image:jstl-61.gif[image]
 
 Constructors
 
-======= [#50561050_pgfId-628671]##[#50561050_marker-628665]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext()]##LocalizationContext()
+======= [#50561050_pgfId-628671]##[#50561050_marker-628665]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext()]##LocalizationContext()
 
 [#50561050_pgfId-628673]##public _LocalizationContext_ ()
 
 [#50561050_pgfId-628675]##Constructs an empty I18N localization context.
 
-======= [#50561050_pgfId-628683]##[#50561050_marker-628677]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle, java.util.Locale)]##LocalizationContext(ResourceBundle, Locale)
+======= [#50561050_pgfId-628683]##[#50561050_marker-628677]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle, java.util.Locale)]##LocalizationContext(ResourceBundle, Locale)
 
 [#50561050_pgfId-628685]##public _LocalizationContext_ (
 _java.util.ResourceBundle_ bundle, _java.util.Locale_ locale)
@@ -13537,7 +13537,7 @@ resource bundle
 
 [#50561050_pgfId-628695]## _locale_ - The localization context’s locale
 
-======= [#50561050_pgfId-628703]##[#50561050_marker-628697]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle)]##LocalizationContext(ResourceBundle)
+======= [#50561050_pgfId-628703]##[#50561050_marker-628697]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.LocalizationContext(java.util.ResourceBundle)]##LocalizationContext(ResourceBundle)
 
 [#50561050_pgfId-628705]##public _LocalizationContext_ (
 _java.util.ResourceBundle_ bundle)
@@ -13558,7 +13558,7 @@ image:jstl-61.gif[image]
 
 Methods
 
-======= [#50561050_pgfId-628723]##[#50561050_marker-628717]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.getLocale()]##getLocale()
+======= [#50561050_pgfId-628723]##[#50561050_marker-628717]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.getLocale()]##getLocale()
 
 [#50561050_pgfId-628725]##public _java.util.Locale_ _getLocale_ ()
 
@@ -13571,7 +13571,7 @@ context.
 or null if this I18N localization context is empty, or its resource
 bundle is a (locale-less) root resource bundle.
 
-======= [#50561050_pgfId-628739]##[#50561050_marker-628733]##[#50561050_MemberHead]##[#50561050_javax.servlet.jsp.jstl.fmt.LocalizationContext.getResourceBundle()]##getResourceBundle()
+======= [#50561050_pgfId-628739]##[#50561050_marker-628733]##[#50561050_MemberHead]##[#50561050_jakarta.servlet.jsp.jstl.fmt.LocalizationContext.getResourceBundle()]##getResourceBundle()
 
 [#50561050_pgfId-628741]##public _java.util.ResourceBundle_
 _getResourceBundle_ ()
@@ -13586,7 +13586,7 @@ context, or null if this I18N localization context is empty
 
 ==== [#50561052_pgfId-250303]##[#50561052_marker-250301]##Package
 
-== [#50561052_pgfId-250309]##[#50561052_PackageHead]##[#50561052_javax.servlet.jsp.jstl.sql]##javax.servlet.jsp.jstl.sql
+== [#50561052_pgfId-250309]##[#50561052_PackageHead]##[#50561052_jakarta.servlet.jsp.jstl.sql]##jakarta.servlet.jsp.jstl.sql
 
 ====== [#50561052_pgfId-250311]##Description
 
@@ -13597,14 +13597,14 @@ context, or null if this I18N localization context is empty
 == [#50561052_pgfId-249889]##Interfaces
 
 [#50561052_pgfId-249901]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result[Result]link:jstl.htm#50561052_ClassHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result[Result]link:jstl.htm#50561052_ClassHead[See
 Result]_
 
 [#50561052_pgfId-249903]##This interface represents the result of a
 <sql:query> action.
 
 [#50561052_pgfId-249915]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.SQLExecutionTag[SQLExecutionTag]link:jstl.htm#50561052_ClassHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.SQLExecutionTag[SQLExecutionTag]link:jstl.htm#50561052_ClassHead[See
 SQLExecutionTag]_
 
 [#50561052_pgfId-249917]##This interface allows tag handlers
@@ -13614,16 +13614,16 @@ statements.
 == [#50561052_pgfId-249923]##Classes
 
 [#50561052_pgfId-249935]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.ResultSupport[ResultSupport]link:jstl.htm#50561052_ClassHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport[ResultSupport]link:jstl.htm#50561052_ClassHead[See
 ResultSupport]_
 
 [#50561052_pgfId-249937]##Supports the creation of a
-javax.servlet.jsp.jstl.sql.Result object from a source
+jakarta.servlet.jsp.jstl.sql.Result object from a source
 java.sql.ResultSet object.
 
-==== [#50561052_pgfId-250316]##javax.servlet.jsp.jstl.sql
+==== [#50561052_pgfId-250316]##jakarta.servlet.jsp.jstl.sql
 
-== [#50561052_pgfId-250324]##[#50561052_marker-250318]##[#50561052_ClassHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result]##Result
+== [#50561052_pgfId-250324]##[#50561052_marker-250318]##[#50561052_ClassHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result]##Result
 
 ====== [#50561052_pgfId-250326]##Declaration
 
@@ -13659,31 +13659,31 @@ provides a _disconnected_ view into the result of a query.
 {empty}[#50561052_pgfId-249956]## java.lang.String[]
 
 [#50561052_pgfId-249964]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result.getColumnNames()[getColumnNames()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result.getColumnNames()[getColumnNames()]link:jstl.htm#50561052_MemberHead[See
 getColumnNames()]_
 
 [#50561052_pgfId-249970]## int
 
 [#50561052_pgfId-249978]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result.getRowCount()[getRowCount()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRowCount()[getRowCount()]link:jstl.htm#50561052_MemberHead[See
 getRowCount()]_
 
 {empty}[#50561052_pgfId-249984]## java.util.SortedMap[]
 
 [#50561052_pgfId-249992]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result.getRows()[getRows()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRows()[getRows()]link:jstl.htm#50561052_MemberHead[See
 getRows()]_
 
 {empty}[#50561052_pgfId-249998]## java.lang.Object[][]
 
 [#50561052_pgfId-250006]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result.getRowsByIndex()[getRowsByIndex()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRowsByIndex()[getRowsByIndex()]link:jstl.htm#50561052_MemberHead[See
 getRowsByIndex()]_
 
 [#50561052_pgfId-250012]## boolean
 
 [#50561052_pgfId-250020]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result.isLimitedByMaxRows()[isLimitedByMaxRows()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result.isLimitedByMaxRows()[isLimitedByMaxRows()]link:jstl.htm#50561052_MemberHead[See
 isLimitedByMaxRows()]_
 
 ======= [#50561052_pgfId-250347]##
@@ -13692,7 +13692,7 @@ image:jstl-62.gif[image]
 
 Methods
 
-======= [#50561052_pgfId-250355]##[#50561052_marker-250349]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result.getColumnNames()]##getColumnNames()
+======= [#50561052_pgfId-250355]##[#50561052_marker-250349]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result.getColumnNames()]##getColumnNames()
 
 [#50561052_pgfId-250357]##public _java.lang.String[]_ _getColumnNames_
 ()
@@ -13706,7 +13706,7 @@ columns are returned in method getRowsByIndex().
 [#50561052_pgfId-250363]##the column names as an array of _String_
 objects
 
-======= [#50561052_pgfId-250371]##[#50561052_marker-250365]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result.getRowCount()]##getRowCount()
+======= [#50561052_pgfId-250371]##[#50561052_marker-250365]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRowCount()]##getRowCount()
 
 [#50561052_pgfId-250373]##public int _getRowCount_ ()
 
@@ -13717,7 +13717,7 @@ ResultSet
 
 [#50561052_pgfId-250379]##the number of rows in the result
 
-======= [#50561052_pgfId-250387]##[#50561052_marker-250381]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result.getRows()]##getRows()
+======= [#50561052_pgfId-250387]##[#50561052_marker-250381]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRows()]##getRows()
 
 [#50561052_pgfId-250389]##public _java.util.SortedMap[]_ _getRows_ ()
 
@@ -13743,7 +13743,7 @@ name returned by the database.
 [#50561052_pgfId-250399]##The result rows as an array of _SortedMap_
 objects
 
-======= [#50561052_pgfId-250407]##[#50561052_marker-250401]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result.getRowsByIndex()]##getRowsByIndex()
+======= [#50561052_pgfId-250407]##[#50561052_marker-250401]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result.getRowsByIndex()]##getRowsByIndex()
 
 [#50561052_pgfId-250409]##public _java.lang.Object[][]_ _getRowsByIndex_
 ()
@@ -13760,7 +13760,7 @@ method is used.
 [#50561052_pgfId-250415]##the result rows as an array of _Object[]_
 objects
 
-======= [#50561052_pgfId-250423]##[#50561052_marker-250417]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.Result.isLimitedByMaxRows()]##isLimitedByMaxRows()
+======= [#50561052_pgfId-250423]##[#50561052_marker-250417]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.Result.isLimitedByMaxRows()]##isLimitedByMaxRows()
 
 [#50561052_pgfId-250425]##public boolean _isLimitedByMaxRows_ ()
 
@@ -13772,9 +13772,9 @@ maximum row setting
 [#50561052_pgfId-250431]## _true_ if the query was limited by a maximum
 row setting
 
-==== [#50561052_pgfId-250433]##javax.servlet.jsp.jstl.sql
+==== [#50561052_pgfId-250433]##jakarta.servlet.jsp.jstl.sql
 
-== [#50561052_pgfId-250441]##[#50561052_marker-250435]##[#50561052_ClassHead]##[#50561052_javax.servlet.jsp.jstl.sql.ResultSupport]##ResultSupport
+== [#50561052_pgfId-250441]##[#50561052_marker-250435]##[#50561052_ClassHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport]##ResultSupport
 
 ====== [#50561052_pgfId-250443]##Declaration
 
@@ -13787,12 +13787,12 @@ row setting
 [#50561052_pgfId-250451]## |
 
 [#50561052_pgfId-250453]## +--
-_javax.servlet.jsp.jstl.sql.ResultSupport_
+_jakarta.servlet.jsp.jstl.sql.ResultSupport_
 
 ====== [#50561052_pgfId-250455]##Description
 
 [#50561052_pgfId-250457]##Supports the creation of a
-javax.servlet.jsp.jstl.sql.Result object from a source
+jakarta.servlet.jsp.jstl.sql.Result object from a source
 java.sql.ResultSet object. A Result object makes it much easier for page
 authors to access and manipulate the data resulting from a SQL query.
 
@@ -13805,7 +13805,7 @@ authors to access and manipulate the data resulting from a SQL query.
 [#50561052_pgfId-250039]## 
 
 [#50561052_pgfId-250047]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.ResultSupport()[ResultSupport()]link:jstl.htm#50561052_MemberHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.ResultSupport()[ResultSupport()]link:jstl.htm#50561052_MemberHead[See
 ResultSupport()]_
 
 == [#50561052_pgfId-250053]##Methods
@@ -13813,13 +13813,13 @@ ResultSupport()]_
 [#50561052_pgfId-250059]##static Result
 
 [#50561052_pgfId-250067]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet)[toResult(java.sql.ResultSet
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet)[toResult(java.sql.ResultSet
 rs)]link:jstl.htm#50561052_MemberHead[See toResult(ResultSet)]_
 
 [#50561052_pgfId-250073]##static Result
 
 [#50561052_pgfId-250081]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet,%20int)[toResult(java.sql.ResultSet
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet,%20int)[toResult(java.sql.ResultSet
 rs, int maxRows)]link:jstl.htm#50561052_MemberHead[See
 toResult(ResultSet, int)]_
 
@@ -13844,7 +13844,7 @@ image:jstl-62.gif[image]
 
 Constructors
 
-======= [#50561052_pgfId-250473]##[#50561052_marker-250467]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.ResultSupport()]##ResultSupport()
+======= [#50561052_pgfId-250473]##[#50561052_marker-250467]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.ResultSupport()]##ResultSupport()
 
 [#50561052_pgfId-250475]##public _ResultSupport_ ()
 
@@ -13854,10 +13854,10 @@ image:jstl-62.gif[image]
 
 Methods
 
-======= [#50561052_pgfId-250485]##[#50561052_marker-250479]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet)]##toResult(ResultSet)
+======= [#50561052_pgfId-250485]##[#50561052_marker-250479]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet)]##toResult(ResultSet)
 
 [#50561052_pgfId-250493]##public static
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result[javax.servlet.jsp.jstl.sql.Result]link:jstl.htm#50561052_ClassHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result[jakarta.servlet.jsp.jstl.sql.Result]link:jstl.htm#50561052_ClassHead[See
 Result] _toResult_ ( _java.sql.ResultSet_ rs)_
 
 [#50561052_pgfId-250495]##Converts a _ResultSet_ object to a _Result_
@@ -13872,10 +13872,10 @@ object.
 [#50561052_pgfId-250503]##The _Result_ object created from the
 _ResultSet_
 
-======= [#50561052_pgfId-250511]##[#50561052_marker-250505]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet, int)]##toResult(ResultSet, int)
+======= [#50561052_pgfId-250511]##[#50561052_marker-250505]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.ResultSupport.toResult(java.sql.ResultSet, int)]##toResult(ResultSet, int)
 
 [#50561052_pgfId-250519]##public static
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.Result[javax.servlet.jsp.jstl.sql.Result]link:jstl.htm#50561052_ClassHead[See
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.Result[jakarta.servlet.jsp.jstl.sql.Result]link:jstl.htm#50561052_ClassHead[See
 Result] _toResult_ ( _java.sql.ResultSet_ rs, int maxRows)_
 
 [#50561052_pgfId-250521]##Converts _maxRows_ of a _ResultSet_ object to
@@ -13893,9 +13893,9 @@ cached into the _Result_ object.
 [#50561052_pgfId-250531]##The _Result_ object created from the
 _ResultSet_ , limited by _maxRows_
 
-==== [#50561052_pgfId-250533]##javax.servlet.jsp.jstl.sql
+==== [#50561052_pgfId-250533]##jakarta.servlet.jsp.jstl.sql
 
-== [#50561052_pgfId-250541]##[#50561052_marker-250535]##[#50561052_ClassHead]##[#50561052_javax.servlet.jsp.jstl.sql.SQLExecutionTag]##SQLExecutionTag
+== [#50561052_pgfId-250541]##[#50561052_marker-250535]##[#50561052_ClassHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.SQLExecutionTag]##SQLExecutionTag
 
 ====== [#50561052_pgfId-250543]##Declaration
 
@@ -13936,7 +13936,7 @@ _SQLExecutionTag_ action
 [#50561052_pgfId-250113]## void
 
 [#50561052_pgfId-250121]##
-_link:jstl.htm#50561052_javax.servlet.jsp.jstl.sql.SQLExecutionTag.addSQLParameter(java.lang.Object)[addSQLParameter(java.lang.Object
+_link:jstl.htm#50561052_jakarta.servlet.jsp.jstl.sql.SQLExecutionTag.addSQLParameter(java.lang.Object)[addSQLParameter(java.lang.Object
 value)]link:jstl.htm#50561052_MemberHead[See addSQLParameter(Object)]_
 
 ======= [#50561052_pgfId-250562]##
@@ -13945,7 +13945,7 @@ image:jstl-62.gif[image]
 
 Methods
 
-======= [#50561052_pgfId-250570]##[#50561052_marker-250564]##[#50561052_MemberHead]##[#50561052_javax.servlet.jsp.jstl.sql.SQLExecutionTag.addSQLParameter(java.lang.Object)]##addSQLParameter(Object)
+======= [#50561052_pgfId-250570]##[#50561052_marker-250564]##[#50561052_MemberHead]##[#50561052_jakarta.servlet.jsp.jstl.sql.SQLExecutionTag.addSQLParameter(java.lang.Object)]##addSQLParameter(Object)
 
 [#50561052_pgfId-250572]##public void _addSQLParameter_ (
 _java.lang.Object_ value)
@@ -13965,7 +13965,7 @@ value
 
 ==== [#50561054_pgfId-927138]##[#50561054_marker-927136]##Package
 
-== [#50561054_pgfId-927144]##[#50561054_PackageHead]##[#50561054_javax.servlet.jsp.jstl.tlv]##javax.servlet.jsp.jstl.tlv
+== [#50561054_pgfId-927144]##[#50561054_PackageHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv]##jakarta.servlet.jsp.jstl.tlv
 
 ====== [#50561054_pgfId-927146]##Description
 
@@ -13976,7 +13976,7 @@ value
 == [#50561054_pgfId-926764]##Classes
 
 [#50561054_pgfId-926776]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV[PermittedTaglibsTLV]link:jstl.htm#50561054_ClassHead[See
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV[PermittedTaglibsTLV]link:jstl.htm#50561054_ClassHead[See
 PermittedTaglibsTLV]_
 
 [#50561054_pgfId-926778]##A TagLibraryValidator class to allow a TLD to
@@ -13984,20 +13984,20 @@ restrict what taglibs (in addition to itself) may be imported on a page
 where it’s used.
 
 [#50561054_pgfId-926790]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV[ScriptFreeTLV]link:jstl.htm#50561054_ClassHead[See
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV[ScriptFreeTLV]link:jstl.htm#50561054_ClassHead[See
 ScriptFreeTLV]_
 
 [#50561054_pgfId-926792]##A TagLibraryValidator for enforcing
 restrictions against the use of JSP scripting elements.
 
-==== [#50561054_pgfId-927151]##javax.servlet.jsp.jstl.tlv
+==== [#50561054_pgfId-927151]##jakarta.servlet.jsp.jstl.tlv
 
-== [#50561054_pgfId-927159]##[#50561054_marker-927153]##[#50561054_ClassHead]##[#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV]##PermittedTaglibsTLV
+== [#50561054_pgfId-927159]##[#50561054_marker-927153]##[#50561054_ClassHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV]##PermittedTaglibsTLV
 
 ====== [#50561054_pgfId-927161]##Declaration
 
 [#50561054_pgfId-927163]##public class _PermittedTaglibsTLV_ extends
-_javax.servlet.jsp.tagext.TagLibraryValidator_
+_jakarta.servlet.jsp.tagext.TagLibraryValidator_
 
 [#50561054_pgfId-927165]##  
 
@@ -14006,12 +14006,12 @@ _javax.servlet.jsp.tagext.TagLibraryValidator_
 [#50561054_pgfId-927169]## |
 
 [#50561054_pgfId-927171]## +--
-_javax.servlet.jsp.tagext.TagLibraryValidator_
+_jakarta.servlet.jsp.tagext.TagLibraryValidator_
 
 [#50561054_pgfId-927173]## |
 
 [#50561054_pgfId-927175]## +--
-_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV_
+_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV_
 
 ====== [#50561054_pgfId-927177]##Description
 
@@ -14036,7 +14036,7 @@ PermittedTaglibsTLV (which is allowed implicitly).
 [#50561054_pgfId-926811]## 
 
 [#50561054_pgfId-926819]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.PermittedTaglibsTLV()[PermittedTaglibsTLV()]link:jstl.htm#50561054_MemberHead[See
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.PermittedTaglibsTLV()[PermittedTaglibsTLV()]link:jstl.htm#50561054_MemberHead[See
 PermittedTaglibsTLV()]_
 
 == [#50561054_pgfId-926825]##Methods
@@ -14044,15 +14044,15 @@ PermittedTaglibsTLV()]_
 [#50561054_pgfId-926831]## void
 
 [#50561054_pgfId-926839]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.release()[release()]link:jstl.htm#50561054_MemberHead[See
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.release()[release()]link:jstl.htm#50561054_MemberHead[See
 release()]_
 
 {empty}[#50561054_pgfId-926845]##
-javax.servlet.jsp.tagext.ValidationMessage[]
+jakarta.servlet.jsp.tagext.ValidationMessage[]
 
 [#50561054_pgfId-926853]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.validate(java.lang.String,%20java.lang.String,%20javax.servlet.jsp.tagext.PageData)[validate(java.lang.String
-prefix, java.lang.String uri, javax.servlet.jsp.tagext.PageData
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.validate(java.lang.String,%20java.lang.String,%20jakarta.servlet.jsp.tagext.PageData)[validate(java.lang.String
+prefix, java.lang.String uri, jakarta.servlet.jsp.tagext.PageData
 page)]link:jstl.htm#50561054_MemberHead[See validate(String, String,
 PageData)]_
 
@@ -14083,7 +14083,7 @@ image:jstl-63.gif[image]
 
 Constructors
 
-======= [#50561054_pgfId-927199]##[#50561054_marker-927193]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.PermittedTaglibsTLV()]##PermittedTaglibsTLV()
+======= [#50561054_pgfId-927199]##[#50561054_marker-927193]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.PermittedTaglibsTLV()]##PermittedTaglibsTLV()
 
 [#50561054_pgfId-927201]##public _PermittedTaglibsTLV_ ()
 
@@ -14093,25 +14093,25 @@ image:jstl-63.gif[image]
 
 Methods
 
-======= [#50561054_pgfId-927211]##[#50561054_marker-927205]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.release()]##release()
+======= [#50561054_pgfId-927211]##[#50561054_marker-927205]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.release()]##release()
 
 [#50561054_pgfId-927213]##public void _release_ ()
 
-======= [#50561054_pgfId-927221]##[#50561054_marker-927215]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.validate(java.lang.String, java.lang.String, javax.servlet.jsp.tagext.PageData)]##validate(String, String, PageData)
+======= [#50561054_pgfId-927221]##[#50561054_marker-927215]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV.validate(java.lang.String, java.lang.String, jakarta.servlet.jsp.tagext.PageData)]##validate(String, String, PageData)
 
 [#50561054_pgfId-927223]##public
-_javax.servlet.jsp.tagext.ValidationMessage[]_ _validate_ (
+_jakarta.servlet.jsp.tagext.ValidationMessage[]_ _validate_ (
 _java.lang.String_ prefix, _java.lang.String_ uri,
-_javax.servlet.jsp.tagext.PageData_ page)
+_jakarta.servlet.jsp.tagext.PageData_ page)
 
-==== [#50561054_pgfId-927225]##javax.servlet.jsp.jstl.tlv
+==== [#50561054_pgfId-927225]##jakarta.servlet.jsp.jstl.tlv
 
-== [#50561054_pgfId-927233]##[#50561054_marker-927227]##[#50561054_ClassHead]##[#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV]##ScriptFreeTLV
+== [#50561054_pgfId-927233]##[#50561054_marker-927227]##[#50561054_ClassHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV]##ScriptFreeTLV
 
 ====== [#50561054_pgfId-927235]##Declaration
 
 [#50561054_pgfId-927237]##public class _ScriptFreeTLV_ extends
-_javax.servlet.jsp.tagext.TagLibraryValidator_
+_jakarta.servlet.jsp.tagext.TagLibraryValidator_
 
 [#50561054_pgfId-927239]##  
 
@@ -14120,12 +14120,12 @@ _javax.servlet.jsp.tagext.TagLibraryValidator_
 [#50561054_pgfId-927243]## |
 
 [#50561054_pgfId-927245]## +--
-_javax.servlet.jsp.tagext.TagLibraryValidator_
+_jakarta.servlet.jsp.tagext.TagLibraryValidator_
 
 [#50561054_pgfId-927247]## |
 
 [#50561054_pgfId-927249]## +--
-_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV_
+_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV_
 
 ====== [#50561054_pgfId-927251]##Description
 
@@ -14163,7 +14163,7 @@ be prohibited.
 [#50561054_pgfId-926893]## 
 
 [#50561054_pgfId-926901]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.ScriptFreeTLV()[ScriptFreeTLV()]link:jstl.htm#50561054_MemberHead[See
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.ScriptFreeTLV()[ScriptFreeTLV()]link:jstl.htm#50561054_MemberHead[See
 ScriptFreeTLV()]_
 
 == [#50561054_pgfId-926907]##Methods
@@ -14171,16 +14171,16 @@ ScriptFreeTLV()]_
 [#50561054_pgfId-926913]## void
 
 [#50561054_pgfId-926921]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.setInitParameters(java.util.Map)[setInitParameters(java.util.Map
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.setInitParameters(java.util.Map)[setInitParameters(java.util.Map
 initParms)]link:jstl.htm#50561054_MemberHead[See
 setInitParameters(Map)]_
 
 {empty}[#50561054_pgfId-926927]##
-javax.servlet.jsp.tagext.ValidationMessage[]
+jakarta.servlet.jsp.tagext.ValidationMessage[]
 
 [#50561054_pgfId-926935]##
-_link:jstl.htm#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.validate(java.lang.String,%20java.lang.String,%20javax.servlet.jsp.tagext.PageData)[validate(java.lang.String
-prefix, java.lang.String uri, javax.servlet.jsp.tagext.PageData
+_link:jstl.htm#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.validate(java.lang.String,%20java.lang.String,%20jakarta.servlet.jsp.tagext.PageData)[validate(java.lang.String
+prefix, java.lang.String uri, jakarta.servlet.jsp.tagext.PageData
 page)]link:jstl.htm#50561054_MemberHead[See validate(String, String,
 PageData)]_
 
@@ -14210,7 +14210,7 @@ image:jstl-63.gif[image]
 
 Constructors
 
-======= [#50561054_pgfId-927281]##[#50561054_marker-927275]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.ScriptFreeTLV()]##ScriptFreeTLV()
+======= [#50561054_pgfId-927281]##[#50561054_marker-927275]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.ScriptFreeTLV()]##ScriptFreeTLV()
 
 [#50561054_pgfId-927283]##public _ScriptFreeTLV_ ()
 
@@ -14224,7 +14224,7 @@ image:jstl-63.gif[image]
 
 Methods
 
-======= [#50561054_pgfId-927295]##[#50561054_marker-927289]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.setInitParameters(java.util.Map)]##setInitParameters(Map)
+======= [#50561054_pgfId-927295]##[#50561054_marker-927289]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.setInitParameters(java.util.Map)]##setInitParameters(Map)
 
 [#50561054_pgfId-927297]##public void _setInitParameters_ (
 _java.util.Map_ initParms)
@@ -14242,12 +14242,12 @@ _TagLibraryValidator_
 [#50561054_pgfId-927307]## _initParms_ - a mapping from the names of the
 initialization parameters to their values, as specified in the TLD.
 
-======= [#50561054_pgfId-927315]##[#50561054_marker-927309]##[#50561054_MemberHead]##[#50561054_javax.servlet.jsp.jstl.tlv.ScriptFreeTLV.validate(java.lang.String, java.lang.String, javax.servlet.jsp.tagext.PageData)]##validate(String, String, PageData)
+======= [#50561054_pgfId-927315]##[#50561054_marker-927309]##[#50561054_MemberHead]##[#50561054_jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV.validate(java.lang.String, java.lang.String, jakarta.servlet.jsp.tagext.PageData)]##validate(String, String, PageData)
 
 [#50561054_pgfId-927317]##public
-_javax.servlet.jsp.tagext.ValidationMessage[]_ _validate_ (
+_jakarta.servlet.jsp.tagext.ValidationMessage[]_ _validate_ (
 _java.lang.String_ prefix, _java.lang.String_ uri,
-_javax.servlet.jsp.tagext.PageData_ page)
+_jakarta.servlet.jsp.tagext.PageData_ page)
 
 [#50561054_pgfId-927319]##Validates a single JSP page.
 
@@ -14685,8 +14685,8 @@ _endSpecified_ , and _stepSpecified_ to class _LoopTagSupport_ .
 [#50561111_pgfId-8953]##Chapter 8 - I18N Actions
 
 [#50561111_pgfId-8942]##Left over references to
-_javax.servlet.jsp.jstl.fmt.bundle_ have been changed to
-_javax.servlet.jsp.jstl.fmt.localizationContext_ .
+_jakarta.servlet.jsp.jstl.fmt.bundle_ have been changed to
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ .
 
 [#50561111_pgfId-9149]##Added the three constructors to class
 _LocalizationContext_ and clarified the behavior of methods
@@ -14811,8 +14811,8 @@ description.
 defined which represents an I18N localization context containg a
 _java.util.ResourceBundle_ and a _java.util.Locale_ .
 
-[#50561111_pgfId-8669]## _javax.servlet.jsp.jstl.fmt.basename_ has been
-replaced with _javax.servlet.jsp.jstl.fmt.localizationContext_ .
+[#50561111_pgfId-8669]## _jakarta.servlet.jsp.jstl.fmt.basename_ has been
+replaced with _jakarta.servlet.jsp.jstl.fmt.localizationContext_ .
 
 [#50561111_pgfId-8525]##Chapter 9 - Formatting Actions
 

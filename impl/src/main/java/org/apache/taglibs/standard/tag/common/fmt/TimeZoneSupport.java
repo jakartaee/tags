@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +20,12 @@ package org.apache.taglibs.standard.tag.common.fmt;
 import java.io.IOException;
 import java.util.TimeZone;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.jstl.core.Config;
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.jstl.core.Config;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.Tag;
 
 /**
  * Support for tag handlers for &lt;timeZone&gt;, the time zone tag in
@@ -116,7 +116,7 @@ public abstract class TimeZoneSupport extends BodyTagSupport {
      * the time zone is taken from the enclosing &lt;timeZone&gt; action.
      *
      * <p> Otherwise, the time zone configuration setting
-     * <tt>javax.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE</tt>
+     * <tt>jakarta.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE</tt>
      * is used.
      *
      * @param pageContext the page containing the action for which the
