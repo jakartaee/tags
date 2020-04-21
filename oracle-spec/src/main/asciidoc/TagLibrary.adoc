@@ -1,29 +1,20 @@
 :sectnums:
-= Jakarta Tag Library Specification, Version 1.2
+= Jakarta Tag Library Specification, Version 2.0
 
-Copyright (c) 2006, 2019 Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 
 Oracle and Java are registered trademarks of Oracle and/or its 
 affiliates. Other names may be trademarks of their respective owners. 
 
-=== 
+:sectnums!:
+== Preface
 
-image:taglib-3.png[image]
-
-Preface
-
-image:taglib-4.png[image]
-
-This is the JavaServer Pages™ Standard Tag
-Library 1.2 (JSTL 1.2) specification, developed by the JSR-52 expert
+This is the Jakarta Server Pages™ Standard Tag
+Library 2.0 (JSTL 2.0) specification, developed by the JSR-52 expert
 group under the Java Community Process. +
 See http://www.jcp.org.
 
-=== 
-
-image:taglib-5.png[image]
-
-Related Documentation
+== Related Documentation
 
 Implementors of JSTL and authors of JSP pages
 may find the following documents worth consulting for additional
@@ -31,10 +22,10 @@ information:.
 
 [width="100%",cols="50%,50%",]
 |===
-|JavaServer Pages (JSP)
+|Jakarta Server Pages (JSP)
 |http://java.sun.com/jsp
 
-|Java Servlet Technology
+|Jakarta Servlet Technology
 |http://java.sun.com/servlet
 
 |Java 2 Platform, Standard Edition
@@ -43,14 +34,10 @@ information:.
 |Java 2 Platform, Enterprise Edition
 |http://java.sun.com/j2ee
 
-a|
-=== JavaBeans
-
+|JavaBeans
 |http://java.sun.com/beans
 
-a|
-=== JDBC
-
+|JDBC
 |http://java.sun.com/jdbc
 
 |Java Technology and XML
@@ -69,11 +56,7 @@ a|
 |http://www.xml.org
 |===
 
-=== 
-
-image:taglib-5.png[image]
-
-Typographical Conventions
+== Typographical Conventions
 
 
 
@@ -88,11 +71,7 @@ code examples, attribute names, Java language types, API, enumerated
 attribute values.
 |===
 
-=== 
-
-image:taglib-5.png[image]
-
-Acknowledgments
+== Acknowledgments
 
 The JavaServer Pages™ Standard Tag Library
 (JSTL) specification is the result of collaborative work involving many
@@ -160,35 +139,22 @@ Finally, we'd like to thank the community at
 large for their ever increasing interest in this technology. We sure
 hope you’ll enjoy the JSP Standard Tag Library.
 
-=== 
-
-image:taglib-5.png[image]
-
-Comments
+== Comments
 
 We are interested in improving this
 specification and welcome your comments and suggestions. You can email
 your comments to us at:
 
-===  _jsr-52-comments@jcp.org_
+ jstl-dev@eclipse.org
 
-=== 
-
-=== 
-
-image:taglib-6.png[image]
-
-Introduction
+:sectnums:
+== Introduction
 
 This is the JavaServer Pages™ Standard Tag
 Library 1.2 (JSTL 1.2) specification, developed by the JSR-52 expert
 group under the Java Community Process (http://www.jcp.org).
 
-=== 
-
-image:taglib-7.png[image]
-
-Goals
+=== Goals
 
 The ultimate goal of JSTL is to help simplify
 JavaServer™ Pages (JSP™) page authors’ lives.
@@ -238,11 +204,7 @@ XML processing
 
 String manipulation
 
-=== 
-
-image:taglib-7.png[image]
-
-Multiple Tag Libraries
+=== Multiple Tag Libraries
 
 A tag library is a collection of actions that
 encapsulates functionality to be used from within a JSP page. JSTL
@@ -281,32 +243,18 @@ _http://java.sun.com/jsp/jstl/xml_ | _x_
 _http://java.sun.com/jsp/jstl/functions_ |fn
 |===
 
-=== 
-
-image:taglib-7.png[image]
-
-Container Requirement
+=== Container Requirement
 
 JSTL 1.2 requires a JSP 2.1 web container.
 Please note that the expression language is part of the JSP
 specification starting with JSP 2.0.
 
-=== 
-
-=== 
-
-image:taglib-8.png[image]
-
-Conventions
+== Conventions
 
 This chapter describes the conventions used in
 this specification.
 
-=== 
-
-image:taglib-9.png[image]
-
-How Actions are Documented
+=== How Actions are Documented
 
 JSTL actions are grouped according to their
 functionality. These functional groups of actions are documented in
@@ -376,7 +324,7 @@ Other sections related to the group of
 actions described in the chapter may exist. These include sections on
 interfaces and classes exposed by these actions.
 
-=== [[a114]]Attributes
+==== Attributes
 
 For each attribute, the following information
 is given: name, dynamic behavior, type, and description.
@@ -391,7 +339,7 @@ in the JSP specification, a “request-time attribute value” can be either
 a Java expression, an EL expression, or a value set by a
 <jsp:attribute>.
 
-=== [[a117]]Syntax Notation
+==== Syntax Notation
 
 [width="100%",cols="50%,50%",]
 |===
@@ -417,11 +365,7 @@ the attribute _scope_ is optional. If it is
 specified, its value must be one of _page_ , _request_ , _session_ , or
 _application_ . The default value is _page_ .
 
-=== 
-
-image:taglib-9.png[image]
-
-Scoped Variables
+=== Scoped Variables
 
 Actions usually collaborate with their
 environment in implicit or explicit ways, or both.
@@ -442,7 +386,7 @@ exported JSP scoped attributes are referred to as scoped variables in
 this specification; this helps in preventing too much overloading of the
 term “attribute”.
 
-=== [[a130]]var and scope
+==== var and scope
 
 The convention is to use the name _var_ for
 attributes that export information. For example, the <c:forEach> action
@@ -489,7 +433,7 @@ current item of the iteration (main variable exposed by the action),
 while the _varStatus_ attribute exposes the current status of the
 iteration (secondary variable).
 
-=== [[a140]]Visibility
+==== Visibility
 
 Scoped variables exported by JSTL actions are
 categorized as either nested or at-end.
@@ -510,11 +454,7 @@ In this specification, scoped variables
 exposed by actions are considered at-end by default. If a scoped
 variable is nested, it will be explicitly stated.
 
-=== 
-
-image:taglib-9.png[image]
-
-Static vs Dynamic Attribute Values
+=== Static vs Dynamic Attribute Values
 
 Except for the two exceptions described
 below, attribute values of JSTL actions can always be specified
@@ -533,21 +473,13 @@ Restricting these attributes to static values
 should benefit development tools, without any impediment to page
 authors.
 
-=== 
-
-image:taglib-9.png[image]
-
-White Spaces
+=== White Spaces
 
 Following the JSP specification (as well as
 the XML and XSLT specifications), whitespace characters are _#x20_ ,
 _#x9_ , _#xD,_ or _#xA_ .
 
-=== 
-
-image:taglib-9.png[image]
-
-Body Content
+=== Body Content
 
 If an action accepts a body content, an empty
 body is always valid, unless explicitly stated otherwise.
@@ -560,11 +492,7 @@ If a body content is trimmed prior to being
 processed by the action, it is trimmed as defined in method _trim()_ of
 the class _java.lang.String_ .
 
-=== 
-
-image:taglib-9.png[image]
-
-Naming
+=== Naming
 
 JSTL adopts capitalization conventions of
 Java variables for compound words in action and attribute names.
@@ -579,11 +507,7 @@ _scope_ attibutes. link:jstl.html#a2260[See The select
 Attribute] discusses the _select_ attribute used in JSTL's
 XML-processing tag library.
 
-=== 
-
-image:taglib-9.png[image]
-
-Errors and Exceptions
+=== Errors and Exceptions
 
 All syntax errors (as defined in the syntax
 section of each action, as well as the syntax of EL expressions as
@@ -691,11 +615,7 @@ or otherwise handle exceptions that occur during evaluation of their
 body content. If they do, it is documented in their “Null & Error
 Handling” or “Description” section.
 
-=== 
-
-image:taglib-9.png[image]
-
-[[a194]]Configuration Data
+=== Configuration Data
 
 Context initialization parameters (see
 Servlet specification) are useful to configure the behavior of actions.
@@ -775,11 +695,7 @@ attribute value of an action using the EL. A failure of these conversion
 rules to determine an appropriate type coersion leads to a
 _JspException_ at runtime.
 
-=== 
-
-image:taglib-9.png[image]
-
-Default Values
+=== Default Values
 
 It is often desirable to display a default
 value if the output of an action yields a null value. This can be done
