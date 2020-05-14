@@ -337,7 +337,7 @@ static string value can be specified for the attribute. A true value
 means that a _request-time attribute value_ can be specified. As defined
 in the JSP specification, a “request-time attribute value” can be either
 a Java expression, an EL expression, or a value set by a
-<jsp:attribute>.
+`<jsp:attribute>`.
 
 ==== Syntax Notation
 
@@ -346,7 +346,7 @@ a Java expression, an EL expression, or a value set by a
 | _[...]_ |What is
 inside the square brackets is optional
 
-| _\{option1|option2|option3|...}_
+| _{option1\|option2\|option3\|...}_
 |Only one of the given options can be
 selected
 
@@ -356,10 +356,10 @@ default value
 
 For example, in the syntax below:
 
-{empty}<c:set var=”varName”
-[scope=”\{page|request|session|application}”]
-
- value=”value”/>
+....
+<c:set var=”varName” [scope=”{page|request|session|application}”]
+       value=”value”/>
+....
 
 the attribute _scope_ is optional. If it is
 specified, its value must be one of _page_ , _request_ , _session_ , or
@@ -389,22 +389,15 @@ term “attribute”.
 ==== var and scope
 
 The convention is to use the name _var_ for
-attributes that export information. For example, the <c:forEach> action
+attributes that export information. For example, the `<c:forEach>` action
 exposes the current item of the customer collection it is iterating over
 in the following way:
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var=”customer”
-items=”$\{customers}”>
-
- Current customer is <c:out
-value=”$\{customer}”/>
-
+....
+<c:forEach var=”customer” items=”${customers}”>
+    Current customer is <c:out value=”${customer}”/>
 </c:forEach>
-
-|===
+....
 
 It is important to note that a name different
 than _id_ was selected to stress the fact that only a scoped variable
@@ -417,7 +410,7 @@ variable.
 
 The _scope_ attribute has the semantics
 defined in the JSP specification, and takes the same values as the ones
-allowed in the <jsp:useBean> action; i.e. _page_ , _request_ , _session_
+allowed in the `<jsp:useBean>` action; i.e. _page_ , _request_ , _session_
 , _application_ . If no value is specified for _scope_ , _page_ scope is
 the default unless otherwise specified.
 
@@ -428,7 +421,7 @@ page has sessions enabled.
 If an action exposes more than one scoped
 variable, the main one uses attribute names _var_ and _scope_ , while
 secondary ones have a suffix added for unique identification. For
-example, in the <c:forEach> action, the _var_ attribute exposes the
+example, in the `<c:forEach>` action, the _var_ attribute exposes the
 current item of the iteration (main variable exposed by the action),
 while the _varStatus_ attribute exposes the current status of the
 iteration (secondary variable).
@@ -438,7 +431,7 @@ iteration (secondary variable).
 Scoped variables exported by JSTL actions are
 categorized as either nested or at-end.
 
-{empty}Nested scoped variables are only
+_Nested_ scoped variables are only
 visible within the body of the action and are stored in "page"
 scopelink:#a3268[1]. The action must create the variable
 according to the semantics of _PageContext.setAttribute(varName,
@@ -497,7 +490,7 @@ the class _java.lang.String_ .
 JSTL adopts capitalization conventions of
 Java variables for compound words in action and attribute names.
 Recommended tag prefixes are kept lowercase. Thus, we have
-<sql:transaction> and <c:forEach>, as well as attributes such as
+`<sql:transaction>` and `<c:forEach>`, as well as attributes such as
 _docSystemId_ and _varDom_ .
 
 In some cases, attribute names for JSTL
@@ -527,7 +520,7 @@ Since it is hard for a page author to deal
 with exceptions, JSTL tries to avoid as many exception cases as
 possible, without causing other problems.
 
-For instance, if <c:forEach> were to throw an
+For instance, if `<c:forEach>` were to throw an
 exception when given a null value for the attribute _items_ , it would
 be impossible to easily loop over a possibly missing string array that
 represents check-box selection in an HTML form (retrieved with an EL
@@ -537,32 +530,28 @@ nothing in this case.
 The conventions used in JSTL with respect to
 errors and exceptions are as follows:
 
- _scope_
+* scope
 
-Invalid value – translation time validation
-error
+** Invalid value – translation time validation error
 
- _var_
+* var
 
-Empty – translation time validation error
+** Empty – translation time validation error
 
-Dynamic attributes with a fixed set of valid
+* Dynamic attributes with a fixed set of valid
 String values:
 
-null – use the default value
-
+** null – use the default value +
 A null value can therefore be used to
 dynamically (e.g. by request parameter), turn on or off special features
 without too much work.
 
-Invalid value – throw an exception
-
+** Invalid value – throw an exception +
 If a value is provided but is not valid, it's
 likely a typo or another mistake.
 
-Dynamic attributes without a fixed set of
-valid values:
-
+* Dynamic attributes without a fixed set of
+valid values: +
 The rules below assume that if the type of
 the value does not match the expected type, the EL will have applied
 coercion rules to try to accomodate the input value. Moreover, if the
@@ -571,37 +560,32 @@ EL will in most cases coerce null to an approriate value. For instance,
 if the expected type is a _Number_ , the EL will coerce a null value to
 0, if it's _Boolean_ it will be coerced to false.
 
-null – behavior specific to the action
-
+** null – behavior specific to the action +
 If this rule is applied, it’s because the EL
 could not coerce the null into an appropriate default value. It is
 therefore up to the action to deal with the null value and is documented
 in the “Null & Error Handling” section of the action.
 
-Invalid type – throw an exception
+** Invalid type – throw an exception
 
-Invalid value – throw an exception
+** Invalid value – throw an exception
 
-Exceptions caused by the body content:
-
+* Exceptions caused by the body content: +
 Always propagate, possibly after handling
-them (e.g. <sql:transaction>).
+them (e.g. `<sql:transaction>`).
 
-Exceptions caused by the action itself:
-
+* Exceptions caused by the action itself: +
 Always propagate, possibly after handling
 them.
 
-Exceptions caused by the EL:
-
+* Exceptions caused by the EL: +
 Always propagate.
 
-Exceptions caused by XPath:
-
+* Exceptions caused by XPath: +
 Always propagate.
 
 Page authors may catch an exception using
-<c:catch>, which exposes the exception through its _var_ attribute.
+`<c:catch>`, which exposes the exception through its _var_ attribute.
 _var_ is removed if no exception has occurred.
 
 When this specification requires an action to
@@ -622,26 +606,16 @@ Servlet specification) are useful to configure the behavior of actions.
 For example, it is possible in JSTL to define the resource bundle used
 by I18N actions via the deployment descriptor (web.xml) as follows:
 
-[width="100%",cols="100%",]
-|===
-a|
-<web-app> +
+....
+<web-app>
 ...
-
- <context-param>
-
-
-<param-name>jakarta.servlet.jsp.jstl.fmt.localizationContext</param-name>
-
-
-<param-value>com.acme.MyResources</param-value>
-
- </context-param> +
+    <context-param>
+        <param-name>jakarta.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>com.acme.MyResources</param-value>
+    </context-param>
 ...
-
 </web-app>
-
-|===
+....
 
 In many cases, it is also useful to allow
 configuration data to be overridden dynamically for a particular JSP
@@ -701,30 +675,15 @@ It is often desirable to display a default
 value if the output of an action yields a null value. This can be done
 in a generic way in JSTL by exporting the output of an action via
 attribute _var_ , and then displaying the value of that scoped variable
-with action <c:out>.
+with action `<c:out>`.
 
 For example:
+....
+<fmt:formatDate var=”formattedDate” value=”${reservationDate}”/>
+Date: <c:out value=”${formattedDate}” default=”not specified”/>
+....
 
-[width="100%",cols="100%",]
-|===
-|<fmt:formatDate var=”formattedDate”
-value=”$\{reservationDate}”/> +
-Date: <c:out value=”$\{formattedDate}” default=”not specified”/>
-|===
-
-=== 
-
-=== 
-
-image:taglib-10.png[image]
-
-Expression Language Overview
-
-=== 
-
-image:taglib-11.png[image]
-
-
+== Expression Language Overview
 
 JSTL 1.0 introduced the notion of an
 expression language (EL) to make it easy for page authors to access and
@@ -740,50 +699,31 @@ the key features of the expression language, it is therefore
 non-normative. Please refer to the JSP specification for the formal
 definition of the EL.
 
-=== 
-
-image:taglib-12.png[image]
-
-Expressions and Attribute Values
+=== Expressions and Attribute Values
 
 The EL is invoked exclusively via the
 construct _$\{expr}_ . In the sample code below, an EL expression is
 used to set the value of attribute _test_ , while a second one is used
 to display the title of a book.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:if test="$\{book.price <=
-user.preferences.spendingLimit}">
-
- The book $\{book.title} fits your budget!
-
+....
+<c:if test="$\{book.price <= user.preferences.spendingLimit}">
+    The book ${book.title} fits your budget!
 </c:if>
-
-|===
+....
 
 It is also possible for an attribute to
 contain more than one EL expression, mixed with static text. For
 example, the following would display “Price of productName is
 productPrice” for a list of products.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var=”product"
-items=”$\{products}”> +
-<c:out value=”Price of $\{product.name} is $\{product.price}”/>
-
+....
+<c:forEach var=”product" items=”$\{products}”>
+    <c:out value=”Price of $\{product.name} is $\{product.price}”/>
 </c:forEach>
+....
 
-|===
-
-=== 
-
-image:taglib-12.png[image]
-
-Accessing Application Data
+=== Accessing Application Data
 
 An identifier in the EL refers to the JSP
 scoped variable returned by a call to
@@ -806,18 +746,16 @@ parameter.
 The code below displays all request
 parameters along with all their associated values.
 
-[width="100%",cols="100%",]
-|===
-|<c:forEach var="aParam"
-items="$\{paramValues}"> +
-param: $\{aParam.key} +
-values: +
-<c:forEach var="aValue" items="$\{aParam.value}"> +
-$\{aValue} +
-</c:forEach> +
-<br> +
+....
+<c:forEach var="aParam"items="${paramValues}">
+    param: ${aParam.key}
+    values:
+    <c:forEach var="aValue" items="${aParam.value}">
+        ${aValue}
+    </c:forEach>
+    <br>
 </c:forEach>
-|===
+....
 
 Request headers are also accessible in a
 similar fashion via implicit objects _header_ and _headerValues_ .
@@ -829,11 +767,7 @@ provided for advanced usage, giving access to all properties associated
 with the _PageContext_ of a JSP page such as the _HttpServletRequest_ ,
 _ServletContext_ , and _HttpSession_ objects and their properties.
 
-=== 
-
-image:taglib-12.png[image]
-
-Nested Properties and Accessing Collections
+=== Nested Properties and Accessing Collections
 
 The application data that a page author
 manipulates in a JSP page usually consists of objects that comply with
@@ -848,33 +782,26 @@ The "." operator can be used as a convenient
 shorthand for property access when the property name follows the
 conventions of Java identifiers. For example:
 
-[width="100%",cols="100%",]
-|===
-|Dear $\{user.firstName} +
-from $\{user.address.city}, +
+....
+Dear ${user.firstName}
+from ${user.address.city},
 thanks for visiting our website!
-|===
+....
 
 The “[]” operator allows for more generalized
 access, as shown below:
 
-[width="100%",cols="100%",]
-|===
-|<%-- “productDir” is a Map object containing
-the description of +
-products, “preferences” is a Map object containing the preferences of a
-user --%> +
-product: +
-$\{productDir[product.custId]} +
-shipping preference: +
-$\{user.preferences[“shipping”]}
-|===
+....
+<%-- “productDir” is a Map object containing the description of
+products, “preferences” is a Map object containing the 
+preferences of a user --%>
+product:
+${productDir[product.custId]}
+shipping preference:
+${user.preferences[“shipping”]}
+....
 
-=== 
-
-image:taglib-12.png[image]
-
-Operators
+=== Operators
 
 The operators supported in the EL handle the
 most common data manipulations. The standard relational, arithmetic, and
@@ -897,18 +824,13 @@ Logical operators consist of _&&_ (or _and_
 The _empty_ operator is a prefix operator
 that can used to determine if a value is null or empty. For example:
 
-[width="100%",cols="100%",]
-|===
-|<c:if test=”$\{empty param.name}”> +
-Please specify your name. +
+....
+<c:if test=”${empty param.name}”>
+    Please specify your name.
 </c:if>
-|===
+....
 
-=== 
-
-image:taglib-12.png[image]
-
-Automatic Type Conversion
+=== Automatic Type Conversion
 
 The application data a page author has access
 to may not always exactly match the type expected by the attribute of an
@@ -918,35 +840,27 @@ expected type.
 
 For example, if request attributes
 _beginValue_ and _endValue_ are _Integer_ objects, they will
-automatically be coerced to _int_ s when used with the <c:forEach>
+automatically be coerced to _int_ s when used with the `<c:forEach>`
 action.
 
-[width="100%",cols="100%",]
-|===
-|<c:forEach
-begin=”$\{requestScope.beginValue}” +
-end=”$\{requestScope.endValue}”> +
-... +
+....
+<c:forEach begin=”${requestScope.beginValue}”
+           end=”${requestScope.endValue}”>
+    ...
 </c:forEach>
-|===
+....
 
 In the example below, the parameter String
 value _param.start_ is coerced to a number and is then added to 10 to
 yield an int value for attribute _begin_ .
 
-[width="100%",cols="100%",]
-|===
-|<c:forEach items=”$\{products}”
-begin=”$\{param.start + 10}”> +
-... +
+....
+<c:forEach items=”${products}” begin=”${param.start + 10}”>
+    ...
 </c:forEach>
-|===
+....
 
-=== 
-
-image:taglib-12.png[image]
-
-Default Values
+=== Default Values
 
 JSP pages are mostly used in presentation.
 Experience suggests that it is important to be able to provide as good a
@@ -962,57 +876,37 @@ _NullPointerException_ if there is no address associated with the _user_
 object. This way, a sensible default value can be displayed without
 having to worry about exceptions being thrown by the JSP page.
 
-[width="100%",cols="100%",]
-|===
-|City: <c:out value=”$\{user.address.city}”
-default=”N/A”/>
-|===
+....
+City: <c:out value=”${user.address.city}” default=”N/A”/>
+....
 
 In the following example, the addition
 operator considers the value of _param.start_ to be 0 if it is not
 defined, therefore evaluating the expression to 10.
 
-[width="100%",cols="100%",]
-|===
-|<c:forEach items=”$\{products}”
-begin=”$\{param.start + 10}”> +
-... +
+....
+<c:forEach items=”${products}” begin=”${param.start + 10}”>
+    ...
 </c:forEach>
-|===
+....
 
-=== [[a259]]
-
-=== 
-
-image:taglib-13.png[image]
-
-General-Purpose Actions
-
-=== core tag library
-
-image:taglib-14.png[image]
+== General-Purpose Actions: core tag library
 
 This chapter introduces general purpose
 actions to support the manipulation of scoped variables as well as to
 handle error conditions.
 
-=== 
+=== Overview
 
-image:taglib-15.png[image]
-
-Overview
-
-The <c:out> action provides a capability
+The `<c:out>` action provides a capability
 similar to JSP expressions such as <%= scripting-language-expression %>
 or $\{el-expression}. For example:
 
-[width="100%",cols="100%",]
-|===
-|You have <c:out
-value="$\{sessionScope.user.itemCount}"/> items.
-|===
+....
+You have <c:out value="${sessionScope.user.itemCount}"/> items.
+....
 
-By default, <c:out> converts the characters
+By default, `<c:out>` converts the characters
 <, >, ', ", & to their corresponding character entity codes (e.g. < is
 converted to &lt;). If these characters are not converted, the page may
 not be rendered properly by the browser, and it could also open the door
@@ -1021,39 +915,34 @@ code for closing the window to an online discussion forum). The
 conversion may be bypassed by specifying false to the _escapeXml_
 attribute.
 
-The <c:out> action also supports the notion
+The `<c:out>` action also supports the notion
 of default values for cases where the value of an EL expression is null.
 In the example below, the value “unknown” will be displayed if the
 property _city_ is not accessible.
 
-[width="100%",cols="100%",]
-|===
-|<c:out value="$\{customer.address.city}"
-default="unknown"/>
-|===
+....
+<c:out value="${customer.address.city}" default="unknown"/>
+....
 
-The action <c:set> is used to set the value
+The action `<c:set>` is used to set the value
 of a JSP scoped attribute as follows:
 
-[width="100%",cols="100%",]
-|===
-|<c:set var=”foo” value=”value”/>
-|===
+....
+<c:set var=”foo” value=”value”/>
+....
 
 It is also possible to set the value of a
-scoped variable (JSP scoped attribute) from the body of the <c:set>
+scoped variable (JSP scoped attribute) from the body of the `<c:set>`
 action. This solves the problem associated with not being able to set an
 attribute value from another action. In the past, a tag developer would
 often implement extra "attributes as tags" so the value of these
 attributes could be set from other actions.
 
-For example, the action <acme:att1> was
+For example, the action `<acme:att1>` was
 created only to support setting the value of _att1_ of the parent tag
-<acme:atag> from other actions .
+`<acme:atag>` from other actions .
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <acme:atag>
 
  <acme:att1>
@@ -1063,127 +952,99 @@ a|
  </acme:att1>
 
 </acme:atag>
+....
 
-|===
+With the `<c:set>` tag, this can be handled
+without requiring the extra `<acme:att1>` tag.
 
-With the <c:set> tag, this can be handled
-without requiring the extra <acme:att1> tag.
-
-[width="100%",cols="100%",]
-|===
-a|
+....
 <c:set var=”att1”>
 
  <acme:foo>mumbojumbo</acme:foo>
 
 </c:set>
 
-<acme:atag att1=”$\{att1}”/>
+<acme:atag att1=”${att1}”/>
+....
 
-|===
-
-In the preceding example, the <c:set> action
+In the preceding example, the `<c:set>` action
 sets the value of the _att1_ scoped variable to the output of the
-<acme:foo> action. <c:set> – like all JSTL actions that create scoped
+`<acme:foo>` action. `<c:set>` – like all JSTL actions that create scoped
 attributes – creates scoped attributes in “page” scope by default.
 
-<c:set> may also be used to set the property
+`<c:set>` may also be used to set the property
 of a JavaBeans object, or add or set a specific element in a
 _java.util.Map_ object. For example:.
 
-[width="100%",cols="100%",]
-|===
-a|
-<!-- set property in JavaBeans object --> +
-<c:set target="$\{cust.address}" property="city" value="$\{city}"/> +
+....
+<!-- set property in JavaBeans object -->
+<c:set target="${cust.address}" property="city" value="${city}"/>
 
-<!-- set/add element in Map object --> +
-<c:set target="$\{preferences}" property="color" +
-value="$\{param.color}"/>
+<!-- set/add element in Map object -->
+<c:set target="${preferences}" property="color" value="${param.color}"/>
+....
 
-|===
-
-Finally, <c:set> may also be used to set a
+Finally, `<c:set>` may also be used to set a
 deferred-value that can later be evaluated by a tag handler. In this
 case, no scope can be specified. For example:
 
-
-
-[width="100%",cols="100%",]
-|===
-a|
-<!-- set deferred value --> +
-<c:set var="d" value="#\{handler.everythingDisabled}"/> +
+....
+<!-- set deferred value -->
+<c:set var="d" value="#{handler.everythingDisabled}"/>
 ...
 
-<h:inputText id="i1" disabled="#\{d}"/> +
-<h:inputText id="i2" disabled="#\{d}"/> +
+<h:inputText id="i1" disabled="#\{d}"/>
+<h:inputText id="i2" disabled="#\{d}"/>
+....
 
-|===
+Action `<c:remove>` is the natural companion to
+`<c:set>`, allowing the explicit removal of scoped variables. For example:
 
-Action <c:remove> is the natural companion to
-<c:set>, allowing the explicit removal of scoped variables. For example:
+....
+<c:remove var="cachedResult" scope="application"/>
+....
 
-[width="100%",cols="100%",]
-|===
-|<c:remove var="cachedResult"
-scope="application"/>
-|===
-
-Finally, the <c:catch> action provides a
+Finally, the `<c:catch>` action provides a
 complement to the JSP error page mechanism. It is meant to allow page
 authors to recover gracefully from error conditions that they can
 control. For example:
 
-[width="100%",cols="100%",]
-|===
-|<c:catch var=”exception”> +
-<!-- Execution we can recover from if exception occurs --> +
-... +
-</c:catch> +
-<c:if test=”$\{exception != null}”> +
-Sorry. Processing could not be performed because... +
+....
+<c:catch var=”exception”>
+<!-- Execution we can recover from if exception occurs -->
+...
+</c:catch>
+<c:if test=”${exception != null}”>
+Sorry. Processing could not be performed because...
 </c:if>
-|===
+....
 
-=== 
-
-image:taglib-15.png[image]
-
-[[a296]]<c:out>
+=== <c:out>
 
 Evaluates an expression and outputs the result
 of the evaluation to the current _JspWriter_ object.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-16.png[image]
+_Without a body_
+....
+<c:out value=”value” [escapeXml=”{true|false}”]
+    [default=”defaultValue”] />
+....
 
- _Without a body_
-
-<c:out value=”value”
-[escapeXml=”\{true|false}”] +
-[default=”defaultValue”] />
-
- _With a body_
-
-<c:out value=”value”
-[escapeXml=”\{true|false}”]> +
-default value
-
+_With a body_
+....
+<c:out value=”value” [escapeXml=”{true|false}”]>
+    default value
 </c:out>
+....
 
-=== Body Content
-
-image:taglib-16.png[image]
-
+.*Body Content*
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
-
-image:taglib-16.png[image]
-
+.*Attributes*
+[caption=]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -1204,18 +1065,12 @@ _true_ | _Object_
 null.
 |===
 
-=== Null & Error Handling
-
-image:taglib-16.png[image]
-
+.*Null & Error Handling*
 If _value_ is null, the default value takes
 over. If no default value is specified, it itself defaults to an empty
 string.
 
-=== Description
-
-image:taglib-16.png[image]
-
+.*Description*
 The expression to be evaluated is specified
 via the _value_ attribute.
 
@@ -1239,15 +1094,15 @@ character conversions are applied:
 |===
 |Character
 |Character Entity Code
-| _<_ | _&lt;_
+| _<_ | _\&lt;_
 
-| _>_ | _&gt;_
+| _>_ | _\&gt;_
 
-| _&_ | _&amp;_
+| _&_ | _\&amp;_
 
-|‘ |&#039;
+|‘ |\&#039;
 
-|‘’ |&#034;
+|‘’ |\&#034;
 |===
 
 The default value can be specified either via
@@ -1255,67 +1110,55 @@ the _default_ attribute (using the syntax without a body), or within the
 body of the tag (using the syntax with a body). It defaults to an empty
 string.
 
-=== 
-
-image:taglib-15.png[image]
-
-[[a335]]<c:set>
+=== <c:set>
 
 Sets the value of a scoped variable or a
 property of a target object.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-16.png[image]
-
- _Syntax 1: Set the value of a scoped
+_Syntax 1: Set the value of a scoped
 variable using attribute value_
-
+....
 <c:set value=”value”
+    var=”varName” [scope=”{page|request|session|application}”]/>
+....
 
- var=”varName”
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: Set the value of a scoped
+_Syntax 2: Set the value of a scoped
 variable using body content_
-
-<c:set var=”varName”
-[scope=”\{page|request|session|application}”]> +
-body content
-
+....
+<c:set var=”varName” [scope=”{page|request|session|application}”]>
+    body content
 </c:set>
+....
 
- _Syntax 3: Set a property of a target object
+_Syntax 3: Set a property of a target object
 using attribute value_
-
+....
 <c:set value=”value”
+    target=”target” property=”propertyName”/>
+....
 
- target=”target” property=”propertyName”/>
-
- _Syntax 4: Set a property of a target object
+_Syntax 4: Set a property of a target object
 using body content_
-
-<c:set target=”target”
-property=”propertyName”> +
-body content
-
+....
+<c:set target=”target” property=”propertyName”>
+    body content
 </c:set>
+....
 
- _Syntax 5: Set a deferred value_
-
+_Syntax 5: Set a deferred value_
+....
 <c:set var=”varName” value="deferred-value"/>
+....
 
-=== Body Content
-
-image:taglib-16.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
-
-image:taglib-16.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -1344,63 +1187,59 @@ with setter property _property_ , or to a _java.util.Map_ object.
 the property to be set in the target object.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-16.png[image]
-
-Syntax 3 and 4: Throw an exception under any
+* Syntax 3 and 4: Throw an exception under any
 of the following conditions:
 
- _target_ evaluates to null
+** _target_ evaluates to null
 
- _target_ is not a _java.util.Map_ object and
+** _target_ is not a _java.util.Map_ object and
 is not a JavaBeans object that supports setting property _property_ .
 
-If _value_ is null
+* If _value_ is null
 
-Syntax 1: the scoped variable defined by
+** Syntax 1: the scoped variable defined by
 _var_ and _scope_ is removed.
 
-If attribute _scope_ is specified, the scoped
+*** If attribute _scope_ is specified, the scoped
 variable is removed according to the semantics of
 _PageContext.removeAttribute(varName, scope)_ .
 
-Otherwise, there is no way to differentiate
+*** Otherwise, there is no way to differentiate
 between syntax 1 and syntax 5. The scoped variable is removed according
 to the semantics of _PageContext.removeAttribute(varName)_ , and the
 variable is removed from the VariableMapper as well.
 
-Syntax 3:
+** Syntax 3:
 
-if _target_ is a _Map_ , remove the entry
+*** if _target_ is a _Map_ , remove the entry
 with the key identified by _property_ .
 
-if _target_ is a JavaBean component, set the
+*** if _target_ is a JavaBean component, set the
 property to null.
 
-Syntax 5:
+** Syntax 5:
 
-There is no way to differentiate between
+*** There is no way to differentiate between
 syntax 1 (where scope is not specified) and syntax 5. The scoped
 variable is removed according to the semantics of
 _PageContext.removeAttribute(varName)_ , and the variable is removed
 from the VariableMapper as well.
 
-=== Description
-
-image:taglib-16.png[image]
+.*Description*
 
 Syntax 1 and 2 set the value of a the scoped
 variable identified by _var_ and _scope_ .
 
 Syntax 3 and 4:
 
-If the target expression evaluates to a
+* If the target expression evaluates to a
 _java.util.Map_ object, set the value of the element associated with the
 key identified by _property_ . If the element does not exist, add it to
 the _Map_ object.
 
-Otherwise, set the value of the property
+* Otherwise, set the value of the property
 _property_ of the JavaBeans object _target_ . If the type of the value
 to be set does not match the type of the bean property, conversion is
 performed according to the conversion rules defined in the expression
@@ -1412,10 +1251,10 @@ appropriate type coersion leads to a _JspException_ at runtime.
 
 Syntax 5:
 
-Map the deferred-value specified to the "var"
+* Map the deferred-value specified to the "var"
 attribute into the EL VariableMapper.
 
-Some implementation notes illustrating how
+* Some implementation notes illustrating how
 the <c:set> tag handler may process a deferred-value specified for the
 "value" attribute.
 
@@ -1423,38 +1262,30 @@ the <c:set> tag handler may process a deferred-value specified for the
 |===
 |doStartTag() +
 ... +
-// 'value' is a deferred-value +
-// Get the current EL VariableMapper +
+ // 'value' is a deferred-value +
+ // Get the current EL VariableMapper +
 VariableMapper vm = jspContext.getELContext().getVariableMapper(); +
-// Assign the expression to the variable specified +
-// in the 'var' attribute, so any reference to that +
-// variable will be replaced by the expression is +
-// subsequent EL evaluations. +
+ // Assign the expression to the variable specified +
+ // in the 'var' attribute, so any reference to that +
+ // variable will be replaced by the expression is +
+ // subsequent EL evaluations. +
 vm.setVariable(getVar(), (ValueExpression)getValue()); +
 ...
 |===
 
-=== 
-
-image:taglib-15.png[image]
-
-<c:remove>
+=== <c:remove>
 
 Removes a scoped variable.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-16.png[image]
+....
+<c:remove var=”varName” 
+          [scope=”{page|request|session|application}”]/>
+....
 
-<c:remove var=”varName”
-
-
-[scope=”\{page|request|session|application}”]/>
-
-=== Attributes
-
-image:taglib-16.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -1468,11 +1299,9 @@ _false_ | _String_
 |Scope for var.
 |===
 
-=== Description
+.*Description*
 
-image:taglib-16.png[image]
-
-The <c:remove> action removes a scoped
+The `<c:remove>` action removes a scoped
 variable.
 
 If attribute _scope_ is not specified, the
@@ -1481,36 +1310,27 @@ _PageContext.removeAttribute(varName)_ . If attribute _scope_ is
 specified, the scoped variable is removed according to the semantics of
 _PageContext.removeAttribute(varName, scope)_ .
 
-=== 
-
-image:taglib-15.png[image]
-
-<c:catch>
+=== <c:catch>
 
 Catches a _java.lang.Throwable_ thrown by any
 of its nested actions.
 
-=== Syntax
-
-image:taglib-16.png[image]
-
+.*Syntax*
+....
 <c:catch [var=”varName”]>
 
  nested actions
 
 </c:catch>
+....
 
-=== Body Content
-
-image:taglib-16.png[image]
+.*Body Content*
 
 JSP. The body content is processed by the JSP
 container and the result is written to the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-16.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -1522,19 +1342,17 @@ action. The type of the scoped variable is the type of the exception
 thrown.
 |===
 
-=== Description
+.*Description*
 
-image:taglib-16.png[image]
-
-The <c:catch> action allows page authors to
+The `<c:catch>` action allows page authors to
 handle errors from any action in a uniform fashion, and allows for error
 handling for multiple actions at once.
 
-<c:catch> provides page authors with granular
+`<c:catch>` provides page authors with granular
 error handling: Actions that are of central importance to a page should
-not be encapsulated in a <c:catch>, so their exceptions will propagate
+not be encapsulated in a `<c:catch>`, so their exceptions will propagate
 to an error page, whereas actions with secondary importance to the page
-should be wrapped in a <c:catch>, so they never cause the error page
+should be wrapped in a `<c:catch>`, so they never cause the error page
 mechanism to be invoked.
 
 The exception thrown is stored in the scoped
@@ -1544,14 +1362,6 @@ if it existed.
 
 If _var_ is missing, the exception is simply
 caught and not saved.
-
-
-
-=== 
-
-=== 
-
-image:taglib-17.png[image]
 
 Conditional Actions
 
