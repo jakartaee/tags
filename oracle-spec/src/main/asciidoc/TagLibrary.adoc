@@ -1318,9 +1318,7 @@ of its nested actions.
 .*Syntax*
 ....
 <c:catch [var=”varName”]>
-
- nested actions
-
+    nested actions
 </c:catch>
 ....
 
@@ -1363,11 +1361,7 @@ if it existed.
 If _var_ is missing, the exception is simply
 caught and not saved.
 
-Conditional Actions
-
-=== core tag library
-
-image:taglib-18.png[image]
+== Conditional Actions: core tag library
 
 The output of a JSP page is often conditional
 on the value of dynamic application data. A simple scriptlet with an
@@ -1378,11 +1372,7 @@ one may forget the curly braces).
 The JSTL conditional actions make it easy to
 do conditional processing in a JSP page.
 
-=== 
-
-image:taglib-19.png[image]
-
-Overview
+=== Overview
 
 The JSTL conditional actions are designed to
 support the two most common usage patterns associated with conditional
@@ -1394,17 +1384,11 @@ evaluates its body content only if the test condition associated with it
 is true. In the following example, a special greeting is displayed only
 if this is a user’s first visit to the site:
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:if test="$\{user.visitCount == 1}">
-
- This is your first visit. Welcome to the
-site!
-
+....
+<c:if test="${user.visitCount == 1}">
+    This is your first visit. Welcome to the site!
 </c:if>
-
-|===
+....
 
 With _mutually exclusive_ conditional
 execution, only one among a number of possible alternative actions gets
@@ -1413,77 +1397,48 @@ its body content evaluated.
 For example, the following sample code shows
 how the text rendered depends on a user’s membership category.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <c:choose>
-
- <c:when test="$\{user.category == 'trial'}”>
-
- ...
-
- </c:when>
-
- <c:when test="$\{user.category == 'member'}”>
-
- ...
-
- </c:when>
-
- <c:when test="$\{user.category == 'vip'}”>
-
- ...
-
- </c:when> +
-<c:otherwise>
-
- ...
-
- </c:otherwise>
-
+    <c:when test="${user.category == 'trial'}”>
+        ...
+    </c:when>
+    <c:when test="${user.category == 'member'}”>
+        ...
+    </c:when>
+    <c:when test="${user.category == 'vip'}”>
+        ...
+    </c:when>
+    <c:otherwise>
+        ...
+    </c:otherwise>
 </c:choose>
-
-|===
+....
 
 An _if/then/else_ statement can be easily
 achieved as follows:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <c:choose>
-
- <c:when test="$\{count == 0}”>
-
- No records matched your selection.
-
- </c:when>
-
- <c:otherwise>
-
- $\{count} records matched your selection.
-
- </c:otherwise>
-
+    <c:when test="${count == 0}”>
+        No records matched your selection.
+    </c:when>
+    <c:otherwise>
+        ${count} records matched your selection.
+    </c:otherwise>
 </c:choose>
+....
 
-|===
+=== Custom Logic Actions
 
-=== 
-
-image:taglib-19.png[image]
-
-Custom Logic Actions
-
-It is important to note that the <c:if> and
-<c:when> actions have different semantics. A <c:if> action will always
+It is important to note that the `<c:if>` and
+`<c:when>` actions have different semantics. A `<c:if>` action will always
 process its body content if its test condition evaluates to true. A
-<c:when> action will process its body content if it is the first one in
-a series of <c:when> actions whose test condition evaluates to true.
+`<c:when>` action will process its body content if it is the first one in
+a series of `<c:when>` actions whose test condition evaluates to true.
 
 These semantic differences are enforced by
-the fact that only <c:when> actions can be used within the context of a
-mutually exclusive conditional execution (<c:choose> action). This clean
+the fact that only `<c:when>` actions can be used within the context of a
+mutually exclusive conditional execution (`<c:choose>` action). This clean
 separation of behavior also impacts the way custom logic actions (i.e.
 actions who render their bodies depending on the result of a test
 condition) should be designed. Ideally, the result associated with the
@@ -1494,37 +1449,26 @@ conditional execution.
 The proper way to enable this is by simply
 having the custom logic action export the result of the test condition
 as a scoped variable. This boolean result can then be used as the test
-condition of a <c:when> action.
+condition of a `<c:when>` action.
 
 In the example below, the fictitious custom
-action <acme:fullMoon> tells whether or not a page is accessed during a
+action `<acme:fullMoon>` tells whether or not a page is accessed during a
 full moon. The behavior of an _if/then/else_ statement is made possible
-by having the result of the <acme:fullMoon> action exposed as a boolean
-scoped variable that is then used as the test condition in the <c:when>
+by having the result of the `<acme:fullMoon>` action exposed as a boolean
+scoped variable that is then used as the test condition in the `<c:when>`
 action.
 
-[width="100%",cols="100%",]
-|===
-a|
- <acme:fullMoon var="isFullMoon"/>
-
- <c:choose>
-
- <c:when test="$\{isFullMoon}">
-
- ...
-
- </c:when>
-
- <c:otherwise>
-
- ...
-
- </c:otherwise>
-
- </c:choose>
-
-|===
+....
+<acme:fullMoon var="isFullMoon"/>
+<c:choose>
+    <c:when test="${isFullMoon}">
+        ...
+    </c:when>
+    <c:otherwise>
+        ...
+    </c:otherwise>
+</c:choose>
+....
 
 To facilitate the implementation of
 conditional actions where the boolean result is exposed as a JSP scoped
@@ -1532,47 +1476,37 @@ variable, class _ConditionalTagSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”) has been defined in this
 specification.
 
-
-
-=== 
-
-image:taglib-19.png[image]
-
-<c:if>
+=== <c:if>
 
 Evaluates its body content if the expression
 specified with the _test_ attribute is true.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-20.png[image]
+_Syntax 1: Without body content_
 
- _Syntax 1: Without body content_
+....
+<c:if test=”testCondition”
+    var=”varName” [scope=”{page|request|session|application}”]/>
+....
 
-<c:if test=”testCondition” +
-var=”varName” [scope=”\{page|request|session|application}”]/>
+_Syntax 2: With body content_
 
- _Syntax 2: With body content_
-
-<c:if test=”testCondition” +
-[var=”varName”] [scope=”\{page|request|session|application}”]>
-
- body content
-
+....
+<c:if test=”testCondition”
+        [var=”varName”] [scope=”{page|request|session|application}”]>
+    body content
 </c:if>
+....
 
-=== Body Content
-
-image:taglib-20.png[image]
+.*Body Content*
 
 JSP. If the test condition evaluates to true,
 the JSP container processes the body content and then writes it to the
 current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-20.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -1592,114 +1526,81 @@ _false_ | _String_
 |Scope for var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-20.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Description
-
-image:taglib-20.png[image]
+.*Description*
 
 If the test condition evaluates to true, the
 body content is evaluated by the JSP container and the result is output
 to the current _JspWriter_ .
 
-=== 
-
-image:taglib-19.png[image]
-
-<c:choose>
+=== <c:choose>
 
 Provides the context for mutually exclusive
 conditional execution.
 
-=== Syntax
-
-image:taglib-20.png[image]
-
+.*Syntax*
+....
 <c:choose>
-
- body content (<when> and <otherwise> subtags)
-
+    body content (<when> and <otherwise> subtags)
 </c:choose>
+....
 
-=== Body Content
-
-image:taglib-20.png[image]
+.*Body Content*
 
 JSP. The body content is processed by the JSP
 container (at most one of the nested actions will be processed) and
 written to the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-20.png[image]
+.*Attributes*
 
 None.
 
-=== Constraints
+.*Constraints*
 
-image:taglib-20.png[image]
-
-The body of the <c:choose> action can only
+* The body of the `<c:choose>` action can only
 contain:
 
-White spaces
+** White spaces +
+May appear anywhere around the `<c:when>` and `<c:otherwise>` subtags.
 
-May appear anywhere around the <c:when> and
-<c:otherwise> subtags.
+** 1 or more `<c:when>` actions +
+Must all appear before `<c:otherwise>`
 
-1 or more <c:when> actions
+** 0 or 1 `<c:otherwise>` action +
+Must be the last action nested within `<c:choose>`
 
-Must all appear before <c:otherwise>
+.*Description*
 
-0 or 1 <c:otherwise> action
+The `<c:choose>` action processes the body of
+the first `<c:when>` action whose test condition evaluates to true. If
+none of the test conditions of nested `<c:when>` actions evaluates to
+true, then the body of an `<c:otherwise>` action is processed, if present.
 
-Must be the last action nested within
-<c:choose>
+=== <c:when>
 
-=== Description
-
-image:taglib-20.png[image]
-
-The <c:choose> action processes the body of
-the first <c:when> action whose test condition evaluates to true. If
-none of the test conditions of nested <c:when> actions evaluates to
-true, then the body of an <c:otherwise> action is processed, if present.
-
-=== 
-
-image:taglib-19.png[image]
-
-<c:when>
-
-Represents an alternative within a <c:choose>
+Represents an alternative within a `<c:choose>`
 action.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-20.png[image]
-
-<c:when test=”testCondition”> +
-body content
-
+....
+<c:when test=”testCondition”>
+    body content
 </c:when>
+....
 
-=== Body Content
-
-image:taglib-20.png[image]
+.*Body Content*
 
 JSP. If this is the first <c:when> action to
 evaluate to true within <c:choose>, the JSP container processes the body
 content and then writes it to the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-20.png[image]
-
+.*Attributes*
+[caption=]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -1710,87 +1611,60 @@ test condition that determines whether or not the body content should be
 processed.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-20.png[image]
-
-Must have _<c:choose>_ as an immediate
+* Must have _<c:choose>_ as an immediate
 parent.
 
-Must appear before an <c:otherwise> action
+* Must appear before an <c:otherwise> action
 that has the same parent.
 
-=== Description
+.*Description*
 
-image:taglib-20.png[image]
-
-Within a <c:choose> action, the body content
-of the first <c:when> action whose test condition evaluates to true is
+Within a `<c:choose>` action, the body content
+of the first `<c:when>` action whose test condition evaluates to true is
 evaluated by the JSP container, and the result is output to the current
 _JspWriter_ .
 
-=== 
-
-image:taglib-19.png[image]
-
-<c:otherwise>
+=== <c:otherwise>
 
 Represents the last alternative within a
-<c:choose> action.
+`<c:choose>` action.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-20.png[image]
-
+....
 <c:otherwise>
-
- conditional block
-
+    conditional block
 </c:otherwise>
+....
 
-=== Body Content
+.*Body Content*
 
-image:taglib-20.png[image]
-
-JSP. If no <c:when> action nested within
-<c:choose> evaluates to true, the JSP container processes the body
+JSP. If no `<c:when>` action nested within
+`<c:choose>` evaluates to true, the JSP container processes the body
 content and then writes it to the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-20.png[image]
+.*Attributes*
 
 None.
 
-=== Constraints
+.*Constraints*
 
-image:taglib-20.png[image]
+** Must have `<c:choose>` as an immediate parent.
 
-Must have <c:choose> as an immediate parent.
+** Must be the last nested action within
+`<c:choose>`.
 
-Must be the last nested action within
-<c:choose>.
+.*Description*
 
-=== Description
-
-image:taglib-20.png[image]
-
-Within a <c:choose> action, if none of the
-nested <c:when> test conditions evaluates to true, then the body content
-of the <c:otherwise> action is evaluated by the JSP container, and the
+Within a `<c:choose>` action, if none of the
+nested `<c:when>` test conditions evaluates to true, then the body content
+of the `<c:otherwise>` action is evaluated by the JSP container, and the
 result is output to the current _JspWriter_ .
 
-=== 
 
-=== 
-
-image:taglib-21.png[image]
-
-Iterator Actions
-
-=== core tag library
-
-image:taglib-22.png[image]
+== Iterator Actions: core tag library
 
 Iterating over a collection of objects is a
 common occurrence in a JSP page. Just as with conditional processing, a
