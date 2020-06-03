@@ -1677,81 +1677,64 @@ the curly braces, etc.).
 The JSTL iterator actions simplify iterating
 over a wide variety of collections of objects.
 
-=== 
+=== Overview
 
-image:taglib-23.png[image]
-
-Overview
-
-The <c:forEach> action repeats its nested
+The `<c:forEach>` action repeats its nested
 body content over the collection of objects specified by the _items_
 attribute. For example, the JSP code below creates an HTML table with
 one column that shows the default display value of each item in the
 collection.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <table>
-
- <c:forEach var=”customer”
-items=”$\{customers}”> +
-<tr><td>$\{customer}</td></tr>
-
- </c:forEach>
-
+    <c:forEach var=”customer” items=”${customers}”>
+        <tr><td>${customer}</td></tr>
+    </c:forEach>
 </table>
+....
 
-|===
-
-The <c:forEach> action has the following
+The `<c:forEach>` action has the following
 features:
 
-Supports all standard J2SE™ platform
-collection types.
-
+* Supports all standard J2SE™ platform collection types. +
 A page author therefore does not have to
 worry about the specific type of the collection of objects to iterate
 over (see link:jstl.html#a575[See Collections of Objects to
 Iterate Over]).
 
-Exports an object that holds the current item
-of the iteration.
-
-Normally, each object exposed by <c:forEach>
+* Exports an object that holds the current item of the iteration. +
+Normally, each object exposed by `<c:forEach>`
 is an item of the underlying collection being iterated over. There are
 two exceptions to this to facilitate access to the information contained
 in arrays of primitive types, as well as in _Map_ objects (see
 link:jstl.html#a581[See Map]).
 
-Exports an object that holds information
+* Exports an object that holds information
 about the status of the iteration (see link:jstl.html#a589[See
 Iteration Status]).
 
-Supports range attributes to iterate over a
+* Supports range attributes to iterate over a
 subset of the original collection (see link:jstl.html#a601[See
 Range Attributes]).
 
-Exposes an interface as well as a base
-implementation class.
-
+* Exposes an interface as well as a base implementation class. +
 Developers can easily implement collaborating
 subtags as well as their own iteration tags (see
 link:jstl.html#a606[See Tag Collaboration]).
 
-<c:forEach> is the base iteration action in
+`<c:forEach>` is the base iteration action in
 JSTL. It handles the most common iteration cases conveniently. Other
 iteration actions are also provided in the tag library to support
-specific, specialized functionality not handled by <c:forEach> (e.g.
-<c:forTokens> (link:jstl.html#a713[See <c:forTokens>]) and
-<x:forEach> (link:jstl.html#a2516[See <x:forEach>])). Developers
+specific, specialized functionality not handled by `<c:forEach>` (e.g.
+`<c:forTokens>` (link:jstl.html#a713[See <c:forTokens>]) and
+`<x:forEach>` (link:jstl.html#a2516[See <x:forEach>])). Developers
 can also easily extend the behavior of this base iteration action to
 customize it according to an application's specific needs.
 
-=== [[a575]]Collections of Objects to Iterate Over
+==== Collections of Objects to Iterate Over
 
 A large number of collection types are
-supported by <c:forEach>, including all implementations of
+supported by `<c:forEach>`, including all implementations of
 _java.util.Collection_ (includes _List_ , _LinkedList_ , _ArrayList_ ,
 _Vector_ , _Stack_ , _Set),_ and _java.util.Map (_ includes _HashMap_ ,
 _Hashtable_ , _Properties_ , _Provider_ , _Attributes_ ).
@@ -1767,7 +1750,7 @@ _java.util.Enumeration_ are supported as well but these must be used
 with caution. _Iterator_ and _Enumeration_ objects are not resettable so
 they should not be used within more than one iteration tag.
 
-{empty}Deprecated: Finally,
+*Deprecated*: Finally,
 _java.lang.String_ objects can be iterated over if the string represents
 a list of comma separated values (e.g.
 “Monday,Tuesday,Wednesday,Thursday,Friday”).link:#a3270[3]
@@ -1785,69 +1768,51 @@ _jakarta.servlet.jsp.jstl.sql.Result_ object, making life much easier for
 a page author that needs to manipulate the data returned from a SQL
 query.
 
-=== [[a581]]Map
+==== Map
 
 If the _items_ attribute is of type
 _java.util.Map_ , then the current item will be of type
 _java.util.Map.Entry_ , which has the following two properties:
 
- _key_ - the key under which this item is
+* _key_ - the key under which this item is
 stored in the underlying _Map_
 
- _value_ - the value that corresponds to this
+* _value_ - the value that corresponds to this
 key
 
-The following example uses <c:forEach> to
+The following example uses `<c:forEach>` to
 iterate over the values of a _Hashtable_ :
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var="entry"
-items="$\{myHashtable}">
-
- Next element is $\{entry.value}/>
-
+....
+<c:forEach var="entry" items="${myHashtable}">
+    Next element is ${entry.value}/>
 </c:forEach>
+....
 
-|===
+==== Iteration Status
 
-=== [[a589]]Iteration Status
-
-<c:forEach> also exposes information relative
+`<c:forEach>` also exposes information relative
 to the iteration taking place. The example below creates an HTML table
 with the first column containing the position of the item in the
 collection, and the second containing the name of the product.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <table>
-
- <c:forEach var=”product”
-items=”$\{products}”
-
- varStatus=”status”>
-
- <tr>
-
- <td>$\{status.count}”</td>
-
- <td>$\{product.name}”</td>
-
- </tr>
-
- </c:forEach>
-
+    <c:forEach var=”product” items=”${products}”
+            varStatus=”status”>
+        <tr>
+            <td>${status.count}”</td>
+            <td>${product.name}”</td>
+        </tr>
+    </c:forEach>
 </table>
-
-|===
+....
 
 See link:jstl.html#UNKNOWN[See Java
 APIs]" for details on the _LoopTagStatus_ interface exposed by the
 _varStatus_ attribute.
 
-=== [[a601]]Range Attributes
+==== Range Attributes
 
 A set of range attributes is available to
 iterate over a subset of the collection of items. The _begin_ and _end_
@@ -1856,18 +1821,13 @@ is not specified, then the value of the current item is set to the
 integer value of the current index. In this example, _i_ would take
 values from 100 to 110 (inclusive).
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <c:forEach var=”i” begin=”100” end=”110”>
-
- $\{i}
-
+    ${i}
 </c:forEach>
+....
 
-|===
-
-=== [[a606]]Tag Collaboration
+==== Tag Collaboration
 
 Custom actions give developers the power to
 provide added functionality to a JSP application without requiring the
@@ -1875,76 +1835,52 @@ page author to use Java code. In this example, an item of the iteration
 is processed differently depending upon whether it is an odd or even
 element.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var="product" items="$\{products}"
-varStatus="status">
-
- <c:choose>
-
- <c:when test="$\{status.count % 2 == 0}">
-
- even item
-
- </c:when>
-
- <c:otherwise>
-
- odd item
-
- </c:otherwise>
-
- </c:choose>
-
+....
+<c:forEach var="product" items="${products}" varStatus="status">
+    <c:choose>
+        <c:when test="${status.count % 2 == 0}">
+            even item
+        </c:when>
+        <c:otherwise>
+            odd item
+        </c:otherwise>
+    </c:choose>
 </c:forEach>
-
-|===
+....
 
 If this type of processing is common, it
 could be worth providing custom actions that yield simpler code, as
 shown below.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var="product"
-items="$\{products}">
-
- <acme:even>
-
- even item
-
- </acme:even>
-
- <acme:odd>
-
- odd item
-
- </acme:odd>
-
+....
+<c:forEach var="product" items="${products}">
+    <acme:even>
+        even item
+    </acme:even>
+    <acme:odd>
+        odd item
+    </acme:odd>
 </c:forEach>
-
-|===
+....
 
 In order to make this possible, custom
-actions like <acme:odd> and <acme:even> leverage the fact that
-<c:forEach> supports implicit collaboration via the interface _LoopTag_
+actions like `<acme:odd>` and `<acme:even>` leverage the fact that
+`<c:forEach>` supports implicit collaboration via the interface _LoopTag_
 (see link:jstl.html#UNKNOWN[See Java APIs]").
 
-The fact that <c:forEach> exposes an
+The fact that `<c:forEach>` exposes an
 interface also means that other actions with iterative behavior can be
 developed using the same interface and will collaborate in the same
 manner with nested tags. Class _LoopTagSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]") provides a solid base for
 doing this.
 
-=== Deferred Values
+==== Deferred Values
 
 As of JSP 2.1, the new unified Expression
-Language supports the concept of deferred expressions (using the #\{}
+Language supports the concept of deferred expressions (using the #{}
 syntax), i.e. expressions whose evaluation is deferred to application
-code (as opposed to immediate evaluation (using the $\{} syntax) where
+code (as opposed to immediate evaluation (using the ${} syntax) where
 the expression is evaluated immediately by the container). Deferred
 expressions are used mostly with JavaServer Faces, a component-based UI
 framework for the webtier.
@@ -1955,75 +1891,53 @@ the _items_ attribute must be specified as a deferred-value as well.
 
 For example:
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:forEach var="child"
-items="#\{customer.children}">
-
- <h:inputText value="#\{child.name}"/>
-
+....
+<c:forEach var="child" items="#{customer.children}">
+    <h:inputText value="#{child.name}"/>
 </c:forEach>
-
-|===
+....
 
 Because a deferred-value is specified for
 items, the iteration tag has access to the original expression and can
 make the iteration variable available as a deferred-value with the
 proper index into the _items_ collection. This deferred value can then
-be evaluated properly by the code associated with the <h:inputText>
+be evaluated properly by the code associated with the `<h:inputText>`
 component.
 
-=== 
 
-image:taglib-23.png[image]
-
-[[a638]]<c:forEach>
+=== <c:forEach>
 
 Repeats its nested body content over a
 collection of objects, or repeats it a fixed number of times.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-24.png[image]
-
- _Syntax 1: Iterate over a collection of
-objects_
-
-<c:forEach [var=”varName”] items=”collection”
-
-{empty} [varStatus=”varStatusName”]
-
- [begin=”begin”] [end=”end”] [step=”step”]>
-
- body content
-
+_Syntax 1: Iterate over a collection of objects_
+....
+<c:forEach  [var=”varName”] items=”collection”
+            [varStatus=”varStatusName”]
+            [begin=”begin”] [end=”end”] [step=”step”]>
+    body content
 </c:forEach>
+....
 
- _Syntax 2: Iterate a fixed number of times_
-
-{empty}<c:forEach [var=”varName”]
-
-{empty} [varStatus=”varStatusName”]
-
- begin=”begin” end=”end” [step=”step”]>
-
- body content
-
+_Syntax 2: Iterate a fixed number of times_
+....
+<c:forEach  [var=”varName”]
+            [varStatus=”varStatusName”]
+            begin=”begin” end=”end” [step=”step”]>
+    body content
 </c:forEach>
+....
 
-=== Body Content
-
-image:taglib-24.png[image]
+.*Body Content*
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the JSP container and written to
 the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-24.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -2076,32 +1990,26 @@ will only process every _step_ items of the collection, starting with
 the first one.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-24.png[image]
+* If specified, _begin_ must be >= 0.
 
-If specified, _begin_ must be >= 0.
-
-If _end_ is specified and it is less than
+* If _end_ is specified and it is less than
 _begin_ , the loop is simply not executed.
 
-If specified, _step_ must be >= 1
+* If specified, _step_ must be >= 1
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-24.png[image]
-
-If _items_ is null, it is treated as an empty
+* If _items_ is null, it is treated as an empty
 collection, i.e., no iteration is performed.
 
-=== Description
-
-image:taglib-24.png[image]
+.*Description*
 
 If _begin_ is greater than or equal to the
 size of _items_ , no iteration is performed.
 
-Collections Supported & Current Item
+*_Collections Supported & Current Item_*
 
 The data types listed below must be supported
 for _items_ . With syntax 1, each object exposed via the _var_ attribute
@@ -2109,134 +2017,107 @@ is of the type of the object in the underlying collection, except for
 arrays of primitive types and maps (see below). With syntax 2, the
 object exported is of type _Integer_ .
 
-Arrays
-
+* Arrays +
 This includes arrays of objects as well as
 arrays of primitive types. For arrays of primitive types, the current
 item for the iteration is automatically wrapped with its standard
-wrapper class (e.g. _Integer_ for _int_ , _Float_ for _float_ , etc.)
-
+wrapper class (e.g. _Integer_ for _int_ , _Float_ for _float_ , etc.) +
 Elements are processed in their indexing
 order.
 
-Implementation of _java.util.Collection_ .
-
+* Implementation of _java.util.Collection_. +
 An _Iterator_ object is obtained from the
 collection via the _iterator()_ method, and the items of the collection
 are processed in the order returned by that _Iterator_ object.
 
-Implementation of _java.util.Iterator_ .
-
+* Implementation of _java.util.Iterator_. +
 Items of the collection are processed in the
 order returned by the _Iterator_ object.
 
-Implementation of _java.util.Enumeration_ .
-
+* Implementation of _java.util.Enumeration_. +
 Items of the collection are processed in the
 order returned by the _Enumeration_ object.
 
-Implementation of _java.util.Map_
-
+* Implementation of _java.util.Map_. +
 The object exposed via the _var_ attribute is
-of type _Map.Entry_ .
-
+of type _Map.Entry_. +
 A _Set_ view of the mappings is obtained from
 the _Map_ via the _entrySet()_ method, from which an _Iterator_ object
 is obtained via the _iterator()_ method. The items of the collection are
 processed in the order returned by that _Iterator_ object.
 
- _String_
-
+* _String_ +
 The string represents a list of comma
 separated values, where the comma character is the token delimiter.
 Tokens are processed in their sequential order in the string.
 
-Deferred Values
+*_Deferred Values_*
 
 When a deferred-value is specified for the
 _items_ attribute, the tag handler now adds at each iteration a mapping
 for the _var_ attribute into the EL _VariableMapper_ .
 
 
-
-
-
-
-
 Below are some implementation notes
 illustrating how an iteration tag handler may process a deferred-value
 specified for the _items_ attribute.
 
-[width="100%",cols="100%",]
-|===
-|doStartTag() +
-... +
-// 'items' is a deferred-value +
-// Get the current EL VariableMapper +
-VariableMapper vm = jspContext.getELContext().getVariableMapper(); +
-// Create an expression to be assigned to the variable +
-// specified in the 'var' attribute. +
-// 'index' is an iteration counter kept by the tag handler. +
-myimpl.IndexedExpression expr = +
-new myimpl.IndexExpression(getItems(), index); +
-// Assign the expression to the variable specified in +
-// the 'var' attribute, so any reference to that variable +
-// will be replaced by the expression in subsequent EL +
-// evaluations. +
-oldMapping = vm.setVariable(getVar(), expr); +
-... +
- +
-doEndTag() +
-... +
-// restore the original state of the VariableMapper +
-jspContext.getELContext().getVariableMapper().setVariable( +
-getVar(), oldMapping); +
-...
-|===
+....
+doStartTag() +
+    ...
+    // 'items' is a deferred-value +
+    // Get the current EL VariableMapper
+    VariableMapper vm = 
+        jspContext.getELContext().getVariableMapper();
+    // Create an expression to be assigned to the variable
+    // specified in the 'var' attribute.
+    // 'index' is an iteration counter kept by the tag handler.
+    myimpl.IndexedExpression expr =
+        new myimpl.IndexExpression(getItems(), index);
+    // Assign the expression to the variable specified in
+    // the 'var' attribute, so any reference to that variable
+    // will be replaced by the expression in subsequent EL
+    // evaluations.
+    oldMapping = vm.setVariable(getVar(), expr);
+    ...
+
+doEndTag()
+    ...
+    // restore the original state of the VariableMapper
+    jspContext.getELContext().getVariableMapper().setVariable(
+        getVar(), oldMapping);
+    ...
+....
 
 The number of items referred to by the
 _items_ attribute must be the same when Faces creates the component tree
 and when JSP executes the iteration tag. Undefined behavior will result
 if this is not the case.
 
-=== 
-
-image:taglib-23.png[image]
-
-[[a713]]<c:forTokens>
+=== <c:forTokens>
 
 Iterates over tokens, separated by the
 supplied delimiters.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-24.png[image]
-
-<c:forTokens items="stringOfTokens"
-delims="delimiters"
-
-{empty} [var="varName"]
-
-{empty} [varStatus="varStatusName"]
-
- [begin="begin"] [end="end"] [step="step"]>
-
- body content
-
+....
+<c:forTokens items="stringOfTokens" delims="delimiters"
+        [var="varName"]
+        [varStatus="varStatusName"]
+        [begin="begin"] [end="end"] [step="step"]>
+    body content
 </c:forTokens>
+....
 
-=== Body Content
-
-image:taglib-24.png[image]
+.*Body Content*
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the JSP container and written to
 the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-24.png[image]
-
+.*Attributes*
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -2277,31 +2158,25 @@ will only process every _step_ tokens of the string, starting with the
 first one.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-24.png[image]
+* If specified, _begin_ must be >= 0.
 
-If specified, _begin_ must be >= 0.
-
-If _end_ is specified and it is less than
+* If _end_ is specified and it is less than
 _begin_ , the loop is simply not executed.
 
-If specified, _step_ must be >= 1
+* If specified, _step_ must be >= 1
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-24.png[image]
-
-If _items_ is null, it is treated as an empty
+* If _items_ is null, it is treated as an empty
 collection, i.e., no iteration is performed.
 
-If _delims_ is null, _items_ is treated as a
-single monolithic token. Thus, when _delims_ is null, <c:forTokens>
+* If _delims_ is null, _items_ is treated as a
+single monolithic token. Thus, when _delims_ is null, `<c:forTokens>`
 iterates exactly zero (if _items_ is also null) or one time.
 
-=== Description
-
-image:taglib-24.png[image]
+.*Description*
 
 The tokens of the string are retrieved using
 an instance of _java.util.StringTokenizer_ with arguments _items_ (the
@@ -2310,20 +2185,12 @@ string to be tokenized) and _delims_ (the delimiters).
 Delimiter characters separate tokens. A token
 is a maximal sequence of consecutive characters that are not delimiters.
 
-Deferred Values
+*_Deferred Values_*
 
 See Section "Deferred Values" for
-<c:forEach>. Same comments apply here.
+`<c:forEach>`. Same comments apply here.
 
-=== 
-
-=== 
-
-image:taglib-25.png[image]
-
-URL Related Actions
-
-=== core tag library
+== URL Related Actions: core tag library
 
 image:taglib-26.png[image]
 
