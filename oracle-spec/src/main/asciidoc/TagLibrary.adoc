@@ -2192,23 +2192,19 @@ See Section "Deferred Values" for
 
 == URL Related Actions: core tag library
 
-image:taglib-26.png[image]
-
 Linking, importing, and redirecting to URL
 resources are features often needed in JSP pages. Since dealing with
 URLs can often be tricky, JSTL offers a comprehensive suite of
 URL-related actions to simplify these tasks.
 
-=== 
-
-image:taglib-27.png[image]
-
-Hypertext Links
+=== Hypertext Links
 
 By using the HTML <A> element, a page author
 can set a hypertext link as follows:
 
- _<a href="/register.jsp">Register</a>_
+....
+<a href="/register.jsp">Register</a>
+....
 
 If the link refers to a local resource and
 session tracking is enabled, it is necessary to rewrite the URL so
@@ -2221,50 +2217,36 @@ encoding refers to the process of encoding special characters in a
 string, according to the rules defined in RFC 2396. For example, a space
 must be encoded in a URL string as a '+':
 
-
-_http://acme.com/app/choose?country=Dominican+Republic_
+....
+http://acme.com/app/choose?country=Dominican+Republic
+....
 
 As shown in the following example, the
-combination of the <c:url> and <c:param> actions takes care of all
-issues related to URL rewriting and encoding: <c:url> rewrites a URL if
-necessary, and <c:param> transparently encodes query string parameters
+combination of the `<c:url>` and `<c:param>` actions takes care of all
+issues related to URL rewriting and encoding: `<c:url>` rewrites a URL if
+necessary, and `<c:param>` transparently encodes query string parameters
 (both name and value).
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:url value="http://acme.com/exec/register"
-var="myUrl">
-
- <c:param name="name"
-value="$\{param.name}"/>
-
- <c:param name="country"
-value="$\{param.country}"/>
-
+....
+<c:url value="http://acme.com/exec/register" var="myUrl">
+    <c:param name="name" value="${param.name}"/>
+    <c:param name="country" value="${param.country}"/>
 </c:url>
-
- _<a href=’<c:out
-value="$\{myUrl}"/>’>Register</a>_
-
-|===
+<a href=’<c:out value="${myUrl}"/>’>Register</a>
+....
 
 Another important feature of <c:url> is that
 it transparently prepends the context path to context-relative URLs.
 Assuming a context path of "/foo", the following example
 
-[width="100%",cols="100%",]
-|===
-|<c:url value="/ads/logo.html"/> __
-|===
+....
+<c:url value="/ads/logo.html"/>
+....
 
 yields the URL _/foo/ads/logo.html_ .
 
-=== 
 
-image:taglib-27.png[image]
-
-Importing Resources
+=== Importing Resources
 
 There is a wide variety of resources that a
 page author might be interested in including and/or processing within a
@@ -2272,17 +2254,16 @@ JSP page. For instance, the example below shows how the content of the
 README file at the FTP site of acme.com could be included within the
 page.
 
-[width="100%",cols="100%",]
-|===
-|<c:import url=”ftp://ftp.acme.com/README”/>
-|===
+....
+<c:import url=”ftp://ftp.acme.com/README”/>
+....
 
-In the JSP specification, a <jsp:include>
+In the JSP specification, a `<jsp:include>`
 action provides for the inclusion of static and dynamic resources
 located in the same context as the current page. This is a very
 convenient feature that is widely used by page authors.
 
-However, <jsp:include> falls short in
+However, `<jsp:include>` falls short in
 flexibility when page authors need to get access to resources that
 reside outside of the web application. In many situations, page authors
 have the need to import the content of Internet resources specified via
@@ -2290,28 +2271,24 @@ an absolute URL. Moreover, as sites grow in size, they may have to be
 implemented as a set of web applications where importing resources
 across web applications is a requirement.
 
-<jsp:include> also falls short in efficiency
+`<jsp:include>` also falls short in efficiency
 when the content of the imported resource is used as the source for a
 companion process/transformation action, because unnecessary buffering
-occurs. In the example below, the <acme:transform> action uses the
+occurs. In the example below, the `<acme:transform>` action uses the
 content of the included resource as the input of its transformation.
-<jsp:include> reads the content of the response, writes it to the body
-content of the enclosing <acme:transform>, which then re-reads the exact
-same content. It would be more efficient if <acme:transform> could
+`<jsp:include>` reads the content of the response, writes it to the body
+content of the enclosing `<acme:transform>`, which then re-reads the exact
+same content. It would be more efficient if `<acme:transform>` could
 access the input source directly and avoid the buffering involved in the
-body content of <acme:transform>.
+body content of `<acme:transform>`.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <acme:transform>
-
- <jsp:include page=”/exec/employeesList”/> +
+    <jsp:include page=”/exec/employeesList”/>
 </acme:transform>
+....
 
-|===
-
-The main motivation behind <c:import> is to
+The main motivation behind `<c:import>` is to
 address these shortcomings by providing a simple, straightforward
 mechanism to access resources that can be specified via a URL. If
 accessing a resource requires specifying more arguments, then a protocol
@@ -2319,7 +2296,7 @@ specific action (e.g. an <http> action) should be used for that purpose.
 JSTL does not currently address these protocol-specific elements but may
 do so in future releases.
 
-=== URL
+==== URL
 
 The _url_ attribute is used to specify the
 URL of the resource to import. It can either be an absolute URL (i.e.
@@ -2328,29 +2305,18 @@ used to access a resource within the same context, or a relative URL
 used to access a resource within a foreign context. The three different
 types of URL are shown in the sample code below.
 
-[width="100%",cols="100%",]
-|===
-a|
-<%-- import a resource with an absolute URL
---%>
+....
+<%-- import a resource with an absolute URL --%>
+<c:import url=”http://acme.com/exec/customers?country=Japan/>_
 
- _<c:import
-url=”http://acme.com/exec/customers?country=Japan/>_
-
-<%-- import a resource with a relative URL -
-same context --%>
-
+<%-- import a resource with a relative URL - same context --%>
 <c:import url=”/copyright.html”/>
 
-<%-- import a resource with a relative URL -
-foreign context --%>
+<%-- import a resource with a relative URL - foreign context --%>
+<c:import url=”/logo.html” context=”/master”/>
+....
 
-<c:import url=”/logo.html”
-context=”/master”/>
-
-|===
-
-=== Exporting an object: String or Reader
+==== Exporting an object: String or Reader
 
 By default, the content of an imported
 resource is included inline into the JSP page.
@@ -2361,32 +2327,19 @@ the resource available in two different ways: as a _String_ object
 Process or Transform tags can then access the resource's content through
 that exported object as shown in the following example.
 
-[width="100%",cols="100%",]
-|===
-a|
-<%-- Export the content of the URL resource
-as a String --%>
+....
+<%-- Export the content of the URL resource as a String --%>
+<c:import url=”http://acme.com/exec/customers?country=USA"
+          var="customers"/>
+<acme:notify in=”${customers}”/>
 
-<c:import
-url=”http://acme.com/exec/customers?country=USA"
+<%-- Export the content of the URL resource as a Reader --%>
 
- var="customers"/>
-
-<acme:notify in=”$\{customers}”/>
-
-<%-- Export the content of the URL resource
-as a Reader --%>
-
-<c:import
-url=”http://acme.com/exec/customers?country=USA"
-
- varReader="customers">
-
- <acme:notify in=”$\{customers}”/>
-
+<c:import url=”http://acme.com/exec/customers?country=USA"
+          varReader="customers">
+    <acme:notify in=”${customers}”/>
 </c:import>
-
-|===
+....
 
 Exporting the resource as a _String_ object
 caches its content and makes it reusable.
@@ -2397,92 +2350,70 @@ object since the content can be accessed directly without any buffering.
 However, the performance benefits are not guaranteed since the reader’s
 support is implementation dependent. It is also important to note that
 the _varReader_ scoped variable has nested visibility; it can only be
-accessed within the body content of <c:import>.
+accessed within the body content of `<c:import>`.
 
-=== URL Encoding
+==== URL Encoding
 
-Just as with <c:url>, <c:param> can be nested
-within <c:import> to encode query string parameters.
+Just as with `<c:url>`, `<c:param>` can be nested
+within `<c:import>` to encode query string parameters.
 
-=== Networking Properties
+==== Networking Properties
 
 If the web container executes behind a
 firewall, some absolute URL resources may be inaccessible when using
-<c:import>. To provide access to these resources, the JVM of the
+`<c:import>`. To provide access to these resources, the JVM of the
 container should be started with the proper networking properties (e.g.
 _proxyHost_ , _proxyPort_ ). More details can be found in the Java 2
 SDK, Standard Edition Documentation (Networking Features — Networking
 Properties).
 
 
+=== HTTP Redirect
 
-=== 
-
-image:taglib-27.png[image]
-
-HTTP Redirect
-
-<c:redirect> completes the arsenal of URL
+`<c:redirect>` completes the arsenal of URL
 related actions to support an HTTP redirect to a specific URL. For
 example:
 
-[width="100%",cols="100%",]
-|===
-|<c:redirect url="http://acme.com/register"/>
-|===
+....
+<c:redirect url="http://acme.com/register"/>
+....
 
-=== 
-
-image:taglib-27.png[image]
-
-<c:import>
+=== <c:import>
 
 Imports the content of a URL-based resource.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-28.png[image]
-
- _Syntax 1: Resource content inlined or
+_Syntax 1: Resource content inlined or
 exported as a String object_
 
-{empty}<c:import url=”url” [context=”context”]
-
-{empty} [var=”varName”]
-[scope=”\{page|request|session|application}”]
-
- [charEncoding=”charEncoding”]>
-
- optional body content for <c:param> subtags
-
+....
+<c:import url=”url” [context=”context”]
+        [var=”varName”] [scope=”{page|request|session|application}”]
+        [charEncoding=”charEncoding”]>
+    optional body content for <c:param> subtags
 </c:import>
+....
 
- _Syntax 2: Resource content exported as a
+_Syntax 2: Resource content exported as a
 Reader object_
 
-{empty}<c:import url=”url”
-[context=”context”]
-
- varReader=”varReaderName”
-
- [charEncoding=”charEncoding”]>
-
- body content where varReader is consumed by
-another action
-
+....
+<c:import url=”url” [context=”context”]
+        varReader=”varReaderName”
+        [charEncoding=”charEncoding”]>
+    body content where varReader is consumed by another action
 </c:import>
+....
 
-=== Body Content
-
-image:taglib-28.png[image]
+.*Body Content*
 
 JSP. The body content is processed by the JSP
 container and the result is written to the current _JspWriter_ .
 
-=== Attributes
+.*Attributes*
 
-image:taglib-28.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -2516,58 +2447,44 @@ _false_ | _String_
 resource’s content. The type of the scoped variable is _Reader_ .
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-28.png[image]
+* If _url_ is null, empty, or invalid, a _JspException_ is thrown.
 
-If _url_ is null, empty, or invalid, a
-_JspException_ is thrown.
+* If _charEncoding_ is null or empty, it is considered missing.
 
-If _charEncoding_ is null or empty, it is
-considered missing.
+* For internal resources:
 
-For internal resources:
+. If a _RequestDispatcher_ cannot be found for the resource, throw a _JspException_ with the resource path included in the message.
 
-If a _RequestDispatcher_ cannot be found for
-the resource, throw a _JspException_ with the resource path included in
-the message.
+. Otherwise, if the _RequestDispatcher.include()_ method throws an _IOException_ or _RuntimeException_ , throw a _JspException_ with the caught exception as the root cause.
 
-Otherwise, if the
-_RequestDispatcher.include()_ method throws an _IOException_ or
-_RuntimeException_ , throw a _JspException_ with the caught exception as
-the root cause.
-
-Otherwise, if the
-_RequestDispatcher.include()_ method throws a _ServletException_ , look
-for a root cause.
-
-If there's a root cause, throw a
+. Otherwise, if the _RequestDispatcher.include()_ method throws a _ServletException_ , look for a root cause.
+.. If there's a root cause, throw a
 _JspException_ with the root cause message included in the message and
 the original root cause as the _JspException_ root cause.
 
-Otherwise, same as b).
+.. Otherwise, same as 2).
 
-Otherwise, if the resource invoked through
+. Otherwise, if the resource invoked through
 _RequestDispatcher.include()_ method sets a response status code other
 than 2xx (i.e. 200-299, the range of success codes in the HTTP response
 codes), throw a _JspException_ with the path and status code in the
 message.
 
-For external resources
+* For external resources
 
-If the _URLConnection_ class throws an
+** If the _URLConnection_ class throws an
 _IOException_ or a _RuntimeException_ , throw a _JspException_ with the
 message from the original exception included in the message and the
 original exception as the root cause.
 
-For an _HttpURLConnection_ , if the response
+** For an _HttpURLConnection_ , if the response
 status code is other than 2xx (i.e. 200-299, the range of success codes
 in the HTTP response codes), throw a _JspException_ with the path and
 status code in the message.
 
-=== Description
-
-image:taglib-28.png[image]
+.*Description*
 
 Using syntax 1, the content of the resource
 is by default written to the current _JspWriter_ . If _var_ is
@@ -2578,31 +2495,31 @@ Using syntax 2, the content of the resource
 is exported as a _Reader_ object. The use of the _varReader_ attribute
 comes with some restrictions.
 
-It is the responsibility of the <c:import>
+It is the responsibility of the `<c:import>`
 tag handler to ensure that if it exports a _Reader_ , this _Reader_ is
 properly closed by the time the end of the page is
 reachedlink:#a3271[4]. Because of this requirement, JSTL defines
 the exported _Reader_ as having nested visibility: it may not currently
-be accessed after the end-tag for the <c:import>
+be accessed after the end-tag for the `<c:import>`
 actionlink:#a3272[5]. Implementations that use JSP 1.2
 tag-extension API will likely need to implement _TryCatchFinally_ with
-their <c:import> tag handlers and close the exported Reader in
+their `<c:import>` tag handlers and close the exported Reader in
 _doFinally()_ .
 
-It is also illegal to use nested <c:param>
+It is also illegal to use nested `<c:param>`
 tags with syntax 2. Since the exposed _Reader_ must be immediately
 available to the action's body, the connection to the resource must be
 established within the start element of the action. It is therefore
-impossible for nested <c:param> actions to modify the URL of the
+impossible for nested `<c:param>` actions to modify the URL of the
 resource to be accessed, thus their illegality with syntax 2. In such a
-situation, <c:url> may be used to build a URL with query string
-parameterslink:#a3273[6]. <c:import> will remove any session id
+situation, `<c:url>` may be used to build a URL with query string
+parameterslink:#a3273[6]. `<c:import>` will remove any session id
 information if necessary (see link:jstl.html#a892[See
 <c:url>]).
 
-Character Encoding
+.*Character Encoding*
 
-<c:import> exposes a _String_ or _Reader_
+`<c:import>` exposes a _String_ or _Reader_
 object, both of which are sequences of text characters. It is possible
 to specify the character encoding of the input resource via the
 _charEncoding_ attribute. The values supported for _charEncoding_ are
@@ -2612,12 +2529,12 @@ _InputStreamReader_ .
 If the character encoding is not specified,
 the following rules apply:
 
-If _URLConnection.getContentType()_ has a
+* If _URLConnection.getContentType()_ has a
 non-null result, the character set is retrieved from
 _URLConnection.getContentType()_ by parsing this method's result
 according to RFC 2045 (section 5.1).
 
-If this method's result does not include a
+* If this method's result does not include a
 character set, or if the character set causes
 _InputStreamReader(InputStream in, String charsetName)_ to throw an
 _UnsupportedEncodingException_ , then use ISO-8859-1 (which is the
@@ -2633,12 +2550,12 @@ HTTP protocol, if the target resource declares a content encoding but
 proceeds to write a character invalid in that encoding, the treatment of
 that character is undefined.
 
-Relative and Absolute URLs
+.*Relative and Absolute URLs*
 
-The exact semantics of the <c:import> tag
+The exact semantics of the `<c:import>` tag
 depends on what type of URL is being accessed.
 
-Relative URL – same context
+*_Relative URL – same context_*
 
 This is processed in the exact same way as
 the include action of the JSP specification (<jsp:include>). The
@@ -2661,7 +2578,7 @@ specification. This means that the whole environment of the importing
 page is available to the target resource (including request and session
 attributes, as well as request parameters of the importing page).
 
-Relative URL – foreign context
+*_Relative URL – foreign context_*
 
 The resource belongs to a foreign context
 (web application) hosted under the same container as the importing page.
@@ -2686,11 +2603,10 @@ absolute URL. However, it is more efficient to use a relative URL
 because the resource is then accessed using _RequestDispatcher_ defined
 by the Servlet API.
 
-Relative URL – query parameter aggregation
-rules
+*_Relative URL – query parameter aggregation rules_*
 
 The query parameter aggregation rules work
-the same way they do with <jsp:include>; the original parameters are
+the same way they do with `<jsp:include>`; the original parameters are
 augmented with the new parameters, with new values taking precedence
 over existing values when applicable. The scope of the new parameters is
 the import call; the new parameters (and values) will not apply after
@@ -2698,10 +2614,10 @@ the import. The behavior is therefore the same as the one defined for
 the _include()_ method of _RequestDispatcher_ in the Servlet
 specification.
 
-Absolute URL
+*_Absolute URL_*
 
 Absolute URLs are retrieved as defined by the
-_java.net.URL_ and _java.net.URLConnection_ classes. The <c:import>
+_java.net.URL_ and _java.net.URLConnection_ classes. The `<c:import>`
 action therefore supports at a minimum the protocols offered in the J2SE
 1.2 platform for absolute URLs. More protocols can be available to a web
 application, but this will depend on the the class libraries made
@@ -2715,55 +2631,43 @@ the request parameters of the importing page are not propagated to the
 target absolute URL.
 
 When importing an external resource using the
-HTTP protocol, <c:import> behaves according to the semantics of a GET
+HTTP protocol, `<c:import>` behaves according to the semantics of a GET
 request sent via the _java.net.HttpURLConnection_ class, with
 _setFollowRedirects_ set to true.
 
-=== 
 
-image:taglib-27.png[image]
-
-[[a892]]<c:url>
+=== <c:url>
 
 Builds a URL with the proper rewriting rules
 applied.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-28.png[image]
+_Syntax 1: Without body content_
 
- _Syntax 1: Without body content_
+....
+<c:url value=”value” [context=”context”]
+        [var=”varName”] [scope=”{page|request|session|application}”]/>
+....
 
-{empty}<c:url value=”value”
-[context=”context”]
-
- [var=”varName”]
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: With body content to specify
+_Syntax 2: With body content to specify
 query string parameters_
 
-{empty}<c:url value=”value”
-[context=”context”]
-
- [var=”varName”]
-[scope=”\{page|request|session|application}”]>
-
- <c:param> subtags
-
+....
+<c:url value=”value” [context=”context”]
+        [var=”varName”] [scope=”{page|request|session|application}”]>
+    <c:param> subtags
 </c:url>
+....
 
-=== Body Content
-
-image:taglib-28.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-28.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -2787,15 +2691,13 @@ _false_ | _String_
 |Scope for var.
 |===
 
-=== Description
+.*Description*
 
-image:taglib-28.png[image]
-
-<c:url> processes a URL and rewrites it if
+`<c:url>` processes a URL and rewrites it if
 necessary. Only relative URLs are rewritten. Absolute URLs are not
 rewritten to prevent situations where an external URL could be rewritten
 and expose the session ID. A consequence is that if a page author wants
-session tracking, only relative URLs must be used with <c:url> to link
+session tracking, only relative URLs must be used with `<c:url>` to link
 to local resources.
 
 The rewriting must be performed by calling
@@ -2822,53 +2724,46 @@ include session information as a path parameter, it may fail if used
 with _RequestDispatcher_ of the Servlet API. The consumer of the
 rewritten URL should therefore remove the session ID information prior
 to calling _RequestDispatcher_ . This situation is properly handled in
-<c:import>.
+`<c:import>`.
 
 By default, the result of the URL processing
 is written to the current _JspWriter_ . It is also possible to export
 the result as a JSP scoped variable defined via the _var_ and _scope_
 attributes.
 
-<c:param> subtags can also be specified
-within the body of <c:url> for adding to the URL query string
+`<c:param>` subtags can also be specified
+within the body of `<c:url>` for adding to the URL query string
 parameters, which will be properly encoded if necessary.
 
-=== 
-
-image:taglib-27.png[image]
-
-<c:redirect>
+=== <c:redirect>
 
 Sends an HTTP redirect to the client.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-28.png[image]
+_Syntax 1: Without body content_
 
- _Syntax 1: Without body content_
-
+....
 <c:redirect url=”value” [context=”context”]/>
+....
 
- _Syntax 2: With body content to specify
+_Syntax 2: With body content to specify
 query string parameters_
 
+....
 <c:redirect url=”value” [context=”context”]>
-
- <c:param> subtags
-
+    <c:param> subtags
 </c:redirect>
+....
 
-=== Body Content
-
-image:taglib-28.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-28.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -2883,9 +2778,7 @@ _true_ | _String_
 relative URL resource that belongs to a foreign context.
 |===
 
-=== Description
-
-image:taglib-28.png[image]
+.*Description*
 
 This action sends an HTTP redirect response
 to the client and aborts the processing of the page by returning
@@ -2905,47 +2798,41 @@ must must start with a "/" (since this is a context-relative URL). The
 context name must also start with a "/" (since this is a standard way to
 identify a context).
 
-<c:redirect> follows the same rewriting rules
-as defined for <c:url>.
+`<c:redirect>` follows the same rewriting rules
+as defined for `<c:url>`.
 
-=== 
-
-image:taglib-27.png[image]
-
-<c:param>
+=== <c:param>
 
 Adds request parameters to a URL. Nested
 action of <c:import>, <c:url>, <c:redirect>.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-28.png[image]
 
- _Syntax 1: Parameter value specified in
+_Syntax 1: Parameter value specified in
 attribute “value”_
 
-<c:param name=”name” value=” _value_ ”/>
+....
+<c:param name=”name” value=”value”/>
+....
 
- _Syntax 2: Parameter value specified in the
+_Syntax 2: Parameter value specified in the
 body content_
 
+....
 <c:param name=”name”>
-
- parameter value
-
+    parameter value
 </c:param>
+....
 
-=== Body Content
-
-image:taglib-28.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-28.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -2959,68 +2846,43 @@ of the query string parameter.
 of the parameter.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-28.png[image]
-
-If _name_ is null or empty, no action is
+* If _name_ is null or empty, no action is
 performed. It is not an error.
 
-If _value_ is null, it is processed as an
+* If _value_ is null, it is processed as an
 empty value.
 
-=== Description
+.*Description*
 
-image:taglib-28.png[image]
-
-Nested action of <c:import>, <c:url>,
-<c:redirect> to add request parameters to a URL. <c:param> also URL
+Nested action of `<c:import>`, `<c:url>`,
+`<c:redirect>` to add request parameters to a URL. `<c:param>` also URL
 encodes both _name_ and _value_ .
 
 One might argue that this is redundant given
 that a URL can be constructed to directly specify the query string
 parameters. For example:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <c:import url=”/exec/doIt”>
-
- <c:param name=”action” value=”register”/>
-
+    <c:param name=”action” value=”register”/>
 </c:import>
-
-|===
+....
 
 is the same as:
 
-[width="100%",cols="100%",]
-|===
-|<c:import url=”/exec/doIt?action=register”/>
-|===
+....
+<c:import url=”/exec/doIt?action=register”/>
+....
 
 It is indeed redundant, but is consistent
-with <jsp:include>, which supports nested <jsp:param> sub-elements.
+with `<jsp:include>`, which supports nested `<jsp:param>` sub-elements.
 Moreover, it has been designed such that the attributes _name_ and
 _value_ are automatically URL encoded.
 
 
-
-
-
-
-
-=== 
-
-=== 
-
-image:taglib-29.png[image]
-
-Internationalization (i18n) Actions
-
-=== I18n-capable formatting tag library
-
-image:taglib-30.png[image]
+== Internationalization (i18n) Actions: I18n-capable formatting tag library
 
 With the explosion of application development
 based on web technologies, and the deployment of such applications on
