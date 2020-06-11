@@ -2904,13 +2904,13 @@ known as localization.
 There are two approaches to
 internationalizing a web application:
 
-Provide a version of the JSP pages in each of
+* Provide a version of the JSP pages in each of
 the target locales and have a controller servlet dispatch the request to
 the appropriate page (depending on the requested locale). This approach
 is useful if large amounts of data on a page or an entire web
 application need to be internationalized.
 
-Isolate any locale-sensitive data on a page
+* Isolate any locale-sensitive data on a page
 (such as error messages, string literals, or button labels) into
 resource bundles, and access the data via i18n actions, so that the
 corresponding translated message is fetched automatically and inserted
@@ -2928,13 +2928,7 @@ JSTL’s i18n actions are covered in this
 chapter. The formatting actions are covered in
 link:jstl.html#a1373[See] .
 
-
-
-=== 
-
-image:taglib-31.png[image]
-
-Overview
+=== Overview
 
 There are three key concepts associated with
 internationalization: locale, resource bundle, and basename.
@@ -2943,16 +2937,14 @@ A locale represents a specific geographical,
 political, or cultural region. A locale is identified by a language
 code, along with an optional country codelink:#a3274[7].
 
-Language code
-
+* Language code +
 The language code is the lower-case
 two-letter code as defined by ISO-639 (e.g. “ca” for Catalan, “zh” for
 Chinese). The full list of these codes can be found at a number of
 sites, such as: +
 http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
 
-Country code
-
+* Country code +
 The country code is the upper-case two-letter
 code as defined by ISO-3166 (e.g. “IT” for Italy, “CR” for Costa Rica).
 The full list of these codes can be found at a number of sites, such
@@ -2984,60 +2976,43 @@ language). Depending on the locale associated with the client request,
 the key “greeting” could be mapped to the message “Bonjour” (French) or
 “Hello” (English).
 
-=== <fmt:message>
+==== <fmt:message>
 
 It is possible to internationalize the JSP
-pages of a web application simply by using the <fmt:message> action as
+pages of a web application simply by using the `<fmt:message>` action as
 shown below:
 
-[width="100%",cols="100%",]
-|===
-|<fmt:message key="greeting"/>
-|===
+....
+<fmt:message key="greeting"/>
+....
 
-In this case, <fmt:message> leverages the
+In this case, `<fmt:message>` leverages the
 default i18n localization context, making it extremely simple for a page
 author to internationalize JSP pages.
 
-<fmt:message> also supports compound
+`<fmt:message>` also supports compound
 messages, i.e. messages that contain one or more variables. Parameter
-values for these variables may be supplied via one or more <fmt:param>
+values for these variables may be supplied via one or more `<fmt:param>`
 subtags (one for each parameter value). This procedure is referred to as
 parametric replacement.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <fmt:message key="athletesRegistered">
-
-<fmt:param>
-
-<fmt:formatNumber value=”$\{athletesCount}”/>
-
-</fmt:param>
-
+    <fmt:param>
+        <fmt:formatNumber value=”${athletesCount}”/>
+    </fmt:param>
 </fmt:message>
-
-|===
+....
 
 Depending on the locale, this example could
 print the following messages:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
  french: Il y a 10 582 athletes enregistres.
+english: There are 10,582 athletes registered.
+....
 
- english: There are 10,582 athletes
-registered.
-
-|===
-
-=== 
-
-image:taglib-31.png[image]
-
-[[a1019]]I18n Localization Context
+=== I18n Localization Context
 
 I18n actions use an i18n localization context
 to localize their data. An i18n localization context contains two pieces
@@ -3048,25 +3023,20 @@ An i18n action determine its i18n
 localization context in one of several ways, which are described in
 order of precedence:
 
-<fmt:message> _bundle_ attribute
+* `<fmt:message>` _bundle_ attribute +
+If attribute _bundle_ is specified in `<fmt:message>`, the i18n localization context associated with it is used for localization.
 
-If attribute _bundle_ is specified in
-<fmt:message>, the i18n localization context associated with it is used
-for localization.
-
-<fmt:bundle> action
-
-If <fmt:message> actions are nested inside a
-<fmt:bundle> action, the i18n localization context of the enclosing
-<fmt:bundle> action is used for localization. The <fmt:bundle> action
+* `<fmt:bundle>` action +
+If `<fmt:message>` actions are nested inside a
+`<fmt:bundle>` action, the i18n localization context of the enclosing
+`<fmt:bundle>` action is used for localization. The `<fmt:bundle>` action
 determines the resource bundle of its i18n localization context
 according to the resource bundle determination algorithm in
 link:jstl.html#a1048[See Determinining the Resource Bundle for
 an i18n Localization Context], using the basename attribute as the
 resource bundle basename.
 
-I18n default localization context
-
+* I18n default localization context +
 The i18n localization context whose resource
 bundle is to be used for localization is specified via the
 jakarta.servlet.jsp.jstl.fmt.localizationContext configuration setting
@@ -3085,36 +3055,21 @@ The example below shows how the various
 localization contexts can be established to define the resource bundle
 used for localization.
 
-[width="100%",cols="100%",]
-|===
-a|
-<%-- Use configuration setting --%> +
+....
+<%-- Use configuration setting --%>
 <fmt:message key="Welcome" />
 
-
-
-<fmt:setBundle basename="Errors"
-var="errorBundle" />
-
+<fmt:setBundle basename="Errors" var="errorBundle" />
 <fmt:bundle basename="Greetings">
-
-<%-- Localization context established by
-
- parent <fmt:bundle> tag --%>
-
-<fmt:message key="Welcome" />
-
-<%-- Localization context established by
-attribute _bundle_ --%>
-
-<fmt:message key="WrongPassword"
-bundle="$\{errorBundle}" />
-
+    <%-- Localization context established by
+         parent <fmt:bundle> tag --%>
+    <fmt:message key="Welcome" />
+    <%-- Localization context established by attribute bundle --%>
+    <fmt:message key="WrongPassword" bundle="${errorBundle}" />
 </fmt:bundle>
+....
 
-|===
-
-=== [[a1039]]Preferred Locales
+==== Preferred Locales
 
 If the resource bundle of an i18n
 localization context needs to be determined, it is retrieved from the
@@ -3134,16 +3089,15 @@ is useful in situations where an application lets its users pick their
 preferred locale and then sets the scoped variable accordingly. This may
 also be useful in the case where a client’s preferred locale is
 retrieved from a database and installed for the page using the
-<fmt:setLocale> action.
+`<fmt:setLocale>` action.
 
-The <fmt:setLocale> action may be used to set
+The `<fmt:setLocale>` action may be used to set
 the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable as
 follows:
 
-[width="100%",cols="100%",]
-|===
-|<fmt:setLocale value=”en_US” />
-|===
+....
+<fmt:setLocale value=”en_US” />
+....
 
 In the browser-based locale setting, the
 client determines via its browser settings which locale(s) should be
@@ -3158,12 +3112,7 @@ algorithm described in section link:jstl.html#a1048[See
 Determinining the Resource Bundle for an i18n Localization Context] to
 determine the resource bundle for an i18n localization context.
 
-=== 
-
-image:taglib-31.png[image]
-
-[[a1048]]Determinining the Resource Bundle for an i18n
-Localization Context
+=== Determinining the Resource Bundle for an i18n Localization Context
 
 Given a basename and an ordered set of
 preferred locales, the resource bundle for an i18n localization context
@@ -3176,7 +3125,7 @@ any tag handler implementation that needs to produce localized messages.
 For example, this is useful for exception messages that are intended
 directly for user consumption on an error page.
 
-=== [[a1051]]Resource Bundle Lookup
+==== Resource Bundle Lookup
 
 Localization in JSTL is based on the same
 mechanisms offered in the J2SE platform. Resource bundles contain
@@ -3193,23 +3142,21 @@ locale.
 
 JSTL leverages the semantics of the
 java.util.ResourceBundle method
-
-getBundle(String basename, _java.util.Locale
-locale)_
-
-for resource bundle lookup, with one
-important modification.
+....
+getBundle(String basename, java.util.Locale locale)
+....
+for resource bundle lookup, with one important modification.
 
 As stated in the documentation for
 _ResourceBundle_ , a resource bundle lookup searches for classes and
 properties files with various suffixes on the basis of:
 
-=== The specified locale
+. The specified locale
 
-The current default locale as returned by
+. The current default locale as returned by
 _Locale.getDefault()_
 
-The root resource bundle (basename)
+. The root resource bundle (basename)
 
 In JSTL, the search is limited to the first
 level; i.e. the specified locale. Steps 2 and 3 are removed so that
@@ -3222,22 +3169,19 @@ resource bundle considered.
 Resource bundles are therefore searched in
 the following order:
 
+basename + "_" + language + "_" + country + "_" + variant +
 basename + "_" + language + "_" + country +
-"_" + variant
-
-basename + "_" + language + "_" + country
-
 basename + "_" + language
 
-=== [[a1066]]Resource Bundle Determination Algorithm
+==== Resource Bundle Determination Algorithm
 
 Notes:
 
-When there are multiple preferred locales,
+* When there are multiple preferred locales,
 they are processed in the order they were returned by
 _ServletRequest.getLocales()_ .
 
-The algorithm stops as soon as a resource
+* The algorithm stops as soon as a resource
 bundle has been selected for the localization context.
 
 Step 1: Find a match within the ordered set
@@ -3287,131 +3231,82 @@ page. Implementations may thus cache whatever information they deem
 necessary to improve the performance of the algorithm presented in this
 section.
 
-=== Examples
+==== Examples
 
 The following examples demonstrate how the
 resource bundle is determined for an i18n localization context.
 
-Example 1
+.*Example 1*
 
-image:taglib-32.png[image]
+[underline]#Settings# +
+Basename: _Resources_ +
+Ordered preferred locales: _en_GB, fr_CA_ +
+Fallback locale: _fr_CA_ +
+Resource bundles: _Resources_en, Resources_fr_CA_
 
-Settings
+[underline]#Algorithm Trace# +
+Step 1: Find a match within the ordered set of preferred locales +
+{nbsp}{nbsp}{nbsp}{nbsp} _en_GB_ match with _Resources_en_
 
-Basename: _Resources_
-
-Ordered preferred locales: _en_GB, fr_CA_
-
-Fallback locale: _fr_CA_
-
-Resource bundles: _Resources_en,
-Resources_fr_CA_
-
-Algorithm Trace
-
-Step 1: Find a match within the ordered set
-of preferred locales
-
- _en_GB_ match with _Resources_en_
-
-Result
-
-Resource bundle selected: _Resources_en_
-
+[underline]#Result# +
+Resource bundle selected: _Resources_en_ +
 Locale: _en_GB_
 
-Example 2
+.*Example 2*
 
-image:taglib-32.png[image]
+[underline]#Settings# +
+Basename: _Resources_ +
+Ordered preferred locales: _de, fr_ +
+Fallback locale: _en_ +
+Resource bundles: _Resources_en_ +
 
-Settings
+[underline]#Algorithm Trace# +
+Step 1: Find a match within the ordered set of preferred locales +
+{nbsp}{nbsp}{nbsp}{nbsp} _de_ no match +
+{nbsp}{nbsp}{nbsp}{nbsp} _fr_ no match
 
-Basename: _Resources_
 
-Ordered preferred locales: _de, fr_
+Step 2: Find a match with the fallback locale +
+{nbsp}{nbsp}{nbsp}{nbsp} _en_ exact match with _Resources_en_
 
-Fallback locale: _en_
+[underline]#Result# +
+Resource bundle selected: _Resources_en_ +
+Locale: _en_
 
-Resource bundles: _Resources_en_
+.*Example 3*
 
-Algorithm Trace
+[underline]#Settings# +
+Basename: _Resources_ +
+Ordered preferred locales: _ja, en_GB, en_US, en_CA, fr_ +
+Fallback locale: _en_ +
+Resource bundles: _Resources_en, Resources_fr, Resources_en_US_
 
-Step 1: Find a match within the ordered set
-of preferred locales
+[underline]#Algorithm Trace# +
+Step 1: Find a match within the ordered set of preferred locales +
+{nbsp}{nbsp}{nbsp}{nbsp} _ja_ no match +
+{nbsp}{nbsp}{nbsp}{nbsp} _en_GB_ match with _Resources_en_
 
- _de_ no match
+[underline]#Result#
 
- _fr_ no match
-
-Step 2: Find a match with the fallback locale
-
- _en_ exact match with _Resources_en_
-
-Result
-
-Resource bundle selected: _Resources_en_
-
-Locale: en
-
-Example 3
-
-image:taglib-32.png[image]
-
-Settings
-
-Basename: _Resources_
-
-Ordered preferred locales: _ja, en_GB, en_US,
-en_CA, fr_
-
-Fallback locale: _en_
-
-Resource bundles: _Resources_en,
-Resources_fr, Resources_en_US_
-
-Algorithm Trace
-
-Step 1: Find a match within the ordered set
-of preferred locales
-
- _ja_ no match
-
- _en_GB_ match with _Resources_en_
-
-Result
-
-Resource bundle selected: _Resources_en_
-
+Resource bundle selected: _Resources_en_ +
 Locale: _en_GB_
 
-Example 4
+.*Example 4*
 
-image:taglib-32.png[image]
+[underline]#Settings#
+Basename: _Resources_ +
+Ordered preferred locales: _fr, sv_ +
+Fallback locale: _en_ +
+Resource bundles: _Resources_fr_CA, Resources_sv, Resources_en_ +
 
-Settings
+[underline]#Algorithm Trace#
 
-Basename: _Resources_
+Step 1: Find a match within the ordered set of preferred locales +
+{nbsp}{nbsp}{nbsp}{nbsp} _fr_ no match +
+{nbsp}{nbsp}{nbsp}{nbsp} _sv_ match with _Resources_sv_
 
-Ordered preferred locales: _fr, sv_
-
-Fallback locale: _en_
-
-Resource bundles: _Resources_fr_CA,
-Resources_sv, Resources_en_
-
-Algorithm Trace
-
-Step 1: Find a match within the ordered set
-of preferred locales
-
- _fr_ no match
-
- _sv_ match with _Resources_sv_
-
-Result
-
-Resource bundle selected: _Resources_sv_
-
+[underline]#Result# +
+Resource bundle selected: _Resources_sv_ +
 Locale: _sv_
 
 This example shows that whenever possible, a
@@ -3423,11 +3318,8 @@ expected that clients will specify both a language and a country as
 their preferred language, in which case an exact resource bundle match
 will be found.
 
-=== 
 
-image:taglib-31.png[image]
-
-Response Encoding
+=== Response Encoding
 
 Any i18n action that establishes a
 localization context is responsible for setting the response’s locale of
@@ -3445,18 +3337,18 @@ be called before _ServletResponse.getWriter()_ in order for the
 specified locale to affect the construction of the writer.
 
 More specifically, the response’s
-_setLocale()_ method is always called by the <fmt:setLocale> action (see
+_setLocale()_ method is always called by the `<fmt:setLocale>` action (see
 link:jstl.html#a1147[See <fmt:setLocale>]). In addition, it is
 called by the following actions:
 
-Any <fmt:bundle> (see
+* Any `<fmt:bundle>` (see
 link:jstl.html#a1176[See <fmt:bundle>]) and <fmt:setBundle> (see
 link:jstl.html#a1212[See <fmt:setBundle>]) action.
 
-Any <fmt:message> action that establishes an
+* Any `<fmt:message>` action that establishes an
 i18n localization context
 
-Any formatting action that establishes a
+* Any formatting action that establishes a
 formatting locale on its own (see link:jstl.html#a1435[See
 Establishing a Formatting Locale]).
 
@@ -3466,7 +3358,7 @@ invalidated, it must determine the character encoding associated with
 the response locale (by calling _ServletResponse.getCharacterEncoding()_
 ) and store it in the scoped variable
 _jakarta.servlet.jsp.jstl.fmt.request.charset_ in session scope. This
-attribute may be used by the <fmt:requestEncoding> action (see
+attribute may be used by the `<fmt:requestEncoding>` action (see
 link:jstl.html#a1321[See <fmt:requestEncoding>]) in a page
 invoked by a form included in the response to set the request charset to
 the same as the response charset. This makes it possible for the
@@ -3492,42 +3384,32 @@ specification to understand how page directives related to locale and
 character encoding setting translate into Servlet API calls, and how
 they impact the final response settings.
 
-=== 
-
-image:taglib-31.png[image]
-
-[[a1147]]<fmt:setLocale>
+=== <fmt:setLocale>
 
 Stores the specified locale in the
 _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 
-=== Syntax
-
-image:taglib-32.png[image]
-
+.*Syntax*
+....
 <fmt:setLocale value=”locale”
+            [variant=”variant”]
+            [scope=”{page|request|session|application}”]/>
+....
 
-{empty}[variant=”variant”]
-
-[scope=”\{page|request|session|application}”]/>
-
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
 |Type |Description
 | _value_ | _true_
 a|
- _String or_
+_String or_
 
 java.util.Locale
 
@@ -3538,34 +3420,28 @@ two-letter (upper-case) country code (as defined by ISO-3166). Language
 and country codes must be separated by hyphen (’-’) or underscore (’_’).
 
 | _variant_ |
-_true_ | _String_ a|
+_true_ | _String_ |
 Vendor- or browser-specific variant.
 
-See the _java.util.Locale_ javadocs for more
-information on variants.
+See the _java.util.Locale_ javadocs for more information on variants.
 
 | _scope_ |
 _false_ | _String_
 |Scope of the locale configuration variable.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-32.png[image]
-
-If _value_ is null or empty, use the runtime
+* If _value_ is null or empty, use the runtime
 default locale.
 
-=== Description
+.*Description*
 
-image:taglib-32.png[image]
-
-The <fmt:setLocale> action stores the locale
+The `<fmt:setLocale>` action stores the locale
 specified by the _value_ attribute in the
 _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable in the scope
 given by the _scope_ attribute. If _value_ is of type _java.util.Locale_
 , _variant_ is ignored.
-
 
 
 As a result of using this action,
@@ -3573,39 +3449,29 @@ browser-based locale setting capabilities are disabled. This means that
 if this action is used, it should be declared at the beginning of a
 page, before any other i18n-capable formatting actions.
 
-=== 
 
-image:taglib-31.png[image]
-
-[[a1176]]<fmt:bundle>
+=== <fmt:bundle>
 
 Creates an i18n localization context to be
 used by its body content.
 
-=== Syntax
-
-image:taglib-32.png[image]
-
+.*Syntax*
+....
 <fmt:bundle basename=”basename”
-
- [prefix=”prefix”]>
-
- body content
-
+            [prefix=”prefix”]>
+    body content
 </fmt:bundle>
+....
 
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content and then writes it to the current _JspWriter._ The action
 ignores the body content.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -3620,23 +3486,19 @@ component separator and does not have any file type (such as ".class" or
 
 |prefix | _true_
 |String |Prefix to
-be prepended to the value of the message key of any nested <fmt:message>
+be prepended to the value of the message key of any nested `<fmt:message>`
 action.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-32.png[image]
-
-If _basename_ is null or empty, or a resource
+* If _basename_ is null or empty, or a resource
 bundle cannot be found, the _null_ resource bundle is stored in the i18n
 localization context.
 
-=== Description
+.*Description*
 
-image:taglib-32.png[image]
-
-The <fmt:bundle> action creates an i18n
+The `<fmt:bundle>` action creates an i18n
 localization context and loads its resource bundle into that context.
 The name of the resource bundle is specified with the _basename_
 attribute.
@@ -3651,70 +3513,49 @@ limited to the action’s body content.
 
 The _prefix_ attribute is provided as a
 convenience for very long message key names. Its value is prepended to
-the value of the message _key_ of any nested <fmt:message> actions.
+the value of the message _key_ of any nested `<fmt:message>` actions.
 
 For example, using the _prefix_ attribute,
 the key names in:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <fmt:bundle basename="Labels">
-
-<fmt:message
-key="com.acme.labels.firstName"/>
-
-<fmt:message key="com.acme.labels.lastName"/>
-
+    <fmt:message key="com.acme.labels.firstName"/>
+    <fmt:message key="com.acme.labels.lastName"/>
 </fmt:bundle>
-
-|===
+....
 
 may be abbreviated to:
 
-[width="100%",cols="100%",]
-|===
-a|
-<fmt:bundle basename="Labels"
-prefix="com.acme.labels.">
-
-<fmt:message key="firstName"/>
-
-<fmt:message key="lastName"/>
-
+....
+<fmt:bundle basename="Labels" prefix="com.acme.labels.">
+    <fmt:message key="firstName"/>
+    <fmt:message key="lastName"/>
 </fmt:bundle>
-
-|===
-
+....
 
 
-=== 
-
-image:taglib-31.png[image]
-
-[[a1212]]<fmt:setBundle>
+=== <fmt:setBundle>
 
 Creates an i18n localization context and
 stores it in the scoped variable or the
 _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-32.png[image]
-
+....
 <fmt:setBundle basename=”basename” +
-[var=”varName”] [scope=”\{page|request|session|application}”]/>
+               [var=”varName”] 
+               [scope=”{page|request|session|application}”]/>
+....
 
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -3738,19 +3579,15 @@ _false_ | _String_
 configuration variable.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-32.png[image]
-
-If _basename_ is null or empty, or a resource
+* If _basename_ is null or empty, or a resource
 bundle cannot be found, the _null_ resource bundle is stored in the i18n
 localization context.
 
-=== Description
+.*Description*
 
-image:taglib-32.png[image]
-
-The <fmt:setBundle> action creates an i18n
+The `<fmt:setBundle>` action creates an i18n
 localization context and loads its resource bundle into that context.
 The name of the resource bundle is specified with the _basename_
 attribute.
@@ -3767,74 +3604,50 @@ _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
 scope.
 
-=== 
-
-image:taglib-31.png[image]
-
-[[a1236]]<fmt:message>
+=== <fmt:message>
 
 Looks up a localized message in a resource
 bundle.
 
-=== Syntax
-
-image:taglib-32.png[image]
-
- _Syntax 1: without body content_
-
+.*Syntax*
+_Syntax 1: without body content_
+....
 <fmt:message key=”messageKey”
+             [bundle=”resourceBundle”]
+             [var=”varName”]
+             [scope=”{page|request|session|application}”]/>
+....
 
-{empty}[bundle=”resourceBundle”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: with a body to specify message
+_Syntax 2: with a body to specify message
 parameters_
-
+....
 <fmt:message key=”messageKey”
-
-{empty} [bundle=”resourceBundle”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]>
-
- <fmt:param> subtags
-
+             [bundle=”resourceBundle”]
+             [var=”varName”]
+             [scope=”{page|request|session|application}”]>
+    <fmt:param> subtags
 </fmt:message>
+....
 
- _Syntax 3: with a body to specify key and
+_Syntax 3: with a body to specify key and
 optional message parameters_
-
-{empty}<fmt:message [bundle=”resourceBundle”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]>
-
- key
-
- optional <fmt:param> subtags
-
+....
+<fmt:message [bundle=”resourceBundle”]
+             [var=”varName”]
+             [scope=”{page|request|session|application}”]>
+    key
+    optional <fmt:param> subtags
 </fmt:message>
+....
 
-
-
-
-
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -3857,63 +3670,51 @@ _false_ | _String_
 |Scope of var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-32.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-32.png[image]
-
-If _key_ is null or empty, the message is
+* If _key_ is null or empty, the message is
 processed as if undefined; that is, an error message of the form
 "??????" is produced.
 
-If the i18n localization context that this
+* If the i18n localization context that this
 action determines does not have any resource bundle, an error message of
 the form “???<key>???” is produced
 
-=== Description
+.*Description*
 
-image:taglib-32.png[image]
-
-The <fmt:message> action looks up the
+The `<fmt:message>` action looks up the
 localized message corresponding to the given message key.
-
-
 
 The message key may be specified via the
 _key_ attribute or from the tag’s body content. If this action is nested
-inside a <fmt:bundle> action, and the parent <fmt:bundle> action
+inside a `<fmt:bundle>` action, and the parent `<fmt:bundle>` action
 contains a _prefix_ attribute, the specified prefix is prepended to the
 message key.
 
-<fmt:message> uses the resource bundle of the
+`<fmt:message>` uses the resource bundle of the
 i18n localization context determined according to
 link:jstl.html#a1019[See I18n Localization Context].
-
-
 
 If the given key is not found in the resource
 bundle, or the i18n localization context does not contain any resource
 bundle, the result of the lookup is an error message of the form
 "???<key>???" (where <key> is the name of the undefined message key).
 
-
-
 If the message corresponding to the given key
 is compound, that is, contains one or more variables, it may be supplied
-with parameter values for these variables via one or more <fmt:param>
+with parameter values for these variables via one or more `<fmt:param>`
 subtags (one for each parameter value). This procedure is referred to as
 parametric replacement. Parametric replacement takes place in the order
-of the <fmt:param> subtags.
+of the `<fmt:param>` subtags.
 
-In the presence of one or more <fmt:param>
+In the presence of one or more `<fmt:param>`
 subtags, the message is supplied to the _java.text.MessageFormat_ method
-_applyPattern()_ , and the values of the <fmt:param> tags are collected
+_applyPattern()_ , and the values of the `<fmt:param>` tags are collected
 in an _Object[]_ and supplied to the _java.text.MessageFormat_ method
 _format()_ . The locale of the _java.text.MessageFormat_ is set to the
 appropriate localization context locale before _applyPattern()_ is
@@ -3926,57 +3727,43 @@ formatting locales. If this algorithm does not yield any locale, the
 locale of the _java.text.MessageFormat_ is set to the runtime's default
 locale.
 
-
-
-If the message is compound and no <fmt:param>
+If the message is compound and no `<fmt:param>`
 subtags are specified, it is left unmodified (that is,
 _java.text.MessageFormat_ is not used).
 
-
-
-The <fmt:message> action outputs its result
+The `<fmt:message>` action outputs its result
 to the current _JspWriter_ object, unless the _var_ attribute is
 specified, in which case the result is stored in the named JSP
 attribute.
 
-=== 
-
-image:taglib-31.png[image]
-
-<fmt:param>
+=== <fmt:param>
 
 Supplies a single parameter for parametric
-replacement to a containing <fmt:message> (see
+replacement to a containing `<fmt:message>` (see
 link:jstl.html#a1236[See <fmt:message>]) action.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-32.png[image]
-
- _Syntax 1: value specified via attribute
-“value”_
-
+_Syntax 1: value specified via attribute “value”_
+....
 <fmt:param value=”messageParameter”/>
+....
 
- _Syntax 2: value specified via body content_
-
+_Syntax 2: value specified via body content_
+....
 <fmt:param>
-
- body content
-
+    body content
 </fmt:param>
+....
 
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -3986,57 +3773,46 @@ image:taglib-32.png[image]
 |Argument used for parametric replacement.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-32.png[image]
+* Must be nested inside a `<fmt:message>` action.
 
-Must be nested inside a <fmt:message> action.
+.*Description*
 
-=== Description
-
-image:taglib-32.png[image]
-
-The <fmt:param> action supplies a single
+The `<fmt:param>` action supplies a single
 parameter for parametric replacement to the compound message given by
-its parent <fmt:message> action.
+its parent `<fmt:message>` action.
 
 Parametric replacement takes place in the
-order of the <fmt:param> tags. The semantics of the replacement are
+order of the `<fmt:param>` tags. The semantics of the replacement are
 defined as in the class _java.text.MessageFormat_ :
 
 the compound message given by the parent
-<fmt:message> action is used as the argument to the _applyPattern()_
+`<fmt:message>` action is used as the argument to the _applyPattern()_
 method of a _java.text.MessageFormat_ instance, and the values of the
-<fmt:param> tags are collected in an _Object[]_ and supplied to that
+`<fmt:param>` tags are collected in an _Object[]_ and supplied to that
 instance's _format()_ method.
 
 The argument value may be specified via the
 _value_ attribute or inline via the tag’s body content.
 
-=== 
 
-image:taglib-31.png[image]
-
-[[a1321]]<fmt:requestEncoding>
+=== <fmt:requestEncoding>
 
 Sets the request’s character encoding.
 
-=== Syntax
-
-image:taglib-32.png[image]
-
+.*Syntax*
+....
 <fmt:requestEncoding [value=”charsetName”]/>
+....
 
-=== Body Content
-
-image:taglib-32.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-32.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -4046,11 +3822,9 @@ image:taglib-32.png[image]
 of character encoding to be applied when decoding request parameters.
 |===
 
-=== Description
+.*Description*
 
-image:taglib-32.png[image]
-
-The <fmt:requestEncoding> action may be used
+The `<fmt:requestEncoding>` action may be used
 to set the request’s character encoding, in order to be able to
 correctly decode request parameter values whose encoding is different
 from ISO-8859-1.
@@ -4060,7 +3834,7 @@ do not follow the HTTP specification and fail to include a
 _Content-Type_ header in their requests.
 
 More specifically, the purpose of the
-<fmt:requestEncoding> action is to set the request encoding to be the
+`<fmt:requestEncoding>` action is to set the request encoding to be the
 same as the encoding used for the response containing the form that
 invokes this page.
 
@@ -4074,26 +3848,22 @@ If the character encoding of the request
 parameters is not known in advance (since the locale and thus character
 encoding of the page that generated the form collecting the parameter
 values was determined dynamically), the _value_ attribute must not be
-specified. In this case, the <fmt:requestEncoding> action first checks
+specified. In this case, the `<fmt:requestEncoding>` action first checks
 if there is a charset defined in the request _Content-Type_ header. If
 not, it uses the character encoding from the
 _jakarta.servlet.jsp.jstl.fmt.request.charset_ scoped variable which is
 searched in session scope. If this scoped variable is not found, the
 default character encoding (ISO-8859-1) is used.
 
-=== 
 
-image:taglib-31.png[image]
-
-Configuration Settings
+=== Configuration Settings
 
 This section describes the i18n-related
 configuration settings. Refer to link:jstl.html#a194[See
 Configuration Data] for more information on how JSTL processes
 configuration data.
 
-=== [[a1340]]Locale
-
+==== Locale
 
 
 [width="100%",cols="50%,50%",]
@@ -4111,9 +3881,9 @@ java.util.Locale
 |<fmt:setLocale>
 
 |Used by
-|<fmt:bundle>, <fmt:setBundle>,
-<fmt:message>, <fmt:formatNumber>, <fmt:parseNumber>, <fmt:formatDate>,
-<fmt:parseDate>
+|`<fmt:bundle>`, `<fmt:setBundle>`,
+`<fmt:message>`, `<fmt:formatNumber>`, `<fmt:parseNumber>`, `<fmt:formatDate>`,
+`<fmt:parseDate>`
 |===
 
 Specifies the locale to be used by the
@@ -4121,8 +3891,7 @@ i18n-capable formatting actions, thereby disabling browser-based
 locales. A _String_ value is interpreted as defined in action
 <fmt:setLocale> (see link:jstl.html#a1147[See <fmt:setLocale>]).
 
-=== Fallback Locale
-
+==== Fallback Locale
 
 
 [width="100%",cols="50%,50%",]
@@ -4139,20 +3908,18 @@ java.util.Locale
 |Set by |
 
 |Used by
-|<fmt:bundle>, <fmt:setBundle>,
-<fmt:message>, <fmt:formatNumber>, <fmt:parseNumber>, <fmt:formatDate>,
-<fmt:parseDate>
+|`<fmt:bundle>`, `<fmt:setBundle>`,
+`<fmt:message>`, `<fmt:formatNumber>`, `<fmt:parseNumber>`, `<fmt:formatDate>`,
+`<fmt:parseDate>`
 |===
 
 Specifies the fallback locale to be used by
 the i18n-capable formatting actions if none of the preferred match any
 of the available locales. A _String_ value is interpreted as defined in
-action <fmt:setLocale> (see link:jstl.html#a1147[See
+action `<fmt:setLocale>` (see link:jstl.html#a1147[See
 <fmt:setLocale>]).
 
-=== [[a1361]]I18n Localization Context
-
-
+==== I18n Localization Context
 
 [width="100%",cols="50%,50%",]
 |===
@@ -4167,30 +3934,20 @@ _Config.FMT_LOCALIZATION_CONTEXT_
 jakarta.servlet.jsp.jstl.fmt.LocalizationContext
 
 |Set by
-|<fmt:setBundle>
+|`<fmt:setBundle>`
 
 |Used by
-|<fmt:message>, <fmt:formatNumber>,
-<fmt:parseNumber>, <fmt:formatDate>, <fmt:parseDate>
+|`<fmt:message>`, `<fmt:formatNumber>`,
+`<fmt:parseNumber>`, `<fmt:formatDate>`, `<fmt:parseDate>`
 |===
 
 Specifies the default i18n localization
 context to be used by the i18n-capable formatting actions. A _String_
 value is interpreted as a resource bundle basename.
 
-=== 
 
-=== [[a1373]]
 
-=== 
-
-image:taglib-33.png[image]
-
-Formatting Actions
-
-=== I18n-capable formatting tag library
-
-image:taglib-34.png[image]
+== Formatting Actions: I18n-capable formatting tag library
 
 The JSTL formatting actions allow various
 data elements in a JSP page, such as numbers, dates and times, to be
