@@ -260,65 +260,55 @@ JSTL actions are grouped according to their
 functionality. These functional groups of actions are documented in
 their own chapter using the following structure:
 
-Motivation
-
+* Motivation +
 Describes the motivation for standardizing
 the actions.
 
-Overview
-
+* Overview +
 Provides an overview of the capabilities
 provided by the actions. Sample code featuring these actions in their
 most common use cases is also provided.
 
-One section per action, with the following
+* One section per action, with the following
 structure:
 
-Name
-
+** Name +
 Tag library prefixes are used in this
 specification for all references to JSTL actions (e.g.: <c:if> instead
 of <if>).
 
-Short Description
+** Short Description
 
-Syntax
-
+** Syntax +
 The syntax notation is described in
 link:jstl.html#a117[<<Syntax Notation>>].
 
-Body Content
-
+** Body Content +
 This section specifies which type of body
 content is supported by the action. As defined by the JSP specification,
-the body content type can be one of _empty_ , _JSP_ , or _tagdependent_
-. The section also specifies if the body content is processed by the
+the body content type can be one of _empty_ , _JSP_ , or _tagdependent_.
+The section also specifies if the body content is processed by the
 action or is simply ignored by the action and just written to the
 current _JspWriter_ . If the body content is processed, information is
 given on whether or not the body content is trimmed before the action
 begins processing it.
 
-Attributes
-
+** Attributes +
 Details in link:jstl.html#a114[<<Attributes>>] below.
 
-Constraints
-
+** Constraints +
 List of additional constraints enforced by
 the action.
 
-Null & Error Handling
-
+** Null & Error Handling +
 Details on how null and empty values are
 processed, as well as on exceptions thrown by the action.
 
-Description
-
+** Description +
 This section provides more details on the
 action.
 
-Other sections
-
+** Other sections +
 Other sections related to the group of
 actions described in the chapter may exist. These include sections on
 interfaces and classes exposed by these actions.
@@ -1018,6 +1008,8 @@ Sorry. Processing could not be performed because...
 </c:if>
 ....
 
+<<<
+
 === <c:out>
 
 Evaluates an expression and outputs the result
@@ -1108,6 +1100,8 @@ The default value can be specified either via
 the _default_ attribute (using the syntax without a body), or within the
 body of the tag (using the syntax with a body). It defaults to an empty
 string.
+
+<<<
 
 === <c:set>
 
@@ -1272,6 +1266,8 @@ vm.setVariable(getVar(), (ValueExpression)getValue()); +
 ...
 |===
 
+<<<
+
 === <c:remove>
 
 Removes a scoped variable.
@@ -1308,6 +1304,8 @@ scoped variable is removed according to the semantics of
 _PageContext.removeAttribute(varName)_ . If attribute _scope_ is
 specified, the scoped variable is removed according to the semantics of
 _PageContext.removeAttribute(varName, scope)_ .
+
+<<<
 
 === <c:catch>
 
@@ -1475,6 +1473,8 @@ variable, class _ConditionalTagSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”) has been defined in this
 specification.
 
+<<<
+
 === <c:if>
 
 Evaluates its body content if the expression
@@ -1536,6 +1536,8 @@ If the test condition evaluates to true, the
 body content is evaluated by the JSP container and the result is output
 to the current _JspWriter_ .
 
+<<<
+
 === <c:choose>
 
 Provides the context for mutually exclusive
@@ -1578,6 +1580,8 @@ The `<c:choose>` action processes the body of
 the first `<c:when>` action whose test condition evaluates to true. If
 none of the test conditions of nested `<c:when>` actions evaluates to
 true, then the body of an `<c:otherwise>` action is processed, if present.
+
+<<<
 
 === <c:when>
 
@@ -1624,6 +1628,8 @@ Within a `<c:choose>` action, the body content
 of the first `<c:when>` action whose test condition evaluates to true is
 evaluated by the JSP container, and the result is output to the current
 _JspWriter_ .
+
+<<<
 
 === <c:otherwise>
 
@@ -1900,6 +1906,7 @@ proper index into the _items_ collection. This deferred value can then
 be evaluated properly by the code associated with the `<h:inputText>`
 component.
 
+<<<
 
 === <c:forEach>
 
@@ -2089,6 +2096,8 @@ The number of items referred to by the
 _items_ attribute must be the same when Faces creates the component tree
 and when JSP executes the iteration tag. Undefined behavior will result
 if this is not the case.
+
+<<<
 
 [[c:forTokens]]
 === <c:forTokens>
@@ -2375,6 +2384,8 @@ example:
 <c:redirect url="http://acme.com/register"/>
 ....
 
+<<<
+
 === <c:import>
 
 Imports the content of a URL-based resource.
@@ -2631,6 +2642,8 @@ HTTP protocol, `<c:import>` behaves according to the semantics of a GET
 request sent via the _java.net.HttpURLConnection_ class, with
 _setFollowRedirects_ set to true.
 
+<<<
+
 [[c:url]]
 === <c:url>
 
@@ -2731,6 +2744,8 @@ attributes.
 within the body of `<c:url>` for adding to the URL query string
 parameters, which will be properly encoded if necessary.
 
+<<<
+
 === <c:redirect>
 
 Sends an HTTP redirect to the client.
@@ -2796,6 +2811,8 @@ identify a context).
 
 `<c:redirect>` follows the same rewriting rules
 as defined for `<c:url>`.
+
+<<<
 
 === <c:param>
 
@@ -3371,6 +3388,8 @@ specification to understand how page directives related to locale and
 character encoding setting translate into Servlet API calls, and how
 they impact the final response settings.
 
+<<<
+
 [[fmt:setLocale]]
 === <fmt:setLocale>
 
@@ -3436,6 +3455,8 @@ As a result of using this action,
 browser-based locale setting capabilities are disabled. This means that
 if this action is used, it should be declared at the beginning of a
 page, before any other i18n-capable formatting actions.
+
+<<<
 
 [[fmt:bundle]]
 === <fmt:bundle>
@@ -3521,6 +3542,8 @@ may be abbreviated to:
 </fmt:bundle>
 ....
 
+<<<
+
 [[fmt:setBundle]]
 === <fmt:setBundle>
 
@@ -3589,6 +3612,8 @@ specified, it is stored in the
 _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
 scope.
+
+<<<
 
 === <fmt:message>
 
@@ -3722,6 +3747,8 @@ to the current _JspWriter_ object, unless the _var_ attribute is
 specified, in which case the result is stored in the named JSP
 attribute.
 
+<<<
+
 === <fmt:param>
 
 Supplies a single parameter for parametric
@@ -3782,6 +3809,7 @@ instance's _format()_ method.
 The argument value may be specified via the
 _value_ attribute or inline via the tag’s body content.
 
+<<<
 
 === <fmt:requestEncoding>
 
@@ -4216,6 +4244,7 @@ _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
 * Use the JSP container’s time zone.
 
+<<<
 
 === <fmt:timeZone>
 
@@ -4334,6 +4363,7 @@ making it the new default time zone in the given scope.
 If the time zone is given as a string, it is
 parsed using _java.util.TimeZone.getTimeZone()_ .
 
+<<<
 
 === <fmt:formatNumber>
 
@@ -4545,6 +4575,8 @@ _currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
 
+<<<
+
 === <fmt:parseNumber>
 
 Parses the string representation of numbers,
@@ -4697,6 +4729,7 @@ result (of type _java.lang.Number_ ) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ object
 using _java.lang.Number.toString()_ .
 
+<<<
 
 === <fmt:formatDate>
 
@@ -4835,6 +4868,7 @@ The action’s result is output to the current
 _JspWriter_ object, unless the _var_ attribute is specified, in which
 case it is stored in the named scoped variable.
 
+<<<
 
 === <fmt:parseDate>
 
@@ -5042,25 +5076,22 @@ resources).
 The JSTL SQL actions provide the basic
 capabilities to easily interact with relational databases.
 
-=== 
 
-image:taglib-39.png[image]
-
-[[a1805]]Overview
+=== Overview
 
 The JSTL SQL actions allow page authors to:
 
-Perform database queries ( _select_ )
+* Perform database queries ( _select_ )
 
-Easily access query results
+* Easily access query results
 
-Perform database updates ( _insert_ ,
+* Perform database updates ( _insert_ ,
 _update_ , _delete_ )
 
-Group several database operations into a
+* Group several database operations into a
 transaction
 
-=== [[a1811]]Data Source
+==== Data Source
 
 SQL actions operate on a data source, as
 defined by the Java class _jakarta.sql.DataSource_ . A _DataSource_ object
@@ -5088,12 +5119,12 @@ parameters needed by the JDBC _DriverManager_ class, using the following
 syntax (see link:jstl.html#a2074[See <sql:setDataSource>] for
 details on the JDBC parameters)
 
- _url[,[driver][,[user][,password]]]_
+{nbsp}{nbsp}{nbsp}{nbsp} _url[,[driver][,[user][,password]]]_
 
 For example,
 
 
-_jdbc:mysql://localhost/,org.gjt.mm.mysql.Driver_
+{nbsp}{nbsp}{nbsp}{nbsp} _jdbc:mysql://localhost/,org.gjt.mm.mysql.Driver_
 
 where the database has been setup for access
 without any username or password. If the ‘,’ character occurs in any of
@@ -5106,7 +5137,7 @@ than for prototyping purposes because it does not provide connection
 management features one can expect from a properly designed _DataSource_
 object.
 
-=== Querying a Database
+==== Querying a Database
 
 The most common use of the database actions
 is to query a database and display the results of the query.
@@ -5116,133 +5147,77 @@ customers from China from the customers table in the database, orders
 them by last name, and finally displays their last name, first name, and
 address in an HTML table.
 
-[width="100%",cols="100%",]
-|===
-a|
-<sql:query var="customers"
-dataSource="$\{dataSource}">
-
-SELECT * FROM customers
-
-WHERE country = ’China’
-
-ORDER BY lastname
-
+....
+<sql:query var="customers" dataSource="${dataSource}">
+    SELECT * FROM customers
+    WHERE country = ’China’
+    ORDER BY lastname
 </sql:query>
 
-
-
 <table>
-
-<c:forEach var="row"
-items="$\{customers.rows}">
-
-<tr>
-
-<td><c:out value="$\{row.lastName}"/></td>
-
-<td><c:out value="$\{row.firstName}"/></td>
-
-<td><c:out value="$\{row.address}"/></td>
-
-</tr>
-
-</c:forEach>
-
+    <c:forEach var="row" items="${customers.rows}">
+        <tr>
+            <td><c:out value="${row.lastName}"/></td>
+            <td><c:out value="${row.firstName}"/></td>
+            <td><c:out value="${row.address}"/></td>
+        </tr>
+    </c:forEach>
 </table>
-
-|===
+....
 
 This next example shows a generic way to
 display the results of a query with column names as headers:
 
 
-
-[width="100%",cols="100%",]
-|===
-a|
+....
 <table>
-
- <!-- column headers -->
-
- <tr>
-
- <c:forEach var=”columnName”
-items=”$\{result.columnNames}”>
-
- <th><c:out value="$\{columnName}"/></th>
-
- </c:forEach> +
-</tr>
-
- <!-- column data -->
-
- <c:forEach var="row"
-items="$\{result.rowsByIndex}">
-
- <tr>
-
- <c:forEach var="column" items="$\{row}">
-
- <td><c:out value="$\{column}"/></td>
-
- </c:forEach> +
-</tr>
-
- </c:forEach>
-
+    <!-- column headers -->
+    <tr>
+        <c:forEach var=”columnName” items=”${result.columnNames}”>
+            <th><c:out value="${columnName}"/></th>
+        </c:forEach>
+    </tr>
+    <!-- column data -->
+    <c:forEach var="row" items="${result.rowsByIndex}">
+        <tr>
+            <c:forEach var="column" items="${row}">
+                <td><c:out value="${column}"/></td>
+            </c:forEach>
+        </tr>
+    </c:forEach>
 </table>
+....
 
-|===
+==== Updating a Database
 
-=== Updating a Database
-
-The <sql:update> action updates a database.
+The `<sql:update>` action updates a database.
 To ensure database integrity, several updates to a database may be
-grouped into a transaction by nesting the <sql:update> actions inside a
-<sql:transaction> action.
+grouped into a transaction by nesting the `<sql:update>` actions inside a
+`<sql:transaction>` action.
 
 For example, the following code transfers
 money between two accounts in one transaction:
 
-[width="100%",cols="100%",]
-|===
-a|
-<sql:transaction dataSource="$\{dataSource}">
-
-<sql:update>
-
-UPDATE account
-
-SET Balance = Balance - ?
-
-WHERE accountNo = ?
-
-<sql:param value="$\{transferAmount}"/>
-
-<sql:param value="$\{accountFrom}"/>
-
-</sql:update>
-
-<sql:update>
-
-UPDATE account
-
-SET Balance = Balance + ?
-
-WHERE accountNo = ?
-
-<sql:param value="$\{transferAmount}"/>
-
-<sql:param value="$\{accountTo}"/>
-
-</sql:update>
-
+....
+<sql:transaction dataSource="${dataSource}">
+    <sql:update>
+        UPDATE account
+        SET Balance = Balance - ?
+        WHERE accountNo = ?
+        <sql:param value="${transferAmount}"/>
+        <sql:param value="${accountFrom}"/>
+    </sql:update>
+    <sql:update>
+        UPDATE account
+        SET Balance = Balance + ?
+        WHERE accountNo = ?
+        <sql:param value="${transferAmount}"/>
+        <sql:param value="${accountTo}"/>
+    </sql:update>
 </sql:transaction>
+....
 
-|===
-
-=== SQL Statement Parameters
+==== SQL Statement Parameters
 
 The JSTL database actions support
 substituting parameter values for parameter markers (“?”) in SQL
@@ -5251,7 +5226,7 @@ replacement is exposed by the _SQLExecutionTag_ interface (see
 link:jstl.html#UNKNOWN[See Java APIs]”).
 
 The _SQLExecutionTag_ interface is
-implemented by the tag handlers for <sql:query> and <sql:update>. It is
+implemented by the tag handlers for `<sql:query>` and `<sql:update>`. It is
 exposed in order to support custom parameter actions. These custom
 actions may retrieve their parameters from any source and process them
 before substituting them for a parameter marker in the SQL statement of
@@ -5261,99 +5236,78 @@ For example, a GUI front end may have a user
 enter a date as three separate fields (year, month, and day), and use
 this information in a database query. If the database table being
 accessed provides only a single column for the complete date, action
-<acme:dateParam> could assemble the three separate input parameters into
+`<acme:dateParam>` could assemble the three separate input parameters into
 one and pass it to the _addSQLParameter()_ method of its enclosing
 _SQLExecutionTag_ action:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <sql:update>
-
-UPDATE PersonalInfo
-
-SET BirthDate = ?
-
-WHERE clientId = ?
-
-<acme:dateParam year="$\{year}"
-month="$\{month}" day="$\{day}"/>
-
-<sql:param value=”$\{clientId}”/>
-
+    UPDATE PersonalInfo
+    SET BirthDate = ?
+    WHERE clientId = ?
+    <acme:dateParam year="${year}" month="${month}" day="${day}"/>
+    <sql:param value=”${clientId}”/>
 </sql:update>
-
-|===
+....
 
 The JSTL formatting tags may be used to parse
 the string representation of dates and numbers into instances of
 _java.util.Date_ and _java.lang.Number_ , respectively, before supplying
 them to an enclosing _SQLExecutionTag_ for parametric replacement:
 
-[width="100%",cols="100%",]
-|===
-a|
-<sql:update sql="$\{sqlUpdateStmt}”
-dataSource="$\{dataSource}">
-
-<fmt:parseDate var="myDate"
-value="$\{someDate}”/>
-
-<sql:param value="$\{myDate}"/>
-
+....
+<sql:update sql="${sqlUpdateStmt}” dataSource="${dataSource}">
+    <fmt:parseDate var="myDate" value="${someDate}”/>
+    <sql:param value="${myDate}"/>
 </sql:update>
+....
 
-|===
 
-=== 
-
-image:taglib-39.png[image]
-
-[[a1892]]Database Access
+=== Database Access
 
 This section describes the algorithm used by
-the SQL actions (<sql:query>, <sql:update>, <sql:transaction>) to access
+the SQL actions (`<sql:query>`, `<sql:update>`, `<sql:transaction>`) to access
 a database.
 
-Try to get a reference to a data source as
+* Try to get a reference to a data source as
 follows:
 
-If the attribute _dataSource_ is specified,
+** If the attribute _dataSource_ is specified,
 use the value specified for that attribute as the data source.
 
-Otherwise, get the configuration setting
+** Otherwise, get the configuration setting
 associated with _jakarta.servlet.jsp.jstl.sql.dataSource_ using
 _Config.find()_ (see link:jstl.html#a194[See Configuration
 Data]). Use the value found as the data source if it is not null.
 
-If a data source is obtained from the
+* If a data source is obtained from the
 previous step:
 
-If it is a _DataSource_ object, this is the
+** If it is a _DataSource_ object, this is the
 data source used by the action to access the database.
 
-Otherwise, if it is a _String_ :
+** Otherwise, if it is a _String_ :
 
-Assume this is a JNDI relative path and
+*** Assume this is a JNDI relative path and
 retrieve the data source from the container’s JNDI naming context by
 concatenating the specified relative path to the J2EE defined root (
 _java:comp/env/_ ).
 
-If the previous step fails (data source not
+*** If the previous step fails (data source not
 found), assume the string specifies JDBC parameters using the syntax
 described in link:jstl.html#a1811[See Data Source] and do as
 follows:
 
-If driver is specified, ensure it is loaded
+*** If driver is specified, ensure it is loaded
 
-Access the named URL through the
+*** Access the named URL through the
 _DriverManager_ class, using an empty string for _user_ or _password_ if
 they are not specified.
 
-If the previous step fails, throw an
+** If the previous step fails, throw an
 exception.
 
-Otherwise, throw an exception.
+* Otherwise, throw an exception.
 
 An implementation need not create new objects
 each time a SQL action is called and the algorithm above does not yield
@@ -5368,80 +5322,56 @@ _PreparedStatement_ and _ResultSet_ objects) by the time the action
 completes. This ensures that no connections are left open and that leaks
 are avoided when these actions are used with pooling mechanisms.
 
-=== 
+<<<
 
-image:taglib-39.png[image]
-
-[[a1909]]<sql:query>
+=== <sql:query>
 
 Queries a database.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-40.png[image]
-
- _Syntax 1: Without body content_
-
+_Syntax 1: Without body content_
+....
 <sql:query sql="sqlQuery"
+        var="varName" [scope=”{page|request|session|application}”]
+        [dataSource=”dataSource”]
+        [maxRows="maxRows"]
+        [startRow="startRow"]/>
+....
 
-{empty} var="varName"
-[scope=”\{page|request|session|application}”]
-
-{empty} [dataSource=”dataSource”]
-
-{empty} [maxRows="maxRows"]
-
- [startRow="startRow"]/>
-
- _Syntax 2: With a body to specify query
+_Syntax 2: With a body to specify query
 arguments_
-
+....
 <sql:query sql="sqlQuery"
-
-{empty} var="varName"
-[scope=”\{page|request|session|application}”]
-
-{empty} [dataSource=”dataSource”]
-
-{empty} [maxRows="maxRows"]
-
- [startRow="startRow"]>
-
- <sql:param> actions
-
+        var="varName" [scope=”{page|request|session|application}”]
+        [dataSource=”dataSource”]
+        [maxRows="maxRows"]
+        [startRow="startRow"]>
+    <sql:param> actions
 </sql:query>
+....
 
- _Syntax 3: With a body to specify query and
+_Syntax 3: With a body to specify query and
 optional query parameters_
-
+....
 <sql:query var="varName"
-
-{empty}
-[scope=”\{page|request|session|application}”]
-
-{empty} [dataSource=”dataSource”]
-
-{empty} [maxRows="maxRows"]
-
- [startRow="startRow"]>
-
- query
-
- optional <sql:param> actions
-
+        [scope=”{page|request|session|application}”]
+        [dataSource=”dataSource”]
+        [maxRows="maxRows"]
+        [startRow="startRow"]>
+    query
+    optional <sql:param> actions
 </sql:query>
+....
 
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -5473,9 +5403,7 @@ specified, rows are included starting from the first row at index 0.
 Name of the exported scoped variable for the
 query result. The type of the scoped variable is
 
- _jakarta.servlet.jsp.jstl.sql._
-
- _Result_ (see
+_jakarta.servlet.jsp.jstl.sql.Result_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”).
 
 |scope |false
@@ -5483,33 +5411,27 @@ link:jstl.html#UNKNOWN[See Java APIs]”).
 _var_ .
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-40.png[image]
-
-{empty}If _dataSource_ is specified, this
+* If _dataSource_ is specified, this
 action must not be nested inside a
 <sql:transaction>.link:#a3276[9]
 
- _maxRows_ must be >= -1
+* _maxRows_ must be >= -1
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _dataSource_ is null, a _JspException_ is
+* If _dataSource_ is null, a _JspException_ is
 thrown.
 
-If an exception occurs during the execution
+* If an exception occurs during the execution
 of this action, it must be caught and rethrown as a _JspException_ . The
 message of the rethrown _JspException_ must include the SQL statement,
 and the caught exception must be provided as the root cause.
 
-=== Description
+.*Description*
 
-image:taglib-40.png[image]
-
-The <sql:query> action queries a database and
+The `<sql:query>` action queries a database and
 returns a single result set containing rows of data that it stores in
 the scoped variable identified by the _var_ and _scope_ attributes.
 
@@ -5522,16 +5444,16 @@ the _sql_ attribute or from the action’s body content.
 The query statement may contain parameter
 markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
-<sql:param>, see link:jstl.html#a2112[See <sql:param>]). The
-<sql:query> action implements the _SQLExecutionTag_ interface (see
+`<sql:param>`, see link:jstl.html#a2112[See <sql:param>]). The
+`<sql:query`> action implements the _SQLExecutionTag_ interface (see
 link:jstl.html#UNKNOWN[See Java APIs]”), allowing parameter values
 to be supplied by custom parameter actions.
 
- _maxRows and startRow_
+*maxRows and startRow*
 
 The maximum number of rows to be included in
 the query result may be specified by the _maxRows_ attribute (for a
-specific <sql:query> action) or by the configuration setting
+specific `<sql:query>` action) or by the configuration setting
 _jakarta.servlet.jsp.jstl.sql.maxRows_ (see
 link:jstl.html#a194[See Configuration Data] and
 link:jstl.html#a2164[See Configuration Settings]). Attribute
@@ -5556,17 +5478,17 @@ note that the order in which rows are returned is not guaranteed between
 RDBMS implementations unless an “order by” clause is specified in the
 query.
 
- _maxRows_ and _startRow_ protect against
+_maxRows_ and _startRow_ protect against
 so-called "runaway queries", allow efficient access to the top rows of
 large result sets, and also provide a “poor-man’s way” of paging through
 a large query result by increasing _startRow_ by _maxRows_ over a
 previous page.
 
-Obtaining and Releasing a Connection
+*Obtaining and Releasing a Connection*
 
-If <sql:query> is nested inside an
-<sql:transaction> action, the _Connection_ object is obtained from that
-parent <sql:transaction> which is reponsible for managing access to the
+If `<sql:query>` is nested inside an
+`<sql:transaction>` action, the _Connection_ object is obtained from that
+parent `<sql:transaction>` which is reponsible for managing access to the
 database.
 
 Otherwise, access to the database is
@@ -5574,70 +5496,53 @@ performed according to the algorithm described in
 link:jstl.html#a1892[See Database Access]. A _Connection_ object
 is obtained and released before the action completes.
 
-=== 
+<<<
 
-image:taglib-39.png[image]
-
-<sql:update>
+=== <sql:update>
 
 Executes an SQL _INSERT_ , _UPDATE_ , or
 _DELETE_ statement. In addition, SQL statements that return nothing,
 such as SQL DDL statements, can be executed.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-40.png[image]
-
- _Syntax 1: Without body content_
-
+_Syntax 1: Without body content_
+....
 <sql:update sql="sqlUpdate"
+        [dataSource=”dataSource”]
+        [var="varName"]
+        [scope=”{page|request|session|application}”]/>
+....
 
-{empty} [dataSource=”dataSource”]
-
- [var="varName"]
-[scope=”\{page|request|session|application}”]/>
-
-
-
- _Syntax 2: With a body to specify update
+_Syntax 2: With a body to specify update
 parameters_
-
+....
 <sql:update sql="sqlUpdate"
-
-{empty} [dataSource=”dataSource”]
-
- [var="varName"]
-[scope=”\{page|request|session|application}”]>
-
- <sql:param> actions
-
+        [dataSource=”dataSource”]
+        [var="varName"]
+        [scope=”{page|request|session|application}”]>
+    <sql:param> actions
 </sql:update>
+....
 
- _Syntax 3: With a body to specify update
+_Syntax 3: With a body to specify update
 statement and optional update parameters_
-
-{empty}<sql:update [dataSource=”dataSource”]
-
- [var="varName"]
-[scope=”\{page|request|session|application}”]>
-
- update statement
-
- optional <sql:param> actions
-
+....
+<sql:update [dataSource=”dataSource”]
+        [var="varName"] [scope=”{page|request|session|application}”]>
+    update statement
+    optional <sql:param> actions
 </sql:update>
+....
 
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -5666,31 +5571,25 @@ type of the scoped variable is _java.lang.Integer_ .
 _var_ .
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-40.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-If _dataSource_ is specified, this action
-must not be nested inside a <sql:transaction>.
+* If _dataSource_ is specified, this action
+must not be nested inside a `<sql:transaction>`.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _dataSource_ is null, a _JspException_ is
+* If _dataSource_ is null, a _JspException_ is
 thrown.
 
-If an exception occurs during the execution
+* If an exception occurs during the execution
 of this action, it must be caught and rethrown as a _JspException_ . The
 message of the rethrown _JspException_ must include the SQL statement,
 and the caught exception must be provided as the root cause.
 
-=== Description
-
-image:taglib-40.png[image]
+.*Description*
 
 The SQL update statement may be specified by
 the _sql_ attribute or from the action’s body content.
@@ -5698,16 +5597,16 @@ the _sql_ attribute or from the action’s body content.
 The update statement may contain parameter
 markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
-<sql:param>, see link:jstl.html#a2112[See <sql:param>]). The
-<sql:update> action implements the _SQLExecutionTag_ interface (see
+`<sql:param>`, see link:jstl.html#a2112[See <sql:param>]). The
+`<sql:update>` action implements the _SQLExecutionTag_ interface (see
 link:jstl.html#UNKNOWN[See Java APIs]”), allowing the parameter
 values to be supplied by custom parameter tags.
 
 The connection to the database is obtained in
-the same manner as described for <sql:query> (see
+the same manner as described for `<sql:query>` (see
 link:jstl.html#a1909[See <sql:query>]).
 
-The result of an <sql:update> action is
+The result of an `<sql:update>` action is
 stored in a scoped variable named by the _var_ attribute, if that
 attribute was specified. That result represents the number of rows that
 were affected by the update. Zero is returned if no rows were affected
@@ -5715,50 +5614,35 @@ by _INSERT_ , _DELETE_ , or _UPDATE_ , and for any SQL statement that
 returns nothing (such as SQL DDL statements). This is consistent with
 method _executeUpdate()_ of the JDBC class _Statement_ .
 
-=== 
+<<<
 
-image:taglib-39.png[image]
-
-<sql:transaction>
+=== <sql:transaction>
 
 Establishes a transaction context for
-<sql:query> and <sql:update> subtags.
+`<sql:query>` and `<sql:update>` subtags.
 
-=== Syntax
-
-image:taglib-40.png[image]
-
-{empty}<sql:transaction
-[dataSource=”dataSource”]
-
- [isolation=isolationLevel]>
-
- <sql:query> and <sql:update> statements
-
+.*Syntax*
+....
+<sql:transaction [dataSource=”dataSource”]
+        [isolation=isolationLevel]>
+    <sql:query> and <sql:update> statements
 </sql:transaction>
 
-
-
 isolationLevel ::= "read_committed"
+                | "read_uncommitted"
+                | "repeatable_read"
+                | "serializable"
+....
 
-| "read_uncommitted"
-
-| "repeatable_read"
-
-| "serializable"
-
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content and then writes the result to the current _JspWriter_ . The
 action ignores the body content.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -5782,133 +5666,111 @@ specified, it is the isolation level the DataSource has been configured
 with.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-40.png[image]
-
-Any nested <sql:query> and <sql:update>
+* Any nested `<sql:query>` and `<sql:update>`
 actions must not specify a _dataSource_ attribute.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _dataSource_ is null, a _JspException_ is
+* If _dataSource_ is null, a _JspException_ is
 thrown.
 
-Any exception occurring during the execution
+* Any exception occurring during the execution
 of this action must be caught and rethrown after the transaction has
 been rolled back (see description below for details).
 
-=== Description
+.*Description*
 
-image:taglib-40.png[image]
-
-The <sql:transaction> action groups nested
-<sql:query> and <sql:update> actions into a transaction.
+The `<sql:transaction>` action groups nested
+`<sql:query>` and `<sql:update>` actions into a transaction.
 
 The transaction isolation levels are defined
 by _java.sql.Connection_ .
 
-The tag handler of the <sql:transaction>
+The tag handler of the `<sql:transaction>`
 action must perform the following steps in its lifecycle methods:
 
- _doStartTag()_ :
+* _doStartTag()_ :
 
-Determines the transaction isolation level
+** Determines the transaction isolation level
 the DBMS is set to (using the _Connection_ method
-_getTransactionIsolation()_ ).
-
+_getTransactionIsolation()_ ). +
 If transactions are not supported (that is,
 the transaction isolation level is equal to _TRANSACTION_NONE_ ), an
-exception is raised, causing the transaction to fail.
-
+exception is raised, causing the transaction to fail. +
 For any other transaction isolation level,
 the auto-commit mode is is saved (so it can later be restored), and then
 disabled by calling _setAutoCommit(false)_ on the _Connection_ .
 
-If the _isolation_ attribute is specified and
+** If the _isolation_ attribute is specified and
 differs from the connection's current isolation level, the current
 transaction isolation level is saved (so it can later be restored) and
 set to the specified level (using the _Connection_ method
 _setTransactionIsolation()_ ).
 
- _doEndTag()_ : Calls the _Connection_ method
+* _doEndTag()_ : Calls the _Connection_ method
 _commit()_ .
 
- _doCatch()_ : Calls the _Connection_ method
+* _doCatch()_ : Calls the _Connection_ method
 _rollback()._
 
- _doFinally()_ :
+* _doFinally()_ :
 
-If a transaction isolation level has been
+** If a transaction isolation level has been
 saved, it is restored using the _Connection_ method
 _setTransactionIsolation()_ .
 
-Restore auto-commit mode to its saved value
+** Restore auto-commit mode to its saved value
 by calling _setAutoCommit()_ on the _Connection_ .
 
-Closes the connection.
+** Closes the connection.
 
 The _Connection_ object is obtained and
-managed in the same manner as described for <sql:query> (see
+managed in the same manner as described for `<sql:query>` (see
 link:jstl.html#a1909[See <sql:query>]), except that it is never
-obtained from a parent tag (<sql:transaction> tags can not be nested as
+obtained from a parent tag (`<sql:transaction>` tags can not be nested as
 a means to propagate a _Connection_ ).
 
-Note that the <sql:transaction> tag handler
+Note that the `<sql:transaction>` tag handler
 commits or rollbacks the transaction (if it catches an exception) by
 calling the JDBC _Connection commit()_ and _rollback()_ methods
 respectively. Executing the corresponding SQL statements using
-<sql:update>, e.g. <sql:update sql="rollback" />, within the
-<sql:transaction> element body is not supported and the result of doing
+`<sql:update>`, e.g. `<sql:update sql="rollback" />`, within the
+`<sql:transaction>` element body is not supported and the result of doing
 so is unpredictable.
 
 Finally, the behavior of the
-<sql:transaction> action is undefined if it executes in the context of a
+`<sql:transaction>` action is undefined if it executes in the context of a
 larger JTA user transaction.
 
-=== 
+<<<
 
-image:taglib-39.png[image]
-
-[[a2074]]<sql:setDataSource>
+=== <sql:setDataSource>
 
 Exports a data source either as a scoped
 variable or as the data source configuration variable (
 _jakarta.servlet.jsp.jstl.sql.dataSource_ ).
 
-=== Syntax
-
-image:taglib-40.png[image]
-
+.*Syntax*
+....
 <sql:setDataSource
+        {dataSource="dataSource" |
+            url="jdbcUrl"
+            [driver="driverClassName"]
+            [user="userName"]
+            [password="password"]}
+        [var="varName"]
+        [scope=”{page|request|session|application}”]/>
+....
 
- \{dataSource="dataSource" |
-
- url="jdbcUrl"
-
-{empty} [driver="driverClassName"]
-
-{empty} [user="userName"]
-
- [password="password"]}
-
-{empty} [var="varName"]
-
-
-[scope=”\{page|request|session|application}”]/>
-
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -5948,19 +5810,15 @@ is specified, scope of the exported variable. Otherwise, scope of the
 data source configuration variable.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _dataSource_ is null, a _JspException_ is
+* If _dataSource_ is null, a _JspException_ is
 thrown.
 
-=== Description
-
-image:taglib-40.png[image]
+.*Description*
 
 If the _var_ attribute is specified, the
-<sql:setDataSource> action exports the data source specified (either as
+`<sql:setDataSource>` action exports the data source specified (either as
 a _DataSource_ object or as a String) as a scoped variable. Otherwise,
 the data source is exported in the
 _jakarta.servlet.jsp.jstl.sql.dataSource_ configuration variable.
@@ -5979,45 +5837,36 @@ _DriverManager_ class to access a database is intended for prototyping
 purposes only because it does not provide connection management features
 one can expect from a properly designed _DataSource_ object.
 
-=== 
-
-image:taglib-39.png[image]
-
-[[a2112]]<sql:param>
+=== <sql:param>
 
 Sets the values of parameter markers (“?”) in
-a SQL statement. Subtag of _SQLExecutionTag_ actions such as <sql:query>
-and <sql:update>.
+a SQL statement. Subtag of _SQLExecutionTag_ actions such as `<sql:query>`
+and `<sql:update>`.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-40.png[image]
-
- _Syntax 1: Parameter value specified in
+_Syntax 1: Parameter value specified in
 attribute “value”_
-
+....
 <sql:param value=” _value_ ”/>
+....
 
- _Syntax 2: Parameter value specified in the
+_Syntax 2: Parameter value specified in the
 body content_
-
+....
 <sql:param>
-
- parameter value
-
+    parameter value
 </sql:param>
+....
 
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -6027,33 +5876,27 @@ image:taglib-40.png[image]
 value.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-40.png[image]
-
-Must be nested inside an action whose tag
+* Must be nested inside an action whose tag
 handler is an instance of _SQLExecutionTag_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”).
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _value_ is null, the parameter is set to
+* If _value_ is null, the parameter is set to
 the SQL value NULL.
 
-=== Description
+.*Description*
 
-image:taglib-40.png[image]
-
-The <sql:param> action substitutes the given
+The `<sql:param>` action substitutes the given
 parameter value for a parameter marker(“?”) in the SQL statement of its
 enclosing _SQLExecutionTag_ action.
 
 Parameters are substituted in the order
 in which they are specified.
 
-The <sql:param> action locates its nearest
+The `<sql:param>` action locates its nearest
 ancestor that is an instance of _SQLExecutionTag_ and calls its
 _addSQLParameter()_ method, supplying it with the given parameter value.
 
@@ -6062,33 +5905,26 @@ _SQLExecutionTag.addSQLParameter()_ are such that supplying a parameter
 with a _String_ value (e.g. when using syntax 2) only works for columns
 of text type ( _CHAR_ , _VARCHAR_ or _LONGVARCHAR_ ).
 
-=== 
+<<<
 
-image:taglib-39.png[image]
-
-<sql:dateParam>
+=== <sql:dateParam>
 
 Sets the values of parameter markers (“?”) in
 a SQL statement for values of type _java.util.Date._ Subtag of
-_SQLExecutionTag_ actions, such as <sql:query> and <sql:update>.
+_SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 
-=== Syntax
+.*Syntax*
+....
+<sql:dateParam value=” _value_ ” [type=”{timestamp|time|date}”]/>
+....
 
-image:taglib-40.png[image]
-
-<sql:dateParam value=” _value_ ”
-[type=”\{timestamp|time|date}”]/>
-
-=== Body Content
-
-image:taglib-40.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-40.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -6103,63 +5939,52 @@ column in a database table.
 "date", "time" or "timestamp".
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-40.png[image]
-
-Must be nested inside an action whose tag
+* Must be nested inside an action whose tag
 handler is an instance of _SQLExecutionTag_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”).
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-40.png[image]
-
-If _value_ is null, the parameter is set to
+* If _value_ is null, the parameter is set to
 the SQL value NULL.
 
-=== Description
-
-image:taglib-40.png[image]
+.*Description*
 
 This action converts the provided
 _java.util.Date_ instance to one of _java.sql.Date_ , _java.sql.Time_ or
 _java.sql.Timestamp_ as defined by the _type_ attribute as follows:
 
-If the _java.util.Date_ object provided by
+* If the _java.util.Date_ object provided by
 the _value_ attribute is an instance of _java.sql.Time_ ,
 _java.sql.Date_ , or _java.sql.Timestamp_ , and the _type_ attribute
 matches this object's type, then it is passed as is to the database.
 
-Otherwise, the object is converted to the
+* Otherwise, the object is converted to the
 appropriate type by calling that type's constructor with a parameter of
 _date.getTime()_ , where _date_ is the value of the _value_ attribute.
 
-The <sql:dateParam> action substitutes the
+The `<sql:dateParam>` action substitutes the
 given parameter value for a parameter marker(“?”) in the SQL statement
 of its enclosing _SQLExecutionTag_ action.
 
 Parameters are substituted in the order
 in which they are specified.
 
-The <sql:dateParam> action locates its
+The `<sql:dateParam>` action locates its
 nearest ancestor that is an instance of _SQLExecutionTag_ and calls its
 _addSQLParameter()_ method, supplying it with the given parameter value.
 
 
-
-=== 
-
-image:taglib-39.png[image]
-
-[[a2164]]Configuration Settings
+=== Configuration Settings
 
 This section describes the configuration
 settings used by the SQL actions. Refer to
 link:jstl.html#a194[See Configuration Data] for more
 information on how JSTL processes configuration data.
 
-=== DataSource
+==== DataSource
 
 [width="100%",cols="50%,50%",]
 |===
@@ -6173,11 +5998,11 @@ _Config.SQL_DATA_SOURCE_
 jakarta.sql.DataSource
 
 |Set by
-|<sql:setDataSource>, Deployment Descriptor,
+|`<sql:setDataSource>`, Deployment Descriptor,
 Config class
 
 |Used by
-|<sql:query>, <sql:update>, <sql:transaction>
+|`<sql:query>`, `<sql:update>`, `<sql:transaction>`
 |===
 
 The data source to be accessed by the SQL
@@ -6186,7 +6011,7 @@ relative path or a JDBC parameters string (as defined in
 link:jstl.html#a1811[See Data Source]), or as a
 _jakarta.sql.DataSource_ object.
 
-=== MaxRows
+==== MaxRows
 
 [width="100%",cols="50%,50%",]
 |===
@@ -6202,7 +6027,7 @@ _Config.SQL_MAX_ROWS_
 |Deployment Descriptor, Config class
 
 |Used by
-|<sql:query>
+|`<sql:query>`
 |===
 
 The maximum number of rows to be included in
@@ -6210,17 +6035,8 @@ a query result. If the maximum number of rows is not specified, or is
 -1, it means that no limit is enforced on the maximum number of rows.
 Value must be >= -1.
 
-=== 
 
-=== 
-
-image:taglib-41.png[image]
-
-XML Core Actions
-
-=== xml tag library
-
-image:taglib-42.png[image]
+== XML Core Actions: xml tag library
 
 Enterprise data used in the web tier is
 increasingly XML these days — when companies cooperate over the web, XML
@@ -6236,11 +6052,8 @@ categories: XML core actions (this chapter), XML flow control actions
 (link:jstl.html#a2406[See] ), and XML transform actions
 (link:jstl.html#a2554[See] ).
 
-=== 
 
-image:taglib-43.png[image]
-
-Overview
+=== Overview
 
 A key aspect of dealing with XML documents is
 to be able to easily access their content. XPath, a W3C recommendation
@@ -6254,26 +6067,25 @@ language that is used locally for the XML actions. Below are the rules
 of integration that XPath follows as a local expression language. These
 rules ensure that XPath integrates nicely within the JSTL environment.
 
-=== XPath Context
+==== XPath Context
 
 In XPath, the context for evaluating an
 expression consists of:
 
-A node or nodeset
+* A node or nodeset
 
-Variable bindings (see below)
+* Variable bindings (see below)
 
-Function library
-
+* Function library +
 The default function library comes with the
 XPath engine. Some engines provide extension functions or allow
 customization to add new functions. The XPath function library in JSTL
 is limited to the core function library of the XPath specification.
 
-Namespace prefix definitions which allow
+* Namespace prefix definitions which allow
 namespace prefixes to be used within an XPath expression.
 
-=== [[a2202]]XPath Variable Bindings
+==== XPath Variable Bindings
 
 The XPath engine supports the following
 scopes to easily access web application data within an XPath expression.
@@ -6305,22 +6117,22 @@ _maps to the cookie's value for name foo_
 | _$pageScope:foo_ a|
  _pageContext.getAttribute(_
 
- _"foo", PageContext.PAGE_SCOPE)_
+_"foo", PageContext.PAGE_SCOPE)_
 
 | _$requestScope:foo_ a|
  _pageContext.getAttribute(_
 
- _"foo", PageContext.REQUEST_SCOPE)_
+_"foo", PageContext.REQUEST_SCOPE)_
 
 | _$sessionScope:foo_ a|
  _pageContext.getAttribute(_
 
- _"foo", PageContext.SESSION_SCOPE)_
+_"foo", PageContext.SESSION_SCOPE)_
 
 | _$applicationScope:foo_ a|
  _pageContext.getAttribute(_
 
- _"foo", PageContext.APPLICATION_SCOPE)_
+_"foo", PageContext.APPLICATION_SCOPE)_
 
 |===
 
@@ -6328,17 +6140,16 @@ Through these mappings, JSP scoped variables,
 request parameters, headers, and cookies, as well as context init
 parameters can all be used inside XPath expressions easily. For example:
 
-[width="100%",cols="100%",]
-|===
-|/foo/bar[@x=$param:name]
-|===
+....
+/foo/bar[@x=$param:name]
+....
 
 would find the "bar" element with an
 attribute "x" equal to the value of the http request parameter "name".
 
 
 
-=== Java to XPath Type Mappings
+==== Java to XPath Type Mappings
 
 An XPath variable must reference a
 _java.lang.Object_ instance in one of the supported scopes, identified
@@ -6359,14 +6170,14 @@ Type
 | _java.lang.String_
 | _string_
 
-|Object exported by <x:parse>
+|Object exported by `<x:parse>`
 | _node-set_
 |===
 
 A compliant implementation must allow an
 XPath variable to address objects exposed by that implementation's
-handlers for <x:set> and <x:forEach>. For example, while an
-implementation of <x:set> may expose, for a node-set S, an object of any
+handlers for `<x:set>` and `<x:forEach>`. For example, while an
+implementation of `<x:set>` may expose, for a node-set S, an object of any
 valid Java type, subsequent XPath evaluations must interpret this object
 as the node-set S.
 
@@ -6381,7 +6192,7 @@ implementation may throw an exception if it encounters an unrecognized
 type.) Following the XPath specification (section 3.1), a variable name
 that is not bound to any value results in an exception.
 
-=== [[a2244]]XPath to Java Type Mappings
+==== XPath to Java Type Mappings
 
 Evaluation of XPath expressions evaluate to
 XPath types. Their mapping to Java objects is defined as follows:
@@ -6424,7 +6235,7 @@ the same JSTL implementation. The specific Java type representing
 node-sets may thus vary by implementation.
 |===
 
-=== [[a2260]]The _select_ Attribute
+==== The _select_ Attribute
 
 In all the XML actions of JSTL, XPath
 expressions are always specified using the _select_ attribute. _select_
@@ -6437,171 +6248,126 @@ avoid confusion between XPath (expression language that is local to the
 XML actions) and the JSTL expression language (global to all actions
 with dynamic attributes in the EL version of the tag library).
 
-=== Default Context Node
+==== Default Context Node
 
 The context node for every XPath expression
-evaluation in JSTL that does not appear in the body of an <x:forEach>
+evaluation in JSTL that does not appear in the body of an `<x:forEach>`
 tag is the root of an empty document. Page authors wishing to work with
 documents must therefore suply their own node(s) using an XPath variable
 (see link:jstl.html#a2202[See XPath Variable Bindings]).
 
-Action <x:forEach> establishes for its nested
+Action `<x:forEach>` establishes for its nested
 actions a specific context for XPath expressions evaluation. See
 link:jstl.html#a2516[See <x:forEach>] for details.
 
-=== Resources Access
+==== Resources Access
 
-XML actions such as <x:parse> and
-<x:transform> allow the specification of XML and/or XSLT documents as
+XML actions such as `<x:parse>` and
+`<x:transform>` allow the specification of XML and/or XSLT documents as
 _String_ or _Reader_ objects. Accessing a resource through a URL is
-therefore handled through the <c:import> action that works seamlessly
+therefore handled through the `<c:import>` action that works seamlessly
 with the XML tags as shown below:
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:import url=”http://acme.com/productInfo”
-var=”doc”>
-
- <c:param name=”productName”
-value=”$\{product.name}”/>
-
+....
+<c:import url=”http://acme.com/productInfo” var=”doc”>
+    <c:param name=”productName” value=”${product.name}”/>
 </c:import>
-
-<x:parse doc=”$\{doc}” var=”parsedDoc”/>
-
-|===
+<x:parse doc=”${doc}” var=”parsedDoc”/>
+....
 
 To resolve references to external entities,
-the _systemId_ (<x:parse>) and _docSystemId_ / _xsltSystemId_
-(<x:transform>) attributes can be used. For these attributes:
+the _systemId_ (`<x:parse>`) and _docSystemId_ / _xsltSystemId_
+(`<x:transform>`) attributes can be used. For these attributes:
 
-Absolute URLs are passed to the parser
+* Absolute URLs are passed to the parser
 directly
 
-Relative URLs are treated as references to
+* Relative URLs are treated as references to
 resources (e.g., loaded via _ServletContext.getResource()_ ) and loaded
 using an _EntityResolver_ and _URIResolver_ as necessary
 
-=== Core Actions
+==== Core Actions
 
 The XML core actions provide “expression
 language support” for XPath. These actions are therefore similar to the
-EL support actions <c:out> and <c:set> covered in
+EL support actions `<c:out>` and `<c:set>` covered in
 link:jstl.html#a259[See] , except that they apply to XPath
 expressions.
 
 The core XML actions feature one additional
-action, <x:parse>, to parse an XML document into a data structure that
+action, `<x:parse>`, to parse an XML document into a data structure that
 can then be processed by the XPath engine. For example:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <!-- parse an XML document -->
+<c:import url=”http://acme.com/customer?id=76567” var=”doc”/>
+<x:parse doc=”${doc}” var=”parsedDoc”/>
 
-<c:import
-url=”http://acme.com/customer?id=76567” var=”doc”/>
-
-<x:parse doc=”$\{doc}” var=”parsedDoc”/>
-
-
-
-<!-- access XML data via XPath expressions
--->
-
+<!-- access XML data via XPath expressions -->
 <x:out select=”$parsedDoc/name”/>
-
 <x:out select=”$parsedDoc/address”/>
 
-
-
 <!-- set a scoped variable -->
-
-<x:set var=”custName” scope=”request”
-select=”$parsedDoc/name”/>
-
-|===
+<x:set var=”custName” scope=”request” select=”$parsedDoc/name”/>
+....
 
 The context for the evaluation of an XPath
 Expression can be set either directly within the XPath expression (as
 shown in the example above), or via an ancestor tag that sets a context
 that can be used by nested tags. An example of this is with action
-<x:forEach> (see link:jstl.html#a2516[See <x:forEach>]).
+`<x:forEach>` (see link:jstl.html#a2516[See <x:forEach>]).
 
-[width="100%",cols="100%",]
-|===
-a|
-<!-- context set by ancestor tag <x:forEach>
--->
-
+....
+<!-- context set by ancestor tag <x:forEach> -->
 <x:forEach select=”$parsedDoc//customer”>
-
- <x:out select=”name”/>
-
+    <x:out select=”name”/>
 </x:forEach>
+....
 
-|===
+<<<
 
-=== 
-
-image:taglib-43.png[image]
-
-<x:parse>
+=== <x:parse>
 
 Parses an XML document.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-44.png[image]
-
- _Syntax 1: XML document specified via a
+_Syntax 1: XML document specified via a
 String or Reader object_
+....
+<x:parse {doc=”XMLDocument”|xmllink:#a3277[10]=”XMLDocument”}
+    {var=”var” [scope=”scope”]|varDom=”var”
+    [scopeDom=”scope”]}
+    [systemId=”systemId”]
+    [filter=”filter”]/>
+....
 
-<x:parse
-\{doc=”XMLDocument”|xmllink:#a3277[10]=”XMLDocument”}
-
- \{var=”var” [scope=”scope”]|varDom=”var”
-[scopeDom=”scope”]}
-
-{empty} [systemId=”systemId”]
-
- [filter=”filter”]/>
-
- _Syntax 2: XML document specified via the
+_Syntax 2: XML document specified via the
 body content_
-
+....
 <x:parse
-
- \{var=”var” [scope=”scope”]|varDom=”var”
-[scopeDom=”scope”]}
-
-{empty} [systemId=”systemId”]
-
- [filter=”filter”]>
-
- XML Document to parse
-
+    {var=”var” [scope=”scope”]|varDom=”var”
+    [scopeDom=”scope”]}
+    [systemId=”systemId”]
+    [filter=”filter”]>
+        XML Document to parse
 </x:parse>
-
+....
 
 
 where scope is
-\{page|request|session|application}
+{page|request|session|application}
 
 
 
-=== Body Content
-
-image:taglib-44.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-44.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -6621,9 +6387,9 @@ system identifier (URI) for parsing the XML document.
 
 | _filter_ |
 _true_ a|
- _org.xml.sax._
+_org.xml.sax._
 
- _XMLFilter_
+_XMLFilter_
 
 |Filter to be applied to the source document.
 
@@ -6647,21 +6413,17 @@ _false_ | _String_
 |Scope for _varDom._
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-44.png[image]
-
-If the source XML document is null or empty,
+* If the source XML document is null or empty,
 a _JspException_ is thrown.
 
-If _filter_ is null, filtering is not
+* If _filter_ is null, filtering is not
 performed.
 
-=== Description
+.*Description*
 
-image:taglib-44.png[image]
-
-The <x:parse> action parses an XML document
+The `<x:parse>` action parses an XML document
 and saves the resulting object in the scoped variable specified by
 attribute _var_ or _varDom_ . It does not perform any validation against
 DTDs or Schemas.
@@ -6669,7 +6431,7 @@ DTDs or Schemas.
 The XML document can be specified either with
 the _doc_ attribute, or inline via the action's body content.
 
- _var_ and _varDom_
+*_var_ and _varDom_*
 
 If _var_ is used, the type of the resulting
 object is not defined by this specification. This allows implementations
@@ -6678,7 +6440,7 @@ XML tagset. _varDom_ exposes a DOM document, allowing collaboration with
 custom actions. Objects exposed by _var_ and _varDom_ can both be used
 to set the context of an XPath expression.
 
-Filtering for Performance Benefits
+*Filtering for Performance Benefits*
 
 If an implementation of the XML tagset is
 based on DOM-like structures, there will be a significant performance
@@ -6693,18 +6455,11 @@ original XML document received as input, it will greatly reduce the size
 and complexity of the resulting DOM structure if all non-European
 customers are pruned from the XML document prior to parsing.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:import url=”http://acme.com/customers”
-var=”doc”/>
-
- _<x:parse doc=”$\{doc}”
-filter=”$\{filterEuropeanCust}”_
-
- _var=”parsedDoc”/>_
-
-|===
+....
+<c:import url=”http://acme.com/customers” var=”doc”/>
+    <x:parse doc=”${doc}” filter=”${filterEuropeanCust}”
+            var=”parsedDoc”/>
+....
 
 The _filter_ attribute accepts an object of
 type _org.xml.sax.XMLFilter_ .
@@ -6713,32 +6468,23 @@ If configuration of the filter is desirable,
 it is suggested that the developer of the filter provides a custom tag
 for easy configuration by a page author.
 
-=== 
-
-image:taglib-43.png[image]
-
-<x:out>
+=== <x:out>
 
 Evaluates an XPath expression and outputs the
 result of the evaluation to the current _JspWriter_ object.
 
-=== Syntax
+.*Syntax*
+....
+<x:out select=”XPathExpression” [escapeXml=”{true|false}”]/>
+....
 
-image:taglib-44.png[image]
-
-<x:out select=”XPathExpression”
-[escapeXml=”\{true|false}”]/>
-
-=== Body Content
-
-image:taglib-44.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-44.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -6754,9 +6500,7 @@ the resulting string should be converted to their corresponding
 character entity codes. Default value is true.
 |===
 
-=== Description
-
-image:taglib-44.png[image]
+.*Description*
 
 The expression to be evaluated is specified
 via attribute _select_ and must be in XPath syntax. The result of the
@@ -6777,47 +6521,37 @@ character conversions are applied:
 |===
 |Character
 |Character Entity Code
-| _<_ | _&lt;_
+| _<_ | +&lt;+
 
-| _>_ | _&gt;_
+| _>_ | +&gt;+
 
-| _&_ | _&amp;_
+| _&_ | +&amp;+
 
-|‘ |&#039;
+|‘ |+&#039;+
 
-|‘’ |&#034;
+|‘’ |+&#034;+
 |===
 
+<<<
 
-
-=== 
-
-image:taglib-43.png[image]
-
-<x:set>
+=== <x:set>
 
 Evaluates an XPath expression and stores the
 result into a scoped variable.
 
-=== Syntax
-
-image:taglib-44.png[image]
-
+.*Syntax*
+....
 <x:set select=”XPathExpression”
+    var=”varName” [scope=”{page|request|session|application}”]/>
+....
 
- var=”varName”
-[scope=”\{page|request|session|application}”]/>
-
-=== Body Content
-
-image:taglib-44.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-44.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -6837,9 +6571,7 @@ _false_ | _String_
 |Scope for var.
 |===
 
-=== Description
-
-image:taglib-44.png[image]
+.*Description*
 
 Evaluates an XPath expression (specified via
 attribute _select_ ) and stores the result into a scoped variable
@@ -6850,18 +6582,7 @@ described in link:jstl.html#a2244[See XPath to Java Type
 Mappings].
 
 
-
-=== [[a2406]]
-
-=== 
-
-image:taglib-45.png[image]
-
-XML Flow Control Actions
-
-=== xml tag library
-
-image:taglib-46.png[image]
+== XML Flow Control Actions: xml tag library
 
 The core set of XML actions provides the
 basic functionality to easily parse and access XML data. Another
@@ -6870,137 +6591,105 @@ in an XML document, as well as conditionally process JSP code fragments
 depending on the result of an XPath expression. The XML flow control
 actions provide these capabilities.
 
-=== 
 
-image:taglib-47.png[image]
-
-Overview
+=== Overview
 
 The XML flow control actions provide flow
 control based on the value of XPath expressions. These actions are
-therefore similar to the EL flow control actions (<c:if>, <c:choose>,
-and <c:forEach>), except that they apply to XPath expressions.
+therefore similar to the EL flow control actions (`<c:if>`, `<c:choose>`,
+and <`c:forEach>`), except that they apply to XPath expressions.
 
 The _<x:if>_ action has a _select_ attribute
 that specifies an XPath expression. The expression is evaluated and the
 resulting object is converted to a _boolean_ according to the semantics
 of the XPath _boolean()_ function:
 
-A number is true if an only if it is neither
+* A number is true if an only if it is neither
 positive or negative zero nor NaN
 
-A node-set is true if and only if it is
+* A node-set is true if and only if it is
 non-empty
 
-A string is true if and only if its length is
+* A string is true if and only if its length is
 non-zero
 
-<x:if> renders its body if the result is
+`<x:if>` renders its body if the result is
 true. For example:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <x:if select=”$customer/[location=’UK’]”>
-
- UK based customer
-
+    UK based customer
 </x:if>
+....
 
-|===
-
-The <x:choose> action selects one among a
-number of possible alternatives. It consists of a sequence of <x:when>
-elements followed by an optional <x:otherwise>. Each <x:when> element
+The `<x:choose>` action selects one among a
+number of possible alternatives. It consists of a sequence of `<x:when>`
+elements followed by an optional `<x:otherwise>`. Each <x:when> element
 has a single attribute, _select_ , which specifies an XPath expression.
-When a <x:choose> element is processed, each of the <x:when> elements
+When a `<x:choose>` element is processed, each of the `<x:when>` elements
 has its expression evaluated in turn, and the resulting object is
 converted to a boolean according to the semantics of the XPath boolean
-function. The body of the first, and only the first, <x:when> whose
+function. The body of the first, and only the first, `<x:when>` whose
 result is true is rendered.
 
 If none of the test conditions of nested
-<x:when> tags evaluates to true, then the body of an <x:otherwise> tag
+`<x:when>` tags evaluates to true, then the body of an `<x:otherwise>` tag
 is evaluated, if present.
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <x:choose>
-
- <x:when select=”$customer/firstName”>
-
- Hello <x:out select=”$customer/firstName”/>
-
- </x:when>
-
- <x:otherwise>
-
- Hello my friend
-
- </x:otherwise>
-
+    <x:when select=”$customer/firstName”>
+        Hello <x:out select=”$customer/firstName”/>
+    </x:when>
+    <x:otherwise>
+        Hello my friend
+    </x:otherwise>
 </x:choose>
-
-|===
+....
 
 The _<x:forEach>_ action evaluates the given
 XPath expression and iterates over the result, setting the context node
 to each element in the iteration. For example:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <x:forEach select=”$doc//author”>
-
- <x:out select=”@name”/>
-
+    <x:out select=”@name”/>
 </x:forEach>
+....
 
-|===
+<<<
 
-
-
-=== 
-
-image:taglib-47.png[image]
-
-<x:if>
+=== <x:if>
 
 Evaluates the XPath expression specified in
 the _select_ attribute and renders its body content if the expression
 evaluates to true.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-48.png[image]
+_Syntax 1: Without body content_
+....
+<x:if select=”XPathExpression”
+        var=”varName” [scope=”{page|request|session|application}”]/>
+....
 
- _Syntax 1: Without body content_
-
-<x:if select=”XPathExpression” +
-var=”varName” [scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: With body content_
-
-<x:if select=”XPathExpression” +
-[var=”varName”] [scope=”\{page|request|session|application}”]>
-
- body content
-
+_Syntax 2: With body content_
+....
+<x:if select=”XPathExpression”
+        [var=”varName”] [scope=”{page|request|session|application}”]>
+    body content
 </x:if>
+....
 
-=== Body Content
-
-image:taglib-48.png[image]
+.*Body Content*
 
 JSP. If the test condition evaluates to true,
 the JSP container processes the body content and then writes it to the
 current _JspWriter_ .
 
-=== Attributes
+.*Attributes*
 
-image:taglib-48.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -7020,16 +6709,12 @@ _false_ | _String_
 |Scope for var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-48.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Description
-
-image:taglib-48.png[image]
+.*Description*
 
 The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
@@ -7037,97 +6722,74 @@ _boolean_ according to the semantics of the XPath _boolean()_ function.
 If true, the body content is evaluated by the JSP container and the
 result is written to the current _JspWriter_ .
 
+<<<
 
-
-=== 
-
-image:taglib-47.png[image]
-
-<x:choose>
+=== <x:choose>
 
 Provides the context for mutually exclusive
 conditional execution.
 
-=== Syntax
-
-image:taglib-48.png[image]
-
+.*Syntax*
+....
 <x:choose>
-
- body content (<x:when> and <x:otherwise>
-subtags)
-
+    body content (<x:when> and <x:otherwise> subtags)
 </x:choose>
+....
 
-=== Body Content
-
-image:taglib-48.png[image]
+.*Body Content*
 
 JSP. The body content is processed by the JSP
 container (at most one of the nested elements will be processed) and
 written to the current _JspWriter_ .
 
-=== Constraints
+.*Constraints*
 
-image:taglib-48.png[image]
-
-The body of the <x:choose> action can only
+* The body of the `<x:choose>` action can only
 contain:
 
-White spaces
+** White spaces +
+May appear anywhere around the `<x:when>` and
+`<x:otherwise>` subtags.
 
-May appear anywhere around the <x:when> and
-<x:otherwise> subtags.
+** 1 or more `<x:when>` actions
 
-1 or more <x:when> actions
+** Must all appear before `<x:otherwise>`
 
-Must all appear before <x:otherwise>
-
-0 or 1 <x:otherwise> action
-
+** 0 or 1 `<x:otherwise>` action +
 Must be the last action nested within
-<x:choose>
+`<x:choose>`
 
-=== Description
+.*Description*
 
-image:taglib-48.png[image]
-
-The <x:choose> action processes the body of
+The `<x:choose>` action processes the body of
 the first _<x:when>_ action whose test condition evaluates to true. If
 none of the test conditions of nested _<x:when>_ actions evaluates to
 true, then the body of an _<x:otherwise>_ action is processed, if
 present.
 
-=== 
+<<<
 
-image:taglib-47.png[image]
-
-<x:when>
+=== <x:when>
 
 Represents an alternative within an
-<x:choose> action.
+`<x:choose>` action.
 
-=== Syntax
-
-image:taglib-48.png[image]
-
-<x:when select=”XPathExpression”> +
-body content
-
+.*Syntax*
+....
+<x:when select=”XPathExpression”>
+    body content
 </x:when>
+....
 
-=== Body Content
-
-image:taglib-48.png[image]
+.*Body Content*
 
 JSP. If this is the first _<x:when>_ action
 to evaluate to true within _<x:choose>_ , the JSP container processes
 the body content and then writes it to the current _JspWriter_ .
 
-=== Attributes
+.*Attributes*
 
-image:taglib-48.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -7138,19 +6800,15 @@ _false_ | _String_
 the body content should be processed
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-48.png[image]
-
-Must have _<x:choose>_ as an immediate
+* Must have _<x:choose>_ as an immediate
 parent.
 
-Must appear before an _<x:otherwise>_ action
+* Must appear before an _<x:otherwise>_ action
 that has the same parent.
 
-=== Description
-
-image:taglib-48.png[image]
+.*Description*
 
 The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
@@ -7159,95 +6817,70 @@ If this is the first _<x:when>_ action to evaluate to true within
 _<x:choose>_ , the JSP container processes the body content and then
 writes it to the current _JspWriter_ .
 
+<<<
 
-
-=== 
-
-image:taglib-47.png[image]
-
-<x:otherwise>
+=== <x:otherwise>
 
 Represents the last alternative within a
-<x:choose> action.
+`<x:choose>` action.
 
-=== Syntax
-
-image:taglib-48.png[image]
-
+.*Syntax*
+....
 <x:otherwise>
-
- conditional block
-
+    conditional block
 </x:otherwise>
+....
 
-=== Body Content
+.*Body Content*
 
-image:taglib-48.png[image]
-
-JSP. If no <x:when> action nested within
-<x:choose> evaluates to true, the JSP container processes the body
+JSP. If no `<x:when>` action nested within
+`<x:choose>` evaluates to true, the JSP container processes the body
 content and then writes it to the current _JspWriter_ .
 
-=== Attributes
-
-image:taglib-48.png[image]
+.*Attributes*
 
 None.
 
-=== Constraints
+.*Constraints*
 
-image:taglib-48.png[image]
+* Must have `<x:choose>` as an immediate parent.
 
-Must have <x:choose> as an immediate parent.
+* Must be the last nested action within
+`<x:choose>`.
 
-Must be the last nested action within
-<x:choose>.
+.*Description*
 
-=== Description
-
-image:taglib-48.png[image]
-
-Within a <x:choose> action, if none of the
-nested <x:when> test conditions evaluates to true, then the body content
-of the <x:otherwise> action is evaluated by the JSP container, and the
+Within a `<x:choose>` action, if none of the
+nested `<x:when>` test conditions evaluates to true, then the body content
+of the `<x:otherwise>` action is evaluated by the JSP container, and the
 result is written to the current _JspWriter_ .
 
-=== 
+<<<
 
-image:taglib-47.png[image]
-
-[[a2516]]<x:forEach>
+=== <x:forEach>
 
 Evaluates the given XPath expression and
 repeats its nested body content over the result, setting the context
 node to each element in the iteration.
 
-=== Syntax
-
-image:taglib-48.png[image]
-
-{empty}<x:forEach [var=”varName”]
-select=”XPathExpression”> +
-[varStatus=”varStatusName”]
-
- [begin=”begin”] [end=”end”] [step=”step”]>
-
- body content
-
+.*Syntax*
+....
+<x:forEach [var=”varName”] select=”XPathExpression”>
+        [varStatus=”varStatusName”]
+        [begin=”begin”] [end=”end”] [step=”step”]>
+    body content
 </x:forEach>
+....
 
-=== Body Content
-
-image:taglib-48.png[image]
+.*Body Content*
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the JSP container and written to
 the current _JspWriter_ .
 
-=== Attributes
+.*Attributes*
 
-image:taglib-48.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -7284,66 +6917,47 @@ will only process every _step_ items of the collection, starting with
 the first one.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-48.png[image]
+* If specified, _begin_ must be >= 0.
 
-If specified, _begin_ must be >= 0.
-
-If _end_ is specified and it is less than
+* If _end_ is specified and it is less than
 _begin_ , the loop is simply not executed.
 
-If specified, _step_ must be >= 1
+* If specified, _step_ must be >= 1
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-48.png[image]
-
-If _select_ is empty, a _JspException_ is
+* If _select_ is empty, a _JspException_ is
 thrown.
 
-=== Description
-
-image:taglib-48.png[image]
+.*Description*
 
 Inside the body of the tag, the context for
 XPath expression evaluations is obtained as follows:
 
-variable, function, and namespace bindings
+* variable, function, and namespace bindings
 operate as in the rest of JSTL
 
-the context node is the node whose
+* the context node is the node whose
 representation would be exposed by 'var' (whether or not the 'var'
 attribute is specified)
 
-the context position is the iteration 'count'
-(with the same meaning as in <c:forEach>)
+* the context position is the iteration 'count'
+(with the same meaning as in `<c:forEach>`)
 
-the context size is equal to the number of
-nodes in the node-set over which <x:forEach> is iterating
+* the context size is equal to the number of
+nodes in the node-set over which `<x:forEach>` is iterating
 
-=== [[a2554]]
 
-=== 
-
-image:taglib-49.png[image]
-
-XML Transform Actions
-
-=== xml tag library
-
-image:taglib-50.png[image]
+== XML Transform Actions: xml tag library
 
 The transformation of XML documents using
 XSLT stylesheets is popular in many web applications. The XML transform
 actions provide this capability so XSLT transformations can be performed
 within JSP pages.
 
-=== 
-
-image:taglib-51.png[image]
-
-Overview
+=== Overview
 
 The XML transform actions support the
 transformation of XML documents with XSLT stylesheets.
@@ -7353,32 +6967,20 @@ document (retrieved from an absolute URL) is transformed by a local XSLT
 stylesheet (context relative path). The result of the transformation is
 written to the page.
 
-[width="100%",cols="100%",]
-|===
-a|
-<c:import url=”http://acme.com/customers”
-var=”doc”/>
-
-<c:import
-url=”/WEB-INF/xslt/customerList.xsl” var=”xslt”/>
-
-<x:transform doc=”$\{doc}” xslt=”$\{xslt}”/>
-
-|===
+....
+<c:import url=”http://acme.com/customers” var=”doc”/>
+<c:import url=”/WEB-INF/xslt/customerList.xsl” var=”xslt”/>
+<x:transform doc=”${doc}” xslt=”${xslt}”/>
+....
 
 It is possible to set transformation
-parameters via nested <x:param> actions. For example:
+parameters via nested `<x:param>` actions. For example:
 
-[width="100%",cols="100%",]
-|===
-a|
-<x:transform doc=”$\{doc}” xslt=”$\{xslt}”>
-
- <x:param name=”foo” value=”foo-value”/>
-
+....
+<x:transform doc=”${doc}” xslt=”${xslt}”>
+    <x:param name=”foo” value=”foo-value”/>
 </x:transform>
-
-|===
+....
 
 It is sometimes the case that the same
 stylesheet transformation needs to be applied multiple times to
@@ -7388,90 +6990,64 @@ object for successive transformations. The specification allows
 implementations to support transparent caching of transformer objects to
 improve performance.
 
-=== 
+<<<
 
-image:taglib-51.png[image]
-
-<x:transform>
+=== <x:transform>
 
 Applies an XSLT stylesheet transformation to
 an XML document.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-52.png[image]
-
- _Syntax 1: Without body contentt_
-
-<x:transform +
-\{doc=”XMLDocument”|xmllink:#a3279[12]=”XMLDocument”}
-xslt=”XSLTStylesheet”
-
-{empty}
-[\{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-
-{empty} [xsltSystemId=”XSLTSystemId”]
-
-{empty} [\{var=”varName”
-[scope=”scopeName”]|result=”resultObject”}]
-
- _Syntax 2: With a body to specify
-transformation parameters_
-
-<x:transform +
-\{doc=”XMLDocument”|xml1=”XMLDocument”} xslt=”XSLTStylesheet”
-
-{empty}
-[\{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-
-{empty} [xsltSystemId=”XSLTSystemId”]
-
-{empty} [\{var=”varName”
-[scope=”scopeName”]|result=”resultObject”}]
-
- <x:param> actions
-
-</x:transform>
-
-
-
- _Syntax 3: With a body to specify XML
-document and optional transformation parameters_
-
+_Syntax 1: Without body contentt_
+....
 <x:transform
+        {doc=”XMLDocument”|xmllink:#a3279[12]=”XMLDocument”} xslt=”XSLTStylesheet”
+        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
+        [xsltSystemId=”XSLTSystemId”]
+        [{var=”varName”
+        [scope=”scopeName”]|result=”resultObject”}]
+....
 
- xslt=”XSLTStylesheet”
+_Syntax 2: With a body to specify
+transformation parameters_
+....
+<x:transform
+        {doc=”XMLDocument”|xml1=”XMLDocument”} xslt=”XSLTStylesheet”
+        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
+        [xsltSystemId=”XSLTSystemId”]
+        [{var=”varName”
+        [scope=”scopeName”]|result=”resultObject”}]
+    <x:param> actions
+</x:transform>
+....
 
-{empty}
-[\{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-
- xsltSystemId=”XSLTSystemId”
-
-{empty} [\{var=”varName”
-[scope=”scopeName”]|result=”resultObject”}]
-
- XML Document to parse
-
- optional <x:param> actions
-
+_Syntax 3: With a body to specify XML
+document and optional transformation parameters_
+....
+<x:transform
+        xslt=”XSLTStylesheet”
+        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
+        xsltSystemId=”XSLTSystemId”
+        [{var=”varName”
+        [scope=”scopeName”]|result=”resultObject”}]
+    XML Document to parse
+    optional <x:param> actions
 </x:parse>
-
+....
 
 
 where scopeName is
-\{page|request|session|application}
+{page|request|session|application}
 
-=== Body Content
-
-image:taglib-52.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-52.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -7518,35 +7094,29 @@ _false_ | _String_
 
 | _result_ |
 _true_ a|
- _jakarta.xml.transform._
-
- _Result_
+_jakarta.xml.transform.Result_
 
 |Object that captures or processes the
 transformation result.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-52.png[image]
-
-If the source XML document is null or empty,
+* If the source XML document is null or empty,
 a _JspException_ is thrown.
 
-If the source XSLT document is null or empty,
+* If the source XSLT document is null or empty,
 a _JspException_ is thrown.
 
-=== Description
+.*Description*
 
-image:taglib-52.png[image]
-
-The <x:transform> tag applies a
+The `<x:transform>` tag applies a
 transformation to an XML document (attribute _doc_ or the action’s body
 content), given a specific XSLT stylesheet (attribute _xslt_ ). It does
 not perform any validation against DTD's or Schemas.
 
 Nothing prevents an implementation from
-caching _Transformer_ objects across invocations of <x:transform>,
+caching _Transformer_ objects across invocations of `<x:transform>`,
 though implementations should be careful they take into account both the
 _xslt_ and _xsltSystemId_ attributes when deciding whether to use a
 cached _Transformer_ or produce a new one. An implementation may assume
@@ -7557,50 +7127,43 @@ The result of the transformation is written
 to the page by default. It is also possible to capture the result of the
 transformation in two other ways:
 
- _jakarta.xml.transform.Result_ object
+* _jakarta.xml.transform.Result_ object
 specified by the _result_ attribute _._
 
- _org.w3c.dom.Document_ object saved in the
+* _org.w3c.dom.Document_ object saved in the
 scoped variable specified by the _var_ and _scope_ attributes.
 
-=== 
+<<<
 
-image:taglib-51.png[image]
-
-<x:param>
+=== <x:param>
 
 Set transformation parameters. Nested action
-of <x:transform>.
+of `<x:transform>`.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-52.png[image]
-
- _Syntax 1: Parameter value specified in
+_Syntax 1: Parameter value specified in
 attribute “value”_
+....
+<x:param name=”name” value=”value”/>
+....
 
-<x:param name=”name” value=” _value_ ”/>
-
- _Syntax 2: Parameter value specified in the
+_Syntax 2: Parameter value specified in the
 body content_
-
+....
 <x:param name=”name”>
-
- parameter value
-
+    parameter value
 </x:param>
+....
 
-=== Body Content
-
-image:taglib-52.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-52.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
@@ -7614,22 +7177,16 @@ of the transformation parameter.
 of the parameter.
 |===
 
-=== Description
-
-image:taglib-52.png[image]
+.*Description*
 
 The _<x:param>_ action must be nested within
 _<x:transform>_ to set transformation parameters. The value of the
 parameter can be specified either via the _value_ attribute, or via the
 action’s body content.
 
-=== 
+<<<
 
-=== 
-
-image:taglib-53.png[image]
-
-Tag Library Validators
+== Tag Library Validators
 
 JSP 1.2 provides tag library validators
 (TLVs) as a mechanism for a tag library to enforce constraints on the
