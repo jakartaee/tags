@@ -7212,22 +7212,18 @@ author's environment.
 This chapter covers the JSTL tag library
 validators.
 
-=== 
-
-image:taglib-54.png[image]
-
-Overview
+=== Overview
 
 JSTL exposes via TLVs two simple types of
 validations. These TLV classes may be used in custom tag-library
 descriptors (TLDs) to restrict the page author's activities. The two
 types of validation provided in this fashion are:
 
-ScriptFree (see
+* ScriptFree (see
 link:jstl.html#UNKNOWN[See Java APIs]”) +
 Assurance of script-free pages
 
-PermittedTaglibs (see
+* PermittedTaglibs (see
 link:jstl.html#UNKNOWN[See Java APIs]”) +
 Enumeration of permitted tag libraries (including JSTL) on a page
 
@@ -7235,86 +7231,45 @@ For example, to prevent a JSP page from using
 JSP scriptlets and JSP declarations, but still allow expressions, a
 developer could create the following TLD:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation=
+        "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>
+        Validates JSP pages to prohibit use of scripting elements.
+    </description>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp.version>
+    <short-name>scriptfree</short-name>
+    <uri>http://acme.com/scriptfree</uri>
 
-
-<taglib
-xmlns="http://java.sun.com/xml/ns/j2ee"
-
-
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
- xsi:schemaLocation= +
-"http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
-
- version="2.0">
-
- <description>
-
- Validates JSP pages to prohibit use of
-scripting elements.
-
- </description>
-
- <tlib-version>1.0</tlib-version>
-
- <jsp-version>2.0</jsp.version>
-
- <short-name>scriptfree</short-name>
-
- <uri>http://acme.com/scriptfree</uri>
-
-
-
- <validator>
-
- <validator-class>
-
- jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
-
- </validator-class>
-
- <init-param>
-
- <param-name>allowDeclarations</param-name>
-
- <param-value>false</param-value>
-
- </init-param>
-
- <init-param>
-
- <param-name>allowScriptlets</param-name>
-
- <param-value>false</param-value>
-
- </init-param>
-
- <init-param>
-
- <param-name>allowExpressions</param-name>
-
- <param-value>true</param-value>
-
- </init-param>
-
- <init-param>
-
- <param-name>allowRTExpressions</param-name>
-
- <param-value>true</param-value>
-
- </init-param>
-
- </validator>
-
+    <validator>
+        <validator-class>
+            jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
+        </validator-class>
+        <init-param>
+            <param-name>allowDeclarations</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowScriptlets</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowExpressions</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowRTExpressions</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </validator>
 </taglib>
-
-|===
+....
 
 Note that in JSP 2.0, scripting elements can
 also be disabled through the use of the _scripting-invalid_
@@ -7324,85 +7279,41 @@ Similarly, to restrict a JSP page to a set of
 permitted tag-libraries (in the example below, the JSTL “EL” tag
 libraries), a developer could create the following TLD:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <?xml version="1.0" encoding="UTF-8" ?>
 
-
-
 <taglib
-xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation= +
+        "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>
+        Restricts JSP pages to the JSTL tag libraries
+    </description>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp.version>
+    <short-name>jstl taglibs only</scriptfree>
+    <uri>http://acme.com/jstlTaglibsOnly</uri>
 
-
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
- xsi:schemaLocation= +
-"http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
-
- version="2.0">
-
- <description>
-
- Restricts JSP pages to the JSTL tag
-libraries
-
- </description>
-
- <tlib-version>1.0</tlib-version>
-
- <jsp-version>2.0</jsp.version>
-
- <short-name>jstl taglibs only</scriptfree>
-
- <uri>http://acme.com/jstlTaglibsOnly</uri>
-
-
-
- <validator>
-
- <validator-class>
-
-
-jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
-
- </validator-class>
-
- <init-param>
-
- <param-name>permittedTaglibs</param-name>
-
- <param-value>
-
- http://java.sun.com/jstl/core
-
- http://java.sun.com/jstl/xml
-
- http://java.sun.com/jstl/fmt
-
- http://java.sun.com/jstl/sql
-
- </param-value>
-
- </init-param>
-
- </validator>
-
+    <validator>
+        <validator-class>
+            jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+        </validator-class>
+        <init-param>
+            <param-name>permittedTaglibs</param-name>
+            <param-value>
+                http://java.sun.com/jstl/core
+                http://java.sun.com/jstl/xml
+                http://java.sun.com/jstl/fmt
+                http://java.sun.com/jstl/sql
+            </param-value>
+        </init-param>
+    </validator>
 </taglib>
+....
 
-|===
-
-=== 
-
-=== 
-
-image:taglib-55.png[image]
-
-Functions
-
-=== function tag library
-
-image:taglib-56.png[image]
+== Functions: function tag library
 
 Just like custom actions allow developers to
 extend the JSP syntax with their own customized behavior, the expression
@@ -7415,17 +7326,13 @@ authors. In addition to defining a standard set of actions, JSTL
 therefore also defines a standardized set of EL functions. These
 functions are described in this chapter.
 
-=== 
-
-image:taglib-57.png[image]
-
-Overview
+=== Overview
 
 The JSTL functions are all grouped within the
 _function_ tag library. They cover various domains of functionality
 described below.
 
-=== The _length_ Function
+==== The _length_ Function
 
 A feature sorely missed in JSTL 1.0 was the
 ability to easily get the size of a collection. While the
@@ -7445,127 +7352,111 @@ A sample use of _length_ is shown in the
 example below where scoped variable _athletes_ is a collection of
 _Athletes_ objects.
 
-[width="100%",cols="100%",]
-|===
-|There are $\{fn:length(athletes)} athletes
-representing $\{country}
-|===
+....
+There are $\{fn:length(athletes)} athletes representing $\{country}
+....
 
-=== String Manipulation Functions
+==== String Manipulation Functions
 
 String manipulation functions allow page
 authors to:
 
-Change the capitalization of a string (
+* Change the capitalization of a string (
 _toLowerCase_ , _toUpperCase_ )
 
-Get a subset of a string ( _substring,
+* Get a subset of a string ( _substring,
 substringAfter, substringBefore_ )
 
-Trim a string ( _trim_ )
+* Trim a string ( _trim_ )
 
-Replace characters in a string ( _replace_ )
+* Replace characters in a string ( _replace_ )
 
-Check if a string contains another string (
+* Check if a string contains another string (
 _indexOf, startsWith, endsWith, contains, containsIgnoreCase_ )
 
-split a string ( _split_ ) into an array, and
+* split a string ( _split_ ) into an array, and
 join an array into a string ( _join_ )
 
-Escape XML characters in the string (
+* Escape XML characters in the string (
 _escapeXml_ )
 
 The example below shows simple uses of these
 functions.
 
-[width="100%",cols="100%",]
-|===
-a|
-<%-- truncate name to 30 chars and display it
-in uppercase --%> +
-$\{fn:toUpperCase(fn:substring(name, 0, 30))}
+....
+<%-- truncate name to 30 chars and display it in uppercase --%>
+${fn:toUpperCase(fn:substring(name, 0, 30))}
 
-<%-- Display the text value prior to the
-first ’*’ character --%> +
-$\{fn:substringBefore(text, ’*’)} +
- +
+<%-- Display the text value prior to the first ’*’ character --%>
+${fn:substringBefore(text, ’*’)}
+
 <%-- Scoped variable "custId" may contain whitespaces at the beginning
-or end. Trim it first, otherwise we end up with +'s in the URL --%> +
-<c:url var="myUrl" value="$\{base}/cust"> +
-<c:param name="custId" value="$\{fn:trim(custId)}"/> +
-</c:url> +
- +
-<%-- Display the text in between brackets --%> +
-$\{fn:substring(text, fn:indexOf(text, ’(’)+1, +
-fn:indexOf(text, ’)’))} +
- +
-<%-- Display the name if it contains the search string --%> +
-<c:if test="$\{fn:containsIgnoreCase(name, searchString)}"> +
-Found name: $\{name} +
-</c:if> +
- +
-<%-- Display the last 10 characters of the text value --%> +
-$\{fn:substring(text, fn:length(text)-10)} +
- +
-<%-- Display text value with bullets instead of ’-’ --%> +
-$\{fn:replace(text, ’-’, ’&#149;’)}
+or end. Trim it first, otherwise we end up with +'s in the URL --%> 
+<c:url var="myUrl" value="${base}/cust"> 
+    <c:param name="custId" value="${fn:trim(custId)}"/> 
+</c:url> 
 
-|===
+<%-- Display the text in between brackets --%>
+${fn:substring(text, fn:indexOf(text, ’(’)+1,
+                     fn:indexOf(text, ’)’))}
 
-While one can always use <c:out> to make sure
+<%-- Display the name if it contains the search string --%>
+<c:if test="${fn:containsIgnoreCase(name, searchString)}">
+    Found name: ${name}
+</c:if>
+
+<%-- Display the last 10 characters of the text value --%>
+${fn:substring(text, fn:length(text)-10)}
+
+<%-- Display text value with bullets instead of ’-’ --%>
+${fn:replace(text, ’-’, ’&#149;’)}
+....
+
+While one can always use `<c:out>` to make sure
 that XML characters are properly escaped, the function escapeXml
 provides a syntax that is more concise as can be seen in the following
 example:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <%-- Escape XML characters when displaying
 the value of a request parameter (avoid cross-site scripting) --%>
 
-<input name="userName"
-value="$\{fn:escapeXml(param:userName)}"> +
- +
-<%-- Escape XML characters when passing an attribute value to an action
---%>
+<input name="userName" value="${fn:escapeXml(param:userName)}"> 
 
-<%-- Using <c:out> with <c:set>--%> +
-<c:set var="nameEscaped"> +
-<c:out value="$\{name}"/> +
-</c:set> +
-<my:tag name="$\{nameEscaped}"/> +
- +
-<%-- Using <c:out> with <jsp:attribute>--%> +
-<my:tag> +
-<jsp:attribute name="name"> +
-<c:out value="$\{name}"/> +
-</jsp:attribute> +
-</my:tag> +
- +
-<%-- Using fn:escapeXml --%> +
-_<my:tag title="$\{fn:escapeXml(name)}"/>_
+<%-- Escape XML characters when passing an attribute value to an action --%>
 
-|===
+<%-- Using <c:out> with <c:set>--%>
+<c:set var="nameEscaped">
+    <c:out value="${name}"/>
+</c:set>
+<my:tag name="${nameEscaped}"/>
 
-=== 
+<%-- Using <c:out> with <jsp:attribute>--%>
+<my:tag>
+    <jsp:attribute name="name">
+        <c:out value="${name}"/>
+    </jsp:attribute>
+</my:tag>
 
-image:taglib-57.png[image]
+<%-- Using fn:escapeXml --%>
+<my:tag title="${fn:escapeXml(name)}"/>
+....
 
-fn:contains
+<<<<
+
+=== fn:contains
 
 Tests if a string contains the specified
 substring.
 
-=== Syntax
+.*Syntax*
+....
+fn:contains(string, substring) → boolean
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:contains( _string, substring_ ) → boolean
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7583,19 +7474,15 @@ represented by the _substring_ argument exists in the character sequence
 represented by the _string_ argument, _false_ otherwise.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Returns _true_ if the character sequence
 represented by the _substring_ argument exists in the character sequence
@@ -7609,28 +7496,23 @@ beginning of the string and the value returned is true.
 Essentially, _fn:contains_ returns the value
 of:
 
- _fn:indexOf(string, substring) != -1_ .
+{nbsp}{nbsp}{nbsp}{nbsp} _fn:indexOf(string, substring) != -1_.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:containsIgnoreCase
+=== fn:containsIgnoreCase
 
 Tests if a string contains the specified
 substring in a case insensitive way.
 
-=== Syntax
+.*Syntax*
+....
+fn:containsIgnoreCase(string, substring) → boolean
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:containsIgnoreCase( _string, substring_ )
-→ boolean
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7649,45 +7531,37 @@ represented by the _string_ argument ignoring case differences, _false_
 otherwise.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 The behavior is the same as _fn:contains_ ,
 except that the comparison is done in a case insensitive way, as in:
 
- _fn:contains(fn:toUpperCase(string),
+_fn:contains(fn:toUpperCase(string),
 fn:toUpperCase(substring))._
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:endsWith
+=== fn:endsWith
 
 Tests if a string ends with the specified
 suffix.
 
-=== Syntax
+.*Syntax*
+....
+fn:endsWith(string, suffix) → boolean
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:endsWith( _string, suffix_ ) → boolean
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7705,19 +7579,15 @@ represented by the _suffix_ argument is a suffix of the character
 sequence represented by the _string_ argument, _false_ otherwise.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Behavior is similar to _fn:startsWith_ ,
 except that the substring must be at the end of the input string.
@@ -7725,27 +7595,21 @@ except that the substring must be at the end of the input string.
 If _suffix_ is empty, this matches the end of
 the string and the value returned is true.
 
+<<<
 
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:escapeXml
+=== fn:escapeXml
 
 Escapes characters that could be interpreted
 as XML markup.
 
-=== Syntax
+.*Syntax*
+....
+fn:escapeXml(string) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:escapeXml( _string_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7758,44 +7622,36 @@ conversion is applied.
 _String_ |Converted string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Escapes characters that could be interpreted
 as XML markup. The conversions are the same as the ones applied by
-<c:out> when attribute _escapeXml_ is set to true. See
+`<c:out>` when attribute _escapeXml_ is set to true. See
 link:jstl.html#a296[See <c:out>].
 
 If _string_ is an empty string, an empty
 string is returned.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:indexOf
+=== fn:indexOf
 
 Returns the index within a string of the
 first occurrence of a specified substring.
 
-=== Syntax
+.*Syntax*
+....
+fn:indexOf(string, substring) → int
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:indexOf( _string, substring_ ) → int
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7814,19 +7670,15 @@ the input string, returns the index of the first character of the first
 such substring; if it does not occur as a substring, -1 is returned.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Returns the index (0-based) within a string
 of the first occurrence of a specified substring according to the
@@ -7837,26 +7689,20 @@ processing described above.
 If _substring_ is empty, this matches the
 beginning of the string and the value returned is 0.
 
+<<<
 
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:join
+=== fn:join
 
 Joins all elements of an array into a string.
 
-=== Syntax
+.*Syntax*
+....
+fn:join(array, separator) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:join(array _, separator_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7874,19 +7720,15 @@ _String_ |All array elements joined into one
 string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _array_ is null, an empty string is
+* If _array_ is null, an empty string is
 returned.
 
-If separator is null, it is processed as an
+* If separator is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Joins all elements of the string array into a
 string.
@@ -7894,31 +7736,27 @@ string.
 If separator is an empty string, then the
 elements are joined together without any separator.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:length
+=== fn:length
 
 Returns the number of items in a collection,
 or the number of characters in a string.
 
-=== Syntax
+.*Syntax*
+....
+fn:length(input) → integer
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:length( _input_ ) → integer
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
 |Description
 | _input_ |Any of
-the types supported for the _items_ attribute in the <c:forEach> action,
+the types supported for the _items_ attribute in the `<c:forEach>` action,
 or _String_ . |The input collection or string
 on which the length is computed.
 
@@ -7926,41 +7764,30 @@ on which the length is computed.
 |Length of the collection or the string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _input_ is null, it is treated as an empty
+* If _input_ is null, it is treated as an empty
 collection and the value returned is 0.
 
-If input is an empty string, the value
+* If input is an empty string, the value
 returned is 0.
 
+<<<
 
-
-
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:replace
+=== fn:replace
 
 Returns a string resulting from replacing in
 an input string all occurrences of a "before" substring into an "after"
 substring.
 
-=== Syntax
+.*Syntax*
+....
+fn:replace(inputString, beforeSubstring, afterSubstring) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:replace( _inputString, beforeSubstring,
-afterSubstring_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -7982,22 +7809,18 @@ _String_ |The string that results from
 replacing _beforeSubstring_ with _afterSubstring_ .
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _inputString_ is null, it is processed as
+* If _inputString_ is null, it is processed as
 an empty string.
 
-If _beforeSubstring_ is null, it is processed
+* If _beforeSubstring_ is null, it is processed
 as an empty string.
 
-If _afterSubstring_ is null, it is processed
+* If _afterSubstring_ is null, it is processed
 as an empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 All occurrences of _beforeSubstring_ are
 replaced by _afterSubstring_ . The text replaced is not reprocessed for
@@ -8012,29 +7835,20 @@ input string is returned.
 If _afterSubstring_ is an empty string, all
 occurrences of _beforeSubstring_ are removed from _inputString_ .
 
+<<<
 
-
-
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:split
+=== fn:split
 
 Splits a string into an array of substrings.
 
-=== Syntax
+.*Syntax*
+....
+fn:split(string, delimiters) → String[]
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-{empty}fn:split( _string, delimiters_ ) →
-String[]
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8051,19 +7865,15 @@ characters used to split the string.
 _String[]_ |Array of strings.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _delimiters_ is null, it is processed as
+* If _delimiters_ is null, it is processed as
 an empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Breaks a string into tokens according to the
 semantics of the Java class _java.util.StringTokenizer_ , with the
@@ -8080,25 +7890,21 @@ splitting occurred, original string is returned).
 Delimiter characters themselves are not
 treated as tokens, and are not included in any token.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:startsWith
+=== fn:startsWith
 
 Tests if a string starts with the specified
 prefix.
 
-=== Syntax
+.*Syntax*
+....
+fn:startsWith(string, prefix) → boolean
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:startsWith( _string, prefix_ ) → boolean
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8116,19 +7922,15 @@ represented by the _prefix_ argument is a prefix of the character
 sequence represented by the _string_ argument, _false_ otherwise.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _prefix_ is null, it is processed as an
+* If _prefix_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Tests if an input string starts with the
 specified prefix according to the semantics of method _startsWith(String
@@ -8138,31 +7940,20 @@ the "Null and Error Handling" processing described above.
 If _prefix_ is empty, this matches the
 beginning of the string and the value returned is true.
 
+<<<
 
-
-.
-
-
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:substring
+=== fn:substring
 
 Returns a subset of a string.
 
-=== Syntax
+.*Syntax*
+....
+fn:substring(string, beginIndex, endIndex) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:substring( _string, beginIndex, endIndex_
-) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8183,37 +7974,31 @@ _int_ |The ending index (0-based), exclusive
 _String_ |The substring of the input string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _beginIndex_ is greater than the last
+* If _beginIndex_ is greater than the last
 index of the input string, an empty string is returned.
 
-If _beginIndex_ is less than 0, its value is
+* If _beginIndex_ is less than 0, its value is
 adjusted to be 0.
 
-If _endIndex_ is less than 0 or greater than
+* If _endIndex_ is less than 0 or greater than
 the length of the input string, its value is adjusted to be the length
 of the input string (the substring therefore starts at _beginIndex_ and
 extends to the end of the input string).
 
-If _endIndex_ is less than _beginIndex_ , an
+* If _endIndex_ is less than _beginIndex_ , an
 empty string is returned.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Returns a substring of the input string
 according to the semantics of method _substring()_ of the Java class
 _java.lang.String_ , with the exception of the "Null and Error Handling"
 processing described above.
-
-
 
 Using a 0-based indexing scheme, the
 substring begins at the specified _beginIndex_ and extends to the
@@ -8223,26 +8008,21 @@ therefore _endIndex-beginIndex_ .
 It is suggested to use the value -1 for
 _endIndex_ to extend the substring to the end of the input string.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:substringAfter
+=== fn:substringAfter
 
 Returns a subset of a string following a
 specific substring.
 
-=== Syntax
+.*Syntax*
+....
+fn:substringAfter(string, substring) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:substringAfter( _string, substring_ ) →
-String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8259,19 +8039,15 @@ beginning of the subset of the input string to be returned.
 _String_ |The substring of the input string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 The substring returned starts at the first
 character after the substring matched in the input string, and extends
@@ -8288,28 +8064,21 @@ substring returns index 0.
 If _substring_ does not occur in the input
 string, an empty string is returned.
 
+<<<
 
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:substringBefore
+=== fn:substringBefore
 
 Returns a subset of a string before a
 specific substring.
 
-=== Syntax
+.*Syntax*
+....
+fn:substringBefore(string, substring) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:substringBefore( _string, substring_ ) →
-String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8326,19 +8095,15 @@ of subset of the input string to be returned.
 _String_ |The substring of the input string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is processed as an
+* If _string_ is null, it is processed as an
 empty string.
 
-If _substring_ is null, it is processed as an
+* If _substring_ is null, it is processed as an
 empty string.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 The substring returned starts at the first
 character in the input string and extends up to the character just
@@ -8349,35 +8114,27 @@ string is returned.
 
 If _substring_ is an empty string, it matches
 the beginning of the input string and an empty string is returned. This
-is consistent with the behavior of function _indexOf_ , where an empty
+is consistent with the behavior of function _indexOf_, where an empty
 substring returns index 0.
 
 If _substring_ does not occur in the input
 string, an empty string is returned.
 
+<<<
 
-
-
-
-=== 
-
-image:taglib-57.png[image]
-
-fn:toLowerCase
+=== fn:toLowerCase
 
 Converts all of the characters of a string to
 lower case.
 
-=== Syntax
+.*Syntax*
+....
+fn:toLowerCase(string) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:toLowerCase( _string_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8391,40 +8148,32 @@ _String_ |The input string transformed to
 lower case.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is treated as an
+* If _string_ is null, it is treated as an
 empty string and an empty string is returned.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Converts all of the characters of the input
 string to lower case according to the semantics of method
-_toLowerCase()_ of the Java class _java.lang.String_ .
+_toLowerCase()_ of the Java class _java.lang.String_.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:toUpperCase
+=== fn:toUpperCase
 
 Converts all of the characters of a string to
 upper case.
 
-=== Syntax
+.*Syntax*
+....
+fn:toUpperCase(string) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:toUpperCase( _string_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8438,40 +8187,32 @@ _String_ |The input string transformed to
 upper case.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is treated as an
+* If _string_ is null, it is treated as an
 empty string and an empty string is returned.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Converts all of the characters of the input
 string to upper case according to the semantics of method
-_toUpperCase()_ of the Java class _java.lang.String_ .
+_toUpperCase()_ of the Java class _java.lang.String_.
 
-=== 
+<<<
 
-image:taglib-57.png[image]
-
-fn:trim
+=== fn:trim
 
 Removes white space from both ends of a
 string.
 
-=== Syntax
+.*Syntax*
+....
+fn:trim(string) → String
+....
 
-image:taglib-58.png[image]
+.*Arguments & Result*
 
-fn:trim( _string_ ) → String
-
-=== Arguments & Result
-
-image:taglib-58.png[image]
-
+[caption=""]
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Argument |Type
@@ -8484,32 +8225,19 @@ trim is applied.
 _String_ |The trimmed string.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-58.png[image]
-
-If _string_ is null, it is treated as an
+* If _string_ is null, it is treated as an
 empty string and an empty string is returned.
 
-=== Description
-
-image:taglib-58.png[image]
+.*Description*
 
 Removes white space from both ends of a
 string according to the semantics of method _trim()_ of the Java class
 _java.lang.String_ .
 
 
-
-
-
-=== 
-
-=== 
-
-image:taglib-64.png[image]
-
-Compatibility & Migration
+== Compatibility & Migration
 
 image:taglib-65.png[image]
 
