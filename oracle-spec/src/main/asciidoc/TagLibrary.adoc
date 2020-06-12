@@ -260,65 +260,55 @@ JSTL actions are grouped according to their
 functionality. These functional groups of actions are documented in
 their own chapter using the following structure:
 
-Motivation
-
+* Motivation +
 Describes the motivation for standardizing
 the actions.
 
-Overview
-
+* Overview +
 Provides an overview of the capabilities
 provided by the actions. Sample code featuring these actions in their
 most common use cases is also provided.
 
-One section per action, with the following
+* One section per action, with the following
 structure:
 
-Name
-
+** Name +
 Tag library prefixes are used in this
 specification for all references to JSTL actions (e.g.: <c:if> instead
 of <if>).
 
-Short Description
+** Short Description
 
-Syntax
-
+** Syntax +
 The syntax notation is described in
 link:jstl.html#a117[<<Syntax Notation>>].
 
-Body Content
-
+** Body Content +
 This section specifies which type of body
 content is supported by the action. As defined by the JSP specification,
-the body content type can be one of _empty_ , _JSP_ , or _tagdependent_
-. The section also specifies if the body content is processed by the
+the body content type can be one of _empty_ , _JSP_ , or _tagdependent_.
+The section also specifies if the body content is processed by the
 action or is simply ignored by the action and just written to the
 current _JspWriter_ . If the body content is processed, information is
 given on whether or not the body content is trimmed before the action
 begins processing it.
 
-Attributes
-
+** Attributes +
 Details in link:jstl.html#a114[<<Attributes>>] below.
 
-Constraints
-
+** Constraints +
 List of additional constraints enforced by
 the action.
 
-Null & Error Handling
-
+** Null & Error Handling +
 Details on how null and empty values are
 processed, as well as on exceptions thrown by the action.
 
-Description
-
+** Description +
 This section provides more details on the
 action.
 
-Other sections
-
+** Other sections +
 Other sections related to the group of
 actions described in the chapter may exist. These include sections on
 interfaces and classes exposed by these actions.
@@ -1018,6 +1008,8 @@ Sorry. Processing could not be performed because...
 </c:if>
 ....
 
+<<<
+
 === <c:out>
 
 Evaluates an expression and outputs the result
@@ -1108,6 +1100,8 @@ The default value can be specified either via
 the _default_ attribute (using the syntax without a body), or within the
 body of the tag (using the syntax with a body). It defaults to an empty
 string.
+
+<<<
 
 === <c:set>
 
@@ -1272,6 +1266,8 @@ vm.setVariable(getVar(), (ValueExpression)getValue()); +
 ...
 |===
 
+<<<
+
 === <c:remove>
 
 Removes a scoped variable.
@@ -1308,6 +1304,8 @@ scoped variable is removed according to the semantics of
 _PageContext.removeAttribute(varName)_ . If attribute _scope_ is
 specified, the scoped variable is removed according to the semantics of
 _PageContext.removeAttribute(varName, scope)_ .
+
+<<<
 
 === <c:catch>
 
@@ -1475,6 +1473,8 @@ variable, class _ConditionalTagSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”) has been defined in this
 specification.
 
+<<<
+
 === <c:if>
 
 Evaluates its body content if the expression
@@ -1536,6 +1536,8 @@ If the test condition evaluates to true, the
 body content is evaluated by the JSP container and the result is output
 to the current _JspWriter_ .
 
+<<<
+
 === <c:choose>
 
 Provides the context for mutually exclusive
@@ -1578,6 +1580,8 @@ The `<c:choose>` action processes the body of
 the first `<c:when>` action whose test condition evaluates to true. If
 none of the test conditions of nested `<c:when>` actions evaluates to
 true, then the body of an `<c:otherwise>` action is processed, if present.
+
+<<<
 
 === <c:when>
 
@@ -1624,6 +1628,8 @@ Within a `<c:choose>` action, the body content
 of the first `<c:when>` action whose test condition evaluates to true is
 evaluated by the JSP container, and the result is output to the current
 _JspWriter_ .
+
+<<<
 
 === <c:otherwise>
 
@@ -1900,6 +1906,7 @@ proper index into the _items_ collection. This deferred value can then
 be evaluated properly by the code associated with the `<h:inputText>`
 component.
 
+<<<
 
 === <c:forEach>
 
@@ -2089,6 +2096,8 @@ The number of items referred to by the
 _items_ attribute must be the same when Faces creates the component tree
 and when JSP executes the iteration tag. Undefined behavior will result
 if this is not the case.
+
+<<<
 
 [[c:forTokens]]
 === <c:forTokens>
@@ -2375,6 +2384,8 @@ example:
 <c:redirect url="http://acme.com/register"/>
 ....
 
+<<<
+
 === <c:import>
 
 Imports the content of a URL-based resource.
@@ -2631,6 +2642,8 @@ HTTP protocol, `<c:import>` behaves according to the semantics of a GET
 request sent via the _java.net.HttpURLConnection_ class, with
 _setFollowRedirects_ set to true.
 
+<<<
+
 [[c:url]]
 === <c:url>
 
@@ -2731,6 +2744,8 @@ attributes.
 within the body of `<c:url>` for adding to the URL query string
 parameters, which will be properly encoded if necessary.
 
+<<<
+
 === <c:redirect>
 
 Sends an HTTP redirect to the client.
@@ -2796,6 +2811,8 @@ identify a context).
 
 `<c:redirect>` follows the same rewriting rules
 as defined for `<c:url>`.
+
+<<<
 
 === <c:param>
 
@@ -3371,6 +3388,8 @@ specification to understand how page directives related to locale and
 character encoding setting translate into Servlet API calls, and how
 they impact the final response settings.
 
+<<<
+
 [[fmt:setLocale]]
 === <fmt:setLocale>
 
@@ -3436,6 +3455,8 @@ As a result of using this action,
 browser-based locale setting capabilities are disabled. This means that
 if this action is used, it should be declared at the beginning of a
 page, before any other i18n-capable formatting actions.
+
+<<<
 
 [[fmt:bundle]]
 === <fmt:bundle>
@@ -3521,6 +3542,8 @@ may be abbreviated to:
 </fmt:bundle>
 ....
 
+<<<
+
 [[fmt:setBundle]]
 === <fmt:setBundle>
 
@@ -3589,6 +3612,8 @@ specified, it is stored in the
 _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
 scope.
+
+<<<
 
 === <fmt:message>
 
@@ -3722,6 +3747,8 @@ to the current _JspWriter_ object, unless the _var_ attribute is
 specified, in which case the result is stored in the named JSP
 attribute.
 
+<<<
+
 === <fmt:param>
 
 Supplies a single parameter for parametric
@@ -3782,6 +3809,7 @@ instance's _format()_ method.
 The argument value may be specified via the
 _value_ attribute or inline via the tag’s body content.
 
+<<<
 
 === <fmt:requestEncoding>
 
@@ -4216,6 +4244,7 @@ _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
 * Use the JSP container’s time zone.
 
+<<<
 
 === <fmt:timeZone>
 
@@ -4334,6 +4363,7 @@ making it the new default time zone in the given scope.
 If the time zone is given as a string, it is
 parsed using _java.util.TimeZone.getTimeZone()_ .
 
+<<<
 
 === <fmt:formatNumber>
 
@@ -4545,6 +4575,8 @@ _currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
 
+<<<
+
 === <fmt:parseNumber>
 
 Parses the string representation of numbers,
@@ -4697,6 +4729,7 @@ result (of type _java.lang.Number_ ) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ object
 using _java.lang.Number.toString()_ .
 
+<<<
 
 === <fmt:formatDate>
 
@@ -4835,6 +4868,7 @@ The action’s result is output to the current
 _JspWriter_ object, unless the _var_ attribute is specified, in which
 case it is stored in the named scoped variable.
 
+<<<
 
 === <fmt:parseDate>
 
@@ -5288,6 +5322,7 @@ _PreparedStatement_ and _ResultSet_ objects) by the time the action
 completes. This ensures that no connections are left open and that leaks
 are avoided when these actions are used with pooling mechanisms.
 
+<<<
 
 === <sql:query>
 
@@ -5461,6 +5496,8 @@ performed according to the algorithm described in
 link:jstl.html#a1892[See Database Access]. A _Connection_ object
 is obtained and released before the action completes.
 
+<<<
+
 === <sql:update>
 
 Executes an SQL _INSERT_ , _UPDATE_ , or
@@ -5576,6 +5613,8 @@ were affected by the update. Zero is returned if no rows were affected
 by _INSERT_ , _DELETE_ , or _UPDATE_ , and for any SQL statement that
 returns nothing (such as SQL DDL statements). This is consistent with
 method _executeUpdate()_ of the JDBC class _Statement_ .
+
+<<<
 
 === <sql:transaction>
 
@@ -5705,6 +5744,7 @@ Finally, the behavior of the
 `<sql:transaction>` action is undefined if it executes in the context of a
 larger JTA user transaction.
 
+<<<
 
 === <sql:setDataSource>
 
@@ -5864,6 +5904,8 @@ It is important to note that the semantics of
 _SQLExecutionTag.addSQLParameter()_ are such that supplying a parameter
 with a _String_ value (e.g. when using syntax 2) only works for columns
 of text type ( _CHAR_ , _VARCHAR_ or _LONGVARCHAR_ ).
+
+<<<
 
 === <sql:dateParam>
 
@@ -6282,6 +6324,8 @@ that can be used by nested tags. An example of this is with action
 </x:forEach>
 ....
 
+<<<
+
 === <x:parse>
 
 Parses an XML document.
@@ -6488,6 +6532,7 @@ character conversions are applied:
 |‘’ |+&#034;+
 |===
 
+<<<
 
 === <x:set>
 
@@ -6612,6 +6657,8 @@ to each element in the iteration. For example:
 </x:forEach>
 ....
 
+<<<
+
 === <x:if>
 
 Evaluates the XPath expression specified in
@@ -6675,6 +6722,8 @@ _boolean_ according to the semantics of the XPath _boolean()_ function.
 If true, the body content is evaluated by the JSP container and the
 result is written to the current _JspWriter_ .
 
+<<<
+
 === <x:choose>
 
 Provides the context for mutually exclusive
@@ -6718,6 +6767,7 @@ none of the test conditions of nested _<x:when>_ actions evaluates to
 true, then the body of an _<x:otherwise>_ action is processed, if
 present.
 
+<<<
 
 === <x:when>
 
@@ -6767,6 +6817,8 @@ If this is the first _<x:when>_ action to evaluate to true within
 _<x:choose>_ , the JSP container processes the body content and then
 writes it to the current _JspWriter_ .
 
+<<<
+
 === <x:otherwise>
 
 Represents the last alternative within a
@@ -6802,6 +6854,8 @@ Within a `<x:choose>` action, if none of the
 nested `<x:when>` test conditions evaluates to true, then the body content
 of the `<x:otherwise>` action is evaluated by the JSP container, and the
 result is written to the current _JspWriter_ .
+
+<<<
 
 === <x:forEach>
 
