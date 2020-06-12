@@ -285,7 +285,7 @@ Short Description
 Syntax
 
 The syntax notation is described in
-link:jstl.html#a117[See Syntax Notation].
+link:jstl.html#a117[<<Syntax Notation>>].
 
 Body Content
 
@@ -300,8 +300,7 @@ begins processing it.
 
 Attributes
 
-Details in link:jstl.html#a114[See
-Attributes] below.
+Details in link:jstl.html#a114[<<Attributes>>] below.
 
 Constraints
 
@@ -404,7 +403,7 @@ than _id_ was selected to stress the fact that only a scoped variable
 (JSP scoped attribute) is exposed, without any scripting variable.
 
 If the scoped variable has at-end visibility
-(see link:jstl.html#a140[See Visibility]), the convention also
+(see <<Visibility>>), the convention also
 establishes the attribute _scope_ to set the scope of the scoped
 variable.
 
@@ -451,7 +450,7 @@ variable is nested, it will be explicitly stated.
 
 Except for the two exceptions described
 below, attribute values of JSTL actions can always be specified
-dynamically (see link:jstl.html#a114[See Attributes]).
+dynamically (see <<Attributes>>).
 
 The first exception to this convention is for
 the _select_ attribute of XML actions. This attribute is reserved in
@@ -460,7 +459,7 @@ XPath language.
 
 The second exception is for attributes that
 define the name and scope of scoped variables (as introduced in
-link:jstl.html#a114[See Attributes]) exported by JSTL actions.
+<<Attributes>>) exported by JSTL actions.
 
 Restricting these attributes to static values
 should benefit development tools, without any impediment to page
@@ -495,7 +494,7 @@ _docSystemId_ and _varDom_ .
 
 In some cases, attribute names for JSTL
 actions carry conventional meanings. For instance,
-link:jstl.html#a130[See var and scope] discussed the _var_ and
+<<var and scope>> discussed the _var_ and
 _scope_ attibutes. link:jstl.html#a2260[See The select
 Attribute] discusses the _select_ attribute used in JSTL's
 XML-processing tag library.
@@ -1699,34 +1698,31 @@ features:
 * Supports all standard J2SE™ platform collection types. +
 A page author therefore does not have to
 worry about the specific type of the collection of objects to iterate
-over (see link:jstl.html#a575[See Collections of Objects to
-Iterate Over]).
+over (<<Collections of Objects to Iterate Over>>).
 
 * Exports an object that holds the current item of the iteration. +
 Normally, each object exposed by `<c:forEach>`
 is an item of the underlying collection being iterated over. There are
 two exceptions to this to facilitate access to the information contained
 in arrays of primitive types, as well as in _Map_ objects (see
-link:jstl.html#a581[See Map]).
+<<Map>>).
 
 * Exports an object that holds information
-about the status of the iteration (see link:jstl.html#a589[See
-Iteration Status]).
+about the status of the iteration (see <<Iteration Status>>).
 
 * Supports range attributes to iterate over a
-subset of the original collection (see link:jstl.html#a601[See
-Range Attributes]).
+subset of the original collection (see <<Range Attributes>>).
 
 * Exposes an interface as well as a base implementation class. +
 Developers can easily implement collaborating
 subtags as well as their own iteration tags (see
-link:jstl.html#a606[See Tag Collaboration]).
+<<Tag Collaboration>>).
 
 `<c:forEach>` is the base iteration action in
 JSTL. It handles the most common iteration cases conveniently. Other
 iteration actions are also provided in the tag library to support
 specific, specialized functionality not handled by `<c:forEach>` (e.g.
-`<c:forTokens>` (link:jstl.html#a713[See <c:forTokens>]) and
+`<c:forTokens>` (<<c:forTokens>>) and
 `<x:forEach>` (link:jstl.html#a2516[See <x:forEach>])). Developers
 can also easily extend the behavior of this base iteration action to
 customize it according to an application's specific needs.
@@ -2094,6 +2090,7 @@ _items_ attribute must be the same when Faces creates the component tree
 and when JSP executes the iteration tag. Undefined behavior will result
 if this is not the case.
 
+[[c:forTokens]]
 === <c:forTokens>
 
 Iterates over tokens, separated by the
@@ -2235,7 +2232,7 @@ necessary, and `<c:param>` transparently encodes query string parameters
 <a href=’<c:out value="${myUrl}"/>’>Register</a>
 ....
 
-Another important feature of <c:url> is that
+Another important feature of `<c:url>` is that
 it transparently prepends the context path to context-relative URLs.
 Assuming a context path of "/foo", the following example
 
@@ -2514,8 +2511,7 @@ impossible for nested `<c:param>` actions to modify the URL of the
 resource to be accessed, thus their illegality with syntax 2. In such a
 situation, `<c:url>` may be used to build a URL with query string
 parameterslink:#a3273[6]. `<c:import>` will remove any session id
-information if necessary (see link:jstl.html#a892[See
-<c:url>]).
+information if necessary (see <<c:url>>).
 
 .*Character Encoding*
 
@@ -2558,7 +2554,7 @@ depends on what type of URL is being accessed.
 *_Relative URL – same context_*
 
 This is processed in the exact same way as
-the include action of the JSP specification (<jsp:include>). The
+the include action of the JSP specification (`<jsp:include>`). The
 resource belongs to the same web application as the including page and
 it is specified as a relative URL.
 
@@ -2568,7 +2564,7 @@ path. A context-relative path is a path that starts with a "/". It is to
 be interpreted as relative to the application to which the JSP page
 belongs. A page-relative path is a path that does not start with a "/".
 It is to be interpreted as relative to the current JSP page, as defined
-by the rules of inclusion of the <jsp:include> action in the JSP
+by the rules of inclusion of the `<jsp:include>` action in the JSP
 specification.
 
 The semantics of importing a resource
@@ -2635,7 +2631,7 @@ HTTP protocol, `<c:import>` behaves according to the semantics of a GET
 request sent via the _java.net.HttpURLConnection_ class, with
 _setFollowRedirects_ set to true.
 
-
+[[c:url]]
 === <c:url>
 
 Builds a URL with the proper rewriting rules
@@ -2804,7 +2800,7 @@ as defined for `<c:url>`.
 === <c:param>
 
 Adds request parameters to a URL. Nested
-action of <c:import>, <c:url>, <c:redirect>.
+action of `<c:import>`, `<c:url>`, `<c:redirect>`.
 
 .*Syntax*
 
@@ -2926,7 +2922,7 @@ to be formatted and parsed in a locale-sensitive or customized manner
 
 JSTL’s i18n actions are covered in this
 chapter. The formatting actions are covered in
-link:jstl.html#a1373[See] .
+<<Formatting Actions: I18n-capable formatting tag library>>.
 
 === Overview
 
@@ -3032,8 +3028,7 @@ If `<fmt:message>` actions are nested inside a
 `<fmt:bundle>` action is used for localization. The `<fmt:bundle>` action
 determines the resource bundle of its i18n localization context
 according to the resource bundle determination algorithm in
-link:jstl.html#a1048[See Determinining the Resource Bundle for
-an i18n Localization Context], using the basename attribute as the
+<<Determinining the Resource Bundle for an i18n Localization Context>>, using the basename attribute as the
 resource bundle basename.
 
 * I18n default localization context +
@@ -3047,8 +3042,7 @@ component is used for localization. Otherwise, the configuration setting
 is of type _String_ , and the action establishes its own i18n
 localization context whose resource bundle component is determined
 according to the resource bundle determination algorithm in
-link:jstl.html#a1048[See Determinining the Resource Bundle for
-an i18n Localization Context], using the configuration setting as the
+<<Determinining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
 resource bundle basename.
 
 The example below shows how the various
@@ -3084,7 +3078,7 @@ is characterized as either application-based or browser-based.
 Application-based locale setting has priority
 over browser-based locale setting. In this mode, the locale is set via
 the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration setting (see
-link:jstl.html#a1340[See Locale]). Setting the locale this way
+<<Locale>>). Setting the locale this way
 is useful in situations where an application lets its users pick their
 preferred locale and then sets the scoped variable accordingly. This may
 also be useful in the case where a client’s preferred locale is
@@ -3108,8 +3102,7 @@ that the client wants to use.
 
 Whether application- or browser-based locale
 setting is used, an ordered list of preferred locales is fed into the
-algorithm described in section link:jstl.html#a1048[See
-Determinining the Resource Bundle for an i18n Localization Context] to
+algorithm described in section <<Determinining the Resource Bundle for an i18n Localization Context>> to
 determine the resource bundle for an i18n localization context.
 
 === Determinining the Resource Bundle for an i18n Localization Context
@@ -3134,8 +3127,7 @@ locale-specific resource, it simply loads it from the appropriate
 resource bundle.
 
 The algorithm of
-link:jstl.html#a1066[See Resource Bundle Determination
-Algorithm] describes how the proper resource bundle is determined. This
+<<Resource Bundle Determination Algorithm>> describes how the proper resource bundle is determined. This
 algorithm calls for a resource bundle lookup, where an attempt is made
 at fetching a resource bundle associated with a specific basename and
 locale.
@@ -3161,8 +3153,7 @@ _Locale.getDefault()_
 In JSTL, the search is limited to the first
 level; i.e. the specified locale. Steps 2 and 3 are removed so that
 other locales may be considered before applying the JSTL fallback
-mechanism described in link:jstl.html#a1066[See Resource Bundle
-Determination Algorithm]. Only if no fallback mechanism exists, or the
+mechanism described in <<Resource Bundle Determination Algorithm>>. Only if no fallback mechanism exists, or the
 fallback mechanism fails to determine a resource bundle, is the root
 resource bundle considered.
 
@@ -3187,8 +3178,7 @@ bundle has been selected for the localization context.
 Step 1: Find a match within the ordered set
 of preferred locales
 
-A resource bundle lookup (see
-link:jstl.html#a1051[See Resource Bundle Lookup]) is performed
+A resource bundle lookup (see <<Resource Bundle Lookup>>) is performed
 for each one of the preferred locales until a match is found. If a match
 is found, the locale that led to the match and the matched resource
 bundle are stored in the i18n localization context.
@@ -3196,7 +3186,7 @@ bundle are stored in the i18n localization context.
 Step 2: Find a match with the fallback locale
 
 A resource bundle lookup (see
-link:jstl.html#a1051[See Resource Bundle Lookup]) is performed
+<<Resource Bundle Lookup>>) is performed
 for the fallback locale specified in the
 _jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match is found, the fallback locale and the matched resource bundle are
@@ -3337,20 +3327,17 @@ be called before _ServletResponse.getWriter()_ in order for the
 specified locale to affect the construction of the writer.
 
 More specifically, the response’s
-_setLocale()_ method is always called by the `<fmt:setLocale>` action (see
-link:jstl.html#a1147[See <fmt:setLocale>]). In addition, it is
+_setLocale()_ method is always called by the `<fmt:setLocale>` action (see <<fmt:setLocale>>). In addition, it is
 called by the following actions:
 
-* Any `<fmt:bundle>` (see
-link:jstl.html#a1176[See <fmt:bundle>]) and <fmt:setBundle> (see
-link:jstl.html#a1212[See <fmt:setBundle>]) action.
+* Any `<fmt:bundle>` (see <<fmt:bundle>>) and `<fmt:setBundle>` (see
+<<fmt:setBundle>>) action.
 
 * Any `<fmt:message>` action that establishes an
 i18n localization context
 
 * Any formatting action that establishes a
-formatting locale on its own (see link:jstl.html#a1435[See
-Establishing a Formatting Locale]).
+formatting locale on its own (see <<Establishing a Formatting Locale>>).
 
 After an action has called
 _ServletResponse.setLocale()_ , if a session exists and has not been
@@ -3384,6 +3371,7 @@ specification to understand how page directives related to locale and
 character encoding setting translate into Servlet API calls, and how
 they impact the final response settings.
 
+[[fmt:setLocale]]
 === <fmt:setLocale>
 
 Stores the specified locale in the
@@ -3449,7 +3437,7 @@ browser-based locale setting capabilities are disabled. This means that
 if this action is used, it should be declared at the beginning of a
 page, before any other i18n-capable formatting actions.
 
-
+[[fmt:bundle]]
 === <fmt:bundle>
 
 Creates an i18n localization context to be
@@ -3505,8 +3493,7 @@ attribute.
 
 The specific resource bundle that is loaded
 is determined according to the algorithm presented in
-link:jstl.html#a1066[See Resource Bundle Determination
-Algorithm].
+<<Resource Bundle Determination Algorithm>>.
 
 The scope of the i18n localization context is
 limited to the action’s body content.
@@ -3534,7 +3521,7 @@ may be abbreviated to:
 </fmt:bundle>
 ....
 
-
+[[fmt:setBundle]]
 === <fmt:setBundle>
 
 Creates an i18n localization context and
@@ -3594,8 +3581,7 @@ attribute.
 
 The specific resource bundle that is loaded
 is determined according to the algorithm presented in
-link:jstl.html#a1066[See Resource Bundle Determination
-Algorithm].
+<<Resource Bundle Determination Algorithm>>.
 
 The i18n localization context is stored in
 the scoped variable whose name is given by _var_ . If _var_ is not
@@ -3698,7 +3684,7 @@ message key.
 
 `<fmt:message>` uses the resource bundle of the
 i18n localization context determined according to
-link:jstl.html#a1019[See I18n Localization Context].
+<<I18n Localization Context>>.
 
 If the given key is not found in the resource
 bundle, or the i18n localization context does not contain any resource
@@ -3720,8 +3706,8 @@ _format()_ . The locale of the _java.text.MessageFormat_ is set to the
 appropriate localization context locale before _applyPattern()_ is
 called. If the localization context does not have any locale, the locale
 of the _java.text.MessageFormat_ is set to the locale returned by the
-formatting locale lookup algorithm of link:jstl.html#a1435[See
-Establishing a Formatting Locale], except that the available formatting
+formatting locale lookup algorithm of 
+<<Establishing a Formatting Locale>>, except that the available formatting
 locales are given as the intersection of the number- and date-
 formatting locales. If this algorithm does not yield any locale, the
 locale of the _java.text.MessageFormat_ is set to the runtime's default
@@ -3859,8 +3845,7 @@ default character encoding (ISO-8859-1) is used.
 === Configuration Settings
 
 This section describes the i18n-related
-configuration settings. Refer to link:jstl.html#a194[See
-Configuration Data] for more information on how JSTL processes
+configuration settings. Refer to <<Configuration Data>> for more information on how JSTL processes
 configuration data.
 
 ==== Locale
@@ -3953,13 +3938,10 @@ The JSTL formatting actions allow various
 data elements in a JSP page, such as numbers, dates and times, to be
 formatted and parsed in a locale-sensitive or customized manner.
 
-=== 
 
-image:taglib-35.png[image]
+=== Overview
 
-Overview
-
-=== Formatting Numbers, Currencies, and Percentages
+==== Formatting Numbers, Currencies, and Percentages
 
 The <fmt:formatNumber> action allows page
 authors to format numbers, currencies, and percentages according to the
@@ -3967,18 +3949,15 @@ client’s cultural formatting conventions.
 
 For example, the output of:
 
-[width="100%",cols="100%",]
-|===
-|<fmt:formatNumber value="9876543.21"
-type="currency"/>
-|===
+....
+<fmt:formatNumber value="9876543.21" type="currency"/>
+....
 
 varies with the page’s locale (given in
 parentheses), as follows:
 
- _SFr. 9’876’543.21 (fr_CH)_
-
- _$9,876,543.21 (en_US)_
+{nbsp}{nbsp}{nbsp}{nbsp} _SFr. 9’876’543.21 (fr_CH)_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _$9,876,543.21 (en_US)_
 
 While the previous example uses the default
 formatting pattern (for currencies) of the page’s locale, it is also
@@ -3987,25 +3966,21 @@ pattern of ".000" will cause any numeric value formatted with it to be
 represented with 3 fraction digits, adding trailing zeros if necessary,
 so that:
 
-[width="100%",cols="100%",]
-|===
-|<fmt:formatNumber value="12.3"
-pattern=".000"/>
-|===
+....
+<fmt:formatNumber value="12.3" pattern=".000"/>
+....
 
 will output "12.300".
 
-Likewise, a pattern of "#,#00.0#" specifies
+Likewise, a pattern of #'"+#,#00.0#+"'# specifies
 that any numeric value formatted with it will be represented with a
 minimum of 2 integer digits, 1 fraction digit, and a maximum of 2
 fraction digits, with every 3 integer digits grouped. Applied to
 "123456.7891", as in:
 
-[width="100%",cols="100%",]
-|===
-|<fmt:formatNumber value="123456.7891"
-pattern="#,#00.0#"/>
-|===
+....
+<fmt:formatNumber value="123456.7891" pattern="#,#00.0#"/>
+....
 
 the formatted output will be "123,456.79"
 (note that rounding is handled automatically).
@@ -4015,49 +3990,37 @@ as a currency, stores it in a scoped variable, parses it back in, and
 outputs the parsed result (which is the same as the original numeric
 value):
 
-[width="100%",cols="100%",]
-|===
-a|
-<fmt:formatNumber value="123456789"
-type="currency" var="cur"/>
-
-<fmt:parseNumber value="$\{cur}"
-type="currency"/>
-
-|===
+....
+<fmt:formatNumber value="123456789" type="currency" var="cur"/>
+<fmt:parseNumber value="${cur}" type="currency"/>
+....
 
 A similar sequence of actions could have been
 used to retrieve a currency-formatted value from a database, parse its
 numeric value, perform an arithmetic operation on it, reformat it as a
 currency, and store it back to the database.
 
-=== Formatting Dates and Times
+==== Formatting Dates and Times
 
-The <fmt:formatDate> action allows page
+The `<fmt:formatDate>` action allows page
 authors to format dates and times according to the client’s cultural
 formatting conventions.
 
 For example, assuming a current date of _Oct
 22,_ _2001_ and a current time of _4:05:53PM_ , the following action:
 
-[width="100%",cols="100%",]
-|===
-a|
-<jsp:useBean id="now" class="java.util.Date"
-/>
-
- _<fmt:formatDate value=”$\{now}”
-timeStyle="long" dateStyle="long"/>_
-
-|===
+....
+<jsp:useBean id="now" class="java.util.Date"/>
+<fmt:formatDate value=”${now}” timeStyle="long" dateStyle="long"/>
+....
 
 will output
 
- _October 22, 2001 4:05:53 PM PDT_
+_October 22, 2001 4:05:53 PM PDT_
 
 for the U.S. and
 
- _22 octobre 2001 16:05:53 GMT-07:0_
+_22 octobre 2001 16:05:53 GMT-07:0_
 
 for the French locale.
 
@@ -4065,15 +4028,13 @@ Page authors may also specify a customized
 formatting style for their dates and times. Assuming the same current
 date and time as in the above example, this action:
 
-[width="100%",cols="100%",]
-|===
-| _<fmt:formatDate value=”$\{now}”
-pattern="dd.MM.yy"/>_
-|===
+....
+<fmt:formatDate value=”${now}” pattern="dd.MM.yy"/>_
+....
 
 will output
 
- _22.10.01_
+_22.10.01_
 
 for the U.S. locale.
 
@@ -4081,51 +4042,40 @@ Time information on a page may be tailored to
 the preferred time zone of a client. This is useful if the server
 hosting the page and its clients reside in different time zones. If time
 information is to be formatted or parsed in a time zone different from
-that of the JSP container, the <fmt:formatDate> and <fmt:parseDate>
-action may be nested inside a <fmt:timeZone> action or supplied with a
+that of the JSP container, the `<fmt:formatDate>` and `<fmt:parseDate>`
+action may be nested inside a `<fmt:timeZone>` action or supplied with a
 _timeZone_ attribute.
 
 In the following example, the current date
 and time are formatted in the “GMT+1:00” time zone:
 
-[width="100%",cols="100%",]
-|===
-a|
+....
 <fmt:timeZone value="GMT+1:00">
-
-<fmt:formatDate _value=”$\{now}”_ type="both"
-dateStyle="full" timeStyle="full"/>
-
+    <fmt:formatDate _value=”$\{now}”_ type="both" dateStyle="full"
+        timeStyle="full"/>
 </fmt:timeZone>
+....
 
-|===
-
-=== 
-
-image:taglib-35.png[image]
-
-[[a1416]]Formatting Locale
+=== Formatting Locale
 
 A formatting actionlink:#a3275[8] may
 leverage an i18n localization context to determine its formatting locale
 or establish a formatting locale on its own, by following these steps:
 
-<fmt:bundle> action
-
+* <fmt:bundle> action +
 If a formatting action is nested inside a
 <fmt:bundle> action (see link:jstl.html#a1176[See
 <fmt:bundle>]), the locale of the i18n localization context of the
 enclosing <fmt:bundle> action is used as the formatting locale. The
 <fmt:bundle> action determines the resource bundle of its i18n
 localization context according to the resource bundle determination
-algorithm in link:jstl.html#a1048[See Determinining the Resource
-Bundle for an i18n Localization Context], using the basename attribute
+algorithm in 
+<<Determinining the Resource Bundle for an i18n Localization Context>>, using the basename attribute
 as the resource bundle basename. If the i18n localization context of the
 enclosing <fmt:bundle> action does not contain any locale, go to the
 next step.
 
-I18n default localization context
-
+* I18n default localization context +
 The default i18n localization context may be
 specified via the jakarta.servlet.jsp.jstl.fmt.localizationContext
 configuration setting. If such a configuration setting exists, and its
@@ -4135,55 +4085,36 @@ _String_ , the formatting action establishes its own i18n localization
 context and uses its locale as the formatting locale (in this case, the
 resource bundle component of the i18n localization context is determined
 according to the resource bundle determination algorithm in
-link:jstl.html#a1048[See Determinining the Resource Bundle for
-an i18n Localization Context], using the configuration setting as the
+<<Determinining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
 resource bundle basename). If the i18n localization context determined
 in this step does not contain any locale, go to the next step.
 
-Formatting locale lookup
-
+* Formatting locale lookup +
 The formatting action establishes a locale
-according to the algorithm described in link:jstl.html#a1435[See
-Establishing a Formatting Locale]. This algorithm requires the preferred
+according to the algorithm described in
+<<Establishing a Formatting Locale>>. This algorithm requires the preferred
 locales. The way the preferred locales are set is exactly the same as
-with i18n actions and is described in link:jstl.html#a1039[See
-Preferred Locales].
+with i18n actions and is described in <<Preferred Locales>>.
 
 The following example shows how the various
 localization contexts can be established to define the formatting
 locale.
 
-[width="100%",cols="100%",]
-|===
-a|
-<jsp:useBean id="now" class="java.util.Date"
-/>
+....
+<jsp:useBean id="now" class="java.util.Date"/>
 
-<%-- Formatting locale lookup --%> +
-<fmt:formatDate value=”$\{now}” />
-
-
+<%-- Formatting locale lookup --%>
+<fmt:formatDate value=”${now}” />
 
 <fmt:bundle basename="Greetings">
-
-<%-- I18n localization context from parent
-<fmt:bundle> tag --%>
-
-<fmt:message key="Welcome" />
-
-<fmt:formatDate value=”$\{now}” />
-
+    <%-- I18n localization context from parent <fmt:bundle> tag --%>
+    <fmt:message key="Welcome" />
+    <fmt:formatDate value=”${now}” />
 </fmt:bundle>
-
-|===
-
+....
 
 
-=== 
-
-image:taglib-35.png[image]
-
-[[a1435]]Establishing a Formatting Locale
+=== Establishing a Formatting Locale
 
 If a formatting action fails to leverage an
 i18n localization context for its formatting locale – either because the
@@ -4193,7 +4124,7 @@ must establish the formatting locale on its own, given an ordered set of
 preferred locales, according to the formatting locale lookup algorithm
 described in this section.
 
-=== Locales Available for Formatting Actions
+==== Locales Available for Formatting Actions
 
 The algorithm described in
 link:jstl.html#a1447[See Formatting Locale Lookup Algorithm]
@@ -4201,58 +4132,54 @@ compares preferred locales against the set of locales that are available
 for a specific formatting action.
 
 The locales available for actions
-<fmt:formatNumber> and <fmt:parseNumber> are determined by a call to
+`<fmt:formatNumber>` and `<fmt:parseNumber>` are determined by a call to
 _java.text.NumberFormat.getAvailableLocales()_ .
 
-The locales available for <fmt:formatDate>
-and <fmt:parseDate> are determined by a call to
+The locales available for `<fmt:formatDate>`
+and `<fmt:parseDate>` are determined by a call to
 _java.text.DateFormat.getAvailableLocales()_ .
 
-=== [[a1441]]Locale Lookup
+==== Locale Lookup
 
-The algorithm of
-link:jstl.html#a1447[See Formatting Locale Lookup Algorithm]
+The algorithm of <<Formatting Locale Lookup Algorithm>>
 describes how the proper locale is determined. This algorithm calls for
 a locale lookup: it attempts to find among the available locales, a
 locale that matches the specified one.
 
 The locale lookup is similar to the resource
-bundle lookup described in link:jstl.html#a1051[See Resource
-Bundle Lookup], except that instead of trying to match a resource
+bundle lookup described in <<Resource Bundle Lookup>>, except that instead of trying to match a resource
 bundle, the locale lookup tries to find a match in a list of available
 locales. A match of the specified locale against an available locale is
 therefore attempted in the following order:
 
-Language, country, and variant are the same
+* Language, country, and variant are the same
 
-Language and country are the same
+* Language and country are the same
 
-Language is the same and the available locale
-does not have a country
+* Language is the same and the available locale does not have a country
 
-=== [[a1447]]Formatting Locale Lookup Algorithm
+==== Formatting Locale Lookup Algorithm
 
 Notes:
 
-When there are multiple preferred locales,
+* When there are multiple preferred locales,
 they are processed in the order they were returned by a call to
 _ServletRequest.getLocales()_ .
 
-The algorithm stops as soon as a locale has
+* The algorithm stops as soon as a locale has
 been selected for the localization context.
 
 Step 1: Find a match within the ordered set
 of preferred locales
 
-A locale lookup (see
-link:jstl.html#a1441[See Locale Lookup]) is performed for each
+A locale lookup (see <<Locale Lookup>>) is performed for each
 one of the preferred locales until a match is found. The first match is
 used as the formatting locale.
 
 Step 2: Find a match with the fallback locale
 
 A locale lookup (see
-link:jstl.html#a1441[See Locale Lookup]) is performed for the
+<<Locale Lookup>>) is performed for the
 fallback locale specified in the
 _jakarta.servlet.jsp.jstl.fmt.fallbackLocale_ configuration setting. If a
 match exists, it is used as the formatting locale.
@@ -4264,11 +4191,8 @@ The result of the formatting locale lookup
 algorithm may be cached, so that subsequent formatting actions that need
 to establish the formatting locale on their own may leverage it.
 
-=== 
 
-image:taglib-35.png[image]
-
-Time Zone
+=== Time Zone
 
 Time information on a page may be tailored to
 the preferred time zone of a client. This is useful if the server
@@ -4278,61 +4202,50 @@ includes the time zone, but that would still require clients to convert
 the formatted time into their own time zone).
 
 When formatting time information using the
-<fmt:formatDate> action (see Section 9.8), or parsing time information
-that does not specify a time zone using the <fmt:parseDate> action (see
-Section 9.9), the time zone to use is determined as follows and in this
-order:
+`<fmt:formatDate>` action (see Section 9.8), or parsing time information
+that does not specify a time zone using the `<fmt:parseDate>` action (see Section 9.9), the time zone to use is determined as follows and in this order:
 
-Use the time zone from the action's
-_timeZone_ attribute.
+* Use the time zone from the action's _timeZone_ attribute.
 
-If attribute _timeZone_ is not specified and
-the action is nested inside an <fmt:timeZone> action, use the time zone
-from the enclosing <fmt:timeZone> action.
+* If attribute _timeZone_ is not specified and
+the action is nested inside an `<fmt:timeZone>` action, use the time zone
+from the enclosing `<fmt:timeZone>` action.
 
-Use the time zone given by the
+* Use the time zone given by the
 _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
-Use the JSP container’s time zone.
+* Use the JSP container’s time zone.
 
-=== 
 
-image:taglib-35.png[image]
-
-[[a1466]]<fmt:timeZone>
+=== <fmt:timeZone>
 
 Specifies the time zone in which time
 information is to be formatted or parsed in its body content.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-36.png[image]
-
+....
 <fmt:timeZone value=”timeZone”>
-
- body content
-
+    body content
 </fmt:timeZone>
+....
 
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content and then writes it to the current _JspWriter_ . The action
 ignores the body content.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
 |Type |Description
 | _value_ | _true_
 a|
- _String_ or
+_String_ or
 
 java.util.TimeZone
 
@@ -4343,61 +4256,48 @@ custom time zone ID (such as "GMT-8"). See _java.util.TimeZone_ for more
 information on supported time zone formats.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If _value_ is null or empty, the GMT timezone
+* If _value_ is null or empty, the GMT timezone
 is used.
 
-=== Description
+.*Description*
 
-image:taglib-36.png[image]
-
-The <fmt:timeZone> action specifies the time
+The `<fmt:timeZone>` action specifies the time
 zone in which to format or parse the time information of any nested time
 formatting (see Section 9.8) or parsing (see Section 9.9) actions.
 
 If the time zone is given as a string, it is
 parsed using _java.util.TimeZone.getTimeZone()_ .
 
-=== 
 
-image:taglib-35.png[image]
-
-<fmt:setTimeZone>
+=== <fmt:setTimeZone>
 
 Stores the specified time zone in a scoped
 variable or the time zone configuration variable.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-36.png[image]
-
+....
 <fmt:setTimeZone value=”timeZone”
+                 [var=”varName”]
+                 [scope=”{page|request|session|application}”]/>
+....
 
-{empty} [var=”varName”]
-
-
-[scope=”\{page|request|session|application}”]/>
-
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
 |Type |Description
 | _value_ | _true_
 a|
- _String_ or
+_String_ or
 
 java.util.TimeZone
 
@@ -4418,19 +4318,15 @@ _false_ | _String_
 configuration variable.
 |===
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If _value_ is null or empty, the GMT timezone
+* If _value_ is null or empty, the GMT timezone
 is used.
 
-=== Description
+.*Description*
 
-image:taglib-36.png[image]
-
-The <fmt:setTimeZone> action stores the given
-time zone in the scoped variable whose name is given by _var_ . If _var_
+The `<fmt:setTimeZone>` action stores the given
+time zone in the scoped variable whose name is given by _var_. If _var_
 is not specified, the time zone is stored in the
 _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
 making it the new default time zone in the given scope.
@@ -4438,86 +4334,56 @@ making it the new default time zone in the given scope.
 If the time zone is given as a string, it is
 parsed using _java.util.TimeZone.getTimeZone()_ .
 
-=== 
 
-image:taglib-35.png[image]
-
-<fmt:formatNumber>
+=== <fmt:formatNumber>
 
 Formats a numeric value in a locale-sensitive
 or customized manner as a number, currency, or percentage.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-36.png[image]
-
- _Syntax 1: without a body_
-
+_Syntax 1: without a body_
+....
 <fmt:formatNumber value=”numericValue”
-
-{empty}[type=”\{number|currency|percent}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[currencyCode=”currencyCode”]
-
-{empty}[currencySymbol=”currencySymbol”]
-
-{empty}[groupingUsed=”\{true|false}”]
-
-{empty}[maxIntegerDigits=”maxIntegerDigits”]
-
-{empty}[minIntegerDigits=”minIntegerDigits”]
-
-{empty}[maxFractionDigits=”maxFractionDigits”]
-
-{empty}[minFractionDigits=”minFractionDigits”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: with a body to specify the
+                  [type=”\{number|currency|percent}”]
+                  [pattern=”customPattern”]
+                  [currencyCode=”currencyCode”]
+                  [currencySymbol=”currencySymbol”]
+                  [groupingUsed=”{true|false}”]
+                  [maxIntegerDigits=”maxIntegerDigits”]
+                  [minIntegerDigits=”minIntegerDigits”]
+                  [maxFractionDigits=”maxFractionDigits”]
+                  [minFractionDigits=”minFractionDigits”]
+                  [var=”varName”]
+                  [scope=”{page|request|session|application}”]/>
+....
+ 
+_Syntax 2: with a body to specify the
 numeric value to be formatted_
-
-{empty}<fmt:formatNumber
-[type=”\{number|currency|percent}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[currencyCode=”currencyCode”]
-
-{empty}[currencySymbol=”currencySymbol”]
-
-{empty}[groupingUsed=”\{true|false}”]
-
-{empty}[maxIntegerDigits=”maxIntegerDigits”]
-
-{empty}[minIntegerDigits=”minIntegerDigits”]
-
-{empty}[maxFractionDigits=”maxFractionDigits”]
-
-{empty}[minFractionDigits=”minFractionDigits”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]>
-
- numeric value to be formatted
-
+....
+<fmt:formatNumber [type=”{number|currency|percent}”]
+                  [pattern=”customPattern”]
+                  [currencyCode=”currencyCode”]
+                  [currencySymbol=”currencySymbol”]
+                  [groupingUsed=”{true|false}”]
+                  [maxIntegerDigits=”maxIntegerDigits”]
+                  [minIntegerDigits=”minIntegerDigits”]
+                  [maxFractionDigits=”maxFractionDigits”]
+                  [minFractionDigits=”minFractionDigits”]
+                  [var=”varName”]
+                  [scope=”{page|request|session|application}”]>
+    numeric value to be formatted
 </fmt:formatNumber>
+....
 
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -4581,38 +4447,32 @@ _false_ | _String_
 |Scope of var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-36.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-The value of the _currencyCode_ attribute
+* The value of the _currencyCode_ attribute
 must be a valid ISO 4217 currency code.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If _value_ is null or empty, nothing is
+* If _value_ is null or empty, nothing is
 written to the current JspWriter object and the scoped variable is
 removed if it is specified (see attributes _var_ and _scope_ ).
 
-If this action fails to determine a
+* If this action fails to determine a
 formatting locale, it uses _Number.toString()_ as the output format.
 
-If the attribute _pattern_ is null or empty,
+* If the attribute _pattern_ is null or empty,
 it is ignored.
 
-If an exception occurs during the parsing of
+* If an exception occurs during the parsing of
 a string value, it must be caught and rethrown as a _JspException_ . The
 message of the rethrown _JspException_ must include the string value,
 and the caught exception must be provided as the root cause.
 
-=== Description
-
-image:taglib-36.png[image]
+.*Description*
 
 The numeric value to be formatted may be
 specified via the _value_ attribute; if missing, it is read from the
@@ -4628,7 +4488,7 @@ _java.text.DecimalFormat_ .
 If looked up in a locale-dependent fashion,
 the formatting pattern is determined via a combination of the formatting
 locale, which is determined according to
-link:jstl.html#a1416[See Formatting Locale], and the _type_
+<<Formatting Locale>>, and the _type_
 attribute. Depending on the value of the _type_ attribute, the given
 numeric value is formatted as a number, currency, or percentage. The
 locale's default formatting pattern for numbers, currencies, or
@@ -4653,7 +4513,7 @@ The formatted result is output to the current
 _JspWriter_ object, unless the _var_ attribute is given, in which case
 it is stored in the named scoped variable.
 
-Formatting Options
+*Formatting Options*
 
 The _groupingUsed_ attribute specifies
 whether the formatted ouput will contain any grouping separators. See
@@ -4668,7 +4528,7 @@ _java.text.NumberFormat_ methods _setMinimumIntegerDigits()_ ,
 _setMaximumIntegerDigits()_ , _setMinimumFractionDigits()_ , and
 _setMaximumFractionDigits()_ for more information.
 
-Formatting Currencies
+*Formatting Currencies*
 
 When formatting currencies using the
 specified or locale-dependent formatting pattern for currencies, the
@@ -4685,69 +4545,47 @@ _currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
 
-=== 
-
-image:taglib-35.png[image]
-
-<fmt:parseNumber>
+=== <fmt:parseNumber>
 
 Parses the string representation of numbers,
 currencies, and percentages that were formatted in a locale-sensitive or
 customized manner.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-36.png[image]
-
- _Syntax 1: without a body_
-
+_Syntax 1: without a body_
+....
 <fmt:parseNumber value=”numericValue”
+                [type=”{number|currency|percent}”]
+                [pattern=”customPattern”]
+                [parseLocale=”parseLocale”]
+                [integerOnly=”{true|false}”]
+                [var=”varName”]
+                [scope=”{page|request|session|application}”]/>
+....
 
-{empty}[type=”\{number|currency|percent}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[parseLocale=”parseLocale”]
-
-{empty}[integerOnly=”\{true|false}”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: with a body to specify the
+_Syntax 2: with a body to specify the
 numeric value to be parsed_
-
-{empty}<fmt:parseNumber
-[type=”\{number|currency|percent}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[parseLocale=”parseLocale”]
-
-{empty}[integerOnly=”\{true|false}”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]>
-
- numeric value to be parsed
-
+....
+<fmt:parseNumber [type=”{number|currency|percent}”]
+                [pattern=”customPattern”]
+                [parseLocale=”parseLocale”]
+                [integerOnly=”{true|false}”]
+                [var=”varName”]
+                [scope=”{page|request|session|application}”]>
+    numeric value to be parsed
 </fmt:parseNumber>
+....
 
 
-
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -4792,41 +4630,35 @@ _false_ | _String_
 |Scope of var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-36.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If the numeric string to be parsed is null or
+* If the numeric string to be parsed is null or
 empty, the scoped variable defined by attributes _var_ and _scope_ is
 removed. This allows "empty" input to be distinguished from "invalid"
 input, which causes an exception.
 
-If _parseLocale_ is null or empty, it is
+* If _parseLocale_ is null or empty, it is
 treated as if it was missing.
 
-If an exception occurs during the parsing of
+* If an exception occurs during the parsing of
 the value, it must be caught and rethrown as a _JspException_ . The
 message of the rethrown _JspException_ must include the value that was
 to be parsed, and the caught exception must be provided as the root
 cause.
 
-If this action fails to determine a
+* If this action fails to determine a
 formatting locale, it must throw a _JspException_ whose message must
 include the value that was to be parsed.
 
-If the attribute _pattern_ is null or empty,
+* If the attribute _pattern_ is null or empty,
 it is ignored.
 
-=== Description
-
-image:taglib-36.png[image]
+.*Description*
 
 The numeric value to be parsed may be
 specified via the _value_ attribute; if missing, it is read from the
@@ -4848,7 +4680,7 @@ determined by calling the _java.text.NumberFormat_ method
 _getNumberInstance_ , _getCurrencyInstance_ , or _getPercentInstance_ ,
 respectively, with the locale specified via _parseLocale_ . If
 _parseLocale_ is missing, the formatting locale, which is obtained
-according to link:jstl.html#a1416[See Formatting Locale], is
+according to <<Formatting Locale>>, is
 used as the parse locale.
 
 The _pattern_ attribute takes precedence over
@@ -4865,54 +4697,40 @@ result (of type _java.lang.Number_ ) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ object
 using _java.lang.Number.toString()_ .
 
-=== 
 
-image:taglib-35.png[image]
-
-<fmt:formatDate>
+=== <fmt:formatDate>
 
 Allows the formatting of dates and times in a
 locale-sensitive or customized manner.
 
-=== Syntax
-
-image:taglib-36.png[image]
-
+.*Syntax*
+....
 <fmt:formatDate value="date"
+                [type="{time|date|both}"]
+                [dateStyle="{default|short|medium|long|full}"]
+                [timeStyle="{default|short|medium|long|full}"]
+                [pattern="customPattern"]
+                [timeZone="timeZone"]
+                [var="varName"]
+                [scope="{page|request|session|application}"]/>
+....
 
-{empty}[type="\{time|date|both}"]
-
-{empty}[dateStyle="\{default|short|medium|long|full}"]
-
-{empty}[timeStyle="\{default|short|medium|long|full}"]
-
-{empty}[pattern="customPattern"]
-
-{empty}[timeZone="timeZone"]
-
-{empty}[var="varName"]
-
-[scope="\{page|request|session|application}"]/>
-
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 Empty.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dynamic
 |Type |Description
 | _value_ | _true_
 a|
- _java.util._
+_java.util._
 
- _Date_
+_Date_
 
 |Date and/or time to be formatted.
 
@@ -4958,31 +4776,25 @@ _false_ | _String_
 |Scope of var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-36.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If _value_ is null or empty, nothing is
+* If _value_ is null or empty, nothing is
 written to the current JspWriter object and the scoped variable is
 removed if it is specified (see attributes _var_ and _scope_ ).
 
-If _timeZone_ is null or empty, it is handled
+* If _timeZone_ is null or empty, it is handled
 as if it was missing.
 
-If this action fails to determine a
+* If this action fails to determine a
 formatting locale, it uses _java.util.Date.toString()_ as the output
 format.
 
-=== Description
-
-image:taglib-36.png[image]
+.*Description*
 
 Depending on the value of the _type_
 attribute, only the time, the date, or both the time and date components
@@ -4990,9 +4802,9 @@ of the date specified via the _value_ attribute or the body content are
 formatted, using one of the predefined formatting styles for dates
 (specified via the _dateStyle_ attribute) and times (specified via the
 _timeStyle_ attribute) of the formatting locale, which is determined
-according to link:jstl.html#a1416[See Formatting Locale].
+according to <<Formatting Locale>>.
 
- _dateStyle_ and _timeStyle_ support the
+_dateStyle_ and _timeStyle_ support the
 semantics defined in _java.text.DateFormat_ .
 
 Page authors may also apply a customized
@@ -5002,93 +4814,71 @@ attributes are ignored. The specified formatting pattern must use the
 pattern syntax specified by _java.text.SimpleDateFormat._
 
 In order to format the current date and time,
-a <jsp:useBean> action may be used as follows:
+a `<jsp:useBean>` action may be used as follows:
 
-<jsp:useBean id="now" class="java.util.Date"
-/> +
-<fmt:formatDate value="$\{now}" />
+....
+<jsp:useBean id="now" class="java.util.Date"/>
+<fmt:formatDate value="${now}" />
+....
 
 If the string representation of a date or
 time needs to be formatted, the string must first be parsed into a
-_java.util.Date_ using the <fmt:parseDate> action, whose parsing result
-may then be supplied to the <fmt:formatDate> action:
+_java.util.Date_ using the `<fmt:parseDate>` action, whose parsing result
+may then be supplied to the `<fmt:formatDate>` action:
 
-<fmt:parseDate value=”4/13/02"
-pattern="M/d/yy" var="parsed"/> +
-<fmt:formatDate value="$\{parsed}" dateStyle="full"/>
+....
+<fmt:parseDate value=”4/13/02" pattern="M/d/yy" var="parsed"/> +
+<fmt:formatDate value="${parsed}" dateStyle="full"/>
+....
 
 The action’s result is output to the current
 _JspWriter_ object, unless the _var_ attribute is specified, in which
 case it is stored in the named scoped variable.
 
-=== 
 
-image:taglib-35.png[image]
-
-<fmt:parseDate>
+=== <fmt:parseDate>
 
 Parses the string representation of dates and
 times that were formatted in a locale-sensitive or customized manner.
 
-=== Syntax
+.*Syntax*
 
-image:taglib-36.png[image]
-
- _Syntax 1: without a body_
-
+_Syntax 1: without a body_
+....
 <fmt:parseDate value=”dateString”
+            [type=”{time|date|both}”]
+            [dateStyle=”{default|short|medium|long|full}”]
+            [timeStyle=”{default|short|medium|long|full}”]
+            [pattern=”customPattern”]
+            [timeZone=”timeZone”]
+            [parseLocale=”parseLocale”]
+            [var=”varName”]
+            [scope=”{page|request|session|application}”]/>
+....
 
-{empty}[type=”\{time|date|both}”]
-
-{empty}[dateStyle=”\{default|short|medium|long|full}”]
-
-{empty}[timeStyle=”\{default|short|medium|long|full}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[timeZone=”timeZone”]
-
-{empty}[parseLocale=”parseLocale”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]/>
-
- _Syntax 2: with a body to specify the date
+_Syntax 2: with a body to specify the date
 value to be parsed_
-
-{empty}<fmt:parseDate
-[type=”\{time|date|both}”]
-
-{empty}[dateStyle=”\{default|short|medium|long|full}”]
-
-{empty}[timeStyle=”\{default|short|medium|long|full}”]
-
-{empty}[pattern=”customPattern”]
-
-{empty}[timeZone=”timeZone”]
-
-{empty}[parseLocale=”parseLocale”]
-
-{empty}[var=”varName”]
-
-[scope=”\{page|request|session|application}”]>
-
- date value to be parsed
-
+....
+<fmt:parseDate [type=”\{time|date|both}”]
+            [dateStyle=”\{default|short|medium|long|full}”]
+            [timeStyle=”\{default|short|medium|long|full}”]
+            [pattern=”customPattern”]
+            [timeZone=”timeZone”]
+            [parseLocale=”parseLocale”]
+            [var=”varName”]
+            [scope=”{page|request|session|application}”]>
+    date value to be parsed
 </fmt:parseDate>
+....
 
-=== Body Content
-
-image:taglib-36.png[image]
+.*Body Content*
 
 JSP. The JSP container processes the body
 content, then the action trims it and processes it further.
 
-=== Attributes
+.*Attributes*
 
-image:taglib-36.png[image]
-
+[caption=""]
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Name |Dyn
@@ -5146,41 +4936,35 @@ _false_ | _String_
 |Scope of var.
 |===
 
-=== Constraints
+.*Constraints*
 
-image:taglib-36.png[image]
-
-If _scope_ is specified, _var_ must also be
+* If _scope_ is specified, _var_ must also be
 specified.
 
-=== Null & Error Handling
+.*Null & Error Handling*
 
-image:taglib-36.png[image]
-
-If the date string to be parsed is null or
+* If the date string to be parsed is null or
 empty, the scoped variable defined by _var_ and _scope_ is removed. This
 allows "empty" input to be distinguished from "invalid" input, which
 causes an exception.
 
-If _timeZone_ is null or empty, it is treated
+* If _timeZone_ is null or empty, it is treated
 as if it was missing.
 
-If _parseLocale_ is null or empty, it is
+* If _parseLocale_ is null or empty, it is
 treated as if it was missing.
 
-If an exception occurs during the parsing of
+* If an exception occurs during the parsing of
 the value, it must be caught and rethrown as a _JspException_ . The
 message of the rethrown _JspException_ must include the value that was
 to be parsed, and the caught exception must be provided as the root
 cause.
 
-If this action fails to determine a
+* If this action fails to determine a
 formatting locale, it must throw a _JspException_ whose message must
 include the value that was to be parsed.
 
-=== Description
-
-image:taglib-36.png[image]
+.*Description
 
 The date string to be parsed may be specified
 via the _value_ attribute or via the tag’s body content.
@@ -5192,7 +4976,7 @@ formatting styles for dates (specified via the _dateStyle_ attribute)
 and times (specified via the _timeStyle_ attribute) of the locale
 specified by the _parseLocale_ attribute. If the _parseLocale_ attribute
 is missing, the formatting locale, which is determined according to
-link:jstl.html#a1416[See Formatting Locale], is used as the
+<<Formatting Locale>>, is used as the
 parse locale.
 
 If the given date string uses a different
@@ -5211,18 +4995,14 @@ result (of type _java.util.Date_ ) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ using the
 _java.util.Date_ method _toString()_ .
 
-=== 
 
-image:taglib-35.png[image]
-
-Configuration Settings
+=== Configuration Settings
 
 This section describes the formatting-related
-configuration settings. Refer to link:jstl.html#a194[See
-Configuration Data] for more information on how JSTL processes
+configuration settings. Refer to <<Configuration Data>> for more information on how JSTL processes
 configuration data.
 
-=== TimeZone
+==== TimeZone
 
 [width="100%",cols="50%,50%",]
 |===
@@ -5236,27 +5016,19 @@ _Config.FMT_TIMEZONE_
 java.util.TimeZone
 
 |Set by
-|<fmt:setTimeZone>
+|`<fmt:setTimeZone>`
 
 |Used by
-|<fmt:formatDate>, <fmt:parseDate>
+|`<fmt:formatDate>`, `<fmt:parseDate>`
 |===
 
 Specifies the application’s default time
 zone. A _String_ value is interpreted as defined in action
-<fmt:timeZone> (see link:jstl.html#a1466[See <fmt:timeZone>]).
+`<fmt:timeZone>` (see link:jstl.html#a1466[See <fmt:timeZone>]).
 
-=== 
 
-=== 
+== SQL Actions: sql tag library
 
-image:taglib-37.png[image]
-
-SQL Actions
-
-=== sql tag library
-
-image:taglib-38.png[image]
 
 Many web applications need to access
 relational databases as the source of dynamic data for their
