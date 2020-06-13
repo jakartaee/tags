@@ -6521,15 +6521,15 @@ character conversions are applied:
 |===
 |Character
 |Character Entity Code
-| _<_ | +&lt;+
+| _<_ | \&lt;
 
-| _>_ | +&gt;+
+| _>_ | \&gt;
 
-| _&_ | +&amp;+
+| _&_ | \&amp;
 
-|‘ |+&#039;+
+|‘ |\&#039;
 
-|‘’ |+&#034;+
+|‘’ |\&#034;
 |===
 
 <<<
