@@ -152,9 +152,10 @@ your comments to us at:
 :sectnums:
 == Introduction
 
-This is the JavaServer Pages™ Standard Tag
-Library 1.2 (JSTL 1.2) specification, developed by the JSR-52 expert
-group under the Java Community Process (http://www.jcp.org).
+Jakarta Standard Tag Library provides a specification document, API and TCK that extends the
+Jakarta Server Pages specification by adding a tag library of JSP tags for common tasks,
+such as XML data processing, conditional execution, database access, loops and internationalization.
+
 
 === Goals
 
