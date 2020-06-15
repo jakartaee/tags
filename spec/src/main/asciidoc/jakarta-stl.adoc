@@ -1,24 +1,24 @@
 :sectnums!:
 == Preface
 
-This is the Jakarta Server Pages™ Standard Tag
-Library 2.0 (JSTL 2.0) specification, developed by the JSR-52 expert
-group under the Java Community Process. +
-See http://www.jcp.org.
+This is the Jakarta Standard Tag
+Library 2.0 specification, developed by the Jakarta Standard Tag Library Team, https://projects.eclipse.org/projects/ee4j.jstl
 
 == Related Documentation
 
-Implementors of JSTL and authors of JSP pages
+Implementors of Jakarta Standard Tag Lbrary and authors of JSP pages
 may find the following documents worth consulting for additional
 information:.
 
 [width="100%",cols="50%,50%",]
 |===
-|Jakarta Server Pages (JSP)
-|http://java.sun.com/jsp
+|Jakarta Server Pages
+|https://projects.eclipse.org/projects/ee4j.jsp[Jakarta Server Pages Project] +
+https://jakarta.ee/specifications/pages/[Jakarta Server Pages Specification]
 
-|Jakarta Servlet Technology
-|http://java.sun.com/servlet
+|Jakarta Servlet
+|https://projects.eclipse.org/projects/ee4j.servlet[Jakarta Servlet Project] +
+https://jakarta.ee/specifications/servlet/[Jakarta Servlet Specification]
 
 |Java 2 Platform, Standard Edition
 |http://java.sun.com/j2se
@@ -65,13 +65,17 @@ attribute values.
 
 == Acknowledgments
 
-The JavaServer Pages™ Standard Tag Library
-(JSTL) specification is the result of collaborative work involving many
+The Jakarta Standard Tag Library
+specification is the result of collaborative work involving many
 individuals, all driven by a common goal of designing the best libraries
-possible for the JSP page author community.
+possible for the Jakarta Server Pages author community.
+
+The current members of the Jakarta Standard Tag Library project in the
+Eclipse Foundation can be found at the following location:
+https://projects.eclipse.org/projects/ee4j.jstl/who[].
 
 We would like to thank all members of the JSR-52
-expert group: Nathan Abramson, Shawn Bayern, Hans Bergsten, Paul
+expert group under the Java Community Process: Nathan Abramson, Shawn Bayern, Hans Bergsten, Paul
 Bonfanti, Vince Bonfanti, David Brown, Larry Cable, Tim Dawson, Morgan
 Delagrange, Bob Foster, David Geary, Scott Hasse, Hal Hildebrand, Jason
 Hunter, Serge Knystautas, Mark Kolb, Wellington Lacerda, Jan Luehe, Geir
@@ -118,7 +122,7 @@ Nathan Abramson, Justyna Horwat, and Jan Luehe has done a wonderful job
 at turning code faster than the specification could be written.
 
 Quality has been in the capable hands of Ryan
-Lubke, lead of the TCK team that also includes Lance Andersen. David
+Lubke, lead of the TCK team under the Java Community Process that also includes Lance Andersen. David
 Geary’s help in doing thorough reviews of the specification was also
 greatly appreciated.
 
@@ -142,15 +146,16 @@ your comments to us at:
 :sectnums:
 == Introduction
 
-Jakarta Standard Tag Library provides a specification document, API and TCK that extends the
-Jakarta Server Pages specification by adding a tag library of JSP tags for common tasks,
-such as XML data processing, conditional execution, database access, loops and internationalization.
+The Jakarta Standard Tag Library provides a specification document, API and
+TCK that extends the Jakarta Server Pages specification by adding a tag
+library of Java Server Pages tags for common tasks, such as XML data
+processing, conditional execution, database access, loops and
+internationalization.
 
 
 === Goals
 
-The ultimate goal of JSTL is to help simplify
-JavaServer™ Pages (JSP™) page authors’ lives.
+The ultimate goal of the Jakarta Standard Tag Library is to help simplify Jakarta Server Pages authors’ lives.
 
 A page author is someone who is responsible
 for the design of a web application’s presentation layer using JSP
@@ -162,7 +167,7 @@ the Java programming language) to manipulate the dynamic data within a
 JSP page. Unfortunately, page authors often see scripting languages as
 complex and not very well adapted to their needs.
 
-JSTL offers the following capabilities:
+The Jakarta Standard Tag Library offers the following capabilities:
 
 General-purpose actions
 
@@ -182,9 +187,10 @@ TLVs allow projects to only allow specific
 tag libraries, as well as enforce JSP coding styles that are free of
 scripting elements.
 
-The other key aspect of JSTL is that it
-provides standard actions and standard EL functions for functionality
-most often needed by page authors. These cover the following topics:
+The other key aspect of the Jakarta Standard Tag Library is that it
+provides standard actions and standard Expression Language functions
+for functionality most often needed by page authors. These cover the
+following topics:
 
 Accessing URL-based resources
 
@@ -202,7 +208,7 @@ String manipulation
 A tag library is a collection of actions that
 encapsulates functionality to be used from within a JSP page. JSTL
 includes a wide variety of actions that naturally fit into discrete
-functional areas. This is why JSTL, although referred to as the standard
+functional areas. This is why the Jakarta Standard Tag Library, although referred to as the standard
 tag library (singular), is exposed via multiple tag libraries to clearly
 identify the functional areas it covers, as well as to give each area
 its own namespace. The tables below lists these functional areas along
