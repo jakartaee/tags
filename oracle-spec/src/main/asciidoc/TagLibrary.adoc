@@ -1701,7 +1701,7 @@ collection.
 The `<c:forEach>` action has the following
 features:
 
-* Supports all standard J2SE™ platform collection types. +
+* Supports all standard Java SE™ platform collection types. +
 A page author therefore does not have to
 worry about the specific type of the collection of objects to iterate
 over (<<Collections of Objects to Iterate Over>>).
@@ -2625,7 +2625,7 @@ specification.
 
 Absolute URLs are retrieved as defined by the
 _java.net.URL_ and _java.net.URLConnection_ classes. The `<c:import>`
-action therefore supports at a minimum the protocols offered in the J2SE
+action therefore supports at a minimum the protocols offered in the Java SE
 1.2 platform for absolute URLs. More protocols can be available to a web
 application, but this will depend on the the class libraries made
 available to the web application by the platform the container runs on.
@@ -2966,7 +2966,7 @@ http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html.
 
 Note that the semantics of locales in JSTL
 are the same as the ones defined by the class _java.util.Locale_ . A
-consequence of this is that, as of J2SE 1.4, new language codes defined
+consequence of this is that, as of Java SE 1.4, new language codes defined
 in ISO 639 (e.g. _he_ , _yi_ , _id_ ) will be returned as the old codes
 (e.g. _iw_ , _ji_ , _in_ ). See the documentation of the
 _java.util.Locale_ class for more details.
@@ -3138,7 +3138,7 @@ directly for user consumption on an error page.
 ==== Resource Bundle Lookup
 
 Localization in JSTL is based on the same
-mechanisms offered in the J2SE platform. Resource bundles contain
+mechanisms offered in the Java SE platform. Resource bundles contain
 locale-specific objects, and when an i18n action requires a
 locale-specific resource, it simply loads it from the appropriate
 resource bundle.
@@ -4570,7 +4570,7 @@ currency to use.
 If both _currencyCode_ and _currencySymbol_
 are present, _currencyCode_ takes precedence over _currencySymbol_ if
 the _java.util.Currency_ class is defined in the container’s runtime
-(that is, if the container’s runtime is J2SE 1.4 or greater), and
+(that is, if the container’s runtime is Java SE 1.4 or greater), and
 _currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
@@ -8392,7 +8392,7 @@ link:jstl.html#a335[See <c:set>].
 
 Generics
 
-* Since JSP 2.1 requires J2SE 5.0, we’ve modified
+* Since JSP 2.1 requires Java SE 5.0, we’ve modified
 the APIs that can take advantage of generics:
 _ScriptFreeTLV:setInitParameters()_
 
@@ -8474,7 +8474,7 @@ Semantics of locales
 * Clarified the fact that the semantics of
 locales in JSTL are the same as the ones defined by the class
 _java.util.Locale_ (section 8.1). A consequence of this is that, as of
-J2SE 1.4, new language codes defined in ISO 639 (e.g. _he_ , _yi_ , _id_
+Java SE 1.4, new language codes defined in ISO 639 (e.g. _he_ , _yi_ , _id_
 ) will be returned as the old codes (e.g. _iw_ , _ji_ , _in_ ).
 
 Correct the inconsistency between `<fmt:message>`
@@ -8795,7 +8795,7 @@ upper/lowercase mix as was used in the SELECT statement.
 
 * Method _Result.getRowsCount()_ has been renamed
 to _Result.getRowCount()_ to be compatible with naming conventions in
-J2SE.
+Java SE.
 
 * Method _Result.getMetaData()_ as well as
 interface _ColumnMetaData_ have been removed because handling of
