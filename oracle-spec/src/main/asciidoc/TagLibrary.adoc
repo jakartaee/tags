@@ -1,5 +1,7 @@
 :sectnums:
-= Jakarta Tag Library Specification, Version 2.0
+= Jakarta Standard Tag Library Specification, Version 2.0
+:title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
+:authors: Jakarta Standard Tag Library Team, https://projects.eclipse.org/projects/ee4j.jstl
 
 Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 
