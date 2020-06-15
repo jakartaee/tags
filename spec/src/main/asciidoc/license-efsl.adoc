@@ -9,7 +9,7 @@ Status: {revremark}
 Release: {revdate}
 ....
 
-Copyright (c) 2019 Eclipse Foundation
+Copyright (c) 2018, 2020 Eclipse Foundation. https://www.eclipse.org/legal/efsl.php[]
 
 === Eclipse Foundation Specification License
 
@@ -27,8 +27,8 @@ document, or portions thereof, that you use:
 * link or URL to the original Eclipse Foundation document.
 * All existing copyright notices, or if one does not exist, a notice
   (hypertext is preferred, but a textual representation is permitted)
-  of the form: "Copyright (c) [$date-of-document]
-  Eclipse Foundation, Inc. <<url to this license>>"
+  of the form: "Copyright (C) [$date-of-document]
+  Eclipse Foundation, Inc. https://www.eclipse.org/legal/efsl.php[]"
 
 Inclusion of the full text of this NOTICE must be provided. We
 request that authorship attribution be provided in any software,
@@ -47,9 +47,9 @@ specification is expressly prohibited.
 
 The notice is:
 
-"Copyright (c) 2018 Eclipse Foundation. This software or
-document includes material copied from or derived from [title and URI
-of the Eclipse Foundation specification document]."
+"Copyright (C) 2018, 2020 Eclipse Foundation. This software or
+document includes material copied from or derived from
+Jakarta(R) Standard Tag Library https://jakarta.ee/specifications/tags/2.0/[]"
 
 ==== Disclaimers
 
