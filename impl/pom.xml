@@ -421,11 +421,11 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                                 <argument>Jakarta Tags Doc</argument>
                                 <argument>-d</argument>
                                 <argument>${project.build.directory}/tlddoc</argument>
-                                <argument>src/main/resources/META-INF/sql.tld</argument>
-                                <argument>src/main/resources/META-INF/x.tld</argument>
-                                <argument>src/main/resources/META-INF/fmt.tld</argument>
-                                <argument>src/main/resources/META-INF/c.tld</argument>
-                                <argument>src/main/resources/META-INF/fn.tld</argument>
+                                <argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
+                                <argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
+                                <argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
+                                <argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
+                                <argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
                             </arguments>
                         </configuration>
                     </execution>
