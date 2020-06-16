@@ -387,7 +387,7 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
                         <configuration>
                             <groups>
                                 <group>
-                                    <title>Jakarta Server Pages Tag Libraries Documentation</title>
+                                    <title>Jakarta Standard Tag Library Documentation</title>
                                     <packages>org.apache.taglibs</packages>
                                 </group>
                             </groups>
