@@ -31,8 +31,8 @@
     <version>2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>GlassFish JSTL related modules</name>
-    <description>JavaServer Pages(TM) Standard Tag Library API</description>
+    <name>GlassFish Jakarta Standard Tag Library related modules</name>
+    <description>Jakarta Standard Tag Library API</description>
     <url>https://projects.eclipse.org/projects/ee4j.jstl</url>
     <licenses>
         <license>
@@ -49,7 +49,7 @@
 
     <mailingLists>
         <mailingList>
-            <name>JSTL mailing list</name>
+            <name>Jakarta Standard Tag Library mailing list</name>
             <post>jstl-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/jstl-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/jstl-dev</unsubscribe>
