@@ -33,8 +33,8 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Jakarta Server Pages TagLib Implementation</name>
-    <description>Jakarta Server Pages Standard Tag Library API</description>
+    <name>Jakarta Standard Tag Library Implementation</name>
+    <description>Jakarta Standard Tag Library Implementation</description>
     <url>https://projects.eclipse.org/projects/ee4j.jstl</url>
     <licenses>
         <license>
