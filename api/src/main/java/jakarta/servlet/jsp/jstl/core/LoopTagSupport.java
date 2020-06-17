@@ -49,7 +49,7 @@ import jakarta.servlet.jsp.tagext.TryCatchFinally;
  * <ul>
  *  <li> Iteration control, based on protected <tt>prepare()</tt>, <tt>next()</tt>,
  *       and <tt>hasNext()</tt> methods
- *  <li> Subsetting (<tt>begin</tt>, <tt>end</tt>, <tt>step></tt>functionality, 
+ *  <li> Subsetting (<tt>begin</tt>, <tt>end</tt>, <tt>step</tt> functionality, 
  *       including validation
  *       of subset parameters for sensibility)
  *  <li> item retrieval (<tt>getCurrent()</tt>)
