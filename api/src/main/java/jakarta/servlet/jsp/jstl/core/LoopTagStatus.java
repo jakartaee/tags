@@ -19,7 +19,7 @@ package jakarta.servlet.jsp.jstl.core;
 
 /**
  * <p>Exposes the current status of
- * an iteration.  JSTL provides a mechanism for LoopTags to
+ * an iteration.  The Jakarta Standard Tag Library provides a mechanism for LoopTags to
  * return information about the current index of the iteration and
  * convenience methods to determine whether or not the current round is
  * either the first or last in the iteration.  It also lets authors

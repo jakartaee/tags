@@ -20,9 +20,9 @@ package jakarta.servlet.jsp.jstl.core;
 import jakarta.servlet.jsp.tagext.Tag;
 
 /**
- * <p>JSTL allows developers to write custom iteration tags by
+ * <p>The Jakarta Standard Tag Library allows developers to write custom iteration tags by
  * implementing the LoopTag interface.  This is not to be confused
- * with <tt>jakarta.servlet.jsp.tagext.IterationTag</tt> as defined in JSP 1.2.
+ * with <tt>jakarta.servlet.jsp.tagext.IterationTag</tt> as defined in Jakarta Server Pages 1.2.
  * LoopTag establishes a mechanism for iteration tags to be recognized
  * and for type-safe implicit collaboration with custom subtags.
  * 

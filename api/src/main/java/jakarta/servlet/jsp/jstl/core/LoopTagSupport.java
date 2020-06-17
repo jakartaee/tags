@@ -38,7 +38,7 @@ import jakarta.servlet.jsp.tagext.TryCatchFinally;
  * <p>Base support class to facilitate implementation of iteration tags.</p>
  *
  * <p>Since most iteration tags will behave identically with respect to
- * actual iterative behavior, JSTL provides this
+ * actual iterative behavior, the Jakarta Standard Tag Library provides this
  * base support class to facilitate implementation.  Many iteration tags
  * will extend this and merely implement the <tt>hasNext()</tt> and 
  * <tt>next()</tt> methods
@@ -95,7 +95,7 @@ public abstract class LoopTagSupport
     /**
      * Ending index of the iteration ('end' attribute).
      * A value of -1 internally indicates 'no end
-     * specified', although accessors for the core JSTL tags do not
+     * specified', although accessors for the core Jakarta Standard Tag Library tags do not
      * allow this value to be supplied directly by the user.
      */
     protected int end;
@@ -235,7 +235,6 @@ public abstract class LoopTagSupport
      */
     public int doStartTag() throws JspException {
         if (end != -1 && begin > end) {
-            // JSTL 1.1. We simply do not execute the loop.
             return SKIP_BODY;
         }
 
