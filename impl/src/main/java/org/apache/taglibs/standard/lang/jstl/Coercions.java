@@ -97,9 +97,9 @@ import java.beans.PropertyEditorManager;
  *     coerce A to Boolean, apply operator
  * 
  * Applying relational operator
- *   A {<,>,<=,>=,lt,gt,lte,gte} B
+ *   A {{@literal <},{@literal >},{@literal <}=,{@literal >}=,lt,gt,lte,gte} B
  *     if A==B
- *       if operator is >= or <=
+ *       if operator is {@literal >}= or {@literal <}=
  *         return true
  *       otherwise
  *         return false

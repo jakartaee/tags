@@ -22,7 +22,7 @@ import jakarta.servlet.jsp.tagext.TagExtraInfo;
 
 /**
  * <p>An implementation of TagExtraInfo that implements validation for
- * <x:parse>'s attributes</p>
+ * {@literal <}x:parse{@literal >}'s attributes</p>
  *
  * @author Shawn Bayern
  */

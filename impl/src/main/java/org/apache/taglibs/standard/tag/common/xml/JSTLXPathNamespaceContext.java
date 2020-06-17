@@ -53,7 +53,7 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
     /**
      * Get Namespace URI bound to a prefix in the current scope
      *
-     * @param Prefix Parameter
+     * @param prefix Parameter
      *
      * @return Namespace URI bound to prefix
      *
@@ -85,7 +85,7 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
     /**
      * Get Prefix bound to Namespace URI in the current scope
      *
-     * @param Namespace URI 
+     * @param namespaceURI Namespace URI 
      *
      * @return Prefix bound to Namespace URI
      *
@@ -121,7 +121,7 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
     /**
      * Get all Prefixes bound to Namespace URI in the current scope
      *
-     * @param Namespace URI 
+     * @param namespaceURI Namespace URI 
      *
      * @return Iterator of Prefixes bound to Namespace URI
      *

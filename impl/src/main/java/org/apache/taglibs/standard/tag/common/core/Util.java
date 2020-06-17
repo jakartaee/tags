@@ -119,11 +119,11 @@ public class Util {
      * Performs the following substring replacements
      * (to facilitate output to XML/HTML pages):
      *
-     *    & -> &amp;
-     *    < -> &lt;
-     *    > -> &gt;
-     *    " -> &#034;
-     *    ' -> &#039;
+     *    {@literal &} -{@literal >} {@literal &amp;}
+     *    {@literal <} -{@literal >} {@literal &lt;}
+     *    {@literal >} -{@literal >} {@literal &gt;}
+     *    {@literal "} -{@literal >} {@literal &#034;}
+     *    {@literal '} -{@literal >} {@literal &#039;}
      *
      * See also OutSupport.writeEscapedXml().
      */

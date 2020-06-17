@@ -381,7 +381,7 @@ public class JSTLXPathImpl implements javax.xml.xpath.XPath {
     /**
      * <p>Compile an XPath expression for later evaluation.</p>
      *
-     * <p>If <code>expression</code> contains any {@link XPathFunction}s,
+     * <p>If <code>expression</code> contains any {@link javax.xml.xpath.XPathFunction}s,
      * they must be available via the {@link XPathFunctionResolver}.
      * An {@link XPathExpressionException} will be thrown if the <code>XPathFunction</code>
      * cannot be resovled with the <code>XPathFunctionResolver</code>.</p>
@@ -537,7 +537,7 @@ public class JSTLXPathImpl implements javax.xml.xpath.XPath {
      * <p>Reset this <code>XPath</code> to its original configuration.</p>
      *
      * <p><code>XPath</code> is reset to the same state as when it was created with
-     * {@link XPathFactory#newXPath()}.
+     * {@link javax.xml.xpath.XPathFactory#newXPath()}.
      * <code>reset()</code> is designed to allow the reuse of existing <code>XPath</code>s
      * thus saving resources associated with the creation of new <code>XPath</code>s.</p>
      *
