@@ -60,6 +60,7 @@
     <modules>
         <module>api</module>
         <module>impl</module>
+        <module>spec</module>
     </modules>
 
     <scm>
