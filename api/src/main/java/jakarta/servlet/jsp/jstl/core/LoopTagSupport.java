@@ -38,7 +38,7 @@ import jakarta.servlet.jsp.tagext.TryCatchFinally;
  * <p>Base support class to facilitate implementation of iteration tags.</p>
  *
  * <p>Since most iteration tags will behave identically with respect to
- * actual iterative behavior, JSTL provides this
+ * actual iterative behavior, the Jakarta Standard Tag Library provides this
  * base support class to facilitate implementation.  Many iteration tags
  * will extend this and merely implement the <tt>hasNext()</tt> and 
  * <tt>next()</tt> methods
