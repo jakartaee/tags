@@ -6,7 +6,7 @@ Library 2.0 specification, developed by the Jakarta Standard Tag Library Team, h
 
 == Related Documentation
 
-Implementors of Jakarta Standard Tag Lbrary and authors of JSP pages
+Implementors of Jakarta Standard Tag Lbrary and authors of Jakarta Server Pages
 may find the following documents worth consulting for additional
 information:.
 
@@ -158,8 +158,7 @@ internationalization.
 The ultimate goal of the Jakarta Standard Tag Library is to help simplify Jakarta Server Pages authors’ lives.
 
 A page author is someone who is responsible
-for the design of a web application’s presentation layer using JSP
-pages. Many page authors are not fluent in any programming language.
+for the design of a web application’s presentation layer using Jakarta Server Pages. Many page authors are not fluent in any programming language.
 
 One of the main difficulties a page author is
 faced with is the need to use a scripting language (the default being
@@ -169,20 +168,17 @@ complex and not very well adapted to their needs.
 
 The Jakarta Standard Tag Library offers the following capabilities:
 
-General-purpose actions
-
+* General-purpose actions +
 These actions complement the expression
 language by allowing a page author to easily display expressions in the
 expression language, set and remove the value of JSP scoped attributes,
 as well as catch exceptions.
 
-Control flow actions
-
+* Control flow actions +
 Tag-based control flow structures
 (conditionals, iterators), which are more natural to page authors.
 
-Tag library validators (TLVs)
-
+* Tag library validators (TLVs) +
 TLVs allow projects to only allow specific
 tag libraries, as well as enforce JSP coding styles that are free of
 scripting elements.
@@ -192,21 +188,21 @@ provides standard actions and standard Expression Language functions
 for functionality most often needed by page authors. These cover the
 following topics:
 
-Accessing URL-based resources
+* Accessing URL-based resources
 
-Internationalization (i18n) and text
+* Internationalization (i18n) and text
 formatting
 
-Relational database access (SQL)
+* Relational database access (SQL)
 
-XML processing
+* XML processing
 
-String manipulation
+* String manipulation
 
 === Multiple Tag Libraries
 
 A tag library is a collection of actions that
-encapsulates functionality to be used from within a JSP page. JSTL
+encapsulates functionality to be used from within a Jakarta Server Pages page. The Jakarta Standard Tag Library
 includes a wide variety of actions that naturally fit into discrete
 functional areas. This is why the Jakarta Standard Tag Library, although referred to as the standard
 tag library (singular), is exposed via multiple tag libraries to clearly
@@ -216,9 +212,7 @@ with the URIs used to reference the libraries. The tables also show the
 prefixes used in this specification (although page authors are free to
 use any prefix they want).
 
-JSTL Tag Libraries
-
-
+Jakarta Standard Tag Library Tag Libraries
 
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
@@ -255,7 +249,7 @@ this specification.
 
 === How Actions are Documented
 
-JSTL actions are grouped according to their
+The Jakarta Standard Tag Library actions are grouped according to their
 functionality. These functional groups of actions are documented in
 their own chapter using the following structure:
 
@@ -273,7 +267,7 @@ structure:
 
 ** Name +
 Tag library prefixes are used in this
-specification for all references to JSTL actions (e.g.: <c:if> instead
+specification for all references to Jakarta Standard Tag Library actions (e.g.: <c:if> instead
 of <if>).
 
 ** Short Description
@@ -284,7 +278,7 @@ The syntax notation is described in
 
 ** Body Content +
 This section specifies which type of body
-content is supported by the action. As defined by the JSP specification,
+content is supported by the action. As defined by the Jakarta Server Pages specification,
 the body content type can be one of _empty_ , _JSP_ , or _tagdependent_.
 The section also specifies if the body content is processed by the
 action or is simply ignored by the action and just written to the
@@ -323,7 +317,7 @@ captures the dynamic behavior of an attribute. The value can be either
 true or false. A false value in the dynamic column means that only a
 static string value can be specified for the attribute. A true value
 means that a _request-time attribute value_ can be specified. As defined
-in the JSP specification, a “request-time attribute value” can be either
+in the Jakarta Server Pages specification, a “request-time attribute value” can be either
 a Java expression, an EL expression, or a value set by a
 `<jsp:attribute>`.
 
@@ -360,7 +354,7 @@ environment in implicit or explicit ways, or both.
 
 Implicit collaboration is often done via a
 well defined interface that allows nested tags to work seamlessly with
-the ancestor tag exposing that interface. The JSTL iterator tags support
+the ancestor tag exposing that interface. The Jakarta Standard Tag Library iterator tags support
 this mode of collaboration.
 
 Explicit collaboration happens when a tag
@@ -368,9 +362,9 @@ explicitly exposes information to its environment. Traditionally, this
 has been done by exposing a scripting variable with a value assigned
 from a JSP scoped attribute (which was saved by the tag handler).
 Because of the expression language, the need for scripting variables is
-significantly reduced. This is why all the JSTL tags expose information
-only as JSP scoped attributes (no scripting variable exposed). These
-exported JSP scoped attributes are referred to as scoped variables in
+significantly reduced. This is why all the Jakarta Standard Tag Library tags expose information
+only as Jakarta Server Pages scoped attributes (no scripting variable exposed). These
+exported Jakarta Server Pages scoped attributes are referred to as scoped variables in
 this specification; this helps in preventing too much overloading of the
 term “attribute”.
 
@@ -389,7 +383,7 @@ in the following way:
 
 It is important to note that a name different
 than _id_ was selected to stress the fact that only a scoped variable
-(JSP scoped attribute) is exposed, without any scripting variable.
+(Jakarta Server Pages scoped attribute) is exposed, without any scripting variable.
 
 If the scoped variable has at-end visibility
 (see <<Visibility>>), the convention also
@@ -397,12 +391,12 @@ establishes the attribute _scope_ to set the scope of the scoped
 variable.
 
 The _scope_ attribute has the semantics
-defined in the JSP specification, and takes the same values as the ones
+defined in the Jakarta Server Pages specification, and takes the same values as the ones
 allowed in the `<jsp:useBean>` action; i.e. _page_ , _request_ , _session_
 , _application_ . If no value is specified for _scope_ , _page_ scope is
 the default unless otherwise specified.
 
-It is also important to note, as per the JSP
+It is also important to note, as per the Jakarta Server Pages
 specification, that specifying "session" scope is only allowed if the
 page has sessions enabled.
 
@@ -416,7 +410,7 @@ iteration (secondary variable).
 
 ==== Visibility
 
-Scoped variables exported by JSTL actions are
+Scoped variables exported by Jakarta Standard Tag Library actions are
 categorized as either nested or at-end.
 
 _Nested_ scoped variables are only
@@ -448,7 +442,7 @@ XPath language.
 
 The second exception is for attributes that
 define the name and scope of scoped variables (as introduced in
-<<Attributes>>) exported by JSTL actions.
+<<Attributes>>) exported by Jakarta Standard Tag Library actions.
 
 Restricting these attributes to static values
 should benefit development tools, without any impediment to page
@@ -456,7 +450,7 @@ authors.
 
 === White Spaces
 
-Following the JSP specification (as well as
+Following the Jakarta Server Pages specification (as well as
 the XML and XSLT specifications), whitespace characters are _#x20_ ,
 _#x9_ , _#xD,_ or _#xA_ .
 
@@ -475,16 +469,16 @@ the class _java.lang.String_ .
 
 === Naming
 
-JSTL adopts capitalization conventions of
+The Jakarta Standard Tag Library adopts capitalization conventions of
 Java variables for compound words in action and attribute names.
 Recommended tag prefixes are kept lowercase. Thus, we have
 `<sql:transaction>` and `<c:forEach>`, as well as attributes such as
 _docSystemId_ and _varDom_ .
 
-In some cases, attribute names for JSTL
+In some cases, attribute names for Jakarta Standard Tag Library
 actions carry conventional meanings. For instance,
 <<var and scope>> discussed the _var_ and
-_scope_ attibutes. <<The _select_ Attribute>> discusses the _select_ attribute used in JSTL's
+_scope_ attibutes. <<The _select_ Attribute>> discusses the _select_ attribute used in Jakarta Standard Tag Library's
 XML-processing tag library.
 
 === Errors and Exceptions
@@ -501,10 +495,10 @@ reported at runtime.
 
 The conversion from a _String_ value to the
 expected type of an attribute is handled according to the rules defined
-in the JSP specification.
+in the Jakarta Server Pages specification.
 
 Since it is hard for a page author to deal
-with exceptions, JSTL tries to avoid as many exception cases as
+with exceptions, the Jakarta Standard Tag Library tries to avoid as many exception cases as
 possible, without causing other problems.
 
 For instance, if `<c:forEach>` were to throw an
@@ -514,7 +508,7 @@ represents check-box selection in an HTML form (retrieved with an EL
 expression like _$\{paramValues.selections}_ ). A better choice is to do
 nothing in this case.
 
-The conventions used in JSTL with respect to
+The conventions used in the Jakarta Standard Tag Library with respect to
 errors and exceptions are as follows:
 
 * scope
@@ -581,7 +575,7 @@ _jakarta.servlet.jsp.JspException_ or a subclass. If an action catches any
 exceptions that occur in its body, its tag handler must provide the
 caught exception as the root cause of the _JspException_ it re-throws.
 
-Also, by default, JSTL actions do not catch
+Also, by default, Jakarta Standard Tag Library actions do not catch
 or otherwise handle exceptions that occur during evaluation of their
 body content. If they do, it is documented in their “Null & Error
 Handling” or “Description” section.
@@ -590,7 +584,7 @@ Handling” or “Description” section.
 
 Context initialization parameters (see
 Servlet specification) are useful to configure the behavior of actions.
-For example, it is possible in JSTL to define the resource bundle used
+For example, it is possible in the Jakarta Standard Tag Library to define the resource bundle used
 by I18N actions via the deployment descriptor (web.xml) as follows:
 
 ....
@@ -605,23 +599,23 @@ by I18N actions via the deployment descriptor (web.xml) as follows:
 ....
 
 In many cases, it is also useful to allow
-configuration data to be overridden dynamically for a particular JSP
-scope (page, request, session, application) via a scoped variable. JSTL
+configuration data to be overridden dynamically for a particular Jakarta Server Pages
+scope (page, request, session, application) via a scoped variable. The Jakarta Standard Tag Library
 refers to scoped variables used for that purpose as configuration
 variables.
 
-According to the JSP specification
-(JSP.2.8.2), a scoped variable name should refer to a unique object at
+According to the Jakarta Server Pages specification
+(Jakarta Server Pages.2.8.2), a scoped variable name should refer to a unique object at
 all points in the execution. This means that all the different scopes
 (page, request, session, and application) that exist within a
 _PageContext_ really should behave as a single name space; setting a
 scoped variable in any one scope overrides it in any of the other
 scopes.
 
-Given this constraint imposed by the JSP
+Given this constraint imposed by the Jakarta Server Pages
 specification, and in order to allow a configuration variable to be set
 for a particular scope without affecting its settings in any of the
-other scopes, JSTL provides the _Config_ class (see
+other scopes, the Jakarta Standard Tag Library provides the _Config_ class (see
 link:jstl.html#UNKNOWN[See Java APIs]”). The _Config_ class
 transparently manipulates the name of configuration variables so they
 behave as if scopes had their own private name space. Details on the
@@ -660,7 +654,7 @@ _JspException_ at runtime.
 
 It is often desirable to display a default
 value if the output of an action yields a null value. This can be done
-in a generic way in JSTL by exporting the output of an action via
+in a generic way in the Jakarta Standard Tag Library by exporting the output of an action via
 attribute _var_ , and then displaying the value of that scoped variable
 with action `<c:out>`.
 
