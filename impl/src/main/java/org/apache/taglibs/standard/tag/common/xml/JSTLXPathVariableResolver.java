@@ -64,7 +64,7 @@ public class JSTLXPathVariableResolver implements XPathVariableResolver {
     /**
      * Find variable in set of variables
      *
-     * @param QName variable name
+     * @param qname QName variable name
      *
      * @return QName variables value
      *

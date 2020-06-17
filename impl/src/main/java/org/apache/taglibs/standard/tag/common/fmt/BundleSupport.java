@@ -156,7 +156,7 @@ public abstract class BundleSupport extends BodyTagSupport {
      * <tt>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</tt> configuration
      * setting) and the available locales, for the given base name.
      *
-     * @param pageContext Page in which the resource bundle with the
+     * @param pc Page in which the resource bundle with the
      * given base name is requested
      * @param basename Resource bundle base name
      *
