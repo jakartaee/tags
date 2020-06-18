@@ -133,7 +133,7 @@ Vanitha Venkatraman, Prasad Subramanian, and Xiaotan He.
 
 Finally, we'd like to thank the community at
 large for their ever increasing interest in this technology. We sure
-hope you’ll enjoy the JSP Standard Tag Library.
+hope you’ll enjoy the Jakarta Standard Tag Library.
 
 == Comments
 
@@ -163,7 +163,7 @@ for the design of a web application’s presentation layer using Jakarta Server 
 One of the main difficulties a page author is
 faced with is the need to use a scripting language (the default being
 the Java programming language) to manipulate the dynamic data within a
-JSP page. Unfortunately, page authors often see scripting languages as
+Jakarta Server Pages page. Unfortunately, page authors often see scripting languages as
 complex and not very well adapted to their needs.
 
 The Jakarta Standard Tag Library offers the following capabilities:
@@ -171,7 +171,7 @@ The Jakarta Standard Tag Library offers the following capabilities:
 * General-purpose actions +
 These actions complement the expression
 language by allowing a page author to easily display expressions in the
-expression language, set and remove the value of JSP scoped attributes,
+expression language, set and remove the value of Jakarta Server Pages scoped attributes,
 as well as catch exceptions.
 
 * Control flow actions +
@@ -180,7 +180,7 @@ Tag-based control flow structures
 
 * Tag library validators (TLVs) +
 TLVs allow projects to only allow specific
-tag libraries, as well as enforce JSP coding styles that are free of
+tag libraries, as well as enforce Jakarta Server Pages coding styles that are free of
 scripting elements.
 
 The other key aspect of the Jakarta Standard Tag Library is that it
@@ -360,7 +360,7 @@ this mode of collaboration.
 Explicit collaboration happens when a tag
 explicitly exposes information to its environment. Traditionally, this
 has been done by exposing a scripting variable with a value assigned
-from a JSP scoped attribute (which was saved by the tag handler).
+from a Jakarta Server Pages scoped attribute (which was saved by the tag handler).
 Because of the expression language, the need for scripting variables is
 significantly reduced. This is why all the Jakarta Standard Tag Library tags expose information
 only as Jakarta Server Pages scoped attributes (no scripting variable exposed). These
@@ -432,12 +432,12 @@ variable is nested, it will be explicitly stated.
 === Static vs Dynamic Attribute Values
 
 Except for the two exceptions described
-below, attribute values of JSTL actions can always be specified
+below, attribute values of Jakarta Standard Tag Library actions can always be specified
 dynamically (see <<Attributes>>).
 
 The first exception to this convention is for
 the _select_ attribute of XML actions. This attribute is reserved in
-JSTL to specify a _String_ literal that represents an expression in the
+the Jakarta Standard Tag Library to specify a _String_ literal that represents an expression in the
 XPath language.
 
 The second exception is for attributes that
@@ -622,7 +622,7 @@ behave as if scopes had their own private name space. Details on the
 name manipulations involved are voluntarily left unspecified and are
 handled transparently by the _Config_ class. This ensures flexibility
 should the “scope name space” issue be addressed in the future by the
-JSP specification.
+Jakarta Server Pages specification.
 
 When setting configuration data via the
 deployment descriptor, the name associated with the context
@@ -637,7 +637,7 @@ As mentioned above, application developers
 may access configuration data through class _Config (see_
 link:jstl.html#UNKNOWN[See Java APIs]” _)_ . As a convenience,
 constant _String_ values have been defined in the _Config_ class for
-each configuration setting supported by JSTL. The values of these
+each configuration setting supported by the Jakarta Standard Tag Library. The values of these
 constants are the names of the context intialization parameters.
 
 Each configuration variable clearly specifies
@@ -677,7 +677,7 @@ defined there.
 
 This chapter provides a simple overview of
 the key features of the expression language, it is therefore
-non-normative. Please refer to the JSP specification for the formal
+non-normative. Please refer to the Jakarta Server Pages specification for the formal
 definition of the EL.
 
 === Expressions and Attribute Values
@@ -706,10 +706,10 @@ productPrice” for a list of products.
 
 === Accessing Application Data
 
-An identifier in the EL refers to the JSP
+An identifier in the EL refers to the Jakarta Server Pages
 scoped variable returned by a call to
 _PageContext.findAttribute(identifier)_ . This variable can therefore
-reside in any of the four JSP scopes: page, request, session, or
+reside in any of the four Jakarta Server Pages scopes: page, request, session, or
 application. A null value is returned if the variable does not exist in
 any of the scopes.
 
@@ -717,7 +717,7 @@ The EL also defines implicit objects to
 support easy access to application data that is of interest to a page
 author. Implicit objects _pageScope_ , _requestScope_ , _session_ Scope,
 and _applicationScope_ provide access to the scoped variables in each
-one of these JSP scopes. It is also possible to access HTTP request
+one of these Jakarta Server Pages scopes. It is also possible to access HTTP request
 parameters via the implicit objects _param_ and _paramValues_ . _param_
 is a _Map_ object where _param["foo"]_ returns the first string value
 associated with request parameter _foo_ , while _paramValues["foo"]_
@@ -745,13 +745,13 @@ _cookie_ exposes cookies received in the request.
 
 Implicit object _pageContext_ is also
 provided for advanced usage, giving access to all properties associated
-with the _PageContext_ of a JSP page such as the _HttpServletRequest_ ,
+with the _PageContext_ of a Jakarta Server Pages page such as the _HttpServletRequest_ ,
 _ServletContext_ , and _HttpSession_ objects and their properties.
 
 === Nested Properties and Accessing Collections
 
 The application data that a page author
-manipulates in a JSP page usually consists of objects that comply with
+manipulates in a Jakarta Server Pages page usually consists of objects that comply with
 the JavaBeans specification, or that represent collections such as
 lists, maps, or arrays.
 
@@ -843,7 +843,7 @@ yield an int value for attribute _begin_ .
 
 === Default Values
 
-JSP pages are mostly used in presentation.
+Jakarta Server Pages are mostly used in presentation.
 Experience suggests that it is important to be able to provide as good a
 presentation as possible, even when simple errors occur in the page. To
 satisfy this requirement, the EL provides default values rather than
@@ -855,7 +855,7 @@ In the following example, the expression
 ”$\{user.address.city}” evaluates to _null_ rather than throwing a
 _NullPointerException_ if there is no address associated with the _user_
 object. This way, a sensible default value can be displayed without
-having to worry about exceptions being thrown by the JSP page.
+having to worry about exceptions being thrown by the Jakarta Server Pages page.
 
 ....
 City: <c:out value=”${user.address.city}” default=”N/A”/>
@@ -880,7 +880,7 @@ handle error conditions.
 === Overview
 
 The `<c:out>` action provides a capability
-similar to JSP expressions such as <%= scripting-language-expression %>
+similar to Jakarta Server Pages expressions such as <%= scripting-language-expression %>
 or $\{el-expression}. For example:
 
 ....
@@ -906,14 +906,14 @@ property _city_ is not accessible.
 ....
 
 The action `<c:set>` is used to set the value
-of a JSP scoped attribute as follows:
+of a Jakarta Server Pages scoped attribute as follows:
 
 ....
 <c:set var=”foo” value=”value”/>
 ....
 
 It is also possible to set the value of a
-scoped variable (JSP scoped attribute) from the body of the `<c:set>`
+scoped variable (Jakarta Server Pages scoped attribute) from the body of the `<c:set>`
 action. This solves the problem associated with not being able to set an
 attribute value from another action. In the past, a tag developer would
 often implement extra "attributes as tags" so the value of these
@@ -950,7 +950,7 @@ without requiring the extra `<acme:att1>` tag.
 
 In the preceding example, the `<c:set>` action
 sets the value of the _att1_ scoped variable to the output of the
-`<acme:foo>` action. `<c:set>` – like all JSTL actions that create scoped
+`<acme:foo>` action. `<c:set>` – like all Jakarta Standard Tag Library actions that create scoped
 attributes – creates scoped attributes in “page” scope by default.
 
 `<c:set>` may also be used to set the property
@@ -986,7 +986,7 @@ Action `<c:remove>` is the natural companion to
 ....
 
 Finally, the `<c:catch>` action provides a
-complement to the JSP error page mechanism. It is meant to allow page
+complement to the Jakarta Server Pages error page mechanism. It is meant to allow page
 authors to recover gracefully from error conditions that they can
 control. For example:
 
@@ -1354,18 +1354,18 @@ caught and not saved.
 
 == Conditional Actions: core tag library
 
-The output of a JSP page is often conditional
+The output of a Jakarta Server Pages page is often conditional
 on the value of dynamic application data. A simple scriptlet with an
 _if_ statement can be used in such situations, but this forces a page
 author to use a scripting language whose syntax may be troublesome (e.g.
 one may forget the curly braces).
 
-The JSTL conditional actions make it easy to
-do conditional processing in a JSP page.
+The Jakarta Standard Tag Library conditional actions make it easy to
+do conditional processing in a Jakarta Server Pages page.
 
 === Overview
 
-The JSTL conditional actions are designed to
+The Jakarta Standard Tag Library conditional actions are designed to
 support the two most common usage patterns associated with conditional
 processing: _simple_ conditional execution and _mutually exclusive_
 conditional execution.
@@ -1462,7 +1462,7 @@ action.
 ....
 
 To facilitate the implementation of
-conditional actions where the boolean result is exposed as a JSP scoped
+conditional actions where the boolean result is exposed as a Jakarta Server Pages scoped
 variable, class _ConditionalTagSupport_ (see
 link:jstl.html#UNKNOWN[See Java APIs]”) has been defined in this
 specification.
@@ -1527,7 +1527,7 @@ specified.
 .*Description*
 
 If the test condition evaluates to true, the
-body content is evaluated by the JSP container and the result is output
+body content is evaluated by the Jakarta Server Pages container and the result is output
 to the current _JspWriter_ .
 
 <<<
@@ -1620,7 +1620,7 @@ that has the same parent.
 
 Within a `<c:choose>` action, the body content
 of the first `<c:when>` action whose test condition evaluates to true is
-evaluated by the JSP container, and the result is output to the current
+evaluated by the Jakarta Server Pages container, and the result is output to the current
 _JspWriter_ .
 
 <<<
@@ -1659,28 +1659,28 @@ None.
 
 Within a `<c:choose>` action, if none of the
 nested `<c:when>` test conditions evaluates to true, then the body content
-of the `<c:otherwise>` action is evaluated by the JSP container, and the
+of the `<c:otherwise>` action is evaluated by the Jakarta Server Pages container, and the
 result is output to the current _JspWriter_ .
 
 
 == Iterator Actions: core tag library
 
 Iterating over a collection of objects is a
-common occurrence in a JSP page. Just as with conditional processing, a
+common occurrence in a Jakarta Server Pages page. Just as with conditional processing, a
 simple scriptlet can be used in such situations. However, this once
 again forces a page author to be knowledgeable in many aspects of the
 Java programming language (how to iterate on various collection types,
 having to cast the returned object into the proper type, proper use of
 the curly braces, etc.).
 
-The JSTL iterator actions simplify iterating
+The Jakarta Standard Tag Library iterator actions simplify iterating
 over a wide variety of collections of objects.
 
 === Overview
 
 The `<c:forEach>` action repeats its nested
 body content over the collection of objects specified by the _items_
-attribute. For example, the JSP code below creates an HTML table with
+attribute. For example, the Jakarta Server Pages code below creates an HTML table with
 one column that shows the default display value of each item in the
 collection.
 
@@ -1719,7 +1719,7 @@ subtags as well as their own iteration tags (see
 <<Tag Collaboration>>).
 
 `<c:forEach>` is the base iteration action in
-JSTL. It handles the most common iteration cases conveniently. Other
+the Jakarta Standard Tag Library. It handles the most common iteration cases conveniently. Other
 iteration actions are also provided in the tag library to support
 specific, specialized functionality not handled by `<c:forEach>` (e.g.
 `<c:forTokens>` (<<c:forTokens>>) and
@@ -1826,7 +1826,7 @@ values from 100 to 110 (inclusive).
 ==== Tag Collaboration
 
 Custom actions give developers the power to
-provide added functionality to a JSP application without requiring the
+provide added functionality to a Jakarta Server Pages application without requiring the
 page author to use Java code. In this example, an item of the iteration
 is processed differently depending upon whether it is an odd or even
 element.
@@ -1881,7 +1881,7 @@ the expression is evaluated immediately by the container). Deferred
 expressions are used mostly with JavaServer Faces, a component-based UI
 framework for the webtier.
 
-In order for JSTL iteration tags to support
+In order for Jakarta Standard Tag Library iteration tags to support
 nested actions that access the iteration variable as a deferred-value,
 the _items_ attribute must be specified as a deferred-value as well.
 
@@ -2088,8 +2088,8 @@ doEndTag()
 ....
 
 The number of items referred to by the
-_items_ attribute must be the same when Faces creates the component tree
-and when JSP executes the iteration tag. Undefined behavior will result
+_items_ attribute must be the same when Jakarta Server Faces creates the component tree
+and when Jakarta Server Pages executes the iteration tag. Undefined behavior will result
 if this is not the case.
 
 <<<
@@ -2194,8 +2194,8 @@ See Section "Deferred Values" for
 == URL Related Actions: core tag library
 
 Linking, importing, and redirecting to URL
-resources are features often needed in JSP pages. Since dealing with
-URLs can often be tricky, JSTL offers a comprehensive suite of
+resources are features often needed in Jakarta Server Pages. Since dealing with
+URLs can often be tricky, the Jakarta Standard Tag Library offers a comprehensive suite of
 URL-related actions to simplify these tasks.
 
 === Hypertext Links
@@ -2251,7 +2251,7 @@ yields the URL _/foo/ads/logo.html_ .
 
 There is a wide variety of resources that a
 page author might be interested in including and/or processing within a
-JSP page. For instance, the example below shows how the content of the
+Jakarta Server Pages page. For instance, the example below shows how the content of the
 README file at the FTP site of acme.com could be included within the
 page.
 
@@ -2259,7 +2259,7 @@ page.
 <c:import url=”ftp://ftp.acme.com/README”/>
 ....
 
-In the JSP specification, a `<jsp:include>`
+In the Jakarta Server Pages specification, a `<jsp:include>`
 action provides for the inclusion of static and dynamic resources
 located in the same context as the current page. This is a very
 convenient feature that is widely used by page authors.
@@ -2294,7 +2294,7 @@ address these shortcomings by providing a simple, straightforward
 mechanism to access resources that can be specified via a URL. If
 accessing a resource requires specifying more arguments, then a protocol
 specific action (e.g. an <http> action) should be used for that purpose.
-JSTL does not currently address these protocol-specific elements but may
+The Jakarta Standard Tag Library does not currently address these protocol-specific elements but may
 do so in future releases.
 
 ==== URL
@@ -2320,7 +2320,7 @@ types of URL are shown in the sample code below.
 ==== Exporting an object: String or Reader
 
 By default, the content of an imported
-resource is included inline into the JSP page.
+resource is included inline into the Jakarta Server Pages page.
 
 It is also possible to make the content of
 the resource available in two different ways: as a _String_ object
@@ -2501,7 +2501,7 @@ comes with some restrictions.
 It is the responsibility of the `<c:import>`
 tag handler to ensure that if it exports a _Reader_ , this _Reader_ is
 properly closed by the time the end of the page is
-reachedlink:#a3271[4]. Because of this requirement, JSTL defines
+reachedlink:#a3271[4]. Because of this requirement, the Jakarta Standard Tag Library defines
 the exported _Reader_ as having nested visibility: it may not currently
 be accessed after the end-tag for the `<c:import>`
 actionlink:#a3272[5]. Implementations that use JSP 1.2
@@ -2540,7 +2540,7 @@ according to RFC 2045 (section 5.1).
 character set, or if the character set causes
 _InputStreamReader(InputStream in, String charsetName)_ to throw an
 _UnsupportedEncodingException_ , then use ISO-8859-1 (which is the
-default value of _charset_ for the _contentType_ attribute of the JSP
+default value of _charset_ for the _contentType_ attribute of the Jakarta Server Pages
 _page_ directive).
 
 Note that the _charEncoding_ attribute should
@@ -2560,11 +2560,11 @@ depends on what type of URL is being accessed.
 *_Relative URL – same context_*
 
 This is processed in the exact same way as
-the include action of the JSP specification (`<jsp:include>`). The
+the include action of the Jakarta Server Pages specification (`<jsp:include>`). The
 resource belongs to the same web application as the including page and
 it is specified as a relative URL.
 
-As specified in the JSP specification, a
+As specified in the Jakarta Server Pages specification, a
 relative URL may either be a context-relative path, or a page-relative
 path. A context-relative path is a path that starts with a "/". It is to
 be interpreted as relative to the application to which the JSP page
@@ -2924,7 +2924,7 @@ resource bundles, and access the data via i18n actions, so that the
 corresponding translated message is fetched automatically and inserted
 into the page.
 
-The JSTL i18n-capable formatting actions
+The Jakarta Standard Tag Library i18n-capable formatting actions
 support either approach: They assist page authors with creating
 internationalized page content that can be localized into any locale
 available in the JSP container (this addresses the second approach), and
@@ -2932,7 +2932,7 @@ allow various data elements such as numbers, currencies, dates and times
 to be formatted and parsed in a locale-sensitive or customized manner
 (this may be used in either approach).
 
-JSTL’s i18n actions are covered in this
+The Jakarta Standard Tag Library’s i18n actions are covered in this
 chapter. The formatting actions are covered in
 <<Formatting Actions: I18n-capable formatting tag library>>.
 
@@ -2959,7 +2959,7 @@ The full list of these codes can be found at a number of sites, such
 as: +
 http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html.
 
-Note that the semantics of locales in JSTL
+Note that the semantics of locales in the Jakarta Standard Tag Library
 are the same as the ones defined by the class _java.util.Locale_ . A
 consequence of this is that, as of Java SE 1.4, new language codes defined
 in ISO 639 (e.g. _he_ , _yi_ , _id_ ) will be returned as the old codes
@@ -3132,7 +3132,7 @@ directly for user consumption on an error page.
 
 ==== Resource Bundle Lookup
 
-Localization in JSTL is based on the same
+Localization in the Jakarta Standard Tag Library is based on the same
 mechanisms offered in the Java SE platform. Resource bundles contain
 locale-specific objects, and when an i18n action requires a
 locale-specific resource, it simply loads it from the appropriate
@@ -3144,7 +3144,7 @@ algorithm calls for a resource bundle lookup, where an attempt is made
 at fetching a resource bundle associated with a specific basename and
 locale.
 
-JSTL leverages the semantics of the
+The Jakarta Standard Tag Library leverages the semantics of the
 java.util.ResourceBundle method
 ....
 getBundle(String basename, java.util.Locale locale)
@@ -3162,9 +3162,9 @@ _Locale.getDefault()_
 
 . The root resource bundle (basename)
 
-In JSTL, the search is limited to the first
+In the Jakarta Standard Tag Library, the search is limited to the first
 level; i.e. the specified locale. Steps 2 and 3 are removed so that
-other locales may be considered before applying the JSTL fallback
+other locales may be considered before applying the Jakarta Standard Tag Library fallback
 mechanism described in <<Resource Bundle Determination Algorithm>>. Only if no fallback mechanism exists, or the
 fallback mechanism fails to determine a resource bundle, is the root
 resource bundle considered.
@@ -3367,7 +3367,7 @@ typically encode form field values using the response’s charset.
 The rules related to the setting of an HTTP
 response character encoding, Content-Language header, and Content-Type
 header are clearly defined in the Servlet specification. To avoid any
-ambiguity, the JSTL and JSP specifications define behavior related to a
+ambiguity, the Jakarta Standard Tag Library and Jakarta Server Pages specifications define behavior related to a
 response's locale and character encoding exclusively in terms of Servlet
 API calls.
 
@@ -3870,7 +3870,7 @@ default character encoding (ISO-8859-1) is used.
 === Configuration Settings
 
 This section describes the i18n-related
-configuration settings. Refer to <<Configuration Data>> for more information on how JSTL processes
+configuration settings. Refer to <<Configuration Data>> for more information on how the Jakarta Standard Tag Library processes
 configuration data.
 
 ==== Locale
@@ -3959,7 +3959,7 @@ value is interpreted as a resource bundle basename.
 
 == Formatting Actions: I18n-capable formatting tag library
 
-The JSTL formatting actions allow various
+The Jakarta Standard Tag Library formatting actions allow various
 data elements in a JSP page, such as numbers, dates and times, to be
 formatted and parsed in a locale-sensitive or customized manner.
 
@@ -5030,7 +5030,7 @@ _java.util.Date_ method _toString()_ .
 === Configuration Settings
 
 This section describes the formatting-related
-configuration settings. Refer to <<Configuration Data>> for more information on how JSTL processes
+configuration settings. Refer to <<Configuration Data>> for more information on how the Jakarta Standard Tag Library processes
 configuration data.
 
 ==== TimeZone
@@ -5070,13 +5070,13 @@ authors require this capability within their JSP pages (e.g.
 prototyping/testing, small scale/simple applications, lack of developer
 resources).
 
-The JSTL SQL actions provide the basic
+The Jakarta Standard Tag Library SQL actions provide the basic
 capabilities to easily interact with relational databases.
 
 [[SQL_Action_Overview]]
 === Overview
 
-The JSTL SQL actions allow page authors to:
+The Jakarta Standard Tag Library SQL actions allow page authors to:
 
 * Perform database queries ( _select_ )
 
@@ -5216,7 +5216,7 @@ money between two accounts in one transaction:
 
 ==== SQL Statement Parameters
 
-The JSTL database actions support
+The Jakarta Standard Tag Library database actions support
 substituting parameter values for parameter markers (“?”) in SQL
 statements (as shown in the previous example). This form of parametric
 replacement is exposed by the _SQLExecutionTag_ interface (see
@@ -5247,7 +5247,7 @@ _SQLExecutionTag_ action:
 </sql:update>
 ....
 
-The JSTL formatting tags may be used to parse
+The Jakarta Standard Tag Library formatting tags may be used to parse
 the string representation of dates and numbers into instances of
 _java.util.Date_ and _java.lang.Number_ , respectively, before supplying
 them to an enclosing _SQLExecutionTag_ for parametric replacement:
@@ -5980,7 +5980,7 @@ _addSQLParameter()_ method, supplying it with the given parameter value.
 This section describes the configuration
 settings used by the SQL actions. Refer to
 <<Configuration Data>> for more
-information on how JSTL processes configuration data.
+information on how the Jakarta Standard Tag Library processes configuration data.
 
 ==== DataSource
 
@@ -6042,7 +6042,7 @@ is the data format of choice for exchanging information.
 
 XML is therefore becoming more and more
 important in a page author's life. The set of XML actions specified in
-JSTL is meant to address the basic XML needs a page author is likely to
+the Jakarta Standard Tag Library is meant to address the basic XML needs a page author is likely to
 encounter.
 
 The XML actions are divided in three
@@ -6056,14 +6056,14 @@ categories: XML core actions (this chapter), XML flow control actions
 A key aspect of dealing with XML documents is
 to be able to easily access their content. XPath, a W3C recommendation
 since 1999, provides a concise notation for specifying and selecting
-parts of an XML document. The XML set of actions in JSTL is therefore
+parts of an XML document. The XML set of actions in the Jakarta Standard Tag Library is therefore
 based on XPath.
 
 The introduction of XPath for the XML tagset
 expands the notion of expression language. XPath is an expression
 language that is used locally for the XML actions. Below are the rules
 of integration that XPath follows as a local expression language. These
-rules ensure that XPath integrates nicely within the JSTL environment.
+rules ensure that XPath integrates nicely within the Jakarta Standard Tag Library environment.
 
 ==== XPath Context
 
@@ -6077,7 +6077,7 @@ expression consists of:
 * Function library +
 The default function library comes with the
 XPath engine. Some engines provide extension functions or allow
-customization to add new functions. The XPath function library in JSTL
+customization to add new functions. The XPath function library in the Jakarta Standard Tag Library
 is limited to the core function library of the XPath specification.
 
 * Namespace prefix definitions which allow
@@ -6088,7 +6088,7 @@ namespace prefixes to be used within an XPath expression.
 The XPath engine supports the following
 scopes to easily access web application data within an XPath expression.
 These scopes are defined in exactly the same way as their implicit
-object counterparts in the JSTL expression language (see
+object counterparts in the Jakarta Standard Tag Library expression language (see
 link:EL-152.html#UNKNOWN[See Implicit Objects]).
 
 
@@ -6228,14 +6228,14 @@ a|
 an unordered collection of nodes without
 duplicates
 
-|Type usable by JSTL XML-manipulation tags in
-the same JSTL implementation. The specific Java type representing
+|Type usable by Jakarta Standard Tag Library XML-manipulation tags in
+the same Jakarta Standard Tag Library implementation. The specific Java type representing
 node-sets may thus vary by implementation.
 |===
 
 ==== The _select_ Attribute
 
-In all the XML actions of JSTL, XPath
+In all the XML actions of the Jakarta Standard Tag Library, XPath
 expressions are always specified using the _select_ attribute. _select_
 is therefore always specified as a string literal that is evaluated by
 the XPath engine.
@@ -6243,13 +6243,13 @@ the XPath engine.
 This clear separation, where only the
 _select_ attribute of XML actions evaluates XPath expressions, helps
 avoid confusion between XPath (expression language that is local to the
-XML actions) and the JSTL expression language (global to all actions
+XML actions) and the Jakarta Standard Tag Library expression language (global to all actions
 with dynamic attributes in the EL version of the tag library).
 
 ==== Default Context Node
 
 The context node for every XPath expression
-evaluation in JSTL that does not appear in the body of an `<x:forEach>`
+evaluation in the Jakarta Standard Tag Library that does not appear in the body of an `<x:forEach>`
 tag is the root of an empty document. Page authors wishing to work with
 documents must therefore suply their own node(s) using an XPath variable
 (see <<XPath Variable Bindings>>).
@@ -6935,7 +6935,7 @@ Inside the body of the tag, the context for
 XPath expression evaluations is obtained as follows:
 
 * variable, function, and namespace bindings
-operate as in the rest of JSTL
+operate as in the rest of the Jakarta Standard Tag Library
 
 * the context node is the node whose
 representation would be exposed by 'var' (whether or not the 'var'
@@ -7197,7 +7197,7 @@ information about which elements, if any, are in violation of its
 specific constraints, along with textual descriptions of the syntactic
 violation.
 
-JSTL provides TLVs that perform “reusable”
+The Jakarta Standard Tag Library provides TLVs that perform “reusable”
 validation; i.e. generic validation that custom tag-library authors
 might wish to incorporate in their own tag libraries. These tag
 libraries do not necessarily need to be substantial collections of tags;
@@ -7207,12 +7207,12 @@ Just like tag libraries whose primary focus is to provide new tags, such
 "back-end" developers in order to affect the "front-end" JSP page
 author's environment.
 
-This chapter covers the JSTL tag library
+This chapter covers the Jakarta Standard Tag Library tag library
 validators.
 
 === Overview
 
-JSTL exposes via TLVs two simple types of
+The Jakarta Standard Tag Library exposes via TLVs two simple types of
 validations. These TLV classes may be used in custom tag-library
 descriptors (TLDs) to restrict the page author's activities. The two
 types of validation provided in this fashion are:
@@ -7223,10 +7223,10 @@ Assurance of script-free pages
 
 * PermittedTaglibs (see
 link:jstl.html#UNKNOWN[See Java APIs]”) +
-Enumeration of permitted tag libraries (including JSTL) on a page
+Enumeration of permitted tag libraries (including the Jakarta Standard Tag Library) on a page
 
-For example, to prevent a JSP page from using
-JSP scriptlets and JSP declarations, but still allow expressions, a
+For example, to prevent a Jakarta Server Pages page from using
+Jakarta Server Pages scriptlets and Jakarta Server Pages declarations, but still allow expressions, a
 developer could create the following TLD:
 
 ....
@@ -7273,8 +7273,8 @@ Note that in JSP 2.0, scripting elements can
 also be disabled through the use of the _scripting-invalid_
 configuration element (see the JSP specification for details).
 
-Similarly, to restrict a JSP page to a set of
-permitted tag-libraries (in the example below, the JSTL “EL” tag
+Similarly, to restrict a Jakarta Server Pages page to a set of
+permitted tag-libraries (in the example below, the Jakarta Standard Tag Library “EL” tag
 libraries), a developer could create the following TLD:
 
 ....
@@ -7318,15 +7318,15 @@ extend the JSP syntax with their own customized behavior, the expression
 language defined in JSP 2.0 introduces the notion of _functions_ to
 allow developers to extend the capabilities of the Expression Language.
 
-JSTL is about the standardization, via these
+The Jakarta Standard Tag Library is about the standardization, via these
 extension mechanisms, of behavior that is commonly needed by page
-authors. In addition to defining a standard set of actions, JSTL
+authors. In addition to defining a standard set of actions, the Jakarta Standard Tag Library
 therefore also defines a standardized set of EL functions. These
 functions are described in this chapter.
 
 === Overview
 
-The JSTL functions are all grouped within the
+The Jakarta Standard Tag Library functions are all grouped within the
 _function_ tag library. They cover various domains of functionality
 described below.
 
@@ -7341,7 +7341,7 @@ language.
 
 The _length_ function has been designed to be
 very similar to the use of "length" in EcmaScript. It can be applied to
-any object supported by the JSTL iteration action
+any object supported by the Jakarta Standard Tag Library iteration action
 <c:forEach>link:#a3281[14] and returns the length of the
 collection. When applied to a String, it returns the number of
 characters in the string.
@@ -8238,9 +8238,9 @@ _java.lang.String_ .
 == Compatibility & Migration
 
 This appendix provides
-information on compatibility between different versions of JSTL, as well
+information on compatibility between different versions of the Jakarta Standard Tag Library, as well
 as on how to migrate your web application to take advantage of the new
-features of the latest JSTL release.
+features of the latest Jakarta Standard Tag Library release.
 
 === JSTL 1.2 Backwards Compatibility
 
