@@ -1024,7 +1024,7 @@ _With a body_
 ....
 
 .*Body Content*
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1141,7 +1141,7 @@ _Syntax 5: Set a deferred value_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1315,7 +1315,7 @@ of its nested actions.
 
 .*Body Content*
 
-JSP. The body content is processed by the JSP
+JSP. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_ .
 
 .*Attributes*
@@ -1495,7 +1495,7 @@ _Syntax 2: With body content_
 .*Body Content*
 
 JSP. If the test condition evaluates to true,
-the JSP container processes the body content and then writes it to the
+the Jakarta Server Pages container processes the body content and then writes it to the
 current _JspWriter_ .
 
 .*Attributes*
@@ -1546,7 +1546,7 @@ conditional execution.
 
 .*Body Content*
 
-JSP. The body content is processed by the JSP
+JSP. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested actions will be processed) and
 written to the current _JspWriter_ .
 
@@ -1593,7 +1593,7 @@ action.
 .*Body Content*
 
 JSP. If this is the first <c:when> action to
-evaluate to true within <c:choose>, the JSP container processes the body
+evaluate to true within <c:choose>, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_ .
 
 .*Attributes*
@@ -1641,7 +1641,7 @@ Represents the last alternative within a
 .*Body Content*
 
 JSP. If no `<c:when>` action nested within
-`<c:choose>` evaluates to true, the JSP container processes the body
+`<c:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_ .
 
 .*Attributes*
@@ -1873,12 +1873,12 @@ doing this.
 
 ==== Deferred Values
 
-As of JSP 2.1, the new unified Expression
+The unified Expression
 Language supports the concept of deferred expressions (using the #{}
 syntax), i.e. expressions whose evaluation is deferred to application
 code (as opposed to immediate evaluation (using the ${} syntax) where
 the expression is evaluated immediately by the container). Deferred
-expressions are used mostly with JavaServer Faces, a component-based UI
+expressions are used mostly with Jakarta Server Faces, a component-based UI
 framework for the webtier.
 
 In order for Jakarta Standard Tag Library iteration tags to support
@@ -1931,7 +1931,7 @@ _Syntax 2: Iterate a fixed number of times_
 .*Body Content*
 
 JSP. As long as there are items to iterate
-over, the body content is processed by the JSP container and written to
+over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_ .
 
 .*Attributes*
@@ -2114,7 +2114,7 @@ supplied delimiters.
 .*Body Content*
 
 JSP. As long as there are items to iterate
-over, the body content is processed by the JSP container and written to
+over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_ .
 
 .*Attributes*
@@ -2411,7 +2411,7 @@ Reader object_
 
 .*Body Content*
 
-JSP. The body content is processed by the JSP
+JSP. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_ .
 
 .*Attributes*
@@ -2567,10 +2567,10 @@ it is specified as a relative URL.
 As specified in the Jakarta Server Pages specification, a
 relative URL may either be a context-relative path, or a page-relative
 path. A context-relative path is a path that starts with a "/". It is to
-be interpreted as relative to the application to which the JSP page
+be interpreted as relative to the application to which the Jakarta Server Pages page
 belongs. A page-relative path is a path that does not start with a "/".
 It is to be interpreted as relative to the current JSP page, as defined
-by the rules of inclusion of the `<jsp:include>` action in the JSP
+by the rules of inclusion of the `<jsp:include>` action in the Jakarta Server Pages
 specification.
 
 The semantics of importing a resource
@@ -2666,7 +2666,7 @@ query string parameters_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2732,7 +2732,7 @@ to calling _RequestDispatcher_ . This situation is properly handled in
 
 By default, the result of the URL processing
 is written to the current _JspWriter_ . It is also possible to export
-the result as a JSP scoped variable defined via the _var_ and _scope_
+the result as a Jakarta Server Pages scoped variable defined via the _var_ and _scope_
 attributes.
 
 `<c:param>` subtags can also be specified
@@ -2764,7 +2764,7 @@ query string parameters_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2835,7 +2835,7 @@ body content_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2912,7 +2912,7 @@ known as localization.
 There are two approaches to
 internationalizing a web application:
 
-* Provide a version of the JSP pages in each of
+* Provide a version of the Jakarta Server Pages in each of
 the target locales and have a controller servlet dispatch the request to
 the appropriate page (depending on the requested locale). This approach
 is useful if large amounts of data on a page or an entire web
@@ -2927,7 +2927,7 @@ into the page.
 The Jakarta Standard Tag Library i18n-capable formatting actions
 support either approach: They assist page authors with creating
 internationalized page content that can be localized into any locale
-available in the JSP container (this addresses the second approach), and
+available in the Jakarta Server Pages container (this addresses the second approach), and
 allow various data elements such as numbers, currencies, dates and times
 to be formatted and parsed in a locale-sensitive or customized manner
 (this may be used in either approach).
@@ -2986,8 +2986,7 @@ the key “greeting” could be mapped to the message “Bonjour” (French) or
 
 ==== <fmt:message>
 
-It is possible to internationalize the JSP
-pages of a web application simply by using the `<fmt:message>` action as
+It is possible to internationalize the Jakarta Server Pages of a web application simply by using the `<fmt:message>` action as
 shown below:
 
 ....
@@ -2996,7 +2995,7 @@ shown below:
 
 In this case, `<fmt:message>` leverages the
 default i18n localization context, making it extremely simple for a page
-author to internationalize JSP pages.
+author to internationalize Jakarta Server Pages.
 
 `<fmt:message>` also supports compound
 messages, i.e. messages that contain one or more variables. Parameter
@@ -3329,9 +3328,9 @@ its page, unless the localization context that was established does not
 have any locale. This is done by calling method
 _ServletResponse.setLocale()_ with the locale of the localization
 context. Unless a response character encoding has been explicitly
-defined by other JSP elements (or by direct calls to the Servlet API),
+defined by other Jakarta Server Pages elements (or by direct calls to the Servlet API),
 calling _setLocale()_ also sets the character encoding for the response
-(see the JSP and Servlet specifications for details).
+(see the Jakarta Server Pages and Servlet specifications for details).
 
 This assumes that the response is buffered
 with a big enough buffer size, since _ServletResponse.setLocale()_ must
@@ -3378,7 +3377,7 @@ already been set explicitely by calls to
 _ServletResponse.setContentType()_ (with CHARSET specified) or
 _ServletResponse.setCharacterEncoding()_ .
 
-Page authors should consult the JSP
+Page authors should consult the Jakarta Server Pages
 specification to understand how page directives related to locale and
 character encoding setting translate into Servlet API calls, and how
 they impact the final response settings.
@@ -3469,7 +3468,7 @@ used by its body content.
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter._ The action
 ignores the body content.
 
@@ -3649,7 +3648,7 @@ optional message parameters_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3740,7 +3739,7 @@ _java.text.MessageFormat_ is not used).
 
 The `<fmt:message>` action outputs its result
 to the current _JspWriter_ object, unless the _var_ attribute is
-specified, in which case the result is stored in the named JSP
+specified, in which case the result is stored in the named Jakarta Server Pages
 attribute.
 
 <<<
@@ -3767,7 +3766,7 @@ _Syntax 2: value specified via body content_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3960,7 +3959,7 @@ value is interpreted as a resource bundle basename.
 == Formatting Actions: I18n-capable formatting tag library
 
 The Jakarta Standard Tag Library formatting actions allow various
-data elements in a JSP page, such as numbers, dates and times, to be
+data elements in a Jakarta Server Pages page, such as numbers, dates and times, to be
 formatted and parsed in a locale-sensitive or customized manner.
 
 
@@ -4067,7 +4066,7 @@ Time information on a page may be tailored to
 the preferred time zone of a client. This is useful if the server
 hosting the page and its clients reside in different time zones. If time
 information is to be formatted or parsed in a time zone different from
-that of the JSP container, the `<fmt:formatDate>` and `<fmt:parseDate>`
+that of the Jakart Server Pages container, the `<fmt:formatDate>` and `<fmt:parseDate>`
 action may be nested inside a `<fmt:timeZone>` action or supplied with a
 _timeZone_ attribute.
 
@@ -4238,7 +4237,7 @@ from the enclosing `<fmt:timeZone>` action.
 * Use the time zone given by the
 _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
-* Use the JSP container’s time zone.
+* Use the Jakarta Server Pages container’s time zone.
 
 <<<
 
@@ -4258,7 +4257,7 @@ information is to be formatted or parsed in its body content.
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_ . The action
 ignores the body content.
 
@@ -4405,7 +4404,7 @@ numeric value to be formatted_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4609,7 +4608,7 @@ numeric value to be parsed_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4904,7 +4903,7 @@ value to be parsed_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5066,7 +5065,7 @@ relational databases as the source of dynamic data for their
 presentation layer. While it is generally preferred to have database
 operations handled within the business logic of a web application
 designed with an MVC architecture, there are situations where page
-authors require this capability within their JSP pages (e.g.
+authors require this capability within their Jakarta Server Pages (e.g.
 prototyping/testing, small scale/simple applications, lack of developer
 resources).
 
@@ -5363,7 +5362,7 @@ optional query parameters_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5534,7 +5533,7 @@ statement and optional update parameters_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5633,7 +5632,7 @@ isolationLevel ::= "read_committed"
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakart Server Pages container processes the body
 content and then writes the result to the current _JspWriter_ . The
 action ignores the body content.
 
@@ -5859,7 +5858,7 @@ body content_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6134,7 +6133,7 @@ _"foo", PageContext.APPLICATION_SCOPE)_
 
 |===
 
-Through these mappings, JSP scoped variables,
+Through these mappings, Jakarta Server Pages scoped variables,
 request parameters, headers, and cookies, as well as context init
 parameters can all be used inside XPath expressions easily. For example:
 
@@ -6360,7 +6359,7 @@ where scope is
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6507,7 +6506,7 @@ function were applied, and is subsequently written to the current
 _JspWriter_ object.
 
 This action is the equivalent of _<%=...%>_
-(display the result of an expression in the JSP syntax) and _<c:out>_
+(display the result of an expression in the Jakarta Server Pages syntax) and _<c:out>_
 (display the result of an expression in the expression language syntax).
 
 If _escapeXml_ is true, the following
@@ -6584,7 +6583,7 @@ described in <<XPath to Java Type Mappings>>.
 The core set of XML actions provides the
 basic functionality to easily parse and access XML data. Another
 important piece of functionality is the ability to iterate over elements
-in an XML document, as well as conditionally process JSP code fragments
+in an XML document, as well as conditionally process Jakarta Server Pages code fragments
 depending on the result of an XPath expression. The XML flow control
 actions provide these capabilities.
 
@@ -6681,7 +6680,7 @@ _Syntax 2: With body content_
 .*Body Content*
 
 JSP. If the test condition evaluates to true,
-the JSP container processes the body content and then writes it to the
+the Jakarta Server Pages container processes the body content and then writes it to the
 current _JspWriter_ .
 
 .*Attributes*
@@ -6716,7 +6715,7 @@ specified.
 The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
 _boolean_ according to the semantics of the XPath _boolean()_ function.
-If true, the body content is evaluated by the JSP container and the
+If true, the body content is evaluated by the Jakarta Server Pages container and the
 result is written to the current _JspWriter_ .
 
 <<<
@@ -6735,7 +6734,7 @@ conditional execution.
 
 .*Body Content*
 
-JSP. The body content is processed by the JSP
+JSP. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested elements will be processed) and
 written to the current _JspWriter_ .
 
@@ -6781,7 +6780,7 @@ Represents an alternative within an
 .*Body Content*
 
 JSP. If this is the first _<x:when>_ action
-to evaluate to true within _<x:choose>_ , the JSP container processes
+to evaluate to true within _<x:choose>_ , the Jakarta Server Pages container processes
 the body content and then writes it to the current _JspWriter_ .
 
 .*Attributes*
@@ -6811,7 +6810,7 @@ The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
 _boolean_ according to the semantics of the XPath _boolean()_ function.
 If this is the first _<x:when>_ action to evaluate to true within
-_<x:choose>_ , the JSP container processes the body content and then
+_<x:choose>_ , the Jakarta Server Pages container processes the body content and then
 writes it to the current _JspWriter_ .
 
 <<<
@@ -6831,7 +6830,7 @@ Represents the last alternative within a
 .*Body Content*
 
 JSP. If no `<x:when>` action nested within
-`<x:choose>` evaluates to true, the JSP container processes the body
+`<x:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_ .
 
 .*Attributes*
@@ -6849,7 +6848,7 @@ None.
 
 Within a `<x:choose>` action, if none of the
 nested `<x:when>` test conditions evaluates to true, then the body content
-of the `<x:otherwise>` action is evaluated by the JSP container, and the
+of the `<x:otherwise>` action is evaluated by the Jakarta Server Pages container, and the
 result is written to the current _JspWriter_ .
 
 <<<
@@ -6873,7 +6872,7 @@ node to each element in the iteration.
 .*Body Content*
 
 JSP. As long as there are items to iterate
-over, the body content is processed by the JSP container and written to
+over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_ .
 
 .*Attributes*
@@ -6953,7 +6952,7 @@ nodes in the node-set over which `<x:forEach>` is iterating
 The transformation of XML documents using
 XSLT stylesheets is popular in many web applications. The XML transform
 actions provide this capability so XSLT transformations can be performed
-within JSP pages.
+within Jakarta Server Pages.
 
 === Overview
 
@@ -7040,7 +7039,7 @@ where scopeName is
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7156,7 +7155,7 @@ body content_
 
 .*Body Content*
 
-JSP. The JSP container processes the body
+JSP. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7287,7 +7286,7 @@ libraries), a developer could create the following TLD:
         "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
     version="2.0">
     <description>
-        Restricts JSP pages to the JSTL tag libraries
+        Restricts Jakarta Server Pages to the Jakarta Standard Tag Library tag libraries
     </description>
     <tlib-version>1.0</tlib-version>
     <jsp-version>2.0</jsp.version>
@@ -7314,9 +7313,7 @@ libraries), a developer could create the following TLD:
 == Functions: function tag library
 
 Just like custom actions allow developers to
-extend the JSP syntax with their own customized behavior, the expression
-language defined in JSP 2.0 introduces the notion of _functions_ to
-allow developers to extend the capabilities of the Expression Language.
+extend the Jakarta Server Pages syntax with their own customized behavior, the expression language defined in Jakarta Server Pages introduces the notion of _functions_ to allow developers to extend the capabilities of the Expression Language.
 
 The Jakarta Standard Tag Library is about the standardization, via these
 extension mechanisms, of behavior that is commonly needed by page
