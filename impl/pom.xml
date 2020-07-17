@@ -84,37 +84,29 @@
         <url>https://github.com/eclipse-ee4j/jstl-api/issues</url>
     </issueManagement>
 
-    <properties>
-        <spec.version>2.0-SNAPSHOT</spec.version>
-        <extensionName>jakarta.servlet.jsp.jstl</extensionName>
-        <bundle.symbolicName>org.glassfish.web.jakarta.servlet.jsp.jstl</bundle.symbolicName>
-        <vendorName>Eclipse Foundation</vendorName>
-        <legal.doc.source>${maven.multiModuleProjectDirectory}/..</legal.doc.source>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>5.0.0-M1</version>
+            <version>5.0.0-M2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
-            <version>3.0.0-M1</version>
+            <version>3.0.0-RC2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>4.0.0-RC1</version>
+            <version>4.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>2.0.0-RC1</version>
+            <version>2.0.0-RC3</version>
         </dependency>
         <dependency>
             <groupId>xalan</groupId>
@@ -186,20 +178,15 @@
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
-
+            
             <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.3</version>
+                <version>4.2.1</version>
                 <configuration>
-                    <!-- Enable the plugin for hk2-jar packaging type -->
-                    <supportedProjectTypes>
-                        <supportedProjectType>hk2-jar</supportedProjectType>
-                        <supportedProjectType>jar</supportedProjectType>
-                        <supportedProjectType>bundle</supportedProjectType>
-                    </supportedProjectTypes>
                     <instructions>
+                        <Bundle-SymbolicName>org.glassfish.web.jakarta.servlet.jsp.jstl</Bundle-SymbolicName>
                         <Export-Package>
                             org.apache.taglibs.standard,
                             org.apache.taglibs.standard.extra.spath,
@@ -260,18 +247,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.2.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>
                             ${project.build.outputDirectory}/META-INF/MANIFEST.MF
                         </manifestFile>
                         <manifestEntries>
-                            <Extension-Name>${extensionName}</Extension-Name>
-                            <Specification-Version>${spec.version}</Specification-Version>
-                            <Specification-Vendor>${vendorName}</Specification-Vendor>
+                            <Extension-Name>jakarta.servlet.jsp.jstl</Extension-Name>
+                            <Specification-Version>2.0</Specification-Version>
+                            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Vendor>${vendorName}</Implementation-Vendor>
+                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -281,7 +268,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -362,12 +349,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2.0</version>
                 <configuration>
                     <source>1.8</source>
                     <additionalJOption>-Xdoclint:none</additionalJOption>
                     <bottom><![CDATA[
-Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
+Copyright &#169; 2019,2020 Eclipse Foundation. All rights reserved.
 ]]>
                     </bottom>
                     <docfilessubdirs>true</docfilessubdirs>
@@ -440,18 +427,4 @@ Copyright &#169; 2019 Eclipse Foundation. All rights reserved.
             </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
-                <configuration>
-                    <threshold>${findbugs.threshold}</threshold>
-                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
