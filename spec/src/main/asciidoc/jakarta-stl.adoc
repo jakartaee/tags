@@ -615,8 +615,7 @@ scopes.
 Given this constraint imposed by the Jakarta Server Pages
 specification, and in order to allow a configuration variable to be set
 for a particular scope without affecting its settings in any of the
-other scopes, the Jakarta Standard Tag Library provides the _Config_ class (see
-link:jstl.html#UNKNOWN[See Java APIs]”). The _Config_ class
+other scopes, the Jakarta Standard Tag Library provides the _jakarta.servlet.jsp.jstl.core.Config_ class. The _Config_ class
 transparently manipulates the name of configuration variables so they
 behave as if scopes had their own private name space. Details on the
 name manipulations involved are voluntarily left unspecified and are
@@ -634,8 +633,7 @@ variables is referred to as a configuration setting in this
 specification.
 
 As mentioned above, application developers
-may access configuration data through class _Config (see_
-link:jstl.html#UNKNOWN[See Java APIs]” _)_ . As a convenience,
+may access configuration data through class _jakarta.servlet.jsp.jstl.core.Config_. As a convenience,
 constant _String_ values have been defined in the _Config_ class for
 each configuration setting supported by the Jakarta Standard Tag Library. The values of these
 constants are the names of the context intialization parameters.
@@ -1463,8 +1461,7 @@ action.
 
 To facilitate the implementation of
 conditional actions where the boolean result is exposed as a Jakarta Server Pages scoped
-variable, class _ConditionalTagSupport_ (see
-link:jstl.html#UNKNOWN[See Java APIs]”) has been defined in this
+variable, class _jakarta.servlet.jsp.jstl.core.ConditionalTagSupport_ has been defined in this
 specification.
 
 <<<
@@ -1757,8 +1754,7 @@ for this is that the SQL actions described in
 <<SQL_Action_Overview>> use the
 _jakarta.servlet.jsp.jstl.sql.Result_ interface to access the data
 returned from an SQL query. Class
-_jakarta.servlet.jsp.jstl.sql.ResultSupport_ (see
-link:jstl.html#UNKNOWN[See Java APIs]") allows business logic
+_jakarta.servlet.jsp.jstl.sql.ResultSupport_ allows business logic
 developers to easily convert a _ResultSet_ object into a
 _jakarta.servlet.jsp.jstl.sql.Result_ object, making life much easier for
 a page author that needs to manipulate the data returned from a SQL
@@ -1804,8 +1800,7 @@ collection, and the second containing the name of the product.
 </table>
 ....
 
-See link:jstl.html#UNKNOWN[See Java
-APIs]" for details on the _LoopTagStatus_ interface exposed by the
+See the Javadoc for details on the _jakarta.servlet.jsp.jstl.core.LoopTagStatus_ interface exposed by the
 _varStatus_ attribute.
 
 ==== Range Attributes
@@ -1861,14 +1856,12 @@ shown below.
 
 In order to make this possible, custom
 actions like `<acme:odd>` and `<acme:even>` leverage the fact that
-`<c:forEach>` supports implicit collaboration via the interface _LoopTag_
-(see link:jstl.html#UNKNOWN[See Java APIs]").
+`<c:forEach>` supports implicit collaboration via the interface _jakarta.servlet.jsp.jstl.core.LoopTag_.
 
 The fact that `<c:forEach>` exposes an
 interface also means that other actions with iterative behavior can be
 developed using the same interface and will collaborate in the same
-manner with nested tags. Class _LoopTagSupport_ (see
-link:jstl.html#UNKNOWN[See Java APIs]") provides a solid base for
+manner with nested tags. Class _jakarta.servlet.jsp.jstl.core.LoopTagSupport_ provides a solid base for
 doing this.
 
 ==== Deferred Values
@@ -3045,10 +3038,9 @@ resource bundle basename.
 * I18n default localization context +
 The i18n localization context whose resource
 bundle is to be used for localization is specified via the
-jakarta.servlet.jsp.jstl.fmt.localizationContext configuration setting
-(see <<Configuration_Settings_I18n_Localization_Context>>). If
-the configuration setting is of type _LocalizationContext_ (see
-link:jstl.html#UNKNOWN[See Java APIs]”) its resource bundle
+_jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration setting
+(see <<Internationalization_Actions_I18n_Localization_Context>>). If
+the configuration setting is of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_ its resource bundle
 component is used for localization. Otherwise, the configuration setting
 is of type _String_ , and the action establishes its own i18n
 localization context whose resource bundle component is determined
@@ -3123,8 +3115,7 @@ preferred locales, the resource bundle for an i18n localization context
 is determined according to the algorithm described in this section.
 
 Tthis algorithm is also exposed as a general
-convenience method in the _LocaleSupport_ class (see
-link:jstl.html#UNKNOWN[See Java APIs]”) so that it may be used by
+convenience method in the _jakarta.servlet.jsp.jstl.fmt.LocaleSupport_ class so that it may be used by
 any tag handler implementation that needs to produce localized messages.
 For example, this is useful for exception messages that are intended
 directly for user consumption on an error page.
@@ -3424,7 +3415,7 @@ and country codes must be separated by hyphen (’-’) or underscore (’_’).
 _true_ | _String_ |
 Vendor- or browser-specific variant.
 
-See the _java.util.Locale_ javadocs for more information on variants.
+See the _java.util.Locale_ Javadocs for more information on variants.
 
 | _scope_ |
 _false_ | _String_
@@ -3927,9 +3918,8 @@ the i18n-capable formatting actions if none of the preferred match any
 of the available locales. A _String_ value is interpreted as defined in
 action `<fmt:setLocale>` (see <<fmt:setLocale>>).
 
-[[Configuration_Settings_I18n_Localization_Context]]
+[[Internationalization_Actions_I18n_Localization_Context]]
 ==== I18n Localization Context
-
 [width="100%",cols="50%,50%",]
 |===
 | _Variable name_
@@ -5218,8 +5208,7 @@ money between two accounts in one transaction:
 The Jakarta Standard Tag Library database actions support
 substituting parameter values for parameter markers (“?”) in SQL
 statements (as shown in the previous example). This form of parametric
-replacement is exposed by the _SQLExecutionTag_ interface (see
-link:jstl.html#UNKNOWN[See Java APIs]”).
+replacement is exposed by the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface.
 
 The _SQLExecutionTag_ interface is
 implemented by the tag handlers for `<sql:query>` and `<sql:update>`. It is
@@ -5273,8 +5262,7 @@ use the value specified for that attribute as the data source.
 
 ** Otherwise, get the configuration setting
 associated with _jakarta.servlet.jsp.jstl.sql.dataSource_ using
-_Config.find()_ (see link:jstl.html#a194[See Configuration
-Data]). Use the value found as the data source if it is not null.
+_Config.find()_ (see <<Configuration Data>>). Use the value found as the data source if it is not null.
 
 * If a data source is obtained from the
 previous step:
@@ -5291,7 +5279,7 @@ _java:comp/env/_ ).
 
 *** If the previous step fails (data source not
 found), assume the string specifies JDBC parameters using the syntax
-described in link:jstl.html#a1811[See Data Source] and do as
+described in <<Data Source>> and do as
 follows:
 
 *** If driver is specified, ensure it is loaded
@@ -5320,6 +5308,7 @@ are avoided when these actions are used with pooling mechanisms.
 
 <<<
 
+[[sql:query]]
 === <sql:query>
 
 Queries a database.
@@ -5399,12 +5388,11 @@ specified, rows are included starting from the first row at index 0.
 Name of the exported scoped variable for the
 query result. The type of the scoped variable is
 
-_jakarta.servlet.jsp.jstl.sql.Result_ (see
-link:jstl.html#UNKNOWN[See Java APIs]”).
+_jakarta.servlet.jsp.jstl.sql.Result_.
 
 |scope |false
 |String |Scope of
-_var_ .
+_var_.
 |===
 
 .*Constraints*
@@ -5440,9 +5428,8 @@ the _sql_ attribute or from the action’s body content.
 The query statement may contain parameter
 markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
-`<sql:param>`, see link:jstl.html#a2112[See <sql:param>]). The
-`<sql:query`> action implements the _SQLExecutionTag_ interface (see
-link:jstl.html#UNKNOWN[See Java APIs]”), allowing parameter values
+<<sql:param>>). The
+`<sql:query>` action implements the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface, allowing parameter values
 to be supplied by custom parameter actions.
 
 *maxRows and startRow*
@@ -5451,8 +5438,8 @@ The maximum number of rows to be included in
 the query result may be specified by the _maxRows_ attribute (for a
 specific `<sql:query>` action) or by the configuration setting
 _jakarta.servlet.jsp.jstl.sql.maxRows_ (see
-link:jstl.html#a194[See Configuration Data] and
-link:jstl.html#a2164[See Configuration Settings]). Attribute
+<<Configuration Data>> and
+<<SQL_Actions_Configuration_Settings>>). Attribute
 _maxRows_ has priority over the configuration setting. A value of -1
 means that no limit is enforced on the maximum number of rows.
 
@@ -5489,7 +5476,7 @@ database.
 
 Otherwise, access to the database is
 performed according to the algorithm described in
-link:jstl.html#a1892[See Database Access]. A _Connection_ object
+<<Database Access>>. A _Connection_ object
 is obtained and released before the action completes.
 
 <<<
@@ -5593,14 +5580,12 @@ the _sql_ attribute or from the action’s body content.
 The update statement may contain parameter
 markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
-`<sql:param>`, see link:jstl.html#a2112[See <sql:param>]). The
-`<sql:update>` action implements the _SQLExecutionTag_ interface (see
-link:jstl.html#UNKNOWN[See Java APIs]”), allowing the parameter
+<<sql:param>>). The
+`<sql:update>` action implements the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface, allowing the parameter
 values to be supplied by custom parameter tags.
 
 The connection to the database is obtained in
-the same manner as described for `<sql:query>` (see
-link:jstl.html#a1909[See <sql:query>]).
+the same manner as described for <<sql:query>>.
 
 The result of an `<sql:update>` action is
 stored in a scoped variable named by the _var_ attribute, if that
@@ -5723,8 +5708,7 @@ by calling _setAutoCommit()_ on the _Connection_ .
 ** Closes the connection.
 
 The _Connection_ object is obtained and
-managed in the same manner as described for `<sql:query>` (see
-link:jstl.html#a1909[See <sql:query>]), except that it is never
+managed in the same manner as described for `<sql:query>` (see <<sql:query>>), except that it is never
 obtained from a parent tag (`<sql:transaction>` tags can not be nested as
 a means to propagate a _Connection_ ).
 
@@ -5834,6 +5818,7 @@ _DriverManager_ class to access a database is intended for prototyping
 purposes only because it does not provide connection management features
 one can expect from a properly designed _DataSource_ object.
 
+[[sql:param]]
 === <sql:param>
 
 Sets the values of parameter markers (“?”) in
@@ -5876,8 +5861,7 @@ value.
 .*Constraints*
 
 * Must be nested inside an action whose tag
-handler is an instance of _SQLExecutionTag_ (see
-link:jstl.html#UNKNOWN[See Java APIs]”).
+handler is an instance of _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_.
 
 .*Null & Error Handling*
 
@@ -5939,8 +5923,7 @@ column in a database table.
 .*Constraints*
 
 * Must be nested inside an action whose tag
-handler is an instance of _SQLExecutionTag_ (see
-link:jstl.html#UNKNOWN[See Java APIs]”).
+handler is an instance of _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_.
 
 .*Null & Error Handling*
 
@@ -5973,7 +5956,7 @@ The `<sql:dateParam>` action locates its
 nearest ancestor that is an instance of _SQLExecutionTag_ and calls its
 _addSQLParameter()_ method, supplying it with the given parameter value.
 
-
+[[SQL_Actions_Configuration_Settings]]
 === Configuration Settings
 
 This section describes the configuration
@@ -6046,8 +6029,8 @@ encounter.
 
 The XML actions are divided in three
 categories: XML core actions (this chapter), XML flow control actions
-(link:jstl.html#a2406[See] ), and XML transform actions
-(link:jstl.html#a2554[See] ).
+(<<XML Flow Control Actions: xml tag library>>), and XML transform actions
+(<<XML Transform Actions: xml tag library>>).
 
 
 === Overview
@@ -6288,7 +6271,7 @@ using an _EntityResolver_ and _URIResolver_ as necessary
 The XML core actions provide “expression
 language support” for XPath. These actions are therefore similar to the
 EL support actions `<c:out>` and `<c:set>` covered in
-link:jstl.html#a259[See] , except that they apply to XPath
+<<General-Purpose Actions: core tag library>>, except that they apply to XPath
 expressions.
 
 The core XML actions feature one additional
@@ -7216,12 +7199,10 @@ validations. These TLV classes may be used in custom tag-library
 descriptors (TLDs) to restrict the page author's activities. The two
 types of validation provided in this fashion are:
 
-* ScriptFree (see
-link:jstl.html#UNKNOWN[See Java APIs]”) +
+* _jakarta.servlet.jsp.jstl.tlv.ScriptFree_ +
 Assurance of script-free pages
 
-* PermittedTaglibs (see
-link:jstl.html#UNKNOWN[See Java APIs]”) +
+* _jakarta.servlet.jsp.jstl.tlv.PermittedTaglibs_ +
 Enumeration of permitted tag libraries (including the Jakarta Standard Tag Library) on a page
 
 For example, to prevent a Jakarta Server Pages page from using
