@@ -279,10 +279,10 @@ The syntax notation is described in
 ** Body Content +
 This section specifies which type of body
 content is supported by the action. As defined by the Jakarta Server Pages specification,
-the body content type can be one of _empty_ , _JSP_ , or _tagdependent_.
+the body content type can be one of _empty_, _JSP_, or _tagdependent_.
 The section also specifies if the body content is processed by the
 action or is simply ignored by the action and just written to the
-current _JspWriter_ . If the body content is processed, information is
+current _JspWriter_. If the body content is processed, information is
 given on whether or not the body content is trimmed before the action
 begins processing it.
 
@@ -344,8 +344,8 @@ For example, in the syntax below:
 ....
 
 the attribute _scope_ is optional. If it is
-specified, its value must be one of _page_ , _request_ , _session_ , or
-_application_ . The default value is _page_ .
+specified, its value must be one of _page_, _request_, _session_, or
+_application_. The default value is _page_.
 
 === Scoped Variables
 
@@ -392,8 +392,7 @@ variable.
 
 The _scope_ attribute has the semantics
 defined in the Jakarta Server Pages specification, and takes the same values as the ones
-allowed in the `<jsp:useBean>` action; i.e. _page_ , _request_ , _session_
-, _application_ . If no value is specified for _scope_ , _page_ scope is
+allowed in the `<jsp:useBean>` action; i.e. _page_, _request_, _session_, _application_. If no value is specified for _scope_, _page_ scope is
 the default unless otherwise specified.
 
 It is also important to note, as per the Jakarta Server Pages
@@ -401,7 +400,7 @@ specification, that specifying "session" scope is only allowed if the
 page has sessions enabled.
 
 If an action exposes more than one scoped
-variable, the main one uses attribute names _var_ and _scope_ , while
+variable, the main one uses attribute names _var_ and _scope_, while
 secondary ones have a suffix added for unique identification. For
 example, in the `<c:forEach>` action, the _var_ attribute exposes the
 current item of the iteration (main variable exposed by the action),
@@ -416,8 +415,7 @@ categorized as either nested or at-end.
 _Nested_ scoped variables are only
 visible within the body of the action and are stored in "page"
 scopefootnote:[Since nested scoped variables are always saved in page scope, no scope attribute is associated with them.]. The action must create the variable
-according to the semantics of _PageContext.setAttribute(varName,
-PAGE_SCOPE)_ , and it must remove it at the end of the action according
+according to the semantics of _PageContext.setAttribute(varName,PAGE_SCOPE)_, and it must remove it at the end of the action according
 to the semantics of _PageContext.removeAttribute(varName, PAGE_SCOPE)_
 .footnote:[It is important to note that the Jakarta Server Pages specification says that "A name should refer to a unique object at all points in the execution, that is all the different scopes really should behave as a single name space." The Jakarta Server Pages specification also says that "A JSP container implementation may or may not enforce this rule explicitly due to performance reasons". Because of this, if a scoped variable with the same name as a nested variable already exists in a scope other than 'page', exactly what happens to that scoped variable depends on how the Jakarta Server Pages container has been implemented. To comply with the Jakarta Server Pages specification, and to avoid non-portable behavior, page authors should therefore avoid using the same name in different scopes.]
 
@@ -451,8 +449,7 @@ authors.
 === White Spaces
 
 Following the Jakarta Server Pages specification (as well as
-the XML and XSLT specifications), whitespace characters are _#x20_ ,
-_#x9_ , _#xD,_ or _#xA_ .
+the XML and XSLT specifications), whitespace characters are _#x20_, _#x9_, _#xD_, or _#xA_.
 
 === Body Content
 
@@ -465,7 +462,7 @@ an empty string.
 
 If a body content is trimmed prior to being
 processed by the action, it is trimmed as defined in method _trim()_ of
-the class _java.lang.String_ .
+the class _java.lang.String_.
 
 === Naming
 
@@ -473,7 +470,7 @@ The Jakarta Standard Tag Library adopts capitalization conventions of
 Java variables for compound words in action and attribute names.
 Recommended tag prefixes are kept lowercase. Thus, we have
 `<sql:transaction>` and `<c:forEach>`, as well as attributes such as
-_docSystemId_ and _varDom_ .
+_docSystemId_ and _varDom_.
 
 In some cases, attribute names for Jakarta Standard Tag Library
 actions carry conventional meanings. For instance,
@@ -502,10 +499,10 @@ with exceptions, the Jakarta Standard Tag Library tries to avoid as many excepti
 possible, without causing other problems.
 
 For instance, if `<c:forEach>` were to throw an
-exception when given a null value for the attribute _items_ , it would
+exception when given a null value for the attribute _items_, it would
 be impossible to easily loop over a possibly missing string array that
 represents check-box selection in an HTML form (retrieved with an EL
-expression like _$\{paramValues.selections}_ ). A better choice is to do
+expression like _$\{paramValues.selections}_). A better choice is to do
 nothing in this case.
 
 The conventions used in the Jakarta Standard Tag Library with respect to
@@ -538,7 +535,7 @@ the value does not match the expected type, the EL will have applied
 coercion rules to try to accomodate the input value. Moreover, if the
 expected type is one of the types handled by the EL coercion rules, the
 EL will in most cases coerce null to an approriate value. For instance,
-if the expected type is a _Number_ , the EL will coerce a null value to
+if the expected type is a _Number_, the EL will coerce a null value to
 0, if it's _Boolean_ it will be coerced to false.
 
 ** null – behavior specific to the action +
@@ -653,7 +650,7 @@ _JspException_ at runtime.
 It is often desirable to display a default
 value if the output of an action yields a null value. This can be done
 in a generic way in the Jakarta Standard Tag Library by exporting the output of an action via
-attribute _var_ , and then displaying the value of that scoped variable
+attribute _var_, and then displaying the value of that scoped variable
 with action `<c:out>`.
 
 For example:
@@ -681,8 +678,8 @@ definition of the EL.
 === Expressions and Attribute Values
 
 The EL is invoked exclusively via the
-construct _$\{expr}_ . In the sample code below, an EL expression is
-used to set the value of attribute _test_ , while a second one is used
+construct _$\{expr}_. In the sample code below, an EL expression is
+used to set the value of attribute _test_, while a second one is used
 to display the title of a book.
 
 ....
@@ -706,19 +703,19 @@ productPrice” for a list of products.
 
 An identifier in the EL refers to the Jakarta Server Pages
 scoped variable returned by a call to
-_PageContext.findAttribute(identifier)_ . This variable can therefore
+_PageContext.findAttribute(identifier)_. This variable can therefore
 reside in any of the four Jakarta Server Pages scopes: page, request, session, or
 application. A null value is returned if the variable does not exist in
 any of the scopes.
 
 The EL also defines implicit objects to
 support easy access to application data that is of interest to a page
-author. Implicit objects _pageScope_ , _requestScope_ , _session_ Scope,
+author. Implicit objects _pageScope_, _requestScope_, _session_ Scope,
 and _applicationScope_ provide access to the scoped variables in each
 one of these Jakarta Server Pages scopes. It is also possible to access HTTP request
-parameters via the implicit objects _param_ and _paramValues_ . _param_
+parameters via the implicit objects _param_ and _paramValues_. _param_
 is a _Map_ object where _param["foo"]_ returns the first string value
-associated with request parameter _foo_ , while _paramValues["foo"]_
+associated with request parameter _foo_, while _paramValues["foo"]_
 returns an array of all string values associated with that request
 parameter.
 
@@ -737,14 +734,14 @@ parameters along with all their associated values.
 ....
 
 Request headers are also accessible in a
-similar fashion via implicit objects _header_ and _headerValues_ .
+similar fashion via implicit objects _header_ and _headerValues_.
 _initParam_ gives access to context initialization parameters, while
 _cookie_ exposes cookies received in the request.
 
 Implicit object _pageContext_ is also
 provided for advanced usage, giving access to all properties associated
-with the _PageContext_ of a Jakarta Server Pages page such as the _HttpServletRequest_ ,
-_ServletContext_ , and _HttpSession_ objects and their properties.
+with the _PageContext_ of a Jakarta Server Pages page such as the _HttpServletRequest_,
+_ServletContext_, and _HttpSession_ objects and their properties.
 
 === Nested Properties and Accessing Collections
 
@@ -788,17 +785,15 @@ logical operators are provided in the EL. A very useful “empty” operator
 is also provided.
 
 The six standard relational operators are
-supported: _==_ (or _eq_ ), _!=_ (or _ne_ ), _<_ (or _lt_ ), _>_ (or
-_gt_ ), _<=_ (or _le_ ), _>=_ (or _ge_ ). The second versions of the
+supported: _==_ (or _eq_), _!=_ (or _ne_), _<_ (or _lt_), _>_ (or
+_gt_), _<=_ (or _le_), _>=_ (or _ge_). The second versions of the
 last 4 operators are made available to avoid having to use entity
 references in XML syntax.
 
-Arithmetic operators consist of addition (
-_+_ ), subtraction ( _-_ ), multiplication ( _*_ ), division ( _/_ or
-_div_ ), and remainder/modulo ( _%_ or _mod_ ).
+Arithmetic operators consist of addition (_+_), subtraction (_-_), multiplication (_*_), division (_/_ or
+_div_), and remainder/modulo (_%_ or _mod_).
 
-Logical operators consist of _&&_ (or _and_
-), _||_ (or _or_ ), and _!_ (or _not_ ).
+Logical operators consist of _&&_ (or _and_), _||_ (or _or_), and _!_ (or _not_).
 
 The _empty_ operator is a prefix operator
 that can used to determine if a value is null or empty. For example:
@@ -819,7 +814,7 @@ expected type.
 
 For example, if request attributes
 _beginValue_ and _endValue_ are _Integer_ objects, they will
-automatically be coerced to _int_ s when used with the `<c:forEach>`
+automatically be coerced to _ints_ when used with the `<c:forEach>`
 action.
 
 ....
@@ -831,7 +826,7 @@ action.
 
 In the example below, the parameter String
 value _param.start_ is coerced to a number and is then added to 10 to
-yield an int value for attribute _begin_ .
+yield an int value for attribute _begin_.
 
 ....
 <c:forEach items=”${products}” begin=”${param.start + 10}”>
@@ -1165,7 +1160,7 @@ _false_ | _String_
 |target |true
 |Object |Target
 object whose property will be set. Must evaluate to a JavaBeans object
-with setter property _property_ , or to a _java.util.Map_ object.
+with setter property _property_, or to a _java.util.Map_ object.
 
 |property |true
 |String |Name of
@@ -1180,7 +1175,7 @@ of the following conditions:
 ** _target_ evaluates to null
 
 ** _target_ is not a _java.util.Map_ object and
-is not a JavaBeans object that supports setting property _property_ .
+is not a JavaBeans object that supports setting property _property_.
 
 * If _value_ is null
 
@@ -1189,17 +1184,17 @@ _var_ and _scope_ is removed.
 
 *** If attribute _scope_ is specified, the scoped
 variable is removed according to the semantics of
-_PageContext.removeAttribute(varName, scope)_ .
+_PageContext.removeAttribute(varName, scope)_.
 
 *** Otherwise, there is no way to differentiate
 between syntax 1 and syntax 5. The scoped variable is removed according
-to the semantics of _PageContext.removeAttribute(varName)_ , and the
+to the semantics of _PageContext.removeAttribute(varName)_, and the
 variable is removed from the VariableMapper as well.
 
 ** Syntax 3:
 
-*** if _target_ is a _Map_ , remove the entry
-with the key identified by _property_ .
+*** if _target_ is a _Map_, remove the entry
+with the key identified by _property_.
 
 *** if _target_ is a JavaBean component, set the
 property to null.
@@ -1209,23 +1204,23 @@ property to null.
 *** There is no way to differentiate between
 syntax 1 (where scope is not specified) and syntax 5. The scoped
 variable is removed according to the semantics of
-_PageContext.removeAttribute(varName)_ , and the variable is removed
+_PageContext.removeAttribute(varName)_, and the variable is removed
 from the VariableMapper as well.
 
 .*Description*
 
 Syntax 1 and 2 set the value of a the scoped
-variable identified by _var_ and _scope_ .
+variable identified by _var_ and _scope_.
 
 Syntax 3 and 4:
 
 * If the target expression evaluates to a
 _java.util.Map_ object, set the value of the element associated with the
-key identified by _property_ . If the element does not exist, add it to
+key identified by _property_. If the element does not exist, add it to
 the _Map_ object.
 
 * Otherwise, set the value of the property
-_property_ of the JavaBeans object _target_ . If the type of the value
+_property_ of the JavaBeans object _target_. If the type of the value
 to be set does not match the type of the bean property, conversion is
 performed according to the conversion rules defined in the expression
 language (see link:EL-152.html#UNKNOWN[See Type Conversion]). With the
@@ -1293,9 +1288,9 @@ variable.
 
 If attribute _scope_ is not specified, the
 scoped variable is removed according to the semantics of
-_PageContext.removeAttribute(varName)_ . If attribute _scope_ is
+_PageContext.removeAttribute(varName)_. If attribute _scope_ is
 specified, the scoped variable is removed according to the semantics of
-_PageContext.removeAttribute(varName, scope)_ .
+_PageContext.removeAttribute(varName, scope)_.
 
 <<<
 
@@ -1314,7 +1309,7 @@ of its nested actions.
 .*Body Content*
 
 JSP. The body content is processed by the Jakarta Server Pages
-container and the result is written to the current _JspWriter_ .
+container and the result is written to the current _JspWriter_.
 
 .*Attributes*
 [caption=""]
@@ -1343,7 +1338,7 @@ should be wrapped in a `<c:catch>`, so they never cause the error page
 mechanism to be invoked.
 
 The exception thrown is stored in the scoped
-variable identified by _var_ , which always has page scope. If no
+variable identified by _var_, which always has page scope. If no
 exception occurred, the scoped variable identified by _var_ is removed
 if it existed.
 
@@ -1493,7 +1488,7 @@ _Syntax 2: With body content_
 
 JSP. If the test condition evaluates to true,
 the Jakarta Server Pages container processes the body content and then writes it to the
-current _JspWriter_ .
+current _JspWriter_.
 
 .*Attributes*
 [caption=""]
@@ -1509,7 +1504,7 @@ processed.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable for the resulting value of the test
-condition. The type of the scoped variable is _Boolean_ .
+condition. The type of the scoped variable is _Boolean_.
 
 | _scope_ |
 _false_ | _String_
@@ -1525,7 +1520,7 @@ specified.
 
 If the test condition evaluates to true, the
 body content is evaluated by the Jakarta Server Pages container and the result is output
-to the current _JspWriter_ .
+to the current _JspWriter_.
 
 <<<
 
@@ -1545,7 +1540,7 @@ conditional execution.
 
 JSP. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested actions will be processed) and
-written to the current _JspWriter_ .
+written to the current _JspWriter_.
 
 .*Attributes*
 
@@ -1591,7 +1586,7 @@ action.
 
 JSP. If this is the first <c:when> action to
 evaluate to true within <c:choose>, the Jakarta Server Pages container processes the body
-content and then writes it to the current _JspWriter_ .
+content and then writes it to the current _JspWriter_.
 
 .*Attributes*
 [caption=]
@@ -1618,7 +1613,7 @@ that has the same parent.
 Within a `<c:choose>` action, the body content
 of the first `<c:when>` action whose test condition evaluates to true is
 evaluated by the Jakarta Server Pages container, and the result is output to the current
-_JspWriter_ .
+_JspWriter_.
 
 <<<
 
@@ -1639,7 +1634,7 @@ Represents the last alternative within a
 
 JSP. If no `<c:when>` action nested within
 `<c:choose>` evaluates to true, the Jakarta Server Pages container processes the body
-content and then writes it to the current _JspWriter_ .
+content and then writes it to the current _JspWriter_.
 
 .*Attributes*
 
@@ -1657,7 +1652,7 @@ None.
 Within a `<c:choose>` action, if none of the
 nested `<c:when>` test conditions evaluates to true, then the body content
 of the `<c:otherwise>` action is evaluated by the Jakarta Server Pages container, and the
-result is output to the current _JspWriter_ .
+result is output to the current _JspWriter_.
 
 
 == Iterator Actions: core tag library
@@ -1728,15 +1723,15 @@ customize it according to an application's specific needs.
 
 A large number of collection types are
 supported by `<c:forEach>`, including all implementations of
-_java.util.Collection_ (includes _List_ , _LinkedList_ , _ArrayList_ ,
-_Vector_ , _Stack_ , _Set),_ and _java.util.Map (_ includes _HashMap_ ,
-_Hashtable_ , _Properties_ , _Provider_ , _Attributes_ ).
+_java.util.Collection_ (includes _List_, _LinkedList_, _ArrayList_,
+_Vector_, _Stack_, _Set_), and _java.util.Map_ (includes _HashMap_,
+_Hashtable_, _Properties_, _Provider_, _Attributes_).
 
 Arrays of objects as well as arrays of
-primitive types (e.g. _int_ ) are also supported. For arrays of
+primitive types (e.g. _int_) are also supported. For arrays of
 primitive types, the current item for the iteration is automatically
-wrapped with its standard wrapper class (e.g. _Integer_ for _int_ ,
-_Float_ for _float_ , etc.).
+wrapped with its standard wrapper class (e.g. _Integer_ for _int_,
+_Float_ for _float_, etc.).
 
 Implementations of _java.util.Iterator_ and
 _java.util.Enumeration_ are supported as well but these must be used
@@ -1749,7 +1744,7 @@ a list of comma separated values (e.g.
 “Monday,Tuesday,Wednesday,Thursday,Friday”).footnote:[The proper way to process strings of tokens is via <c:forTokens> or via functions _split_ and _join_.]
 
 Absent from the list of supported types is
-_java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_ ). The reason
+_java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_). The reason
 for this is that the SQL actions described in
 <<SQL_Action_Overview>> use the
 _jakarta.servlet.jsp.jstl.sql.Result_ interface to access the data
@@ -1763,8 +1758,8 @@ query.
 ==== Map
 
 If the _items_ attribute is of type
-_java.util.Map_ , then the current item will be of type
-_java.util.Map.Entry_ , which has the following two properties:
+_java.util.Map_, then the current item will be of type
+_java.util.Map.Entry_, which has the following two properties:
 
 * _key_ - the key under which this item is
 stored in the underlying _Map_
@@ -1773,7 +1768,7 @@ stored in the underlying _Map_
 key
 
 The following example uses `<c:forEach>` to
-iterate over the values of a _Hashtable_ :
+iterate over the values of a _Hashtable_:
 
 ....
 <c:forEach var="entry" items="${myHashtable}">
@@ -1807,7 +1802,7 @@ _varStatus_ attribute.
 
 A set of range attributes is available to
 iterate over a subset of the collection of items. The _begin_ and _end_
-indices can be specified, along with a _step_ . If the _items_ attribute
+indices can be specified, along with a _step_. If the _items_ attribute
 is not specified, then the value of the current item is set to the
 integer value of the current index. In this example, _i_ would take
 values from 100 to 110 (inclusive).
@@ -1925,7 +1920,7 @@ _Syntax 2: Iterate a fixed number of times_
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
-the current _JspWriter_ .
+the current _JspWriter_.
 
 .*Attributes*
 [caption=""]
@@ -1948,7 +1943,7 @@ of items to iterate over.
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_. This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -1986,7 +1981,7 @@ the first one.
 * If specified, _begin_ must be >= 0.
 
 * If _end_ is specified and it is less than
-_begin_ , the loop is simply not executed.
+_begin_, the loop is simply not executed.
 
 * If specified, _step_ must be >= 1
 
@@ -1998,21 +1993,21 @@ collection, i.e., no iteration is performed.
 .*Description*
 
 If _begin_ is greater than or equal to the
-size of _items_ , no iteration is performed.
+size of _items_, no iteration is performed.
 
 *_Collections Supported & Current Item_*
 
 The data types listed below must be supported
-for _items_ . With syntax 1, each object exposed via the _var_ attribute
+for _items_. With syntax 1, each object exposed via the _var_ attribute
 is of the type of the object in the underlying collection, except for
 arrays of primitive types and maps (see below). With syntax 2, the
-object exported is of type _Integer_ .
+object exported is of type _Integer_.
 
 * Arrays +
 This includes arrays of objects as well as
 arrays of primitive types. For arrays of primitive types, the current
 item for the iteration is automatically wrapped with its standard
-wrapper class (e.g. _Integer_ for _int_ , _Float_ for _float_ , etc.) +
+wrapper class (e.g. _Integer_ for _int_, _Float_ for _float_, etc.) +
 Elements are processed in their indexing
 order.
 
@@ -2046,7 +2041,7 @@ Tokens are processed in their sequential order in the string.
 
 When a deferred-value is specified for the
 _items_ attribute, the tag handler now adds at each iteration a mapping
-for the _var_ attribute into the EL _VariableMapper_ .
+for the _var_ attribute into the EL _VariableMapper_.
 
 
 Below are some implementation notes
@@ -2108,7 +2103,7 @@ supplied delimiters.
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
-the current _JspWriter_ .
+the current _JspWriter_.
 
 .*Attributes*
 [caption=""]
@@ -2134,7 +2129,7 @@ separate the tokens in the string).
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_. This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -2157,7 +2152,7 @@ first one.
 * If specified, _begin_ must be >= 0.
 
 * If _end_ is specified and it is less than
-_begin_ , the loop is simply not executed.
+_begin_, the loop is simply not executed.
 
 * If specified, _step_ must be >= 1
 
@@ -2237,7 +2232,7 @@ Assuming a context path of "/foo", the following example
 <c:url value="/ads/logo.html"/>
 ....
 
-yields the URL _/foo/ads/logo.html_ .
+yields the URL _/foo/ads/logo.html_.
 
 
 === Importing Resources
@@ -2317,7 +2312,7 @@ resource is included inline into the Jakarta Server Pages page.
 
 It is also possible to make the content of
 the resource available in two different ways: as a _String_ object
-(attribute _var_ ), or as a _Reader_ object (attribute _varReader_ ).
+(attribute _var_), or as a _Reader_ object (attribute _varReader_).
 Process or Transform tags can then access the resource's content through
 that exported object as shown in the following example.
 
@@ -2357,7 +2352,7 @@ If the web container executes behind a
 firewall, some absolute URL resources may be inaccessible when using
 `<c:import>`. To provide access to these resources, the JVM of the
 container should be started with the proper networking properties (e.g.
-_proxyHost_ , _proxyPort_ ). More details can be found in the Java 2
+_proxyHost_, _proxyPort_). More details can be found in the Java 2
 SDK, Standard Edition Documentation (Networking Features — Networking
 Properties).
 
@@ -2405,7 +2400,7 @@ Reader object_
 .*Body Content*
 
 JSP. The body content is processed by the Jakarta Server Pages
-container and the result is written to the current _JspWriter_ .
+container and the result is written to the current _JspWriter_.
 
 .*Attributes*
 
@@ -2426,7 +2421,7 @@ relative URL resource that belongs to a foreign context.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable for the resource’s content. The type of
-the scoped variable is _String_ .
+the scoped variable is _String_.
 
 | _scope_ |
 _false_ | _String_
@@ -2440,7 +2435,7 @@ input resource.
 | _varReader_ |
 _false_ | _String_
 |Name of the exported scoped variable for the
-resource’s content. The type of the scoped variable is _Reader_ .
+resource’s content. The type of the scoped variable is _Reader_.
 |===
 
 .*Null & Error Handling*
@@ -2453,9 +2448,9 @@ resource’s content. The type of the scoped variable is _Reader_ .
 
 . If a _RequestDispatcher_ cannot be found for the resource, throw a _JspException_ with the resource path included in the message.
 
-. Otherwise, if the _RequestDispatcher.include()_ method throws an _IOException_ or _RuntimeException_ , throw a _JspException_ with the caught exception as the root cause.
+. Otherwise, if the _RequestDispatcher.include()_ method throws an _IOException_ or _RuntimeException_, throw a _JspException_ with the caught exception as the root cause.
 
-. Otherwise, if the _RequestDispatcher.include()_ method throws a _ServletException_ , look for a root cause.
+. Otherwise, if the _RequestDispatcher.include()_ method throws a _ServletException_, look for a root cause.
 .. If there's a root cause, throw a
 _JspException_ with the root cause message included in the message and
 the original root cause as the _JspException_ root cause.
@@ -2471,11 +2466,11 @@ message.
 * For external resources
 
 ** If the _URLConnection_ class throws an
-_IOException_ or a _RuntimeException_ , throw a _JspException_ with the
+_IOException_ or a _RuntimeException_, throw a _JspException_ with the
 message from the original exception included in the message and the
 original exception as the root cause.
 
-** For an _HttpURLConnection_ , if the response
+** For an _HttpURLConnection_, if the response
 status code is other than 2xx (i.e. 200-299, the range of success codes
 in the HTTP response codes), throw a _JspException_ with the path and
 status code in the message.
@@ -2483,7 +2478,7 @@ status code in the message.
 .*Description*
 
 Using syntax 1, the content of the resource
-is by default written to the current _JspWriter_ . If _var_ is
+is by default written to the current _JspWriter_. If _var_ is
 specified, the content of the resource is instead exposed as a _String_
 object.
 
@@ -2492,15 +2487,15 @@ is exported as a _Reader_ object. The use of the _varReader_ attribute
 comes with some restrictions.
 
 It is the responsibility of the `<c:import>`
-tag handler to ensure that if it exports a _Reader_ , this _Reader_ is
+tag handler to ensure that if it exports a _Reader_, this _Reader_ is
 properly closed by the time the end of the page is
-reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_ , or because the page author might remove the consumer tag while leaving inadvertantly the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
+reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_, or because the page author might remove the consumer tag while leaving inadvertantly the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
 the exported _Reader_ as having nested visibility: it may not currently
 be accessed after the end-tag for the `<c:import>`
 actionfootnote:[This restriction could eventually be lifted when the JSP spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use JSP 1.2
 tag-extension API will likely need to implement _TryCatchFinally_ with
 their `<c:import>` tag handlers and close the exported Reader in
-_doFinally()_ .
+_doFinally()_.
 
 It is also illegal to use nested `<c:param>`
 tags with syntax 2. Since the exposed _Reader_ must be immediately
@@ -2519,7 +2514,7 @@ object, both of which are sequences of text characters. It is possible
 to specify the character encoding of the input resource via the
 _charEncoding_ attribute. The values supported for _charEncoding_ are
 the same as the ones supported by the constructor of the Java class
-_InputStreamReader_ .
+_InputStreamReader_.
 
 If the character encoding is not specified,
 the following rules apply:
@@ -2532,7 +2527,7 @@ according to RFC 2045 (section 5.1).
 * If this method's result does not include a
 character set, or if the character set causes
 _InputStreamReader(InputStream in, String charsetName)_ to throw an
-_UnsupportedEncodingException_ , then use ISO-8859-1 (which is the
+_UnsupportedEncodingException_, then use ISO-8859-1 (which is the
 default value of _charset_ for the _contentType_ attribute of the Jakarta Server Pages
 _page_ directive).
 
@@ -2577,7 +2572,7 @@ attributes, as well as request parameters of the importing page).
 
 The resource belongs to a foreign context
 (web application) hosted under the same container as the importing page.
-The context name for the resource is specified via attribute _context_ .
+The context name for the resource is specified via attribute _context_.
 
 The relative URL must be context-relative
 (i.e. must start with a "/") since the including page does not belong to
@@ -2681,7 +2676,7 @@ relative URL resource that belongs to a foreign context.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable for the processed url. The type of the
-scoped variable is _String_ .
+scoped variable is _String_.
 
 | _scope_ |
 _false_ | _String_
@@ -2720,11 +2715,11 @@ Because the URL built by this action may
 include session information as a path parameter, it may fail if used
 with _RequestDispatcher_ of the Servlet API. The consumer of the
 rewritten URL should therefore remove the session ID information prior
-to calling _RequestDispatcher_ . This situation is properly handled in
+to calling _RequestDispatcher_. This situation is properly handled in
 `<c:import>`.
 
 By default, the result of the URL processing
-is written to the current _JspWriter_ . It is also possible to export
+is written to the current _JspWriter_. It is also possible to export
 the result as a Jakarta Server Pages scoped variable defined via the _var_ and _scope_
 attributes.
 
@@ -2781,7 +2776,7 @@ relative URL resource that belongs to a foreign context.
 
 This action sends an HTTP redirect response
 to the client and aborts the processing of the page by returning
-_SKIP_PAGE_ from _doEndTag()_ .
+_SKIP_PAGE_ from _doEndTag()_.
 
 The URL must be either an absolute URL
 starting with a scheme (e.g. "http://server/context/page.jsp") or a
@@ -2859,7 +2854,7 @@ empty value.
 
 Nested action of `<c:import>`, `<c:url>`,
 `<c:redirect>` to add request parameters to a URL. `<c:param>` also URL
-encodes both _name_ and _value_ .
+encodes both _name_ and _value_.
 
 One might argue that this is redundant given
 that a URL can be constructed to directly specify the query string
@@ -2953,10 +2948,10 @@ as: +
 http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html.
 
 Note that the semantics of locales in the Jakarta Standard Tag Library
-are the same as the ones defined by the class _java.util.Locale_ . A
+are the same as the ones defined by the class _java.util.Locale_. A
 consequence of this is that, as of Java SE 1.4, new language codes defined
-in ISO 639 (e.g. _he_ , _yi_ , _id_ ) will be returned as the old codes
-(e.g. _iw_ , _ji_ , _in_ ). See the documentation of the
+in ISO 639 (e.g. _he_, _yi_, _id_) will be returned as the old codes
+(e.g. _iw_, _ji_, _in_). See the documentation of the
 _java.util.Locale_ class for more details.
 
 A resource bundle contains locale-specific
@@ -3042,7 +3037,7 @@ _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration setting
 (see <<Internationalization_Actions_I18n_Localization_Context>>). If
 the configuration setting is of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_ its resource bundle
 component is used for localization. Otherwise, the configuration setting
-is of type _String_ , and the action establishes its own i18n
+is of type _String_, and the action establishes its own i18n
 localization context whose resource bundle component is determined
 according to the resource bundle determination algorithm in
 <<Determinining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
@@ -3142,7 +3137,7 @@ getBundle(String basename, java.util.Locale locale)
 for resource bundle lookup, with one important modification.
 
 As stated in the documentation for
-_ResourceBundle_ , a resource bundle lookup searches for classes and
+_ResourceBundle_, a resource bundle lookup searches for classes and
 properties files with various suffixes on the basis of:
 
 . The specified locale
@@ -3172,7 +3167,7 @@ Notes:
 
 * When there are multiple preferred locales,
 they are processed in the order they were returned by
-_ServletRequest.getLocales()_ .
+_ServletRequest.getLocales()_.
 
 * The algorithm stops as soon as a resource
 bundle has been selected for the localization context.
@@ -3304,7 +3299,7 @@ Locale: _sv_
 This example shows that whenever possible, a
 resource bundle for a specific language and country ( _Resources_fr_CA_
 ) should be backed by a resource bundle covering just the language (
-_Resources_fr_ ). If the country-specific differences of a language are
+_Resources_fr_). If the country-specific differences of a language are
 too significant for there to be a language-only resource bundle, it is
 expected that clients will specify both a language and a country as
 their preferred language, in which case an exact resource bundle match
@@ -3342,7 +3337,7 @@ i18n localization context
 formatting locale on its own (see <<Establishing a Formatting Locale>>).
 
 After an action has called
-_ServletResponse.setLocale()_ , if a session exists and has not been
+_ServletResponse.setLocale()_, if a session exists and has not been
 invalidated, it must determine the character encoding associated with
 the response locale (by calling _ServletResponse.getCharacterEncoding()_
 ) and store it in the scoped variable
@@ -3366,7 +3361,7 @@ defined in the Servlet spec, a call to _ServletResponse.setLocale()_
 modifies the character encoding of the response only if it has not
 already been set explicitely by calls to
 _ServletResponse.setContentType()_ (with CHARSET specified) or
-_ServletResponse.setCharacterEncoding()_ .
+_ServletResponse.setCharacterEncoding()_.
 
 Page authors should consult the Jakarta Server Pages
 specification to understand how page directives related to locale and
@@ -3460,7 +3455,7 @@ used by its body content.
 .*Body Content*
 
 JSP. The Jakarta Server Pages container processes the body
-content and then writes it to the current _JspWriter._ The action
+content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
 .*Attributes*
@@ -3566,7 +3561,7 @@ component separator and does not have any file type (such as ".class" or
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable which stores the i18n localization
-context of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_ .
+context of type _jakarta.servlet.jsp.jstl.fmt.LocalizationContext_.
 
 | _scope_ |
 _false_ | _String_
@@ -3592,7 +3587,7 @@ is determined according to the algorithm presented in
 <<Resource Bundle Determination Algorithm>>.
 
 The i18n localization context is stored in
-the scoped variable whose name is given by _var_ . If _var_ is not
+the scoped variable whose name is given by _var_. If _var_ is not
 specified, it is stored in the
 _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable,
 thereby making it the new default i18n localization context in the given
@@ -3711,9 +3706,9 @@ of the `<fmt:param>` subtags.
 
 In the presence of one or more `<fmt:param>`
 subtags, the message is supplied to the _java.text.MessageFormat_ method
-_applyPattern()_ , and the values of the `<fmt:param>` tags are collected
+_applyPattern()_, and the values of the `<fmt:param>` tags are collected
 in an _Object[]_ and supplied to the _java.text.MessageFormat_ method
-_format()_ . The locale of the _java.text.MessageFormat_ is set to the
+_format()_. The locale of the _java.text.MessageFormat_ is set to the
 appropriate localization context locale before _applyPattern()_ is
 called. If the localization context does not have any locale, the locale
 of the _java.text.MessageFormat_ is set to the locale returned by the
@@ -3784,7 +3779,7 @@ its parent `<fmt:message>` action.
 
 Parametric replacement takes place in the
 order of the `<fmt:param>` tags. The semantics of the replacement are
-defined as in the class _java.text.MessageFormat_ :
+defined as in the class _java.text.MessageFormat_:
 
 the compound message given by the parent
 `<fmt:message>` action is used as the argument to the _applyPattern()_
@@ -4020,8 +4015,7 @@ The `<fmt:formatDate>` action allows page
 authors to format dates and times according to the client’s cultural
 formatting conventions.
 
-For example, assuming a current date of _Oct
-22,_ _2001_ and a current time of _4:05:53PM_ , the following action:
+For example, assuming a current date of _Oct 22, 2001_ and a current time of _4:05:53PM_, the following action:
 
 ....
 <jsp:useBean id="now" class="java.util.Date"/>
@@ -4092,9 +4086,9 @@ next step.
 The default i18n localization context may be
 specified via the jakarta.servlet.jsp.jstl.fmt.localizationContext
 configuration setting. If such a configuration setting exists, and its
-value is of type _LocalizationContext_ , its locale is used as the
+value is of type _LocalizationContext_, its locale is used as the
 formatting locale. Otherwise, if the configuration setting is of type
-_String_ , the formatting action establishes its own i18n localization
+_String_, the formatting action establishes its own i18n localization
 context and uses its locale as the formatting locale (in this case, the
 resource bundle component of the i18n localization context is determined
 according to the resource bundle determination algorithm in
@@ -4146,11 +4140,11 @@ for a specific formatting action.
 
 The locales available for actions
 `<fmt:formatNumber>` and `<fmt:parseNumber>` are determined by a call to
-_java.text.NumberFormat.getAvailableLocales()_ .
+_java.text.NumberFormat.getAvailableLocales()_.
 
 The locales available for `<fmt:formatDate>`
 and `<fmt:parseDate>` are determined by a call to
-_java.text.DateFormat.getAvailableLocales()_ .
+_java.text.DateFormat.getAvailableLocales()_.
 
 ==== Locale Lookup
 
@@ -4177,7 +4171,7 @@ Notes:
 
 * When there are multiple preferred locales,
 they are processed in the order they were returned by a call to
-_ServletRequest.getLocales()_ .
+_ServletRequest.getLocales()_.
 
 * The algorithm stops as soon as a locale has
 been selected for the localization context.
@@ -4248,7 +4242,7 @@ information is to be formatted or parsed in its body content.
 .*Body Content*
 
 JSP. The Jakarta Server Pages container processes the body
-content and then writes it to the current _JspWriter_ . The action
+content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
 .*Attributes*
@@ -4283,7 +4277,7 @@ zone in which to format or parse the time information of any nested time
 formatting (see Section 9.8) or parsing (see Section 9.9) actions.
 
 If the time zone is given as a string, it is
-parsed using _java.util.TimeZone.getTimeZone()_ .
+parsed using _java.util.TimeZone.getTimeZone()_.
 
 
 === <fmt:setTimeZone>
@@ -4325,7 +4319,7 @@ information on supported time zone formats.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable which stores the time zone of type
-_java.util.TimeZone_ .
+_java.util.TimeZone_.
 
 | _scope_ |
 _false_ | _String_
@@ -4347,7 +4341,7 @@ _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration variable, thereby
 making it the new default time zone in the given scope.
 
 If the time zone is given as a string, it is
-parsed using _java.util.TimeZone.getTimeZone()_ .
+parsed using _java.util.TimeZone.getTimeZone()_.
 
 <<<
 
@@ -4475,7 +4469,7 @@ must be a valid ISO 4217 currency code.
 
 * If _value_ is null or empty, nothing is
 written to the current JspWriter object and the scoped variable is
-removed if it is specified (see attributes _var_ and _scope_ ).
+removed if it is specified (see attributes _var_ and _scope_).
 
 * If this action fails to determine a
 formatting locale, it uses _Number.toString()_ as the output format.
@@ -4484,7 +4478,7 @@ formatting locale, it uses _Number.toString()_ as the output format.
 it is ignored.
 
 * If an exception occurs during the parsing of
-a string value, it must be caught and rethrown as a _JspException_ . The
+a string value, it must be caught and rethrown as a _JspException_. The
 message of the rethrown _JspException_ must include the string value,
 and the caught exception must be provided as the root cause.
 
@@ -4499,7 +4493,7 @@ the _pattern_ attribute, or is looked up in a locale-dependent fashion.
 
 A pattern string specified via the _pattern_
 attribute must follow the pattern syntax specified by the class
-_java.text.DecimalFormat_ .
+_java.text.DecimalFormat_.
 
 If looked up in a locale-dependent fashion,
 the formatting pattern is determined via a combination of the formatting
@@ -4509,11 +4503,11 @@ attribute. Depending on the value of the _type_ attribute, the given
 numeric value is formatted as a number, currency, or percentage. The
 locale's default formatting pattern for numbers, currencies, or
 percentages is determined by calling the _java.text.NumberFormat_ method
-_getNumberInstance_ , _getCurrencyInstance_ , or _getPercentInstance_ ,
+_getNumberInstance_, _getCurrencyInstance_, or _getPercentInstance_,
 respectively, with the formatting locale.
 
 The _pattern_ attribute takes precedence over
-_type_ . In either case, the formatting symbols (such as decimal
+_type_. In either case, the formatting symbols (such as decimal
 separator and grouping separator) are given by the formatting locale.
 
 The (specified or locale-dependent)
@@ -4521,9 +4515,9 @@ formatting pattern may be further fine-tuned using the formatting
 options described below.
 
 If the numeric value is given as a string
-literal, it is first parsed into a _java.lang.Number_ . If the string
+literal, it is first parsed into a _java.lang.Number_. If the string
 does not contain any decimal point, it is parsed using
-_java.lang.Long.valueOf()_ , or _java.lang.Double.valueOf()_ otherwise.
+_java.lang.Long.valueOf()_, or _java.lang.Double.valueOf()_ otherwise.
 
 The formatted result is output to the current
 _JspWriter_ object, unless the _var_ attribute is given, in which case
@@ -4538,10 +4532,10 @@ information.
 
 The minimum and maximum number of digits in
 the integer and fractional portions of the formatted output may be given
-via the _minIntegerDigits_ , _maxIntegerDigits_ , _minFractionDigits_ ,
+via the _minIntegerDigits_, _maxIntegerDigits_, _minFractionDigits_,
 and _maxFractionDigits_ attributes, respectively. See the
-_java.text.NumberFormat_ methods _setMinimumIntegerDigits()_ ,
-_setMaximumIntegerDigits()_ , _setMinimumFractionDigits()_ , and
+_java.text.NumberFormat_ methods _setMinimumIntegerDigits()_,
+_setMaximumIntegerDigits()_, _setMinimumFractionDigits()_, and
 _setMaximumFractionDigits()_ for more information.
 
 *Formatting Currencies*
@@ -4641,7 +4635,7 @@ of the given value should be parsed.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable which stores the parsed result (of type
-_java.lang.Number_ ).
+_java.lang.Number_).
 
 | _scope_ |
 _false_ | _String_
@@ -4664,7 +4658,7 @@ input, which causes an exception.
 treated as if it was missing.
 
 * If an exception occurs during the parsing of
-the value, it must be caught and rethrown as a _JspException_ . The
+the value, it must be caught and rethrown as a _JspException_. The
 message of the rethrown _JspException_ must include the value that was
 to be parsed, and the caught exception must be provided as the root
 cause.
@@ -4687,7 +4681,7 @@ _pattern_ attribute, or is looked up in a locale-dependent fashion.
 
 A pattern string specified via the _pattern_
 attribute must follow the pattern syntax specified by
-_java.text.DecimalFormat_ .
+_java.text.DecimalFormat_.
 
 If looked up in a locale-dependent fashion,
 the parse pattern is determined via a combination of the _type_ and
@@ -4695,14 +4689,14 @@ _parseLocale_ attributes. Depending on the value of the _type_
 attribute, the given numeric value is parsed as a number, currency, or
 percentage. The parse pattern for numbers, currencies, or percentages is
 determined by calling the _java.text.NumberFormat_ method
-_getNumberInstance_ , _getCurrencyInstance_ , or _getPercentInstance_ ,
-respectively, with the locale specified via _parseLocale_ . If
+_getNumberInstance_, _getCurrencyInstance_, or _getPercentInstance_,
+respectively, with the locale specified via _parseLocale_. If
 _parseLocale_ is missing, the formatting locale, which is obtained
 according to <<Formatting Locale>>, is
 used as the parse locale.
 
 The _pattern_ attribute takes precedence over
-_type_ . In either case, the formatting symbols in the pattern (such as
+_type_. In either case, the formatting symbols in the pattern (such as
 decimal separator and grouping separator) are given by the parse locale.
 
 The _integerOnly_ attribute specifies whether
@@ -4711,9 +4705,9 @@ _java.text.NumberFormat_ method _setParseIntegerOnly()_ for more
 information.
 
 If the _var_ attribute is given, the parse
-result (of type _java.lang.Number_ ) is stored in the named scoped
+result (of type _java.lang.Number_) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ object
-using _java.lang.Number.toString()_ .
+using _java.lang.Number.toString()_.
 
 <<<
 
@@ -4761,14 +4755,14 @@ given date are to be formatted.
 |dateStyle |true
 |String
 |Predefined formatting style for dates.
-Follows the semantics defined in class _java.text.DateFormat_ . Applied
+Follows the semantics defined in class _java.text.DateFormat_. Applied
 only when formatting a date or both a date and time (i.e. if _type_ is
 missing or is equal to "date" or "both"); ignored otherwise.
 
 |timeStyle |true
 |String
 |Predefined formatting style for times.
-Follows the semantics defined in class _java.text.DateFormat_ . Applied
+Follows the semantics defined in class _java.text.DateFormat_. Applied
 only when formatting a time or both a date and time (i.e. if _type_ is
 equal to "time" or "both"); ignored otherwise.
 
@@ -4788,7 +4782,7 @@ formatted time.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable which stores the formatted result as a
-_String_ .
+_String_.
 
 | _scope_ |
 _false_ | _String_
@@ -4804,7 +4798,7 @@ specified.
 
 * If _value_ is null or empty, nothing is
 written to the current JspWriter object and the scoped variable is
-removed if it is specified (see attributes _var_ and _scope_ ).
+removed if it is specified (see attributes _var_ and _scope_).
 
 * If _timeZone_ is null or empty, it is handled
 as if it was missing.
@@ -4824,11 +4818,11 @@ _timeStyle_ attribute) of the formatting locale, which is determined
 according to <<Formatting Locale>>.
 
 _dateStyle_ and _timeStyle_ support the
-semantics defined in _java.text.DateFormat_ .
+semantics defined in _java.text.DateFormat_.
 
 Page authors may also apply a customized
 formatting style to their times and dates by specifying the _pattern_
-attribute, in which case the _type_ , _dateStyle_ , and _timeStyle_
+attribute, in which case the _type_, _dateStyle_, and _timeStyle_
 attributes are ignored. The specified formatting pattern must use the
 pattern syntax specified by _java.text.SimpleDateFormat._
 
@@ -4949,7 +4943,7 @@ applied.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable in which the parsing result (of type
-_java.util.Date_ ) is stored.
+_java.util.Date_) is stored.
 
 | _scope_ |
 _false_ | _String_
@@ -4975,7 +4969,7 @@ as if it was missing.
 treated as if it was missing.
 
 * If an exception occurs during the parsing of
-the value, it must be caught and rethrown as a _JspException_ . The
+the value, it must be caught and rethrown as a _JspException_. The
 message of the rethrown _JspException_ must include the value that was
 to be parsed, and the caught exception must be provided as the root
 cause.
@@ -5002,7 +4996,7 @@ parse locale.
 If the given date string uses a different
 format, the pattern required to parse it must be specified via the
 _pattern_ attribute, which must use the pattern syntax specified by
-_java.text.SimpleDateFormat_ . In this case, the _type_ , _dateStyle_ ,
+_java.text.SimpleDateFormat_. In this case, the _type_, _dateStyle_,
 and _timeStyle_ attributes are ignored. Parsing is non-lenient, i.e. the
 given date string must strictly adhere to the parsing format.
 
@@ -5013,7 +5007,7 @@ according to Section 9.4.
 If the _var_ attribute is given, the parsing
 result (of type _java.util.Date_ ) is stored in the named scoped
 variable. Otherwise, it is output to the current _JspWriter_ using the
-_java.util.Date_ method _toString()_ .
+_java.util.Date_ method _toString()_.
 
 
 === Configuration Settings
@@ -5067,12 +5061,12 @@ capabilities to easily interact with relational databases.
 
 The Jakarta Standard Tag Library SQL actions allow page authors to:
 
-* Perform database queries ( _select_ )
+* Perform database queries (_select_)
 
 * Easily access query results
 
-* Perform database updates ( _insert_ ,
-_update_ , _delete_ )
+* Perform database updates (_insert_,
+_update_, _delete_)
 
 * Group several database operations into a
 transaction
@@ -5080,24 +5074,24 @@ transaction
 ==== Data Source
 
 SQL actions operate on a data source, as
-defined by the Java class _jakarta.sql.DataSource_ . A _DataSource_ object
+defined by the Java class _jakarta.sql.DataSource_. A _DataSource_ object
 provides connections to the physical data source it represents. Within
-the context of a _Connection_ retrieved from the _DataSource_ , SQL
+the context of a _Connection_ retrieved from the _DataSource_, SQL
 statements are executed and results are returned.
 
 A data source can be specified explicitly via
 the _dataSource_ attribute in SQL actions, or it can be totally
 transparent to a page author by taking advantage of the data source
-configuration setting ( _jakarta.servlet.jsp.jstl.sql.dataSource_ ).
+configuration setting (_jakarta.servlet.jsp.jstl.sql.dataSource_).
 
 There are two ways a data source can be
 specified as a string.
 
 The first way is through a JNDI relative
 path, assuming a container supporting JNDI. For example, with the
-absolute JNDI resource path _java:comp/env/jdbc/myDatabase_ , the JNDI
+absolute JNDI resource path _java:comp/env/jdbc/myDatabase_, the JNDI
 relative path to the data source resource would simply be
-_jdbc/myDatabase_ , given that _java:comp/env_ is the standard JNDI root
+_jdbc/myDatabase_, given that _java:comp/env_ is the standard JNDI root
 for a J2EE application.
 
 The second way is by specifying the
@@ -5237,7 +5231,7 @@ _SQLExecutionTag_ action:
 
 The Jakarta Standard Tag Library formatting tags may be used to parse
 the string representation of dates and numbers into instances of
-_java.util.Date_ and _java.lang.Number_ , respectively, before supplying
+_java.util.Date_ and _java.lang.Number_, respectively, before supplying
 them to an enclosing _SQLExecutionTag_ for parametric replacement:
 
 ....
@@ -5270,12 +5264,11 @@ previous step:
 ** If it is a _DataSource_ object, this is the
 data source used by the action to access the database.
 
-** Otherwise, if it is a _String_ :
+** Otherwise, if it is a _String_:
 
 *** Assume this is a JNDI relative path and
 retrieve the data source from the container’s JNDI naming context by
-concatenating the specified relative path to the J2EE defined root (
-_java:comp/env/_ ).
+concatenating the specified relative path to the J2EE defined root (_java:comp/env/_).
 
 *** If the previous step fails (data source not
 found), assume the string specifies JDBC parameters using the syntax
@@ -5301,7 +5294,7 @@ previously created for identical arguments.
 
 It is important to note that actions that
 open a connection to a database must close the connection as well as
-release any other associated resources (for example, _Statement_ ,
+release any other associated resources (for example, _Statement_,
 _PreparedStatement_ and _ResultSet_ objects) by the time the action
 completes. This ensures that no connections are left open and that leaks
 are avoided when these actions are used with pooling mechanisms.
@@ -5409,7 +5402,7 @@ action must not be nested inside a
 thrown.
 
 * If an exception occurs during the execution
-of this action, it must be caught and rethrown as a _JspException_ . The
+of this action, it must be caught and rethrown as a _JspException_. The
 message of the rethrown _JspException_ must include the SQL statement,
 and the caught exception must be provided as the root cause.
 
@@ -5453,10 +5446,10 @@ rows of the original query result set are included.
 If both _startRow_ and _maxRows_ are
 specified, a maximum of _startRow + maxRows_ rows are retrieved from the
 database. All rows up to _startRow_ are then discarded, and the
-remaining rows (from _startRow_ through _startRow + maxRows_ ) are
+remaining rows (from _startRow_ through _startRow + maxRows_) are
 included in the result.
 
-When using _startRow_ , it is important to
+When using _startRow_, it is important to
 note that the order in which rows are returned is not guaranteed between
 RDBMS implementations unless an “order by” clause is specified in the
 query.
@@ -5483,7 +5476,7 @@ is obtained and released before the action completes.
 
 === <sql:update>
 
-Executes an SQL _INSERT_ , _UPDATE_ , or
+Executes an SQL _INSERT_, _UPDATE_, or
 _DELETE_ statement. In addition, SQL statements that return nothing,
 such as SQL DDL statements, can be executed.
 
@@ -5547,11 +5540,11 @@ the parameters for the JDBC _DriverManager_ class.
 | _var_ |false
 |String |Name of
 the exported scoped variable for the result of the database update. The
-type of the scoped variable is _java.lang.Integer_ .
+type of the scoped variable is _java.lang.Integer_.
 
 | _scope_ |false
 |String |Scope of
-_var_ .
+_var_.
 |===
 
 .*Constraints*
@@ -5568,7 +5561,7 @@ must not be nested inside a `<sql:transaction>`.
 thrown.
 
 * If an exception occurs during the execution
-of this action, it must be caught and rethrown as a _JspException_ . The
+of this action, it must be caught and rethrown as a _JspException_. The
 message of the rethrown _JspException_ must include the SQL statement,
 and the caught exception must be provided as the root cause.
 
@@ -5591,9 +5584,9 @@ The result of an `<sql:update>` action is
 stored in a scoped variable named by the _var_ attribute, if that
 attribute was specified. That result represents the number of rows that
 were affected by the update. Zero is returned if no rows were affected
-by _INSERT_ , _DELETE_ , or _UPDATE_ , and for any SQL statement that
+by _INSERT_, _DELETE_, or _UPDATE_, and for any SQL statement that
 returns nothing (such as SQL DDL statements). This is consistent with
-method _executeUpdate()_ of the JDBC class _Statement_ .
+method _executeUpdate()_ of the JDBC class _Statement_.
 
 <<<
 
@@ -5618,7 +5611,7 @@ isolationLevel ::= "read_committed"
 .*Body Content*
 
 JSP. The Jakart Server Pages container processes the body
-content and then writes the result to the current _JspWriter_ . The
+content and then writes the result to the current _JspWriter_. The
 action ignores the body content.
 
 .*Attributes*
@@ -5667,50 +5660,50 @@ The `<sql:transaction>` action groups nested
 `<sql:query>` and `<sql:update>` actions into a transaction.
 
 The transaction isolation levels are defined
-by _java.sql.Connection_ .
+by _java.sql.Connection_.
 
 The tag handler of the `<sql:transaction>`
 action must perform the following steps in its lifecycle methods:
 
-* _doStartTag()_ :
+* _doStartTag()_:
 
 ** Determines the transaction isolation level
 the DBMS is set to (using the _Connection_ method
-_getTransactionIsolation()_ ). +
+_getTransactionIsolation()_). +
 If transactions are not supported (that is,
-the transaction isolation level is equal to _TRANSACTION_NONE_ ), an
+the transaction isolation level is equal to _TRANSACTION_NONE_), an
 exception is raised, causing the transaction to fail. +
 For any other transaction isolation level,
 the auto-commit mode is is saved (so it can later be restored), and then
-disabled by calling _setAutoCommit(false)_ on the _Connection_ .
+disabled by calling _setAutoCommit(false)_ on the _Connection_.
 
 ** If the _isolation_ attribute is specified and
 differs from the connection's current isolation level, the current
 transaction isolation level is saved (so it can later be restored) and
 set to the specified level (using the _Connection_ method
-_setTransactionIsolation()_ ).
+_setTransactionIsolation()_).
 
-* _doEndTag()_ : Calls the _Connection_ method
-_commit()_ .
+* _doEndTag()_: Calls the _Connection_ method
+_commit()_.
 
-* _doCatch()_ : Calls the _Connection_ method
-_rollback()._
+* _doCatch()_: Calls the _Connection_ method
+_rollback()_.
 
-* _doFinally()_ :
+* _doFinally()_:
 
 ** If a transaction isolation level has been
 saved, it is restored using the _Connection_ method
-_setTransactionIsolation()_ .
+_setTransactionIsolation()_.
 
 ** Restore auto-commit mode to its saved value
-by calling _setAutoCommit()_ on the _Connection_ .
+by calling _setAutoCommit()_ on the _Connection_.
 
 ** Closes the connection.
 
 The _Connection_ object is obtained and
 managed in the same manner as described for `<sql:query>` (see <<sql:query>>), except that it is never
 obtained from a parent tag (`<sql:transaction>` tags can not be nested as
-a means to propagate a _Connection_ ).
+a means to propagate a _Connection_).
 
 Note that the `<sql:transaction>` tag handler
 commits or rollbacks the transaction (if it catches an exception) by
@@ -5730,8 +5723,7 @@ larger JTA user transaction.
 === <sql:setDataSource>
 
 Exports a data source either as a scoped
-variable or as the data source configuration variable (
-_jakarta.servlet.jsp.jstl.sql.dataSource_ ).
+variable or as the data source configuration variable (_jakarta.servlet.jsp.jstl.sql.dataSource_).
 
 .*Syntax*
 ....
@@ -5783,7 +5775,7 @@ parameter: user password
 |var |false
 |String |Name of
 the exported scoped variable for the data source specified. Type can be
-_String_ or _DataSource_ .
+_String_ or _DataSource_.
 
 | _scope_ |false
 |String |If _var_
@@ -5884,14 +5876,14 @@ _addSQLParameter()_ method, supplying it with the given parameter value.
 It is important to note that the semantics of
 _SQLExecutionTag.addSQLParameter()_ are such that supplying a parameter
 with a _String_ value (e.g. when using syntax 2) only works for columns
-of text type ( _CHAR_ , _VARCHAR_ or _LONGVARCHAR_ ).
+of text type (_CHAR_, _VARCHAR_ or _LONGVARCHAR_).
 
 <<<
 
 === <sql:dateParam>
 
 Sets the values of parameter markers (“?”) in
-a SQL statement for values of type _java.util.Date._ Subtag of
+a SQL statement for values of type _java.util.Date_. Subtag of
 _SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 
 .*Syntax*
@@ -5933,17 +5925,17 @@ the SQL value NULL.
 .*Description*
 
 This action converts the provided
-_java.util.Date_ instance to one of _java.sql.Date_ , _java.sql.Time_ or
+_java.util.Date_ instance to one of _java.sql.Date_, _java.sql.Time_ or
 _java.sql.Timestamp_ as defined by the _type_ attribute as follows:
 
 * If the _java.util.Date_ object provided by
-the _value_ attribute is an instance of _java.sql.Time_ ,
-_java.sql.Date_ , or _java.sql.Timestamp_ , and the _type_ attribute
+the _value_ attribute is an instance of _java.sql.Time_,
+_java.sql.Date_, or _java.sql.Timestamp_, and the _type_ attribute
 matches this object's type, then it is passed as is to the database.
 
 * Otherwise, the object is converted to the
 appropriate type by calling that type's constructor with a parameter of
-_date.getTime()_ , where _date_ is the value of the _value_ attribute.
+_date.getTime()_, where _date_ is the value of the _value_ attribute.
 
 The `<sql:dateParam>` action substitutes the
 given parameter value for a parameter marker(“?”) in the SQL statement
@@ -6263,7 +6255,7 @@ the _systemId_ (`<x:parse>`) and _docSystemId_ / _xsltSystemId_
 directly
 
 * Relative URLs are treated as references to
-resources (e.g., loaded via _ServletContext.getResource()_ ) and loaded
+resources (e.g., loaded via _ServletContext.getResource()_) and loaded
 using an _EntityResolver_ and _URIResolver_ as necessary
 
 ==== Core Actions
@@ -6386,7 +6378,7 @@ _false_ | _String_
 _false_ | _String_
 |Name of the exported scoped variable for the
 parsed XML document. The type of the scoped variable is
-_org.w3c.dom.Document_ .
+_org.w3c.dom.Document_.
 
 | _scopeDom_ |
 _false_ | _String_
@@ -6405,7 +6397,7 @@ performed.
 
 The `<x:parse>` action parses an XML document
 and saves the resulting object in the scoped variable specified by
-attribute _var_ or _varDom_ . It does not perform any validation against
+attribute _var_ or _varDom_. It does not perform any validation against
 DTDs or Schemas.
 
 The XML document can be specified either with
@@ -6442,7 +6434,7 @@ customers are pruned from the XML document prior to parsing.
 ....
 
 The _filter_ attribute accepts an object of
-type _org.xml.sax.XMLFilter_ .
+type _org.xml.sax.XMLFilter_.
 
 If configuration of the filter is desirable,
 it is suggested that the developer of the filter provides a custom tag
@@ -6554,8 +6546,8 @@ _false_ | _String_
 .*Description*
 
 Evaluates an XPath expression (specified via
-attribute _select_ ) and stores the result into a scoped variable
-(specified via attributes _var_ and _scope_ ).
+attribute _select_) and stores the result into a scoped variable
+(specified via attributes _var_ and _scope_).
 
 The mapping of XPath types to Java types is
 described in <<XPath to Java Type Mappings>>.
@@ -6604,7 +6596,7 @@ true. For example:
 The `<x:choose>` action selects one among a
 number of possible alternatives. It consists of a sequence of `<x:when>`
 elements followed by an optional `<x:otherwise>`. Each <x:when> element
-has a single attribute, _select_ , which specifies an XPath expression.
+has a single attribute, _select_, which specifies an XPath expression.
 When a `<x:choose>` element is processed, each of the `<x:when>` elements
 has its expression evaluated in turn, and the resulting object is
 converted to a boolean according to the semantics of the XPath boolean
@@ -6664,7 +6656,7 @@ _Syntax 2: With body content_
 
 JSP. If the test condition evaluates to true,
 the Jakarta Server Pages container processes the body content and then writes it to the
-current _JspWriter_ .
+current _JspWriter_.
 
 .*Attributes*
 
@@ -6681,7 +6673,7 @@ the body content should be processed.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable for the resulting value of the test
-condition. The type of the scoped variable is _Boolean_ .
+condition. The type of the scoped variable is _Boolean_.
 
 | _scope_ |
 _false_ | _String_
@@ -6699,7 +6691,7 @@ The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
 _boolean_ according to the semantics of the XPath _boolean()_ function.
 If true, the body content is evaluated by the Jakarta Server Pages container and the
-result is written to the current _JspWriter_ .
+result is written to the current _JspWriter_.
 
 <<<
 
@@ -6719,7 +6711,7 @@ conditional execution.
 
 JSP. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested elements will be processed) and
-written to the current _JspWriter_ .
+written to the current _JspWriter_.
 
 .*Constraints*
 
@@ -6763,8 +6755,8 @@ Represents an alternative within an
 .*Body Content*
 
 JSP. If this is the first _<x:when>_ action
-to evaluate to true within _<x:choose>_ , the Jakarta Server Pages container processes
-the body content and then writes it to the current _JspWriter_ .
+to evaluate to true within _<x:choose>_, the Jakarta Server Pages container processes
+the body content and then writes it to the current _JspWriter_.
 
 .*Attributes*
 
@@ -6793,8 +6785,8 @@ The XPath expression specified via attribute
 _select_ is evaluated, and the resulting object is converted to a
 _boolean_ according to the semantics of the XPath _boolean()_ function.
 If this is the first _<x:when>_ action to evaluate to true within
-_<x:choose>_ , the Jakarta Server Pages container processes the body content and then
-writes it to the current _JspWriter_ .
+_<x:choose>_, the Jakarta Server Pages container processes the body content and then
+writes it to the current _JspWriter_.
 
 <<<
 
@@ -6814,7 +6806,7 @@ Represents the last alternative within a
 
 JSP. If no `<x:when>` action nested within
 `<x:choose>` evaluates to true, the Jakarta Server Pages container processes the body
-content and then writes it to the current _JspWriter_ .
+content and then writes it to the current _JspWriter_.
 
 .*Attributes*
 
@@ -6832,7 +6824,7 @@ None.
 Within a `<x:choose>` action, if none of the
 nested `<x:when>` test conditions evaluates to true, then the body content
 of the `<x:otherwise>` action is evaluated by the Jakarta Server Pages container, and the
-result is written to the current _JspWriter_ .
+result is written to the current _JspWriter_.
 
 <<<
 
@@ -6856,7 +6848,7 @@ node to each element in the iteration.
 
 JSP. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
-the current _JspWriter_ .
+the current _JspWriter_.
 
 .*Attributes*
 
@@ -6879,7 +6871,7 @@ _false_ | _String_
 _false_ | _String_
 |Name of the exported scoped variable for the
 status of the iteration. Object exported is of type
-_jakarta.servlet.jsp.jstl.core.LoopTagStatus_ . This scoped variable has
+_jakarta.servlet.jsp.jstl.core.LoopTagStatus_. This scoped variable has
 nested visibility.
 
 | _begin_ | _true_
@@ -6902,7 +6894,7 @@ the first one.
 * If specified, _begin_ must be >= 0.
 
 * If _end_ is specified and it is less than
-_begin_ , the loop is simply not executed.
+_begin_, the loop is simply not executed.
 
 * If specified, _step_ must be >= 1
 
@@ -7035,20 +7027,20 @@ content, then the action trims it and processes it further.
 | _doc_ | _true_
 | _String, Reader,
 jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
-<x:parse>, <x:set>_ . |Source XML document to
+<x:parse>, <x:set>_. |Source XML document to
 be transformed. (If exported by <x:set>, it must correspond to a
 well-formed XML document, not a partial document.)
 
 | _xml_ | _true_
 | _String, Reader,
 jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
-<x:parse>, <x:set>_ . |
+<x:parse>, <x:set>_. |
 _Deprecated_ footnote:[Names beginning with the string "xml" are reserved by the XML specification.]. Use attribute _doc_ instead.
 
 | _xslt_ | _true_
 | _String, Reader or
 jakarta.xml.transform.Source_ |Transformation
-stylesheet as a _String_ , _Reader_ , or _Source_ object.
+stylesheet as a _String_, _Reader_, or _Source_ object.
 
 |docSystemId |true
 |String |The
@@ -7056,7 +7048,7 @@ system identifier (URI) for parsing the XML document.
 
 |xmlSystemId |true
 |String |
-_Deprecated_ _1_ . Use attribute _docSystemId_ instead.
+_Deprecated_ _1_. Use attribute _docSystemId_ instead.
 
 |xsltSystemId
 |true |String
@@ -7066,7 +7058,7 @@ XSLT stylesheet.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable for the transformed XML document. The
-type of the scoped variable is _org.w3c.dom.Document_ .
+type of the scoped variable is _org.w3c.dom.Document_.
 
 | _scope_ |
 _false_ | _String_
@@ -7092,7 +7084,7 @@ a _JspException_ is thrown.
 
 The `<x:transform>` tag applies a
 transformation to an XML document (attribute _doc_ or the action’s body
-content), given a specific XSLT stylesheet (attribute _xslt_ ). It does
+content), given a specific XSLT stylesheet (attribute _xslt_). It does
 not perform any validation against DTD's or Schemas.
 
 Nothing prevents an implementation from
@@ -7108,7 +7100,7 @@ to the page by default. It is also possible to capture the result of the
 transformation in two other ways:
 
 * _jakarta.xml.transform.Result_ object
-specified by the _result_ attribute _._
+specified by the _result_ attribute.
 
 * _org.w3c.dom.Document_ object saved in the
 scoped variable specified by the _var_ and _scope_ attributes.
@@ -7338,23 +7330,20 @@ String manipulation functions allow page
 authors to:
 
 * Change the capitalization of a string (
-_toLowerCase_ , _toUpperCase_ )
+_toLowerCase_, _toUpperCase_)
 
-* Get a subset of a string ( _substring,
-substringAfter, substringBefore_ )
+* Get a subset of a string (_substring, substringAfter, substringBefore_)
 
-* Trim a string ( _trim_ )
+* Trim a string (_trim_)
 
-* Replace characters in a string ( _replace_ )
+* Replace characters in a string (_replace_)
 
-* Check if a string contains another string (
-_indexOf, startsWith, endsWith, contains, containsIgnoreCase_ )
+* Check if a string contains another string (_indexOf, startsWith, endsWith, contains, containsIgnoreCase_)
 
-* split a string ( _split_ ) into an array, and
-join an array into a string ( _join_ )
+* split a string (_split_) into an array, and
+join an array into a string (_join_)
 
-* Escape XML characters in the string (
-_escapeXml_ )
+* Escape XML characters in the string (_escapeXml_)
 
 The example below shows simple uses of these
 functions.
@@ -7517,7 +7506,7 @@ empty string.
 
 .*Description*
 
-The behavior is the same as _fn:contains_ ,
+The behavior is the same as _fn:contains_,
 except that the comparison is done in a case insensitive way, as in:
 
 _fn:contains(fn:toUpperCase(string),
@@ -7565,7 +7554,7 @@ empty string.
 
 .*Description*
 
-Behavior is similar to _fn:startsWith_ ,
+Behavior is similar to _fn:startsWith_,
 except that the substring must be at the end of the input string.
 
 If _suffix_ is empty, this matches the end of
@@ -7659,7 +7648,7 @@ empty string.
 Returns the index (0-based) within a string
 of the first occurrence of a specified substring according to the
 semantics of method _indexOf(substring)_ of the Java class
-_java.lang.String_ , with the exception of the "Null and Error Handling"
+_java.lang.String_, with the exception of the "Null and Error Handling"
 processing described above.
 
 If _substring_ is empty, this matches the
@@ -7733,7 +7722,7 @@ fn:length(input) → integer
 |Description
 | _input_ |Any of
 the types supported for the _items_ attribute in the `<c:forEach>` action,
-or _String_ . |The input collection or string
+or _String_. |The input collection or string
 on which the length is computed.
 
 | _Result_ | _int_
@@ -7782,7 +7771,7 @@ replace function is applied.
 
 | _Result_ |
 _String_ |The string that results from
-replacing _beforeSubstring_ with _afterSubstring_ .
+replacing _beforeSubstring_ with _afterSubstring_.
 |===
 
 .*Null & Error Handling*
@@ -7799,7 +7788,7 @@ as an empty string.
 .*Description*
 
 All occurrences of _beforeSubstring_ are
-replaced by _afterSubstring_ . The text replaced is not reprocessed for
+replaced by _afterSubstring_. The text replaced is not reprocessed for
 further replacements.
 
 If _inputstring_ is an empty string, an empty
@@ -7809,7 +7798,7 @@ If _beforeSubstring_ is an empty string, the
 input string is returned.
 
 If _afterSubstring_ is an empty string, all
-occurrences of _beforeSubstring_ are removed from _inputString_ .
+occurrences of _beforeSubstring_ are removed from _inputString_.
 
 <<<
 
@@ -7852,7 +7841,7 @@ an empty string.
 .*Description*
 
 Breaks a string into tokens according to the
-semantics of the Java class _java.util.StringTokenizer_ , with the
+semantics of the Java class _java.util.StringTokenizer_, with the
 exception of the "Null and Error Handling" described above.
 
 If the input string is empty, the array
@@ -7910,7 +7899,7 @@ empty string.
 
 Tests if an input string starts with the
 specified prefix according to the semantics of method _startsWith(String
-prefix)_ of the Java class _java.lang.String_ , with the exception of
+prefix)_ of the Java class _java.lang.String_, with the exception of
 the "Null and Error Handling" processing described above.
 
 If _prefix_ is empty, this matches the
@@ -7966,20 +7955,20 @@ the length of the input string, its value is adjusted to be the length
 of the input string (the substring therefore starts at _beginIndex_ and
 extends to the end of the input string).
 
-* If _endIndex_ is less than _beginIndex_ , an
+* If _endIndex_ is less than _beginIndex_, an
 empty string is returned.
 
 .*Description*
 
 Returns a substring of the input string
 according to the semantics of method _substring()_ of the Java class
-_java.lang.String_ , with the exception of the "Null and Error Handling"
+_java.lang.String_, with the exception of the "Null and Error Handling"
 processing described above.
 
 Using a 0-based indexing scheme, the
 substring begins at the specified _beginIndex_ and extends to the
 character at index _endIndex_ -1. The length of the substring is
-therefore _endIndex-beginIndex_ .
+therefore _endIndex-beginIndex_.
 
 It is suggested to use the value -1 for
 _endIndex_ to extend the substring to the end of the input string.
@@ -8034,7 +8023,7 @@ string is returned.
 
 If _substring_ is an empty string, it matches
 the beginning of the input string and the input string is returned. This
-is consistent with the behavior of function _indexOf_ , where an empty
+is consistent with the behavior of function _indexOf_, where an empty
 substring returns index 0.
 
 If _substring_ does not occur in the input
@@ -8210,7 +8199,7 @@ empty string and an empty string is returned.
 
 Removes white space from both ends of a
 string according to the semantics of method _trim()_ of the Java class
-_java.lang.String_ .
+_java.lang.String_.
 
 [appendix]
 == Compatibility & Migration
@@ -8296,7 +8285,7 @@ _http://java.sun.com/jsp/jstl/xml_ | _x_
 |===
 
 The new URIs are similar to the old JSTL 1.0 EL
-URIs, except that _jsp/_ has been added in front of _jstl_ , stressing
+URIs, except that _jsp/_ has been added in front of _jstl_, stressing
 JSTL's dependency on the JSP specification (which now "owns" the EL). It
 would have been desirable to move forward with the same EL URIs in JSTL
 1.1, however this would have only been possible at the cost of losing
