@@ -1936,7 +1936,7 @@ object of the underlying collection.
 
 | _items_ | _true_
 |Any of the supported types described in
-Section “Description” below. __ |Collection
+Section “Description” below. |Collection
 of items to iterate over.
 
 | _varStatus_ |
@@ -4059,7 +4059,7 @@ and time are formatted in the “GMT+1:00” time zone:
 
 ....
 <fmt:timeZone value="GMT+1:00">
-    <fmt:formatDate _value=”$\{now}”_ type="both" dateStyle="full"
+    <fmt:formatDate value=”${now}” type="both" dateStyle="full"
         timeStyle="full"/>
 </fmt:timeZone>
 ....
@@ -4978,7 +4978,7 @@ cause.
 formatting locale, it must throw a _JspException_ whose message must
 include the value that was to be parsed.
 
-.*Description
+.*Description*
 
 The date string to be parsed may be specified
 via the _value_ attribute or via the tag’s body content.
