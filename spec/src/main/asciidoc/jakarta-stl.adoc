@@ -6087,24 +6087,20 @@ _maps to the cookie's value for name foo_
 | _application.getInitParameter("foo")_
 
 | _$pageScope:foo_ a|
- _pageContext.getAttribute(_
-
-_"foo", PageContext.PAGE_SCOPE)_
+_pageContext.getAttribute(_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _"foo", PageContext.PAGE_SCOPE)_
 
 | _$requestScope:foo_ a|
- _pageContext.getAttribute(_
-
-_"foo", PageContext.REQUEST_SCOPE)_
+_pageContext.getAttribute(_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _"foo", PageContext.REQUEST_SCOPE)_
 
 | _$sessionScope:foo_ a|
- _pageContext.getAttribute(_
-
-_"foo", PageContext.SESSION_SCOPE)_
+_pageContext.getAttribute(_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _"foo", PageContext.SESSION_SCOPE)_
 
 | _$applicationScope:foo_ a|
- _pageContext.getAttribute(_
-
-_"foo", PageContext.APPLICATION_SCOPE)_
+_pageContext.getAttribute(_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _"foo", PageContext.APPLICATION_SCOPE)_
 
 |===
 
