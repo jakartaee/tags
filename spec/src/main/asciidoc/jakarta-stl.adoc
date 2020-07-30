@@ -332,16 +332,14 @@ inside the square brackets is optional
 |Only one of the given options can be
 selected
 
-| _value_ |The
+| _[underline]#value#_ |The
 default value
 |===
 
 For example, in the syntax below:
 
-....
-<c:set var=”varName” [scope=”{page|request|session|application}”]
-       value=”value”/>
-....
+[literal, subs="+quotes, +attributes"]
+<c:set var="varName" {blank}[scope="{[underline]#page#|request|session|application}"] value="value"/>
 
 the attribute _scope_ is optional. If it is
 specified, its value must be one of _page_, _request_, _session_, or
@@ -1004,17 +1002,17 @@ of the evaluation to the current _JspWriter_ object.
 .*Syntax*
 
 _Without a body_
-....
-<c:out value=”value” [escapeXml=”{true|false}”]
-    [default=”defaultValue”] />
-....
+
+[literal, subs="+quotes, +attributes"]
+<c:out value=”value” {blank}[escapeXml=”{[underline]#true#|false}”]
+    {blank}[default=”defaultValue”] />
 
 _With a body_
-....
-<c:out value=”value” [escapeXml=”{true|false}”]>
+
+[literal, subs="+quotes, +attributes"]
+<c:out value=”value” {empty}[escapeXml=”{[underline]#true#|false}”]>
     default value
 </c:out>
-....
 
 .*Body Content*
 JSP. The Jakarta Server Pages container processes the body
@@ -1099,18 +1097,18 @@ property of a target object.
 
 _Syntax 1: Set the value of a scoped
 variable using attribute value_
-....
+
+[literal, subs="+quotes, +attributes"]
 <c:set value=”value”
-    var=”varName” [scope=”{page|request|session|application}”]/>
-....
+    var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: Set the value of a scoped
 variable using body content_
-....
-<c:set var=”varName” [scope=”{page|request|session|application}”]>
+
+[literal, subs="+quotes, +attributes"]
+<c:set var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]>
     body content
 </c:set>
-....
 
 _Syntax 3: Set a property of a target object
 using attribute value_
@@ -2378,13 +2376,12 @@ Imports the content of a URL-based resource.
 _Syntax 1: Resource content inlined or
 exported as a String object_
 
-....
+[literal, subs="+quotes, +attributes"]
 <c:import url=”url” [context=”context”]
-        [var=”varName”] [scope=”{page|request|session|application}”]
+        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]
         [charEncoding=”charEncoding”]>
     optional body content for <c:param> subtags
 </c:import>
-....
 
 _Syntax 2: Resource content exported as a
 Reader object_
@@ -2637,20 +2634,18 @@ applied.
 
 _Syntax 1: Without body content_
 
-....
+[literal, subs="+quotes, +attributes"]
 <c:url value=”value” [context=”context”]
-        [var=”varName”] [scope=”{page|request|session|application}”]/>
-....
+        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: With body content to specify
 query string parameters_
 
-....
+[literal, subs="+quotes, +attributes"]
 <c:url value=”value” [context=”context”]
-        [var=”varName”] [scope=”{page|request|session|application}”]>
+        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
     <c:param> subtags
 </c:url>
-....
 
 .*Body Content*
 
@@ -3377,11 +3372,11 @@ Stores the specified locale in the
 _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 
 .*Syntax*
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:setLocale value=”locale”
             [variant=”variant”]
-            [scope=”{page|request|session|application}”]/>
-....
+            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 .*Body Content*
 
@@ -3533,11 +3528,10 @@ _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 
 .*Syntax*
 
-....
-<fmt:setBundle basename=”basename” +
+[literal, subs="+quotes, +attributes"]
+<fmt:setBundle basename=”basename”
                [var=”varName”] 
-               [scope=”{page|request|session|application}”]/>
-....
+               {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 .*Body Content*
 
@@ -3603,34 +3597,34 @@ bundle.
 
 .*Syntax*
 _Syntax 1: without body content_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:message key=”messageKey”
              [bundle=”resourceBundle”]
              [var=”varName”]
-             [scope=”{page|request|session|application}”]/>
-....
+             {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: with a body to specify message
 parameters_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:message key=”messageKey”
              [bundle=”resourceBundle”]
              [var=”varName”]
-             [scope=”{page|request|session|application}”]>
+             {blank}[scope=”{[underline]#page#|request|session|application}”]>
     <fmt:param> subtags
 </fmt:message>
-....
 
 _Syntax 3: with a body to specify key and
 optional message parameters_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:message [bundle=”resourceBundle”]
              [var=”varName”]
-             [scope=”{page|request|session|application}”]>
+             {blank}[scope=”{[underline]#page#|request|session|application}”]>
     key
     optional <fmt:param> subtags
 </fmt:message>
-....
 
 .*Body Content*
 
@@ -4287,11 +4281,10 @@ variable or the time zone configuration variable.
 
 .*Syntax*
 
-....
+[literal, subs="+quotes, +attributes"]
 <fmt:setTimeZone value=”timeZone”
                  [var=”varName”]
-                 [scope=”{page|request|session|application}”]/>
-....
+                 {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 .*Body Content*
 
@@ -4353,38 +4346,38 @@ or customized manner as a number, currency, or percentage.
 .*Syntax*
 
 _Syntax 1: without a body_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:formatNumber value=”numericValue”
-                  [type=”\{number|currency|percent}”]
+                  {blank}[type=”{[underline]#number#|currency|percent}”]
                   [pattern=”customPattern”]
                   [currencyCode=”currencyCode”]
                   [currencySymbol=”currencySymbol”]
-                  [groupingUsed=”{true|false}”]
+                  {blank}[groupingUsed=”{[underline]#true#|false}”]
                   [maxIntegerDigits=”maxIntegerDigits”]
                   [minIntegerDigits=”minIntegerDigits”]
                   [maxFractionDigits=”maxFractionDigits”]
                   [minFractionDigits=”minFractionDigits”]
                   [var=”varName”]
-                  [scope=”{page|request|session|application}”]/>
-....
+                  {blank}[scope=”{[underline]#page#|request|session|application}”]/>
  
 _Syntax 2: with a body to specify the
 numeric value to be formatted_
-....
-<fmt:formatNumber [type=”{number|currency|percent}”]
+
+[literal, subs="+quotes, +attributes"]
+<fmt:formatNumber {blank}[type=”{[underline]#number#|currency|percent}”]
                   [pattern=”customPattern”]
                   [currencyCode=”currencyCode”]
                   [currencySymbol=”currencySymbol”]
-                  [groupingUsed=”{true|false}”]
+                  {blank}[groupingUsed=”{[underline]#true#|false}”]
                   [maxIntegerDigits=”maxIntegerDigits”]
                   [minIntegerDigits=”minIntegerDigits”]
                   [maxFractionDigits=”maxFractionDigits”]
                   [minFractionDigits=”minFractionDigits”]
                   [var=”varName”]
-                  [scope=”{page|request|session|application}”]>
+                  {blank}[scope=”{[underline]#page#|request|session|application}”]>
     numeric value to be formatted
 </fmt:formatNumber>
-....
 
 .*Body Content*
 
@@ -4566,28 +4559,28 @@ customized manner.
 .*Syntax*
 
 _Syntax 1: without a body_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:parseNumber value=”numericValue”
-                [type=”{number|currency|percent}”]
+                {blank}[type=”{[underline]#number#|currency|percent}”]
                 [pattern=”customPattern”]
                 [parseLocale=”parseLocale”]
-                [integerOnly=”{true|false}”]
+                {blank}[integerOnly=”{true|[underline]#false#}”]
                 [var=”varName”]
-                [scope=”{page|request|session|application}”]/>
-....
+                {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: with a body to specify the
 numeric value to be parsed_
-....
-<fmt:parseNumber [type=”{number|currency|percent}”]
+
+[literal, subs="+quotes, +attributes"]
+<fmt:parseNumber {blank}[type=”{[underline]#number#|currency|percent}”]
                 [pattern=”customPattern”]
                 [parseLocale=”parseLocale”]
-                [integerOnly=”{true|false}”]
+                {blank}[integerOnly=”{true|[underline]#false#}”]
                 [var=”varName”]
-                [scope=”{page|request|session|application}”]>
+                {blank}[scope=”{[underline]#page#|request|session|application}”]>
     numeric value to be parsed
 </fmt:parseNumber>
-....
 
 
 .*Body Content*
@@ -4717,16 +4710,16 @@ Allows the formatting of dates and times in a
 locale-sensitive or customized manner.
 
 .*Syntax*
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:formatDate value="date"
-                [type="{time|date|both}"]
-                [dateStyle="{default|short|medium|long|full}"]
-                [timeStyle="{default|short|medium|long|full}"]
+                {blank}[type="{time|[underline]#date#|both}"]
+                {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
+                {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
                 [pattern="customPattern"]
                 [timeZone="timeZone"]
                 [var="varName"]
-                [scope="{page|request|session|application}"]/>
-....
+                {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -4858,32 +4851,32 @@ times that were formatted in a locale-sensitive or customized manner.
 .*Syntax*
 
 _Syntax 1: without a body_
-....
+
+[literal, subs="+quotes, +attributes"]
 <fmt:parseDate value=”dateString”
-            [type=”{time|date|both}”]
-            [dateStyle=”{default|short|medium|long|full}”]
-            [timeStyle=”{default|short|medium|long|full}”]
+            {blank}[type=”{time|[underline]#date#|both}”]
+            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
+            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
             [pattern=”customPattern”]
             [timeZone=”timeZone”]
             [parseLocale=”parseLocale”]
             [var=”varName”]
-            [scope=”{page|request|session|application}”]/>
-....
+            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: with a body to specify the date
 value to be parsed_
-....
-<fmt:parseDate [type=”\{time|date|both}”]
-            [dateStyle=”\{default|short|medium|long|full}”]
-            [timeStyle=”\{default|short|medium|long|full}”]
+
+[literal, subs="+quotes, +attributes"]
+<fmt:parseDate {blank}[type=”{time|[underline]#date#|both}”]
+            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
+            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
             [pattern=”customPattern”]
             [timeZone=”timeZone”]
             [parseLocale=”parseLocale”]
             [var=”varName”]
-            [scope=”{page|request|session|application}”]>
+            {blank}[scope=”{[underline]#page#|request|session|application}”]>
     date value to be parsed
 </fmt:parseDate>
-....
 
 .*Body Content*
 
@@ -5309,38 +5302,38 @@ Queries a database.
 .*Syntax*
 
 _Syntax 1: Without body content_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" [scope=”{page|request|session|application}”]
+        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
         [dataSource=”dataSource”]
         [maxRows="maxRows"]
         [startRow="startRow"]/>
-....
 
 _Syntax 2: With a body to specify query
 arguments_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" [scope=”{page|request|session|application}”]
+        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
         [dataSource=”dataSource”]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     <sql:param> actions
 </sql:query>
-....
 
 _Syntax 3: With a body to specify query and
 optional query parameters_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:query var="varName"
-        [scope=”{page|request|session|application}”]
+        {blank}[scope=”{[underline]#page#|request|session|application}”]
         [dataSource=”dataSource”]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     query
     optional <sql:param> actions
 </sql:query>
-....
 
 .*Body Content*
 
@@ -5483,33 +5476,33 @@ such as SQL DDL statements, can be executed.
 .*Syntax*
 
 _Syntax 1: Without body content_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
         [dataSource=”dataSource”]
         [var="varName"]
-        [scope=”{page|request|session|application}”]/>
-....
+        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: With a body to specify update
 parameters_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
         [dataSource=”dataSource”]
         [var="varName"]
-        [scope=”{page|request|session|application}”]>
+        {blank}[scope=”{[underline]#page#|request|session|application}”]>
     <sql:param> actions
 </sql:update>
-....
 
 _Syntax 3: With a body to specify update
 statement and optional update parameters_
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:update [dataSource=”dataSource”]
-        [var="varName"] [scope=”{page|request|session|application}”]>
+        [var="varName"] {blank}[scope=”{[underline]#page#|request|session|application}”]>
     update statement
     optional <sql:param> actions
 </sql:update>
-....
 
 .*Body Content*
 
@@ -5726,7 +5719,8 @@ Exports a data source either as a scoped
 variable or as the data source configuration variable (_jakarta.servlet.jsp.jstl.sql.dataSource_).
 
 .*Syntax*
-....
+
+[literal, subs="+quotes, +attributes"]
 <sql:setDataSource
         {dataSource="dataSource" |
             url="jdbcUrl"
@@ -5734,8 +5728,7 @@ variable or as the data source configuration variable (_jakarta.servlet.jsp.jstl
             [user="userName"]
             [password="password"]}
         [var="varName"]
-        [scope=”{page|request|session|application}”]/>
-....
+        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 .*Body Content*
 
@@ -5887,9 +5880,9 @@ a SQL statement for values of type _java.util.Date_. Subtag of
 _SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 
 .*Syntax*
-....
-<sql:dateParam value=” _value_ ” [type=”{timestamp|time|date}”]/>
-....
+
+[literal, subs="+quotes, +attributes"]
+<sql:dateParam value=” _value_ ” {blank}[type=”{[underline]#timestamp#|time|date}”]/>
 
 .*Body Content*
 
@@ -6324,7 +6317,7 @@ body content_
 
 
 where scope is
-{page|request|session|application}
+{[underline]#page#|request|session|application}
 
 
 
@@ -6442,9 +6435,9 @@ Evaluates an XPath expression and outputs the
 result of the evaluation to the current _JspWriter_ object.
 
 .*Syntax*
-....
-<x:out select=”XPathExpression” [escapeXml=”{true|false}”]/>
-....
+
+[literal, subs="+quotes, +attributes"]
+<x:out select=”XPathExpression” {blank}[escapeXml=”{[underline]#true#|false}”]/>
 
 .*Body Content*
 
@@ -6508,10 +6501,10 @@ Evaluates an XPath expression and stores the
 result into a scoped variable.
 
 .*Syntax*
-....
+
+[literal, subs="+quotes, +attributes"]
 <x:set select=”XPathExpression”
-    var=”varName” [scope=”{page|request|session|application}”]/>
-....
+    var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 .*Body Content*
 
@@ -6635,18 +6628,18 @@ evaluates to true.
 .*Syntax*
 
 _Syntax 1: Without body content_
-....
+
+[literal, subs="+quotes, +attributes"]
 <x:if select=”XPathExpression”
-        var=”varName” [scope=”{page|request|session|application}”]/>
-....
+        var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
 
 _Syntax 2: With body content_
-....
+
+[literal, subs="+quotes, +attributes"]
 <x:if select=”XPathExpression”
-        [var=”varName”] [scope=”{page|request|session|application}”]>
+        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
     body content
 </x:if>
-....
 
 .*Body Content*
 
@@ -7006,7 +6999,7 @@ document and optional transformation parameters_
 
 
 where scopeName is
-{page|request|session|application}
+{[underline]#page#|request|session|application}
 
 .*Body Content*
 
