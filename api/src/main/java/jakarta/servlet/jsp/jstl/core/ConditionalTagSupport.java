@@ -23,62 +23,56 @@ import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
- * <p>Abstract class that facilitates implementation of conditional actions 
- * where the boolean result is exposed as a JSP scoped variable. The 
- * boolean result may then be used as the test condition in a &lt;c:when&gt;
- * action.</p>
+ * <p>
+ * Abstract class that facilitates implementation of conditional actions where the boolean result is exposed as a JSP
+ * scoped variable. The boolean result may then be used as the test condition in a &lt;c:when&gt; action.
+ * </p>
  *
- * <p>This base class provides support for:</p>
- * 
+ * <p>
+ * This base class provides support for:
+ * </p>
+ *
  * <ul>
- *  <li> Conditional processing of the action's body based on the returned value
- *       of the abstract method <tt>condition()</tt>.</li>
- *  <li> Storing the result of <tt>condition()</tt> as a <tt>Boolean</tt> object
- *       into a JSP scoped variable identified by attributes <tt>var</tt> and
- *       <tt>scope</tt>.
+ * <li>Conditional processing of the action's body based on the returned value of the abstract method
+ * <tt>condition()</tt>.</li>
+ * <li>Storing the result of <tt>condition()</tt> as a <tt>Boolean</tt> object into a JSP scoped variable identified by
+ * attributes <tt>var</tt> and <tt>scope</tt>.
  * </ul>
- * 
+ *
  * @author Shawn Bayern
  */
-
-public abstract class ConditionalTagSupport
-    extends TagSupport
-{
-    //*********************************************************************
+public abstract class ConditionalTagSupport extends TagSupport {
+    // *********************************************************************
     // Abstract methods
 
     /**
-     * <p>Subclasses implement this method to compute the boolean result
-     * of the conditional action. This method is invoked once per tag invocation 
-     * by <tt>doStartTag()</tt>.
+     * <p>
+     * Subclasses implement this method to compute the boolean result of the conditional action. This method is invoked once
+     * per tag invocation by <tt>doStartTag()</tt>.
      *
-     * @return a boolean representing the condition that a particular subclass
-     *   uses to drive its conditional logic.
+     * @return a boolean representing the condition that a particular subclass uses to drive its conditional logic.
      */
     protected abstract boolean condition() throws JspTagException;
 
-
-    //*********************************************************************
+    // *********************************************************************
     // Constructor
 
     /**
-     * Base constructor to initialize local state.  As with <tt>TagSupport</tt>,
-     * subclasses should not implement constructors with arguments, and
-     * no-argument constructors implemented by subclasses must call the 
-     * superclass constructor.
+     * Base constructor to initialize local state. As with <tt>TagSupport</tt>, subclasses should not implement constructors
+     * with arguments, and no-argument constructors implemented by subclasses must call the superclass constructor.
      */
     public ConditionalTagSupport() {
         super();
         init();
     }
 
-
-    //*********************************************************************
+    // *********************************************************************
     // Lifecycle management and implementation of conditional behavior
 
     /**
      * Includes its body if <tt>condition()</tt> evaluates to true.
      */
+    @Override
     public int doStartTag() throws JspException {
 
         // execute our condition() method once per invocation
@@ -88,39 +82,39 @@ public abstract class ConditionalTagSupport
         exposeVariables();
 
         // handle conditional behavior
-        if (result)
+        if (result) {
             return EVAL_BODY_INCLUDE;
-        else
+        } else {
             return SKIP_BODY;
+        }
     }
 
     /**
      * Releases any resources this ConditionalTagSupport may have (or inherit).
      */
+    @Override
     public void release() {
         super.release();
         init();
     }
 
-    //*********************************************************************
+    // *********************************************************************
     // Private state
 
-    private boolean result;             // the saved result of condition()
-    private String var;			// scoped attribute name
-    private int scope;			// scoped attribute scope
+    private boolean result; // the saved result of condition()
+    private String var; // scoped attribute name
+    private int scope; // scoped attribute scope
 
-
-    //*********************************************************************
+    // *********************************************************************
     // Accessors
 
     /**
      * Sets the 'var' attribute.
      *
-     * @param var Name of the exported scoped variable storing the result of
-     * <tt>condition()</tt>.
+     * @param var Name of the exported scoped variable storing the result of <tt>condition()</tt>.
      */
     public void setVar(String var) {
-	this.var = var;
+        this.var = var;
     }
 
     /**
@@ -129,31 +123,32 @@ public abstract class ConditionalTagSupport
      * @param scope Scope of the 'var' attribute
      */
     public void setScope(String scope) {
-	if (scope.equalsIgnoreCase("page"))
-	    this.scope = PageContext.PAGE_SCOPE;
-	else if (scope.equalsIgnoreCase("request"))
-	    this.scope = PageContext.REQUEST_SCOPE;
-	else if (scope.equalsIgnoreCase("session"))
-	    this.scope = PageContext.SESSION_SCOPE;
-	else if (scope.equalsIgnoreCase("application"))
-	    this.scope = PageContext.APPLICATION_SCOPE;
-	// TODO: Add error handling?  Needs direction from spec.
+        if (scope.equalsIgnoreCase("page")) {
+            this.scope = PageContext.PAGE_SCOPE;
+        } else if (scope.equalsIgnoreCase("request")) {
+            this.scope = PageContext.REQUEST_SCOPE;
+        } else if (scope.equalsIgnoreCase("session")) {
+            this.scope = PageContext.SESSION_SCOPE;
+        } else if (scope.equalsIgnoreCase("application")) {
+            this.scope = PageContext.APPLICATION_SCOPE;
+            // TODO: Add error handling? Needs direction from spec.
+        }
     }
 
-
-    //*********************************************************************
+    // *********************************************************************
     // Utility methods
 
     // expose attributes if we have a non-null 'var'
     private void exposeVariables() {
-        if (var != null)
+        if (var != null) {
             pageContext.setAttribute(var, Boolean.valueOf(result), scope);
+        }
     }
 
     // initializes internal state
     private void init() {
-        result = false;                 // not really necessary
-	var = null;
-	scope = PageContext.PAGE_SCOPE;
+        result = false; // not really necessary
+        var = null;
+        scope = PageContext.PAGE_SCOPE;
     }
 }

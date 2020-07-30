@@ -17,10 +17,9 @@
 
 package jakarta.servlet.jsp.jstl.core;
 
-import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -28,13 +27,11 @@ import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ValueExpression;
 
-import jakarta.servlet.jsp.JspTagException;
-
 /**
  * @author Kin-man Chung
  * @version $Id: IteratedExpression.java,v 1.6 2006/11/17 19:48:41 jluehe Exp $
  */
-public final class IteratedExpression /*implements Serializable*/ {
+public final class IteratedExpression /* implements Serializable */ {
 
     private static final long serialVersionUID = 1L;
     protected final ValueExpression orig;
@@ -51,6 +48,7 @@ public final class IteratedExpression /*implements Serializable*/ {
 
     /**
      * Evaluates the stored ValueExpression and return the indexed item.
+     *
      * @param context The ELContext used to evaluate the ValueExpression
      * @param i The index of the item to be retrieved
      */
@@ -86,22 +84,17 @@ public final class IteratedExpression /*implements Serializable*/ {
 
         Iterator iter;
         if (obj instanceof String) {
-            iter = toIterator(new StringTokenizer((String)obj, delims));
-        }
-        else if (obj instanceof Iterator) {
-            iter = (Iterator)obj;
-        }
-        else if (obj instanceof Collection) {
+            iter = toIterator(new StringTokenizer((String) obj, delims));
+        } else if (obj instanceof Iterator) {
+            iter = (Iterator) obj;
+        } else if (obj instanceof Collection) {
             iter = toIterator(((Collection) obj).iterator());
-        }
-        else if (obj instanceof Enumeration) {
-            iter = toIterator((Enumeration)obj);
-        }
-        else if (obj instanceof Map) {
-            iter = ((Map)obj).entrySet().iterator();
+        } else if (obj instanceof Enumeration) {
+            iter = toIterator((Enumeration) obj);
+        } else if (obj instanceof Map) {
+            iter = ((Map) obj).entrySet().iterator();
         } else {
-            throw new ELException("Don't know how to iterate over supplied "
-                                  + "items in forEach");
+            throw new ELException("Don't know how to iterate over supplied " + "items in forEach");
         }
         return iter;
     }
@@ -111,11 +104,13 @@ public final class IteratedExpression /*implements Serializable*/ {
             public boolean hasNext() {
                 return obj.hasMoreElements();
             }
+
             public Object next() {
                 return obj.nextElement();
             }
-            public void remove() {}
+
+            public void remove() {
+            }
         };
     }
 }
-
