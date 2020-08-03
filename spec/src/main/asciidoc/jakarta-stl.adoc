@@ -2218,7 +2218,7 @@ necessary, and `<c:param>` transparently encodes query string parameters
     <c:param name="name" value="${param.name}"/>
     <c:param name="country" value="${param.country}"/>
 </c:url>
-<a href=’<c:out value="${myUrl}"/>’>Register</a>
+<a href='<c:out value="${myUrl}"/>'>Register</a>
 ....
 
 Another important feature of `<c:url>` is that
@@ -5122,7 +5122,7 @@ address in an HTML table.
 ....
 <sql:query var="customers" dataSource="${dataSource}">
     SELECT * FROM customers
-    WHERE country = ’China’
+    WHERE country = 'China'
     ORDER BY lastname
 </sql:query>
 
@@ -6576,7 +6576,7 @@ non-zero
 true. For example:
 
 ....
-<x:if select="$customer/[location=’UK’]">
+<x:if select="$customer/[location='UK']">
     UK based customer
 </x:if>
 ....
@@ -7340,8 +7340,8 @@ functions.
 <%-- truncate name to 30 chars and display it in uppercase --%>
 ${fn:toUpperCase(fn:substring(name, 0, 30))}
 
-<%-- Display the text value prior to the first ’*’ character --%>
-${fn:substringBefore(text, ’*’)}
+<%-- Display the text value prior to the first '*' character --%>
+${fn:substringBefore(text, '*')}
 
 <%-- Scoped variable "custId" may contain whitespaces at the beginning
 or end. Trim it first, otherwise we end up with +'s in the URL --%> 
@@ -7350,8 +7350,8 @@ or end. Trim it first, otherwise we end up with +'s in the URL --%>
 </c:url> 
 
 <%-- Display the text in between brackets --%>
-${fn:substring(text, fn:indexOf(text, ’(’)+1,
-                     fn:indexOf(text, ’)’))}
+${fn:substring(text, fn:indexOf(text, '(')+1,
+                     fn:indexOf(text, ')'))}
 
 <%-- Display the name if it contains the search string --%>
 <c:if test="${fn:containsIgnoreCase(name, searchString)}">
@@ -7361,8 +7361,8 @@ ${fn:substring(text, fn:indexOf(text, ’(’)+1,
 <%-- Display the last 10 characters of the text value --%>
 ${fn:substring(text, fn:length(text)-10)}
 
-<%-- Display text value with bullets instead of ’-’ --%>
-${fn:replace(text, ’-’, ’&#149;’)}
+<%-- Display text value with bullets instead of '-' --%>
+${fn:replace(text, '-', '&#149;')}
 ....
 
 While one can always use `<c:out>` to make sure
