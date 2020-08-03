@@ -374,8 +374,8 @@ exposes the current item of the customer collection it is iterating over
 in the following way:
 
 ....
-<c:forEach var=”customer” items=”${customers}”>
-    Current customer is <c:out value=”${customer}”/>
+<c:forEach var="customer" items="${customers}">
+    Current customer is <c:out value="${customer}"/>
 </c:forEach>
 ....
 
@@ -653,8 +653,8 @@ with action `<c:out>`.
 
 For example:
 ....
-<fmt:formatDate var=”formattedDate” value=”${reservationDate}”/>
-Date: <c:out value=”${formattedDate}” default=”not specified”/>
+<fmt:formatDate var="formattedDate" value="${reservationDate}"/>
+Date: <c:out value="${formattedDate}" default="not specified"/>
 ....
 
 == Expression Language Overview
@@ -692,8 +692,8 @@ example, the following would display “Price of productName is
 productPrice” for a list of products.
 
 ....
-<c:forEach var=”product" items=”$\{products}”>
-    <c:out value=”Price of $\{product.name} is $\{product.price}”/>
+<c:forEach var="product" items="$\{products}">
+    <c:out value="Price of $\{product.name} is $\{product.price}"/>
 </c:forEach>
 ....
 
@@ -766,13 +766,12 @@ The “[]” operator allows for more generalized
 access, as shown below:
 
 ....
-<%-- “productDir” is a Map object containing the description of
-products, “preferences” is a Map object containing the 
-preferences of a user --%>
+<%-- "productDir" is a Map object containing the description of
+products, "preferences" is a Map object containing the preferences of a user --%>
 product:
 ${productDir[product.custId]}
 shipping preference:
-${user.preferences[“shipping”]}
+${user.preferences["shipping"]}
 ....
 
 === Operators
@@ -797,7 +796,7 @@ The _empty_ operator is a prefix operator
 that can used to determine if a value is null or empty. For example:
 
 ....
-<c:if test=”${empty param.name}”>
+<c:if test="${empty param.name}">
     Please specify your name.
 </c:if>
 ....
@@ -816,8 +815,8 @@ automatically be coerced to _ints_ when used with the `<c:forEach>`
 action.
 
 ....
-<c:forEach begin=”${requestScope.beginValue}”
-           end=”${requestScope.endValue}”>
+<c:forEach begin="${requestScope.beginValue}"
+           end="${requestScope.endValue}">
     ...
 </c:forEach>
 ....
@@ -827,7 +826,7 @@ value _param.start_ is coerced to a number and is then added to 10 to
 yield an int value for attribute _begin_.
 
 ....
-<c:forEach items=”${products}” begin=”${param.start + 10}”>
+<c:forEach items="${products}" begin="${param.start + 10}">
     ...
 </c:forEach>
 ....
@@ -849,7 +848,7 @@ object. This way, a sensible default value can be displayed without
 having to worry about exceptions being thrown by the Jakarta Server Pages page.
 
 ....
-City: <c:out value=”${user.address.city}” default=”N/A”/>
+City: <c:out value="${user.address.city}" default="N/A"/>
 ....
 
 In the following example, the addition
@@ -857,7 +856,7 @@ operator considers the value of _param.start_ to be 0 if it is not
 defined, therefore evaluating the expression to 10.
 
 ....
-<c:forEach items=”${products}” begin=”${param.start + 10}”>
+<c:forEach items="${products}" begin="${param.start + 10}">
     ...
 </c:forEach>
 ....
@@ -900,7 +899,7 @@ The action `<c:set>` is used to set the value
 of a Jakarta Server Pages scoped attribute as follows:
 
 ....
-<c:set var=”foo” value=”value”/>
+<c:set var="foo" value="value"/>
 ....
 
 It is also possible to set the value of a
@@ -930,13 +929,13 @@ With the `<c:set>` tag, this can be handled
 without requiring the extra `<acme:att1>` tag.
 
 ....
-<c:set var=”att1”>
+<c:set var="att1">
 
  <acme:foo>mumbojumbo</acme:foo>
 
 </c:set>
 
-<acme:atag att1=”${att1}”/>
+<acme:atag att1="${att1}"/>
 ....
 
 In the preceding example, the `<c:set>` action
@@ -982,11 +981,11 @@ authors to recover gracefully from error conditions that they can
 control. For example:
 
 ....
-<c:catch var=”exception”>
+<c:catch var="exception">
 <!-- Execution we can recover from if exception occurs -->
 ...
 </c:catch>
-<c:if test=”${exception != null}”>
+<c:if test="${exception != null}">
 Sorry. Processing could not be performed because...
 </c:if>
 ....
@@ -1004,13 +1003,13 @@ of the evaluation to the current _JspWriter_ object.
 _Without a body_
 
 [literal, subs="+quotes, +attributes"]
-<c:out value=”value” {blank}[escapeXml=”{[underline]#true#|false}”]
-    {blank}[default=”defaultValue”] />
+<c:out value="value" {blank}[escapeXml="{[underline]#true#|false}"]
+    {blank}[default="defaultValue"] />
 
 _With a body_
 
 [literal, subs="+quotes, +attributes"]
-<c:out value=”value” {empty}[escapeXml=”{[underline]#true#|false}”]>
+<c:out value="value" {empty}[escapeXml="{[underline]#true#|false}"]>
     default value
 </c:out>
 
@@ -1099,35 +1098,35 @@ _Syntax 1: Set the value of a scoped
 variable using attribute value_
 
 [literal, subs="+quotes, +attributes"]
-<c:set value=”value”
-    var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]/>
+<c:set value="value"
+    var="varName" {empty}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: Set the value of a scoped
 variable using body content_
 
 [literal, subs="+quotes, +attributes"]
-<c:set var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]>
+<c:set var="varName" {empty}[scope="{[underline]#page#|request|session|application}"]>
     body content
 </c:set>
 
 _Syntax 3: Set a property of a target object
 using attribute value_
 ....
-<c:set value=”value”
-    target=”target” property=”propertyName”/>
+<c:set value="value"
+    target="target" property="propertyName"/>
 ....
 
 _Syntax 4: Set a property of a target object
 using body content_
 ....
-<c:set target=”target” property=”propertyName”>
+<c:set target="target" property="propertyName">
     body content
 </c:set>
 ....
 
 _Syntax 5: Set a deferred value_
 ....
-<c:set var=”varName” value="deferred-value"/>
+<c:set var="varName" value="deferred-value"/>
 ....
 
 .*Body Content*
@@ -1260,8 +1259,8 @@ Removes a scoped variable.
 .*Syntax*
 
 ....
-<c:remove var=”varName” 
-          [scope=”{page|request|session|application}”]/>
+<c:remove var="varName"
+          [scope="{page|request|session|application}"]/>
 ....
 
 .*Attributes*
@@ -1299,7 +1298,7 @@ of its nested actions.
 
 .*Syntax*
 ....
-<c:catch [var=”varName”]>
+<c:catch [var="varName"]>
     nested actions
 </c:catch>
 ....
@@ -1381,13 +1380,13 @@ how the text rendered depends on a user’s membership category.
 
 ....
 <c:choose>
-    <c:when test="${user.category == 'trial'}”>
+    <c:when test="${user.category == 'trial'}">
         ...
     </c:when>
-    <c:when test="${user.category == 'member'}”>
+    <c:when test="${user.category == 'member'}">
         ...
     </c:when>
-    <c:when test="${user.category == 'vip'}”>
+    <c:when test="${user.category == 'vip'}">
         ...
     </c:when>
     <c:otherwise>
@@ -1401,7 +1400,7 @@ achieved as follows:
 
 ....
 <c:choose>
-    <c:when test="${count == 0}”>
+    <c:when test="${count == 0}">
         No records matched your selection.
     </c:when>
     <c:otherwise>
@@ -1469,15 +1468,15 @@ specified with the _test_ attribute is true.
 _Syntax 1: Without body content_
 
 ....
-<c:if test=”testCondition”
-    var=”varName” [scope=”{page|request|session|application}”]/>
+<c:if test="testCondition"
+    var="varName" [scope="{page|request|session|application}"]/>
 ....
 
 _Syntax 2: With body content_
 
 ....
-<c:if test=”testCondition”
-        [var=”varName”] [scope=”{page|request|session|application}”]>
+<c:if test="testCondition"
+        [var="varName"] [scope="{page|request|session|application}"]>
     body content
 </c:if>
 ....
@@ -1575,7 +1574,7 @@ action.
 .*Syntax*
 
 ....
-<c:when test=”testCondition”>
+<c:when test="testCondition">
     body content
 </c:when>
 ....
@@ -1676,7 +1675,7 @@ collection.
 
 ....
 <table>
-    <c:forEach var=”customer” items=”${customers}”>
+    <c:forEach var="customer" items="${customers}">
         <tr><td>${customer}</td></tr>
     </c:forEach>
 </table>
@@ -1783,11 +1782,11 @@ collection, and the second containing the name of the product.
 
 ....
 <table>
-    <c:forEach var=”product” items=”${products}”
-            varStatus=”status”>
+    <c:forEach var="product" items="${products}"
+            varStatus="status">
         <tr>
-            <td>${status.count}”</td>
-            <td>${product.name}”</td>
+            <td>${status.count}"</td>
+            <td>${product.name}"</td>
         </tr>
     </c:forEach>
 </table>
@@ -1806,7 +1805,7 @@ integer value of the current index. In this example, _i_ would take
 values from 100 to 110 (inclusive).
 
 ....
-<c:forEach var=”i” begin=”100” end=”110”>
+<c:forEach var="i" begin="100" end="110">
     ${i}
 </c:forEach>
 ....
@@ -1898,18 +1897,18 @@ collection of objects, or repeats it a fixed number of times.
 
 _Syntax 1: Iterate over a collection of objects_
 ....
-<c:forEach  [var=”varName”] items=”collection”
-            [varStatus=”varStatusName”]
-            [begin=”begin”] [end=”end”] [step=”step”]>
+<c:forEach  [var="varName"] items="collection"
+            [varStatus="varStatusName"]
+            [begin="begin"] [end="end"] [step="step"]>
     body content
 </c:forEach>
 ....
 
 _Syntax 2: Iterate a fixed number of times_
 ....
-<c:forEach  [var=”varName”]
-            [varStatus=”varStatusName”]
-            begin=”begin” end=”end” [step=”step”]>
+<c:forEach  [var="varName"]
+            [varStatus="varStatusName"]
+            begin="begin" end="end" [step="step"]>
     body content
 </c:forEach>
 ....
@@ -2242,7 +2241,7 @@ README file at the FTP site of acme.com could be included within the
 page.
 
 ....
-<c:import url=”ftp://ftp.acme.com/README”/>
+<c:import url="ftp://ftp.acme.com/README"/>
 ....
 
 In the Jakarta Server Pages specification, a `<jsp:include>`
@@ -2271,7 +2270,7 @@ body content of `<acme:transform>`.
 
 ....
 <acme:transform>
-    <jsp:include page=”/exec/employeesList”/>
+    <jsp:include page="/exec/employeesList"/>
 </acme:transform>
 ....
 
@@ -2294,13 +2293,13 @@ types of URL are shown in the sample code below.
 
 ....
 <%-- import a resource with an absolute URL --%>
-<c:import url=”http://acme.com/exec/customers?country=Japan/>_
+<c:import url="http://acme.com/exec/customers?country=Japan/>_
 
 <%-- import a resource with a relative URL - same context --%>
-<c:import url=”/copyright.html”/>
+<c:import url="/copyright.html"/>
 
 <%-- import a resource with a relative URL - foreign context --%>
-<c:import url=”/logo.html” context=”/master”/>
+<c:import url="/logo.html" context="/master"/>
 ....
 
 ==== Exporting an object: String or Reader
@@ -2316,15 +2315,15 @@ that exported object as shown in the following example.
 
 ....
 <%-- Export the content of the URL resource as a String --%>
-<c:import url=”http://acme.com/exec/customers?country=USA"
+<c:import url="http://acme.com/exec/customers?country=USA"
           var="customers"/>
-<acme:notify in=”${customers}”/>
+<acme:notify in="${customers}"/>
 
 <%-- Export the content of the URL resource as a Reader --%>
 
-<c:import url=”http://acme.com/exec/customers?country=USA"
+<c:import url="http://acme.com/exec/customers?country=USA"
           varReader="customers">
-    <acme:notify in=”${customers}”/>
+    <acme:notify in="${customers}"/>
 </c:import>
 ....
 
@@ -2377,9 +2376,9 @@ _Syntax 1: Resource content inlined or
 exported as a String object_
 
 [literal, subs="+quotes, +attributes"]
-<c:import url=”url” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [charEncoding=”charEncoding”]>
+<c:import url="url" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]
+        [charEncoding="charEncoding"]>
     optional body content for <c:param> subtags
 </c:import>
 
@@ -2387,9 +2386,9 @@ _Syntax 2: Resource content exported as a
 Reader object_
 
 ....
-<c:import url=”url” [context=”context”]
-        varReader=”varReaderName”
-        [charEncoding=”charEncoding”]>
+<c:import url="url" [context="context"]
+        varReader="varReaderName"
+        [charEncoding="charEncoding"]>
     body content where varReader is consumed by another action
 </c:import>
 ....
@@ -2635,15 +2634,15 @@ applied.
 _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
-<c:url value=”value” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<c:url value="value" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With body content to specify
 query string parameters_
 
 [literal, subs="+quotes, +attributes"]
-<c:url value=”value” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<c:url value="value" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     <c:param> subtags
 </c:url>
 
@@ -2733,14 +2732,14 @@ Sends an HTTP redirect to the client.
 _Syntax 1: Without body content_
 
 ....
-<c:redirect url=”value” [context=”context”]/>
+<c:redirect url="value" [context="context"]/>
 ....
 
 _Syntax 2: With body content to specify
 query string parameters_
 
 ....
-<c:redirect url=”value” [context=”context”]>
+<c:redirect url="value" [context="context"]>
     <c:param> subtags
 </c:redirect>
 ....
@@ -2804,14 +2803,14 @@ _Syntax 1: Parameter value specified in
 attribute “value”_
 
 ....
-<c:param name=”name” value=”value”/>
+<c:param name="name" value="value"/>
 ....
 
 _Syntax 2: Parameter value specified in the
 body content_
 
 ....
-<c:param name=”name”>
+<c:param name="name">
     parameter value
 </c:param>
 ....
@@ -2856,15 +2855,15 @@ that a URL can be constructed to directly specify the query string
 parameters. For example:
 
 ....
-<c:import url=”/exec/doIt”>
-    <c:param name=”action” value=”register”/>
+<c:import url="/exec/doIt">
+    <c:param name="action" value="register"/>
 </c:import>
 ....
 
 is the same as:
 
 ....
-<c:import url=”/exec/doIt?action=register”/>
+<c:import url="/exec/doIt?action=register"/>
 ....
 
 It is indeed redundant, but is consistent
@@ -2989,7 +2988,7 @@ parametric replacement.
 ....
 <fmt:message key="athletesRegistered">
     <fmt:param>
-        <fmt:formatNumber value=”${athletesCount}”/>
+        <fmt:formatNumber value="${athletesCount}"/>
     </fmt:param>
 </fmt:message>
 ....
@@ -3083,7 +3082,7 @@ the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable as
 follows:
 
 ....
-<fmt:setLocale value=”en_US” />
+<fmt:setLocale value="en_US" />
 ....
 
 In the browser-based locale setting, the
@@ -3374,9 +3373,9 @@ _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setLocale value=”locale”
-            [variant=”variant”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setLocale value="locale"
+            [variant="variant"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -3441,8 +3440,8 @@ used by its body content.
 
 .*Syntax*
 ....
-<fmt:bundle basename=”basename”
-            [prefix=”prefix”]>
+<fmt:bundle basename="basename"
+            [prefix="prefix"]>
     body content
 </fmt:bundle>
 ....
@@ -3529,9 +3528,9 @@ _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setBundle basename=”basename”
-               [var=”varName”] 
-               {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setBundle basename="basename"
+               [var="varName"]
+               {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -3599,19 +3598,19 @@ bundle.
 _Syntax 1: without body content_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message key=”messageKey”
-             [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:message key="messageKey"
+             [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify message
 parameters_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message key=”messageKey”
-             [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:message key="messageKey"
+             [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]>
     <fmt:param> subtags
 </fmt:message>
 
@@ -3619,9 +3618,9 @@ _Syntax 3: with a body to specify key and
 optional message parameters_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:message [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]>
     key
     optional <fmt:param> subtags
 </fmt:message>
@@ -3734,7 +3733,7 @@ replacement to a containing `<fmt:message>` (see
 
 _Syntax 1: value specified via attribute “value”_
 ....
-<fmt:param value=”messageParameter”/>
+<fmt:param value="messageParameter"/>
 ....
 
 _Syntax 2: value specified via body content_
@@ -3793,7 +3792,7 @@ Sets the request’s character encoding.
 
 .*Syntax*
 ....
-<fmt:requestEncoding [value=”charsetName”]/>
+<fmt:requestEncoding [value="charsetName"]/>
 ....
 
 .*Body Content*
@@ -4013,7 +4012,7 @@ For example, assuming a current date of _Oct 22, 2001_ and a current time of _4:
 
 ....
 <jsp:useBean id="now" class="java.util.Date"/>
-<fmt:formatDate value=”${now}” timeStyle="long" dateStyle="long"/>
+<fmt:formatDate value="${now}" timeStyle="long" dateStyle="long"/>
 ....
 
 will output
@@ -4031,7 +4030,7 @@ formatting style for their dates and times. Assuming the same current
 date and time as in the above example, this action:
 
 ....
-<fmt:formatDate value=”${now}” pattern="dd.MM.yy"/>_
+<fmt:formatDate value="${now}" pattern="dd.MM.yy"/>_
 ....
 
 will output
@@ -4053,7 +4052,7 @@ and time are formatted in the “GMT+1:00” time zone:
 
 ....
 <fmt:timeZone value="GMT+1:00">
-    <fmt:formatDate value=”${now}” type="both" dateStyle="full"
+    <fmt:formatDate value="${now}" type="both" dateStyle="full"
         timeStyle="full"/>
 </fmt:timeZone>
 ....
@@ -4105,12 +4104,12 @@ locale.
 <jsp:useBean id="now" class="java.util.Date"/>
 
 <%-- Formatting locale lookup --%>
-<fmt:formatDate value=”${now}” />
+<fmt:formatDate value="${now}" />
 
 <fmt:bundle basename="Greetings">
     <%-- I18n localization context from parent <fmt:bundle> tag --%>
     <fmt:message key="Welcome" />
-    <fmt:formatDate value=”${now}” />
+    <fmt:formatDate value="${now}" />
 </fmt:bundle>
 ....
 
@@ -4228,7 +4227,7 @@ information is to be formatted or parsed in its body content.
 .*Syntax*
 
 ....
-<fmt:timeZone value=”timeZone”>
+<fmt:timeZone value="timeZone">
     body content
 </fmt:timeZone>
 ....
@@ -4282,9 +4281,9 @@ variable or the time zone configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setTimeZone value=”timeZone”
-                 [var=”varName”]
-                 {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setTimeZone value="timeZone"
+                 [var="varName"]
+                 {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -4348,34 +4347,34 @@ or customized manner as a number, currency, or percentage.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:formatNumber value=”numericValue”
-                  {blank}[type=”{[underline]#number#|currency|percent}”]
-                  [pattern=”customPattern”]
-                  [currencyCode=”currencyCode”]
-                  [currencySymbol=”currencySymbol”]
-                  {blank}[groupingUsed=”{[underline]#true#|false}”]
-                  [maxIntegerDigits=”maxIntegerDigits”]
-                  [minIntegerDigits=”minIntegerDigits”]
-                  [maxFractionDigits=”maxFractionDigits”]
-                  [minFractionDigits=”minFractionDigits”]
-                  [var=”varName”]
-                  {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:formatNumber value="numericValue"
+                  {blank}[type="{[underline]#number#|currency|percent}"]
+                  [pattern="customPattern"]
+                  [currencyCode="currencyCode"]
+                  [currencySymbol="currencySymbol"]
+                  {blank}[groupingUsed="{[underline]#true#|false}"]
+                  [maxIntegerDigits="maxIntegerDigits"]
+                  [minIntegerDigits="minIntegerDigits"]
+                  [maxFractionDigits="maxFractionDigits"]
+                  [minFractionDigits="minFractionDigits"]
+                  [var="varName"]
+                  {blank}[scope="{[underline]#page#|request|session|application}"]/>
  
 _Syntax 2: with a body to specify the
 numeric value to be formatted_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:formatNumber {blank}[type=”{[underline]#number#|currency|percent}”]
-                  [pattern=”customPattern”]
-                  [currencyCode=”currencyCode”]
-                  [currencySymbol=”currencySymbol”]
-                  {blank}[groupingUsed=”{[underline]#true#|false}”]
-                  [maxIntegerDigits=”maxIntegerDigits”]
-                  [minIntegerDigits=”minIntegerDigits”]
-                  [maxFractionDigits=”maxFractionDigits”]
-                  [minFractionDigits=”minFractionDigits”]
-                  [var=”varName”]
-                  {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:formatNumber {blank}[type="{[underline]#number#|currency|percent}"]
+                  [pattern="customPattern"]
+                  [currencyCode="currencyCode"]
+                  [currencySymbol="currencySymbol"]
+                  {blank}[groupingUsed="{[underline]#true#|false}"]
+                  [maxIntegerDigits="maxIntegerDigits"]
+                  [minIntegerDigits="minIntegerDigits"]
+                  [maxFractionDigits="maxFractionDigits"]
+                  [minFractionDigits="minFractionDigits"]
+                  [var="varName"]
+                  {blank}[scope="{[underline]#page#|request|session|application}"]>
     numeric value to be formatted
 </fmt:formatNumber>
 
@@ -4561,24 +4560,24 @@ customized manner.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseNumber value=”numericValue”
-                {blank}[type=”{[underline]#number#|currency|percent}”]
-                [pattern=”customPattern”]
-                [parseLocale=”parseLocale”]
-                {blank}[integerOnly=”{true|[underline]#false#}”]
-                [var=”varName”]
-                {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:parseNumber value="numericValue"
+                {blank}[type="{[underline]#number#|currency|percent}"]
+                [pattern="customPattern"]
+                [parseLocale="parseLocale"]
+                {blank}[integerOnly="{true|[underline]#false#}"]
+                [var="varName"]
+                {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify the
 numeric value to be parsed_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseNumber {blank}[type=”{[underline]#number#|currency|percent}”]
-                [pattern=”customPattern”]
-                [parseLocale=”parseLocale”]
-                {blank}[integerOnly=”{true|[underline]#false#}”]
-                [var=”varName”]
-                {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:parseNumber {blank}[type="{[underline]#number#|currency|percent}"]
+                [pattern="customPattern"]
+                [parseLocale="parseLocale"]
+                {blank}[integerOnly="{true|[underline]#false#}"]
+                [var="varName"]
+                {blank}[scope="{[underline]#page#|request|session|application}"]>
     numeric value to be parsed
 </fmt:parseNumber>
 
@@ -4833,7 +4832,7 @@ _java.util.Date_ using the `<fmt:parseDate>` action, whose parsing result
 may then be supplied to the `<fmt:formatDate>` action:
 
 ....
-<fmt:parseDate value=”4/13/02" pattern="M/d/yy" var="parsed"/> +
+<fmt:parseDate value="4/13/02" pattern="M/d/yy" var="parsed"/> +
 <fmt:formatDate value="${parsed}" dateStyle="full"/>
 ....
 
@@ -4853,28 +4852,28 @@ times that were formatted in a locale-sensitive or customized manner.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseDate value=”dateString”
-            {blank}[type=”{time|[underline]#date#|both}”]
-            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
-            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
-            [pattern=”customPattern”]
-            [timeZone=”timeZone”]
-            [parseLocale=”parseLocale”]
-            [var=”varName”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:parseDate value="dateString"
+            {blank}[type="{time|[underline]#date#|both}"]
+            {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
+            {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
+            [pattern="customPattern"]
+            [timeZone="timeZone"]
+            [parseLocale="parseLocale"]
+            [var="varName"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify the date
 value to be parsed_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseDate {blank}[type=”{time|[underline]#date#|both}”]
-            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
-            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
-            [pattern=”customPattern”]
-            [timeZone=”timeZone”]
-            [parseLocale=”parseLocale”]
-            [var=”varName”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:parseDate {blank}[type="{time|[underline]#date#|both}"]
+            {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
+            {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
+            [pattern="customPattern"]
+            [timeZone="timeZone"]
+            [parseLocale="parseLocale"]
+            [var="varName"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]>
     date value to be parsed
 </fmt:parseDate>
 
@@ -5146,7 +5145,7 @@ display the results of a query with column names as headers:
 <table>
     <!-- column headers -->
     <tr>
-        <c:forEach var=”columnName” items=”${result.columnNames}”>
+        <c:forEach var="columnName" items="${result.columnNames}">
             <th><c:out value="${columnName}"/></th>
         </c:forEach>
     </tr>
@@ -5218,7 +5217,7 @@ _SQLExecutionTag_ action:
     SET BirthDate = ?
     WHERE clientId = ?
     <acme:dateParam year="${year}" month="${month}" day="${day}"/>
-    <sql:param value=”${clientId}”/>
+    <sql:param value="${clientId}"/>
 </sql:update>
 ....
 
@@ -5228,8 +5227,8 @@ _java.util.Date_ and _java.lang.Number_, respectively, before supplying
 them to an enclosing _SQLExecutionTag_ for parametric replacement:
 
 ....
-<sql:update sql="${sqlUpdateStmt}” dataSource="${dataSource}">
-    <fmt:parseDate var="myDate" value="${someDate}”/>
+<sql:update sql="${sqlUpdateStmt}" dataSource="${dataSource}">
+    <fmt:parseDate var="myDate" value="${someDate}"/>
     <sql:param value="${myDate}"/>
 </sql:update>
 ....
@@ -5305,8 +5304,8 @@ _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]/>
 
@@ -5315,8 +5314,8 @@ arguments_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     <sql:param> actions
@@ -5327,8 +5326,8 @@ optional query parameters_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query var="varName"
-        {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     query
@@ -5479,18 +5478,18 @@ _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
-        [dataSource=”dataSource”]
+        [dataSource="dataSource"]
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+        {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With a body to specify update
 parameters_
 
 [literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
-        [dataSource=”dataSource”]
+        [dataSource="dataSource"]
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]>
+        {blank}[scope="{[underline]#page#|request|session|application}"]>
     <sql:param> actions
 </sql:update>
 
@@ -5498,8 +5497,8 @@ _Syntax 3: With a body to specify update
 statement and optional update parameters_
 
 [literal, subs="+quotes, +attributes"]
-<sql:update [dataSource=”dataSource”]
-        [var="varName"] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<sql:update [dataSource="dataSource"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     update statement
     optional <sql:param> actions
 </sql:update>
@@ -5590,7 +5589,7 @@ Establishes a transaction context for
 
 .*Syntax*
 ....
-<sql:transaction [dataSource=”dataSource”]
+<sql:transaction [dataSource="dataSource"]
         [isolation=isolationLevel]>
     <sql:query> and <sql:update> statements
 </sql:transaction>
@@ -5728,7 +5727,7 @@ variable or as the data source configuration variable (_jakarta.servlet.jsp.jstl
             [user="userName"]
             [password="password"]}
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+        {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -5815,7 +5814,7 @@ and `<sql:update>`.
 _Syntax 1: Parameter value specified in
 attribute “value”_
 ....
-<sql:param value=” _value_ ”/>
+<sql:param value=" _value_ "/>
 ....
 
 _Syntax 2: Parameter value specified in the
@@ -5882,7 +5881,7 @@ _SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<sql:dateParam value=” _value_ ” {blank}[type=”{[underline]#timestamp#|time|date}”]/>
+<sql:dateParam value=" _value_ " {blank}[type="{[underline]#timestamp#|time|date}"]/>
 
 .*Body Content*
 
@@ -6230,10 +6229,10 @@ therefore handled through the `<c:import>` action that works seamlessly
 with the XML tags as shown below:
 
 ....
-<c:import url=”http://acme.com/productInfo” var=”doc”>
-    <c:param name=”productName” value=”${product.name}”/>
+<c:import url="http://acme.com/productInfo" var="doc">
+    <c:param name="productName" value="${product.name}"/>
 </c:import>
-<x:parse doc=”${doc}” var=”parsedDoc”/>
+<x:parse doc="${doc}" var="parsedDoc"/>
 ....
 
 To resolve references to external entities,
@@ -6261,15 +6260,15 @@ can then be processed by the XPath engine. For example:
 
 ....
 <!-- parse an XML document -->
-<c:import url=”http://acme.com/customer?id=76567” var=”doc”/>
-<x:parse doc=”${doc}” var=”parsedDoc”/>
+<c:import url="http://acme.com/customer?id=76567" var="doc"/>
+<x:parse doc="${doc}" var="parsedDoc"/>
 
 <!-- access XML data via XPath expressions -->
-<x:out select=”$parsedDoc/name”/>
-<x:out select=”$parsedDoc/address”/>
+<x:out select="$parsedDoc/name"/>
+<x:out select="$parsedDoc/address"/>
 
 <!-- set a scoped variable -->
-<x:set var=”custName” scope=”request” select=”$parsedDoc/name”/>
+<x:set var="custName" scope="request" select="$parsedDoc/name"/>
 ....
 
 The context for the evaluation of an XPath
@@ -6280,8 +6279,8 @@ that can be used by nested tags. An example of this is with action
 
 ....
 <!-- context set by ancestor tag <x:forEach> -->
-<x:forEach select=”$parsedDoc//customer”>
-    <x:out select=”name”/>
+<x:forEach select="$parsedDoc//customer">
+    <x:out select="name"/>
 </x:forEach>
 ....
 
@@ -6296,21 +6295,21 @@ Parses an XML document.
 _Syntax 1: XML document specified via a
 String or Reader object_
 ....
-<x:parse {doc=”XMLDocument”|xmllink:#a3277[10]=”XMLDocument”}
-    {var=”var” [scope=”scope”]|varDom=”var”
-    [scopeDom=”scope”]}
-    [systemId=”systemId”]
-    [filter=”filter”]/>
+<x:parse {doc="XMLDocument"|xmllink:#a3277[10]="XMLDocument"}
+    {var="var" [scope="scope"]|varDom="var"
+    [scopeDom="scope"]}
+    [systemId="systemId"]
+    [filter="filter"]/>
 ....
 
 _Syntax 2: XML document specified via the
 body content_
 ....
 <x:parse
-    {var=”var” [scope=”scope”]|varDom=”var”
-    [scopeDom=”scope”]}
-    [systemId=”systemId”]
-    [filter=”filter”]>
+    {var="var" [scope="scope"]|varDom="var"
+    [scopeDom="scope"]}
+    [systemId="systemId"]
+    [filter="filter"]>
         XML Document to parse
 </x:parse>
 ....
@@ -6417,9 +6416,9 @@ and complexity of the resulting DOM structure if all non-European
 customers are pruned from the XML document prior to parsing.
 
 ....
-<c:import url=”http://acme.com/customers” var=”doc”/>
-    <x:parse doc=”${doc}” filter=”${filterEuropeanCust}”
-            var=”parsedDoc”/>
+<c:import url="http://acme.com/customers" var="doc"/>
+    <x:parse doc="${doc}" filter="${filterEuropeanCust}"
+            var="parsedDoc"/>
 ....
 
 The _filter_ attribute accepts an object of
@@ -6437,7 +6436,7 @@ result of the evaluation to the current _JspWriter_ object.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<x:out select=”XPathExpression” {blank}[escapeXml=”{[underline]#true#|false}”]/>
+<x:out select="XPathExpression" {blank}[escapeXml="{[underline]#true#|false}"]/>
 
 .*Body Content*
 
@@ -6503,8 +6502,8 @@ result into a scoped variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<x:set select=”XPathExpression”
-    var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<x:set select="XPathExpression"
+    var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -6577,7 +6576,7 @@ non-zero
 true. For example:
 
 ....
-<x:if select=”$customer/[location=’UK’]”>
+<x:if select="$customer/[location=’UK’]">
     UK based customer
 </x:if>
 ....
@@ -6598,8 +6597,8 @@ is evaluated, if present.
 
 ....
 <x:choose>
-    <x:when select=”$customer/firstName”>
-        Hello <x:out select=”$customer/firstName”/>
+    <x:when select="$customer/firstName">
+        Hello <x:out select="$customer/firstName"/>
     </x:when>
     <x:otherwise>
         Hello my friend
@@ -6612,8 +6611,8 @@ XPath expression and iterates over the result, setting the context node
 to each element in the iteration. For example:
 
 ....
-<x:forEach select=”$doc//author”>
-    <x:out select=”@name”/>
+<x:forEach select="$doc//author">
+    <x:out select="@name"/>
 </x:forEach>
 ....
 
@@ -6630,14 +6629,14 @@ evaluates to true.
 _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
-<x:if select=”XPathExpression”
-        var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<x:if select="XPathExpression"
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With body content_
 
 [literal, subs="+quotes, +attributes"]
-<x:if select=”XPathExpression”
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<x:if select="XPathExpression"
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     body content
 </x:if>
 
@@ -6736,7 +6735,7 @@ Represents an alternative within an
 
 .*Syntax*
 ....
-<x:when select=”XPathExpression”>
+<x:when select="XPathExpression">
     body content
 </x:when>
 ....
@@ -6826,9 +6825,9 @@ node to each element in the iteration.
 
 .*Syntax*
 ....
-<x:forEach [var=”varName”] select=”XPathExpression”>
-        [varStatus=”varStatusName”]
-        [begin=”begin”] [end=”end”] [step=”step”]>
+<x:forEach [var="varName"] select="XPathExpression">
+        [varStatus="varStatusName"]
+        [begin="begin"] [end="end"] [step="step"]>
     body content
 </x:forEach>
 ....
@@ -6929,17 +6928,17 @@ stylesheet (context relative path). The result of the transformation is
 written to the page.
 
 ....
-<c:import url=”http://acme.com/customers” var=”doc”/>
-<c:import url=”/WEB-INF/xslt/customerList.xsl” var=”xslt”/>
-<x:transform doc=”${doc}” xslt=”${xslt}”/>
+<c:import url="http://acme.com/customers" var="doc"/>
+<c:import url="/WEB-INF/xslt/customerList.xsl" var="xslt"/>
+<x:transform doc="${doc}" xslt="${xslt}"/>
 ....
 
 It is possible to set transformation
 parameters via nested `<x:param>` actions. For example:
 
 ....
-<x:transform doc=”${doc}” xslt=”${xslt}”>
-    <x:param name=”foo” value=”foo-value”/>
+<x:transform doc="${doc}" xslt="${xslt}">
+    <x:param name="foo" value="foo-value"/>
 </x:transform>
 ....
 
@@ -6963,22 +6962,22 @@ an XML document.
 _Syntax 1: Without body contentt_
 ....
 <x:transform
-        {doc=”XMLDocument”|xmllink:#a3279[12]=”XMLDocument”} xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        [xsltSystemId=”XSLTSystemId”]
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        {doc="XMLDocument"|xmllink:#a3279[12]="XMLDocument"} xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [xsltSystemId="XSLTSystemId"]
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
 ....
 
 _Syntax 2: With a body to specify
 transformation parameters_
 ....
 <x:transform
-        {doc=”XMLDocument”|xml1=”XMLDocument”} xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        [xsltSystemId=”XSLTSystemId”]
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        {doc="XMLDocument"|xml1="XMLDocument"} xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [xsltSystemId="XSLTSystemId"]
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
     <x:param> actions
 </x:transform>
 ....
@@ -6987,11 +6986,11 @@ _Syntax 3: With a body to specify XML
 document and optional transformation parameters_
 ....
 <x:transform
-        xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        xsltSystemId=”XSLTSystemId”
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        xsltSystemId="XSLTSystemId"
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
     XML Document to parse
     optional <x:param> actions
 </x:parse>
@@ -7106,13 +7105,13 @@ of `<x:transform>`.
 _Syntax 1: Parameter value specified in
 attribute “value”_
 ....
-<x:param name=”name” value=”value”/>
+<x:param name="name" value="value"/>
 ....
 
 _Syntax 2: Parameter value specified in the
 body content_
 ....
-<x:param name=”name”>
+<x:param name="name">
     parameter value
 </x:param>
 ....
