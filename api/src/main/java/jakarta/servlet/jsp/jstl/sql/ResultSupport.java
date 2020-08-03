@@ -21,16 +21,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * <p>Supports the creation of a jakarta.servlet.jsp.jstl.sql.Result object
- * from a source java.sql.ResultSet object. A Result object makes it much 
- * easier for page authors to access and manipulate the data resulting 
- * from a SQL query.</p>
+ * <p>
+ * Supports the creation of a jakarta.servlet.jsp.jstl.sql.Result object from a source java.sql.ResultSet object. A
+ * Result object makes it much easier for page authors to access and manipulate the data resulting from a SQL query.
+ * </p>
  *
  * @author Justyna Horwat
  *
  */
 public class ResultSupport {
-
 
     /**
      * Converts a <code>ResultSet</code> object to a <code>Result</code> object.
@@ -48,14 +47,12 @@ public class ResultSupport {
     }
 
     /**
-     * Converts <code>maxRows</code> of a <code>ResultSet</code> object to a 
-     * <code>Result</code> object.
+     * Converts <code>maxRows</code> of a <code>ResultSet</code> object to a <code>Result</code> object.
      *
      * @param rs the <code>ResultSet</code> object
      * @param maxRows the maximum number of rows to be cached into the <code>Result</code> object.
      *
-     * @return The <code>Result</code> object created from the <code>ResultSet</code>,
-     * limited by <code>maxRows</code>
+     * @return The <code>Result</code> object created from the <code>ResultSet</code>, limited by <code>maxRows</code>
      */
     public static Result toResult(ResultSet rs, int maxRows) {
         try {
