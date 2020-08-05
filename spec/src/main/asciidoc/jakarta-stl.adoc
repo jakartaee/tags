@@ -5099,7 +5099,7 @@ For example,
 {nbsp}{nbsp}{nbsp}{nbsp} _jdbc:mysql://localhost/,org.gjt.mm.mysql.Driver_
 
 where the database has been setup for access
-without any username or password. If the '',' character occurs in any of
+without any username or password. If the ',' character occurs in any of
 the JDBC parameters, it can be escaped by '\'. The character '\' itself
 can be escaped in the same way.
 
