@@ -123,7 +123,7 @@ at turning code faster than the specification could be written.
 
 Quality has been in the capable hands of Ryan
 Lubke, lead of the TCK team under the Java Community Process that also includes Lance Andersen. David
-Geary’s help in doing thorough reviews of the specification was also
+Geary's help in doing thorough reviews of the specification was also
 greatly appreciated.
 
 We are also grateful to the product team at Sun
@@ -133,7 +133,7 @@ Vanitha Venkatraman, Prasad Subramanian, and Xiaotan He.
 
 Finally, we'd like to thank the community at
 large for their ever increasing interest in this technology. We sure
-hope you’ll enjoy the Jakarta Standard Tag Library.
+hope you'll enjoy the Jakarta Standard Tag Library.
 
 == Comments
 
@@ -155,10 +155,10 @@ internationalization.
 
 === Goals
 
-The ultimate goal of the Jakarta Standard Tag Library is to help simplify Jakarta Server Pages authors’ lives.
+The ultimate goal of the Jakarta Standard Tag Library is to help simplify Jakarta Server Pages authors' lives.
 
 A page author is someone who is responsible
-for the design of a web application’s presentation layer using Jakarta Server Pages. Many page authors are not fluent in any programming language.
+for the design of a web application's presentation layer using Jakarta Server Pages. Many page authors are not fluent in any programming language.
 
 One of the main difficulties a page author is
 faced with is the need to use a scripting language (the default being
@@ -312,12 +312,12 @@ For each attribute, the following information
 is given: name, dynamic behavior, type, and description.
 
 The _rtexprvalue_ element defined in a TLD is
-covered in this specification with the column titled “Dynamic” that
+covered in this specification with the column titled "Dynamic" that
 captures the dynamic behavior of an attribute. The value can be either
 true or false. A false value in the dynamic column means that only a
 static string value can be specified for the attribute. A true value
 means that a _request-time attribute value_ can be specified. As defined
-in the Jakarta Server Pages specification, a “request-time attribute value” can be either
+in the Jakarta Server Pages specification, a "request-time attribute value" can be either
 a Java expression, an EL expression, or a value set by a
 `<jsp:attribute>`.
 
@@ -364,7 +364,7 @@ significantly reduced. This is why all the Jakarta Standard Tag Library tags exp
 only as Jakarta Server Pages scoped attributes (no scripting variable exposed). These
 exported Jakarta Server Pages scoped attributes are referred to as scoped variables in
 this specification; this helps in preventing too much overloading of the
-term “attribute”.
+term "attribute".
 
 ==== var and scope
 
@@ -374,8 +374,8 @@ exposes the current item of the customer collection it is iterating over
 in the following way:
 
 ....
-<c:forEach var=”customer” items=”${customers}”>
-    Current customer is <c:out value=”${customer}”/>
+<c:forEach var="customer" items="${customers}">
+    Current customer is <c:out value="${customer}"/>
 </c:forEach>
 ....
 
@@ -537,10 +537,10 @@ if the expected type is a _Number_, the EL will coerce a null value to
 0, if it's _Boolean_ it will be coerced to false.
 
 ** null – behavior specific to the action +
-If this rule is applied, it’s because the EL
+If this rule is applied, it's because the EL
 could not coerce the null into an appropriate default value. It is
 therefore up to the action to deal with the null value and is documented
-in the “Null & Error Handling” section of the action.
+in the "Null & Error Handling" section of the action.
 
 ** Invalid type – throw an exception
 
@@ -572,8 +572,8 @@ caught exception as the root cause of the _JspException_ it re-throws.
 
 Also, by default, Jakarta Standard Tag Library actions do not catch
 or otherwise handle exceptions that occur during evaluation of their
-body content. If they do, it is documented in their “Null & Error
-Handling” or “Description” section.
+body content. If they do, it is documented in their "Null & Error
+Handling" or "Description" section.
 
 === Configuration Data
 
@@ -615,7 +615,7 @@ transparently manipulates the name of configuration variables so they
 behave as if scopes had their own private name space. Details on the
 name manipulations involved are voluntarily left unspecified and are
 handled transparently by the _Config_ class. This ensures flexibility
-should the “scope name space” issue be addressed in the future by the
+should the "scope name space" issue be addressed in the future by the
 Jakarta Server Pages specification.
 
 When setting configuration data via the
@@ -653,8 +653,8 @@ with action `<c:out>`.
 
 For example:
 ....
-<fmt:formatDate var=”formattedDate” value=”${reservationDate}”/>
-Date: <c:out value=”${formattedDate}” default=”not specified”/>
+<fmt:formatDate var="formattedDate" value="${reservationDate}"/>
+Date: <c:out value="${formattedDate}" default="not specified"/>
 ....
 
 == Expression Language Overview
@@ -688,12 +688,12 @@ to display the title of a book.
 
 It is also possible for an attribute to
 contain more than one EL expression, mixed with static text. For
-example, the following would display “Price of productName is
-productPrice” for a list of products.
+example, the following would display "Price of productName is
+productPrice" for a list of products.
 
 ....
-<c:forEach var=”product" items=”$\{products}”>
-    <c:out value=”Price of $\{product.name} is $\{product.price}”/>
+<c:forEach var="product" items="$\{products}">
+    <c:out value="Price of $\{product.name} is $\{product.price}"/>
 </c:forEach>
 ....
 
@@ -749,7 +749,7 @@ the JavaBeans specification, or that represent collections such as
 lists, maps, or arrays.
 
 The EL recognizes the importance of these
-data structures and provides two operators, “.” and “[]”, to make it
+data structures and provides two operators, "." and "[]", to make it
 easy to access the data encapsulated in these objects.
 
 The "." operator can be used as a convenient
@@ -762,24 +762,23 @@ from ${user.address.city},
 thanks for visiting our website!
 ....
 
-The “[]” operator allows for more generalized
+The "[]" operator allows for more generalized
 access, as shown below:
 
 ....
-<%-- “productDir” is a Map object containing the description of
-products, “preferences” is a Map object containing the 
-preferences of a user --%>
+<%-- "productDir" is a Map object containing the description of
+products, "preferences" is a Map object containing the preferences of a user --%>
 product:
 ${productDir[product.custId]}
 shipping preference:
-${user.preferences[“shipping”]}
+${user.preferences["shipping"]}
 ....
 
 === Operators
 
 The operators supported in the EL handle the
 most common data manipulations. The standard relational, arithmetic, and
-logical operators are provided in the EL. A very useful “empty” operator
+logical operators are provided in the EL. A very useful "empty" operator
 is also provided.
 
 The six standard relational operators are
@@ -797,7 +796,7 @@ The _empty_ operator is a prefix operator
 that can used to determine if a value is null or empty. For example:
 
 ....
-<c:if test=”${empty param.name}”>
+<c:if test="${empty param.name}">
     Please specify your name.
 </c:if>
 ....
@@ -816,8 +815,8 @@ automatically be coerced to _ints_ when used with the `<c:forEach>`
 action.
 
 ....
-<c:forEach begin=”${requestScope.beginValue}”
-           end=”${requestScope.endValue}”>
+<c:forEach begin="${requestScope.beginValue}"
+           end="${requestScope.endValue}">
     ...
 </c:forEach>
 ....
@@ -827,7 +826,7 @@ value _param.start_ is coerced to a number and is then added to 10 to
 yield an int value for attribute _begin_.
 
 ....
-<c:forEach items=”${products}” begin=”${param.start + 10}”>
+<c:forEach items="${products}" begin="${param.start + 10}">
     ...
 </c:forEach>
 ....
@@ -838,18 +837,18 @@ Jakarta Server Pages are mostly used in presentation.
 Experience suggests that it is important to be able to provide as good a
 presentation as possible, even when simple errors occur in the page. To
 satisfy this requirement, the EL provides default values rather than
-errors when failure to evaluate an expression is deemed “recoverable”.
+errors when failure to evaluate an expression is deemed "recoverable".
 Default values are type-correct values that allow a page to easily
 recover from these error conditions.
 
 In the following example, the expression
-”$\{user.address.city}” evaluates to _null_ rather than throwing a
+"$\{user.address.city}" evaluates to _null_ rather than throwing a
 _NullPointerException_ if there is no address associated with the _user_
 object. This way, a sensible default value can be displayed without
 having to worry about exceptions being thrown by the Jakarta Server Pages page.
 
 ....
-City: <c:out value=”${user.address.city}” default=”N/A”/>
+City: <c:out value="${user.address.city}" default="N/A"/>
 ....
 
 In the following example, the addition
@@ -857,7 +856,7 @@ operator considers the value of _param.start_ to be 0 if it is not
 defined, therefore evaluating the expression to 10.
 
 ....
-<c:forEach items=”${products}” begin=”${param.start + 10}”>
+<c:forEach items="${products}" begin="${param.start + 10}">
     ...
 </c:forEach>
 ....
@@ -889,7 +888,7 @@ attribute.
 
 The `<c:out>` action also supports the notion
 of default values for cases where the value of an EL expression is null.
-In the example below, the value “unknown” will be displayed if the
+In the example below, the value "unknown" will be displayed if the
 property _city_ is not accessible.
 
 ....
@@ -900,7 +899,7 @@ The action `<c:set>` is used to set the value
 of a Jakarta Server Pages scoped attribute as follows:
 
 ....
-<c:set var=”foo” value=”value”/>
+<c:set var="foo" value="value"/>
 ....
 
 It is also possible to set the value of a
@@ -930,19 +929,19 @@ With the `<c:set>` tag, this can be handled
 without requiring the extra `<acme:att1>` tag.
 
 ....
-<c:set var=”att1”>
+<c:set var="att1">
 
  <acme:foo>mumbojumbo</acme:foo>
 
 </c:set>
 
-<acme:atag att1=”${att1}”/>
+<acme:atag att1="${att1}"/>
 ....
 
 In the preceding example, the `<c:set>` action
 sets the value of the _att1_ scoped variable to the output of the
 `<acme:foo>` action. `<c:set>` – like all Jakarta Standard Tag Library actions that create scoped
-attributes – creates scoped attributes in “page” scope by default.
+attributes – creates scoped attributes in "page" scope by default.
 
 `<c:set>` may also be used to set the property
 of a JavaBeans object, or add or set a specific element in a
@@ -982,11 +981,11 @@ authors to recover gracefully from error conditions that they can
 control. For example:
 
 ....
-<c:catch var=”exception”>
+<c:catch var="exception">
 <!-- Execution we can recover from if exception occurs -->
 ...
 </c:catch>
-<c:if test=”${exception != null}”>
+<c:if test="${exception != null}">
 Sorry. Processing could not be performed because...
 </c:if>
 ....
@@ -1004,13 +1003,13 @@ of the evaluation to the current _JspWriter_ object.
 _Without a body_
 
 [literal, subs="+quotes, +attributes"]
-<c:out value=”value” {blank}[escapeXml=”{[underline]#true#|false}”]
-    {blank}[default=”defaultValue”] />
+<c:out value="value" {blank}[escapeXml="{[underline]#true#|false}"]
+    {blank}[default="defaultValue"] />
 
 _With a body_
 
 [literal, subs="+quotes, +attributes"]
-<c:out value=”value” {empty}[escapeXml=”{[underline]#true#|false}”]>
+<c:out value="value" {empty}[escapeXml="{[underline]#true#|false}"]>
     default value
 </c:out>
 
@@ -1030,7 +1029,7 @@ content, then the action trims it and processes it further.
 
 | _escapeXml_ |
 _true_ | _boolean_
-|Deterrmines whether characters <,>,&,’,” in
+|Deterrmines whether characters <,>,&,'," in
 the resulting string should be converted to their corresponding
 character entity codes. Default value is true.
 
@@ -1075,9 +1074,9 @@ character conversions are applied:
 
 | _&_ | _\&amp;_
 
-|‘ |\&#039;
+|' |\&#039;
 
-|‘’ |\&#034;
+|" |\&#034;
 |===
 
 The default value can be specified either via
@@ -1099,35 +1098,35 @@ _Syntax 1: Set the value of a scoped
 variable using attribute value_
 
 [literal, subs="+quotes, +attributes"]
-<c:set value=”value”
-    var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]/>
+<c:set value="value"
+    var="varName" {empty}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: Set the value of a scoped
 variable using body content_
 
 [literal, subs="+quotes, +attributes"]
-<c:set var=”varName” {empty}[scope=”{[underline]#page#|request|session|application}”]>
+<c:set var="varName" {empty}[scope="{[underline]#page#|request|session|application}"]>
     body content
 </c:set>
 
 _Syntax 3: Set a property of a target object
 using attribute value_
 ....
-<c:set value=”value”
-    target=”target” property=”propertyName”/>
+<c:set value="value"
+    target="target" property="propertyName"/>
 ....
 
 _Syntax 4: Set a property of a target object
 using body content_
 ....
-<c:set target=”target” property=”propertyName”>
+<c:set target="target" property="propertyName">
     body content
 </c:set>
 ....
 
 _Syntax 5: Set a deferred value_
 ....
-<c:set var=”varName” value="deferred-value"/>
+<c:set var="varName" value="deferred-value"/>
 ....
 
 .*Body Content*
@@ -1260,8 +1259,8 @@ Removes a scoped variable.
 .*Syntax*
 
 ....
-<c:remove var=”varName” 
-          [scope=”{page|request|session|application}”]/>
+<c:remove var="varName"
+          [scope="{page|request|session|application}"]/>
 ....
 
 .*Attributes*
@@ -1299,7 +1298,7 @@ of its nested actions.
 
 .*Syntax*
 ....
-<c:catch [var=”varName”]>
+<c:catch [var="varName"]>
     nested actions
 </c:catch>
 ....
@@ -1364,7 +1363,7 @@ conditional execution.
 A _simple_ conditional execution action
 evaluates its body content only if the test condition associated with it
 is true. In the following example, a special greeting is displayed only
-if this is a user’s first visit to the site:
+if this is a user's first visit to the site:
 
 ....
 <c:if test="${user.visitCount == 1}">
@@ -1377,17 +1376,17 @@ execution, only one among a number of possible alternative actions gets
 its body content evaluated.
 
 For example, the following sample code shows
-how the text rendered depends on a user’s membership category.
+how the text rendered depends on a user's membership category.
 
 ....
 <c:choose>
-    <c:when test="${user.category == 'trial'}”>
+    <c:when test="${user.category == 'trial'}">
         ...
     </c:when>
-    <c:when test="${user.category == 'member'}”>
+    <c:when test="${user.category == 'member'}">
         ...
     </c:when>
-    <c:when test="${user.category == 'vip'}”>
+    <c:when test="${user.category == 'vip'}">
         ...
     </c:when>
     <c:otherwise>
@@ -1401,7 +1400,7 @@ achieved as follows:
 
 ....
 <c:choose>
-    <c:when test="${count == 0}”>
+    <c:when test="${count == 0}">
         No records matched your selection.
     </c:when>
     <c:otherwise>
@@ -1469,15 +1468,15 @@ specified with the _test_ attribute is true.
 _Syntax 1: Without body content_
 
 ....
-<c:if test=”testCondition”
-    var=”varName” [scope=”{page|request|session|application}”]/>
+<c:if test="testCondition"
+    var="varName" [scope="{page|request|session|application}"]/>
 ....
 
 _Syntax 2: With body content_
 
 ....
-<c:if test=”testCondition”
-        [var=”varName”] [scope=”{page|request|session|application}”]>
+<c:if test="testCondition"
+        [var="varName"] [scope="{page|request|session|application}"]>
     body content
 </c:if>
 ....
@@ -1575,7 +1574,7 @@ action.
 .*Syntax*
 
 ....
-<c:when test=”testCondition”>
+<c:when test="testCondition">
     body content
 </c:when>
 ....
@@ -1676,7 +1675,7 @@ collection.
 
 ....
 <table>
-    <c:forEach var=”customer” items=”${customers}”>
+    <c:forEach var="customer" items="${customers}">
         <tr><td>${customer}</td></tr>
     </c:forEach>
 </table>
@@ -1739,7 +1738,7 @@ they should not be used within more than one iteration tag.
 *Deprecated*: Finally,
 _java.lang.String_ objects can be iterated over if the string represents
 a list of comma separated values (e.g.
-“Monday,Tuesday,Wednesday,Thursday,Friday”).footnote:[The proper way to process strings of tokens is via <c:forTokens> or via functions _split_ and _join_.]
+"Monday,Tuesday,Wednesday,Thursday,Friday").footnote:[The proper way to process strings of tokens is via <c:forTokens> or via functions _split_ and _join_.]
 
 Absent from the list of supported types is
 _java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_). The reason
@@ -1783,11 +1782,11 @@ collection, and the second containing the name of the product.
 
 ....
 <table>
-    <c:forEach var=”product” items=”${products}”
-            varStatus=”status”>
+    <c:forEach var="product" items="${products}"
+            varStatus="status">
         <tr>
-            <td>${status.count}”</td>
-            <td>${product.name}”</td>
+            <td>${status.count}"</td>
+            <td>${product.name}"</td>
         </tr>
     </c:forEach>
 </table>
@@ -1806,7 +1805,7 @@ integer value of the current index. In this example, _i_ would take
 values from 100 to 110 (inclusive).
 
 ....
-<c:forEach var=”i” begin=”100” end=”110”>
+<c:forEach var="i" begin="100" end="110">
     ${i}
 </c:forEach>
 ....
@@ -1898,18 +1897,18 @@ collection of objects, or repeats it a fixed number of times.
 
 _Syntax 1: Iterate over a collection of objects_
 ....
-<c:forEach  [var=”varName”] items=”collection”
-            [varStatus=”varStatusName”]
-            [begin=”begin”] [end=”end”] [step=”step”]>
+<c:forEach  [var="varName"] items="collection"
+            [varStatus="varStatusName"]
+            [begin="begin"] [end="end"] [step="step"]>
     body content
 </c:forEach>
 ....
 
 _Syntax 2: Iterate a fixed number of times_
 ....
-<c:forEach  [var=”varName”]
-            [varStatus=”varStatusName”]
-            begin=”begin” end=”end” [step=”step”]>
+<c:forEach  [var="varName"]
+            [varStatus="varStatusName"]
+            begin="begin" end="end" [step="step"]>
     body content
 </c:forEach>
 ....
@@ -1934,7 +1933,7 @@ object of the underlying collection.
 
 | _items_ | _true_
 |Any of the supported types described in
-Section “Description” below. |Collection
+Section "Description" below. |Collection
 of items to iterate over.
 
 | _varStatus_ |
@@ -2219,7 +2218,7 @@ necessary, and `<c:param>` transparently encodes query string parameters
     <c:param name="name" value="${param.name}"/>
     <c:param name="country" value="${param.country}"/>
 </c:url>
-<a href=’<c:out value="${myUrl}"/>’>Register</a>
+<a href='<c:out value="${myUrl}"/>'>Register</a>
 ....
 
 Another important feature of `<c:url>` is that
@@ -2242,7 +2241,7 @@ README file at the FTP site of acme.com could be included within the
 page.
 
 ....
-<c:import url=”ftp://ftp.acme.com/README”/>
+<c:import url="ftp://ftp.acme.com/README"/>
 ....
 
 In the Jakarta Server Pages specification, a `<jsp:include>`
@@ -2271,7 +2270,7 @@ body content of `<acme:transform>`.
 
 ....
 <acme:transform>
-    <jsp:include page=”/exec/employeesList”/>
+    <jsp:include page="/exec/employeesList"/>
 </acme:transform>
 ....
 
@@ -2294,13 +2293,13 @@ types of URL are shown in the sample code below.
 
 ....
 <%-- import a resource with an absolute URL --%>
-<c:import url=”http://acme.com/exec/customers?country=Japan/>_
+<c:import url="http://acme.com/exec/customers?country=Japan/>_
 
 <%-- import a resource with a relative URL - same context --%>
-<c:import url=”/copyright.html”/>
+<c:import url="/copyright.html"/>
 
 <%-- import a resource with a relative URL - foreign context --%>
-<c:import url=”/logo.html” context=”/master”/>
+<c:import url="/logo.html" context="/master"/>
 ....
 
 ==== Exporting an object: String or Reader
@@ -2316,15 +2315,15 @@ that exported object as shown in the following example.
 
 ....
 <%-- Export the content of the URL resource as a String --%>
-<c:import url=”http://acme.com/exec/customers?country=USA"
+<c:import url="http://acme.com/exec/customers?country=USA"
           var="customers"/>
-<acme:notify in=”${customers}”/>
+<acme:notify in="${customers}"/>
 
 <%-- Export the content of the URL resource as a Reader --%>
 
-<c:import url=”http://acme.com/exec/customers?country=USA"
+<c:import url="http://acme.com/exec/customers?country=USA"
           varReader="customers">
-    <acme:notify in=”${customers}”/>
+    <acme:notify in="${customers}"/>
 </c:import>
 ....
 
@@ -2334,7 +2333,7 @@ caches its content and makes it reusable.
 If the imported content is large, some
 performance benefits may be achieved by exporting it as a _Reader_
 object since the content can be accessed directly without any buffering.
-However, the performance benefits are not guaranteed since the reader’s
+However, the performance benefits are not guaranteed since the reader's
 support is implementation dependent. It is also important to note that
 the _varReader_ scoped variable has nested visibility; it can only be
 accessed within the body content of `<c:import>`.
@@ -2377,9 +2376,9 @@ _Syntax 1: Resource content inlined or
 exported as a String object_
 
 [literal, subs="+quotes, +attributes"]
-<c:import url=”url” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [charEncoding=”charEncoding”]>
+<c:import url="url" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]
+        [charEncoding="charEncoding"]>
     optional body content for <c:param> subtags
 </c:import>
 
@@ -2387,9 +2386,9 @@ _Syntax 2: Resource content exported as a
 Reader object_
 
 ....
-<c:import url=”url” [context=”context”]
-        varReader=”varReaderName”
-        [charEncoding=”charEncoding”]>
+<c:import url="url" [context="context"]
+        varReader="varReaderName"
+        [charEncoding="charEncoding"]>
     body content where varReader is consumed by another action
 </c:import>
 ....
@@ -2417,7 +2416,7 @@ relative URL resource that belongs to a foreign context.
 
 | _var_ | _false_
 | _String_ |Name
-of the exported scoped variable for the resource’s content. The type of
+of the exported scoped variable for the resource's content. The type of
 the scoped variable is _String_.
 
 | _scope_ |
@@ -2432,7 +2431,7 @@ input resource.
 | _varReader_ |
 _false_ | _String_
 |Name of the exported scoped variable for the
-resource’s content. The type of the scoped variable is _Reader_.
+resource's content. The type of the scoped variable is _Reader_.
 |===
 
 .*Null & Error Handling*
@@ -2501,7 +2500,7 @@ established within the start element of the action. It is therefore
 impossible for nested `<c:param>` actions to modify the URL of the
 resource to be accessed, thus their illegality with syntax 2. In such a
 situation, `<c:url>` may be used to build a URL with query string
-parametersfootnote:[It is however important to note that using the output of <c:url> as the _url_ attribute value of <c:import> won't work for context relative URLs (URLs that start with a '/'). That’s because in those cases <c:url> prepends the context path to the URL value.]. `<c:import>` will remove any session id
+parametersfootnote:[It is however important to note that using the output of <c:url> as the _url_ attribute value of <c:import> won't work for context relative URLs (URLs that start with a '/'). That's because in those cases <c:url> prepends the context path to the URL value.]. `<c:import>` will remove any session id
 information if necessary (see <<c:url>>).
 
 .*Character Encoding*
@@ -2635,15 +2634,15 @@ applied.
 _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
-<c:url value=”value” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<c:url value="value" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With body content to specify
 query string parameters_
 
 [literal, subs="+quotes, +attributes"]
-<c:url value=”value” [context=”context”]
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<c:url value="value" [context="context"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     <c:param> subtags
 </c:url>
 
@@ -2733,14 +2732,14 @@ Sends an HTTP redirect to the client.
 _Syntax 1: Without body content_
 
 ....
-<c:redirect url=”value” [context=”context”]/>
+<c:redirect url="value" [context="context"]/>
 ....
 
 _Syntax 2: With body content to specify
 query string parameters_
 
 ....
-<c:redirect url=”value” [context=”context”]>
+<c:redirect url="value" [context="context"]>
     <c:param> subtags
 </c:redirect>
 ....
@@ -2801,17 +2800,17 @@ action of `<c:import>`, `<c:url>`, `<c:redirect>`.
 
 
 _Syntax 1: Parameter value specified in
-attribute “value”_
+attribute "value"_
 
 ....
-<c:param name=”name” value=”value”/>
+<c:param name="name" value="value"/>
 ....
 
 _Syntax 2: Parameter value specified in the
 body content_
 
 ....
-<c:param name=”name”>
+<c:param name="name">
     parameter value
 </c:param>
 ....
@@ -2856,15 +2855,15 @@ that a URL can be constructed to directly specify the query string
 parameters. For example:
 
 ....
-<c:import url=”/exec/doIt”>
-    <c:param name=”action” value=”register”/>
+<c:import url="/exec/doIt">
+    <c:param name="action" value="register"/>
 </c:import>
 ....
 
 is the same as:
 
 ....
-<c:import url=”/exec/doIt?action=register”/>
+<c:import url="/exec/doIt?action=register"/>
 ....
 
 It is indeed redundant, but is consistent
@@ -2879,7 +2878,7 @@ With the explosion of application development
 based on web technologies, and the deployment of such applications on
 the Internet, applications must be able to adapt to the languages and
 formatting conventions of their clients. This means that page authors
-must be able to tailor page content according to the client’s language
+must be able to tailor page content according to the client's language
 and cultural formatting conventions. For example, the number 345987.246
 should be formatted as 345 987,246 for France, 345.987,246 for Germany,
 and 345,987.246 for the U.S.
@@ -2915,7 +2914,7 @@ allow various data elements such as numbers, currencies, dates and times
 to be formatted and parsed in a locale-sensitive or customized manner
 (this may be used in either approach).
 
-The Jakarta Standard Tag Library’s i18n actions are covered in this
+The Jakarta Standard Tag Library's i18n actions are covered in this
 chapter. The formatting actions are covered in
 <<Formatting Actions: I18n-capable formatting tag library>>.
 
@@ -2930,14 +2929,14 @@ code, along with an optional country codefootnote:[A variant code may also be sp
 
 * Language code +
 The language code is the lower-case
-two-letter code as defined by ISO-639 (e.g. “ca” for Catalan, “zh” for
+two-letter code as defined by ISO-639 (e.g. "ca" for Catalan, "zh" for
 Chinese). The full list of these codes can be found at a number of
 sites, such as: +
 http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
 
 * Country code +
 The country code is the upper-case two-letter
-code as defined by ISO-3166 (e.g. “IT” for Italy, “CR” for Costa Rica).
+code as defined by ISO-3166 (e.g. "IT" for Italy, "CR" for Costa Rica).
 The full list of these codes can be found at a number of sites, such
 as: +
 http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html.
@@ -2964,8 +2963,8 @@ application. Assuming that French and English are the only languages
 supported by the application, there will be two resource bundles:
 _Registration_fr_ (French language) and _Registration_en_ (English
 language). Depending on the locale associated with the client request,
-the key “greeting” could be mapped to the message “Bonjour” (French) or
-“Hello” (English).
+the key "greeting" could be mapped to the message "Bonjour" (French) or
+"Hello" (English).
 
 ==== <fmt:message>
 
@@ -2989,7 +2988,7 @@ parametric replacement.
 ....
 <fmt:message key="athletesRegistered">
     <fmt:param>
-        <fmt:formatNumber value=”${athletesCount}”/>
+        <fmt:formatNumber value="${athletesCount}"/>
     </fmt:param>
 </fmt:message>
 ....
@@ -3060,7 +3059,7 @@ used for localization.
 
 If the resource bundle of an i18n
 localization context needs to be determined, it is retrieved from the
-web application’s resources according to the algorithm described in
+web application's resources according to the algorithm described in
 section Section 8.3. This algorithm requires two pieces of information:
 the basename of the resource bundle (as described in the previous
 section) and the preferred locales.
@@ -3074,7 +3073,7 @@ the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration setting (see
 <<Locale>>). Setting the locale this way
 is useful in situations where an application lets its users pick their
 preferred locale and then sets the scoped variable accordingly. This may
-also be useful in the case where a client’s preferred locale is
+also be useful in the case where a client's preferred locale is
 retrieved from a database and installed for the page using the
 `<fmt:setLocale>` action.
 
@@ -3083,12 +3082,12 @@ the _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable as
 follows:
 
 ....
-<fmt:setLocale value=”en_US” />
+<fmt:setLocale value="en_US" />
 ....
 
 In the browser-based locale setting, the
 client determines via its browser settings which locale(s) should be
-used by the web application. The action retrieves the client’s locale
+used by the web application. The action retrieves the client's locale
 preferences by calling _ServletRequest.getLocales()_ on the incoming
 request. This returns a list of the locales (in order of preference)
 that the client wants to use.
@@ -3196,8 +3195,8 @@ data to take a proper corrective action.
 It is important to note that this algorithm
 gives higher priority to a language match over an exact match that would
 have occurred further down the list of preferred locales. For example,
-if the browser-based locale settings are “en” and “fr_CA”, with resource
-bundles “Messages_en” and “Messages_fr_CA”, the Messages_en bundle will
+if the browser-based locale settings are "en" and "fr_CA", with resource
+bundles "Messages_en" and "Messages_fr_CA", the Messages_en bundle will
 be selected as the resource bundle for the localization context.
 
 The definition of a fallback locale along
@@ -3304,7 +3303,7 @@ will be found.
 === Response Encoding
 
 Any i18n action that establishes a
-localization context is responsible for setting the response’s locale of
+localization context is responsible for setting the response's locale of
 its page, unless the localization context that was established does not
 have any locale. This is done by calling method
 _ServletResponse.setLocale()_ with the locale of the localization
@@ -3318,7 +3317,7 @@ with a big enough buffer size, since _ServletResponse.setLocale()_ must
 be called before _ServletResponse.getWriter()_ in order for the
 specified locale to affect the construction of the writer.
 
-More specifically, the response’s
+More specifically, the response's
 _setLocale()_ method is always called by the `<fmt:setLocale>` action (see <<fmt:setLocale>>). In addition, it is
 called by the following actions:
 
@@ -3342,7 +3341,7 @@ attribute may be used by the `<fmt:requestEncoding>` action (see
 invoked by a form included in the response to set the request charset to
 the same as the response charset. This makes it possible for the
 container to decode the form parameter values properly, since browsers
-typically encode form field values using the response’s charset.
+typically encode form field values using the response's charset.
 
 The rules related to the setting of an HTTP
 response character encoding, Content-Language header, and Content-Type
@@ -3374,9 +3373,9 @@ _jakarta.servlet.jsp.jstl.fmt.locale_ configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setLocale value=”locale”
-            [variant=”variant”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setLocale value="locale"
+            [variant="variant"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -3399,7 +3398,7 @@ java.util.Locale
 printable representation of a locale, which must contain a two-letter
 (lower-case) language code (as defined by ISO-639), and may contain a
 two-letter (upper-case) country code (as defined by ISO-3166). Language
-and country codes must be separated by hyphen (’-’) or underscore (’_’).
+and country codes must be separated by hyphen ('-') or underscore ('_').
 
 | _variant_ |
 _true_ | _String_ |
@@ -3441,8 +3440,8 @@ used by its body content.
 
 .*Syntax*
 ....
-<fmt:bundle basename=”basename”
-            [prefix=”prefix”]>
+<fmt:bundle basename="basename"
+            [prefix="prefix"]>
     body content
 </fmt:bundle>
 ....
@@ -3463,7 +3462,7 @@ ignores the body content.
 | _basename_ |
 _true_ | _String_
 |Resource bundle base name. This is the
-bundle’s fully-qualified resource name, which has the same form as a
+bundle's fully-qualified resource name, which has the same form as a
 fully-qualified class name, that is, it uses "." as the package
 component separator and does not have any file type (such as ".class" or
 ".properties") suffix.
@@ -3492,7 +3491,7 @@ is determined according to the algorithm presented in
 <<Resource Bundle Determination Algorithm>>.
 
 The scope of the i18n localization context is
-limited to the action’s body content.
+limited to the action's body content.
 
 The _prefix_ attribute is provided as a
 convenience for very long message key names. Its value is prepended to
@@ -3529,9 +3528,9 @@ _jakarta.servlet.jsp.jstl.fmt.localizationContext_ configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setBundle basename=”basename”
-               [var=”varName”] 
-               {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setBundle basename="basename"
+               [var="varName"]
+               {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -3547,7 +3546,7 @@ Empty.
 | _basename_ |
 _true_ | _String_
 |Resource bundle base name. This is the
-bundle’s fully-qualified resource name, which has the same form as a
+bundle's fully-qualified resource name, which has the same form as a
 fully-qualified class name, that is, it uses "." as the package
 component separator and does not have any file type (such as ".class" or
 ".properties") suffix.
@@ -3599,19 +3598,19 @@ bundle.
 _Syntax 1: without body content_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message key=”messageKey”
-             [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:message key="messageKey"
+             [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify message
 parameters_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message key=”messageKey”
-             [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:message key="messageKey"
+             [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]>
     <fmt:param> subtags
 </fmt:message>
 
@@ -3619,9 +3618,9 @@ _Syntax 3: with a body to specify key and
 optional message parameters_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:message [bundle=”resourceBundle”]
-             [var=”varName”]
-             {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:message [bundle="resourceBundle"]
+             [var="varName"]
+             {blank}[scope="{[underline]#page#|request|session|application}"]>
     key
     optional <fmt:param> subtags
 </fmt:message>
@@ -3669,7 +3668,7 @@ processed as if undefined; that is, an error message of the form
 
 * If the i18n localization context that this
 action determines does not have any resource bundle, an error message of
-the form “???<key>???” is produced
+the form "???<key>???" is produced
 
 .*Description*
 
@@ -3677,7 +3676,7 @@ The `<fmt:message>` action looks up the
 localized message corresponding to the given message key.
 
 The message key may be specified via the
-_key_ attribute or from the tag’s body content. If this action is nested
+_key_ attribute or from the tag's body content. If this action is nested
 inside a `<fmt:bundle>` action, and the parent `<fmt:bundle>` action
 contains a _prefix_ attribute, the specified prefix is prepended to the
 message key.
@@ -3732,9 +3731,9 @@ replacement to a containing `<fmt:message>` (see
 
 .*Syntax*
 
-_Syntax 1: value specified via attribute “value”_
+_Syntax 1: value specified via attribute "value"_
 ....
-<fmt:param value=”messageParameter”/>
+<fmt:param value="messageParameter"/>
 ....
 
 _Syntax 2: value specified via body content_
@@ -3782,18 +3781,18 @@ method of a _java.text.MessageFormat_ instance, and the values of the
 instance's _format()_ method.
 
 The argument value may be specified via the
-_value_ attribute or inline via the tag’s body content.
+_value_ attribute or inline via the tag's body content.
 
 <<<
 
 [[fmt:requestEncoding]]
 === <fmt:requestEncoding>
 
-Sets the request’s character encoding.
+Sets the request's character encoding.
 
 .*Syntax*
 ....
-<fmt:requestEncoding [value=”charsetName”]/>
+<fmt:requestEncoding [value="charsetName"]/>
 ....
 
 .*Body Content*
@@ -3815,7 +3814,7 @@ of character encoding to be applied when decoding request parameters.
 .*Description*
 
 The `<fmt:requestEncoding>` action may be used
-to set the request’s character encoding, in order to be able to
+to set the request's character encoding, in order to be able to
 correctly decode request parameter values whose encoding is different
 from ISO-8859-1.
 
@@ -3948,7 +3947,7 @@ formatted and parsed in a locale-sensitive or customized manner.
 
 The <fmt:formatNumber> action allows page
 authors to format numbers, currencies, and percentages according to the
-client’s cultural formatting conventions.
+client's cultural formatting conventions.
 
 For example, the output of:
 
@@ -3956,14 +3955,14 @@ For example, the output of:
 <fmt:formatNumber value="9876543.21" type="currency"/>
 ....
 
-varies with the page’s locale (given in
+varies with the page's locale (given in
 parentheses), as follows:
 
-{nbsp}{nbsp}{nbsp}{nbsp} _SFr. 9’876’543.21 (fr_CH)_ +
+{nbsp}{nbsp}{nbsp}{nbsp} _SFr. 9'876'543.21 (fr_CH)_ +
 {nbsp}{nbsp}{nbsp}{nbsp} _$9,876,543.21 (en_US)_
 
 While the previous example uses the default
-formatting pattern (for currencies) of the page’s locale, it is also
+formatting pattern (for currencies) of the page's locale, it is also
 possible to specify a customized formatting pattern. For example, a
 pattern of ".000" will cause any numeric value formatted with it to be
 represented with 3 fraction digits, adding trailing zeros if necessary,
@@ -4006,14 +4005,14 @@ currency, and store it back to the database.
 ==== Formatting Dates and Times
 
 The `<fmt:formatDate>` action allows page
-authors to format dates and times according to the client’s cultural
+authors to format dates and times according to the client's cultural
 formatting conventions.
 
 For example, assuming a current date of _Oct 22, 2001_ and a current time of _4:05:53PM_, the following action:
 
 ....
 <jsp:useBean id="now" class="java.util.Date"/>
-<fmt:formatDate value=”${now}” timeStyle="long" dateStyle="long"/>
+<fmt:formatDate value="${now}" timeStyle="long" dateStyle="long"/>
 ....
 
 will output
@@ -4031,7 +4030,7 @@ formatting style for their dates and times. Assuming the same current
 date and time as in the above example, this action:
 
 ....
-<fmt:formatDate value=”${now}” pattern="dd.MM.yy"/>_
+<fmt:formatDate value="${now}" pattern="dd.MM.yy"/>_
 ....
 
 will output
@@ -4049,11 +4048,11 @@ action may be nested inside a `<fmt:timeZone>` action or supplied with a
 _timeZone_ attribute.
 
 In the following example, the current date
-and time are formatted in the “GMT+1:00” time zone:
+and time are formatted in the "GMT+1:00" time zone:
 
 ....
 <fmt:timeZone value="GMT+1:00">
-    <fmt:formatDate value=”${now}” type="both" dateStyle="full"
+    <fmt:formatDate value="${now}" type="both" dateStyle="full"
         timeStyle="full"/>
 </fmt:timeZone>
 ....
@@ -4105,12 +4104,12 @@ locale.
 <jsp:useBean id="now" class="java.util.Date"/>
 
 <%-- Formatting locale lookup --%>
-<fmt:formatDate value=”${now}” />
+<fmt:formatDate value="${now}" />
 
 <fmt:bundle basename="Greetings">
     <%-- I18n localization context from parent <fmt:bundle> tag --%>
     <fmt:message key="Welcome" />
-    <fmt:formatDate value=”${now}” />
+    <fmt:formatDate value="${now}" />
 </fmt:bundle>
 ....
 
@@ -4215,7 +4214,7 @@ from the enclosing `<fmt:timeZone>` action.
 * Use the time zone given by the
 _jakarta.servlet.jsp.jstl.fmt.timeZone_ configuration setting.
 
-* Use the Jakarta Server Pages container’s time zone.
+* Use the Jakarta Server Pages container's time zone.
 
 <<<
 
@@ -4228,7 +4227,7 @@ information is to be formatted or parsed in its body content.
 .*Syntax*
 
 ....
-<fmt:timeZone value=”timeZone”>
+<fmt:timeZone value="timeZone">
     body content
 </fmt:timeZone>
 ....
@@ -4282,9 +4281,9 @@ variable or the time zone configuration variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<fmt:setTimeZone value=”timeZone”
-                 [var=”varName”]
-                 {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:setTimeZone value="timeZone"
+                 [var="varName"]
+                 {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -4348,34 +4347,34 @@ or customized manner as a number, currency, or percentage.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:formatNumber value=”numericValue”
-                  {blank}[type=”{[underline]#number#|currency|percent}”]
-                  [pattern=”customPattern”]
-                  [currencyCode=”currencyCode”]
-                  [currencySymbol=”currencySymbol”]
-                  {blank}[groupingUsed=”{[underline]#true#|false}”]
-                  [maxIntegerDigits=”maxIntegerDigits”]
-                  [minIntegerDigits=”minIntegerDigits”]
-                  [maxFractionDigits=”maxFractionDigits”]
-                  [minFractionDigits=”minFractionDigits”]
-                  [var=”varName”]
-                  {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:formatNumber value="numericValue"
+                  {blank}[type="{[underline]#number#|currency|percent}"]
+                  [pattern="customPattern"]
+                  [currencyCode="currencyCode"]
+                  [currencySymbol="currencySymbol"]
+                  {blank}[groupingUsed="{[underline]#true#|false}"]
+                  [maxIntegerDigits="maxIntegerDigits"]
+                  [minIntegerDigits="minIntegerDigits"]
+                  [maxFractionDigits="maxFractionDigits"]
+                  [minFractionDigits="minFractionDigits"]
+                  [var="varName"]
+                  {blank}[scope="{[underline]#page#|request|session|application}"]/>
  
 _Syntax 2: with a body to specify the
 numeric value to be formatted_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:formatNumber {blank}[type=”{[underline]#number#|currency|percent}”]
-                  [pattern=”customPattern”]
-                  [currencyCode=”currencyCode”]
-                  [currencySymbol=”currencySymbol”]
-                  {blank}[groupingUsed=”{[underline]#true#|false}”]
-                  [maxIntegerDigits=”maxIntegerDigits”]
-                  [minIntegerDigits=”minIntegerDigits”]
-                  [maxFractionDigits=”maxFractionDigits”]
-                  [minFractionDigits=”minFractionDigits”]
-                  [var=”varName”]
-                  {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:formatNumber {blank}[type="{[underline]#number#|currency|percent}"]
+                  [pattern="customPattern"]
+                  [currencyCode="currencyCode"]
+                  [currencySymbol="currencySymbol"]
+                  {blank}[groupingUsed="{[underline]#true#|false}"]
+                  [maxIntegerDigits="maxIntegerDigits"]
+                  [minIntegerDigits="minIntegerDigits"]
+                  [maxFractionDigits="maxFractionDigits"]
+                  [minFractionDigits="minFractionDigits"]
+                  [var="varName"]
+                  {blank}[scope="{[underline]#page#|request|session|application}"]>
     numeric value to be formatted
 </fmt:formatNumber>
 
@@ -4479,7 +4478,7 @@ and the caught exception must be provided as the root cause.
 
 The numeric value to be formatted may be
 specified via the _value_ attribute; if missing, it is read from the
-tag’s body content.
+tag's body content.
 
 The formatting pattern may be specified via
 the _pattern_ attribute, or is looked up in a locale-dependent fashion.
@@ -4542,8 +4541,8 @@ currency to use.
 
 If both _currencyCode_ and _currencySymbol_
 are present, _currencyCode_ takes precedence over _currencySymbol_ if
-the _java.util.Currency_ class is defined in the container’s runtime
-(that is, if the container’s runtime is Java SE 1.4 or greater), and
+the _java.util.Currency_ class is defined in the container's runtime
+(that is, if the container's runtime is Java SE 1.4 or greater), and
 _currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
@@ -4561,24 +4560,24 @@ customized manner.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseNumber value=”numericValue”
-                {blank}[type=”{[underline]#number#|currency|percent}”]
-                [pattern=”customPattern”]
-                [parseLocale=”parseLocale”]
-                {blank}[integerOnly=”{true|[underline]#false#}”]
-                [var=”varName”]
-                {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:parseNumber value="numericValue"
+                {blank}[type="{[underline]#number#|currency|percent}"]
+                [pattern="customPattern"]
+                [parseLocale="parseLocale"]
+                {blank}[integerOnly="{true|[underline]#false#}"]
+                [var="varName"]
+                {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify the
 numeric value to be parsed_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseNumber {blank}[type=”{[underline]#number#|currency|percent}”]
-                [pattern=”customPattern”]
-                [parseLocale=”parseLocale”]
-                {blank}[integerOnly=”{true|[underline]#false#}”]
-                [var=”varName”]
-                {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:parseNumber {blank}[type="{[underline]#number#|currency|percent}"]
+                [pattern="customPattern"]
+                [parseLocale="parseLocale"]
+                {blank}[integerOnly="{true|[underline]#false#}"]
+                [var="varName"]
+                {blank}[scope="{[underline]#page#|request|session|application}"]>
     numeric value to be parsed
 </fmt:parseNumber>
 
@@ -4833,11 +4832,11 @@ _java.util.Date_ using the `<fmt:parseDate>` action, whose parsing result
 may then be supplied to the `<fmt:formatDate>` action:
 
 ....
-<fmt:parseDate value=”4/13/02" pattern="M/d/yy" var="parsed"/> +
+<fmt:parseDate value="4/13/02" pattern="M/d/yy" var="parsed"/> +
 <fmt:formatDate value="${parsed}" dateStyle="full"/>
 ....
 
-The action’s result is output to the current
+The action's result is output to the current
 _JspWriter_ object, unless the _var_ attribute is specified, in which
 case it is stored in the named scoped variable.
 
@@ -4853,28 +4852,28 @@ times that were formatted in a locale-sensitive or customized manner.
 _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseDate value=”dateString”
-            {blank}[type=”{time|[underline]#date#|both}”]
-            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
-            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
-            [pattern=”customPattern”]
-            [timeZone=”timeZone”]
-            [parseLocale=”parseLocale”]
-            [var=”varName”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<fmt:parseDate value="dateString"
+            {blank}[type="{time|[underline]#date#|both}"]
+            {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
+            {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
+            [pattern="customPattern"]
+            [timeZone="timeZone"]
+            [parseLocale="parseLocale"]
+            [var="varName"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: with a body to specify the date
 value to be parsed_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseDate {blank}[type=”{time|[underline]#date#|both}”]
-            {blank}[dateStyle=”{[underline]#default#|short|medium|long|full}”]
-            {blank}[timeStyle=”{[underline]#default#|short|medium|long|full}”]
-            [pattern=”customPattern”]
-            [timeZone=”timeZone”]
-            [parseLocale=”parseLocale”]
-            [var=”varName”]
-            {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<fmt:parseDate {blank}[type="{time|[underline]#date#|both}"]
+            {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
+            {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
+            [pattern="customPattern"]
+            [timeZone="timeZone"]
+            [parseLocale="parseLocale"]
+            [var="varName"]
+            {blank}[scope="{[underline]#page#|request|session|application}"]>
     date value to be parsed
 </fmt:parseDate>
 
@@ -4911,7 +4910,7 @@ _type_ is missing or is equal to "date" or "both"); ignored otherwise.
 |Predefined formatting styles for times which
 determines how the time component in the date string is to be parsed.
 Applied only when formatting a time or both a date and time (i.e. if
-_type_ is equal to "time” or "both”); ignored otherwise.
+_type_ is equal to "time" or "both"); ignored otherwise.
 
 |pattern | _true_
 |String |Custom
@@ -4974,7 +4973,7 @@ include the value that was to be parsed.
 .*Description*
 
 The date string to be parsed may be specified
-via the _value_ attribute or via the tag’s body content.
+via the _value_ attribute or via the tag's body content.
 
 Depending on the value of the _type_
 attribute, the given date string is supposed to contain only a time,
@@ -5029,7 +5028,7 @@ java.util.TimeZone
 |`<fmt:formatDate>`, `<fmt:parseDate>`
 |===
 
-Specifies the application’s default time
+Specifies the application's default time
 zone. A _String_ value is interpreted as defined in action
 `<fmt:timeZone>` (see <<fmt:timeZone>>).
 
@@ -5100,8 +5099,8 @@ For example,
 {nbsp}{nbsp}{nbsp}{nbsp} _jdbc:mysql://localhost/,org.gjt.mm.mysql.Driver_
 
 where the database has been setup for access
-without any username or password. If the ‘,’ character occurs in any of
-the JDBC parameters, it can be escaped by ‘\’. The character ‘\’ itself
+without any username or password. If the ',' character occurs in any of
+the JDBC parameters, it can be escaped by '\'. The character '\' itself
 can be escaped in the same way.
 
 While the JDBC _DriverManager_ class provides
@@ -5123,7 +5122,7 @@ address in an HTML table.
 ....
 <sql:query var="customers" dataSource="${dataSource}">
     SELECT * FROM customers
-    WHERE country = ’China’
+    WHERE country = 'China'
     ORDER BY lastname
 </sql:query>
 
@@ -5146,7 +5145,7 @@ display the results of a query with column names as headers:
 <table>
     <!-- column headers -->
     <tr>
-        <c:forEach var=”columnName” items=”${result.columnNames}”>
+        <c:forEach var="columnName" items="${result.columnNames}">
             <th><c:out value="${columnName}"/></th>
         </c:forEach>
     </tr>
@@ -5193,7 +5192,7 @@ money between two accounts in one transaction:
 ==== SQL Statement Parameters
 
 The Jakarta Standard Tag Library database actions support
-substituting parameter values for parameter markers (“?”) in SQL
+substituting parameter values for parameter markers ("?") in SQL
 statements (as shown in the previous example). This form of parametric
 replacement is exposed by the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface.
 
@@ -5218,7 +5217,7 @@ _SQLExecutionTag_ action:
     SET BirthDate = ?
     WHERE clientId = ?
     <acme:dateParam year="${year}" month="${month}" day="${day}"/>
-    <sql:param value=”${clientId}”/>
+    <sql:param value="${clientId}"/>
 </sql:update>
 ....
 
@@ -5228,8 +5227,8 @@ _java.util.Date_ and _java.lang.Number_, respectively, before supplying
 them to an enclosing _SQLExecutionTag_ for parametric replacement:
 
 ....
-<sql:update sql="${sqlUpdateStmt}” dataSource="${dataSource}">
-    <fmt:parseDate var="myDate" value="${someDate}”/>
+<sql:update sql="${sqlUpdateStmt}" dataSource="${dataSource}">
+    <fmt:parseDate var="myDate" value="${someDate}"/>
     <sql:param value="${myDate}"/>
 </sql:update>
 ....
@@ -5260,7 +5259,7 @@ data source used by the action to access the database.
 ** Otherwise, if it is a _String_:
 
 *** Assume this is a JNDI relative path and
-retrieve the data source from the container’s JNDI naming context by
+retrieve the data source from the container's JNDI naming context by
 concatenating the specified relative path to the J2EE defined root (_java:comp/env/_).
 
 *** If the previous step fails (data source not
@@ -5305,8 +5304,8 @@ _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]/>
 
@@ -5315,8 +5314,8 @@ arguments_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query sql="sqlQuery"
-        var="varName" {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     <sql:param> actions
@@ -5327,8 +5326,8 @@ optional query parameters_
 
 [literal, subs="+quotes, +attributes"]
 <sql:query var="varName"
-        {blank}[scope=”{[underline]#page#|request|session|application}”]
-        [dataSource=”dataSource”]
+        {blank}[scope="{[underline]#page#|request|session|application}"]
+        [dataSource="dataSource"]
         [maxRows="maxRows"]
         [startRow="startRow"]>
     query
@@ -5409,10 +5408,10 @@ If the query produces no results, an empty
 _Result_ object (of size zero) is returned.
 
 The SQL query statement may be specified by
-the _sql_ attribute or from the action’s body content.
+the _sql_ attribute or from the action's body content.
 
 The query statement may contain parameter
-markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
+markers ("?") identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
 <<sql:param>>). The
 `<sql:query>` action implements the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface, allowing parameter values
@@ -5444,12 +5443,12 @@ included in the result.
 
 When using _startRow_, it is important to
 note that the order in which rows are returned is not guaranteed between
-RDBMS implementations unless an “order by” clause is specified in the
+RDBMS implementations unless an "order by" clause is specified in the
 query.
 
 _maxRows_ and _startRow_ protect against
 so-called "runaway queries", allow efficient access to the top rows of
-large result sets, and also provide a “poor-man’s way” of paging through
+large result sets, and also provide a "poor-man's way" of paging through
 a large query result by increasing _startRow_ by _maxRows_ over a
 previous page.
 
@@ -5479,18 +5478,18 @@ _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
-        [dataSource=”dataSource”]
+        [dataSource="dataSource"]
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+        {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With a body to specify update
 parameters_
 
 [literal, subs="+quotes, +attributes"]
 <sql:update sql="sqlUpdate"
-        [dataSource=”dataSource”]
+        [dataSource="dataSource"]
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]>
+        {blank}[scope="{[underline]#page#|request|session|application}"]>
     <sql:param> actions
 </sql:update>
 
@@ -5498,8 +5497,8 @@ _Syntax 3: With a body to specify update
 statement and optional update parameters_
 
 [literal, subs="+quotes, +attributes"]
-<sql:update [dataSource=”dataSource”]
-        [var="varName"] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<sql:update [dataSource="dataSource"]
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     update statement
     optional <sql:param> actions
 </sql:update>
@@ -5561,10 +5560,10 @@ and the caught exception must be provided as the root cause.
 .*Description*
 
 The SQL update statement may be specified by
-the _sql_ attribute or from the action’s body content.
+the _sql_ attribute or from the action's body content.
 
 The update statement may contain parameter
-markers (“?”) identifying JDBC _PreparedStatement_ parameters, whose
+markers ("?") identifying JDBC _PreparedStatement_ parameters, whose
 values must be supplied by nested parameter actions (such as
 <<sql:param>>). The
 `<sql:update>` action implements the _jakarta.servlet.jsp.jstl.sql.SQLExecutionTag_ interface, allowing the parameter
@@ -5590,7 +5589,7 @@ Establishes a transaction context for
 
 .*Syntax*
 ....
-<sql:transaction [dataSource=”dataSource”]
+<sql:transaction [dataSource="dataSource"]
         [isolation=isolationLevel]>
     <sql:query> and <sql:update> statements
 </sql:transaction>
@@ -5728,7 +5727,7 @@ variable or as the data source configuration variable (_jakarta.servlet.jsp.jstl
             [user="userName"]
             [password="password"]}
         [var="varName"]
-        {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+        {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -5798,7 +5797,7 @@ to the JDBC parameters string syntax defined in
 with the _dataSource_ attribute.
 
 As mentioned in
-<<Data Source>>, using JDBC’s
+<<Data Source>>, using JDBC's
 _DriverManager_ class to access a database is intended for prototyping
 purposes only because it does not provide connection management features
 one can expect from a properly designed _DataSource_ object.
@@ -5806,16 +5805,16 @@ one can expect from a properly designed _DataSource_ object.
 [[sql:param]]
 === <sql:param>
 
-Sets the values of parameter markers (“?”) in
+Sets the values of parameter markers ("?") in
 a SQL statement. Subtag of _SQLExecutionTag_ actions such as `<sql:query>`
 and `<sql:update>`.
 
 .*Syntax*
 
 _Syntax 1: Parameter value specified in
-attribute “value”_
+attribute "value"_
 ....
-<sql:param value=” _value_ ”/>
+<sql:param value=" _value_ "/>
 ....
 
 _Syntax 2: Parameter value specified in the
@@ -5856,7 +5855,7 @@ the SQL value NULL.
 .*Description*
 
 The `<sql:param>` action substitutes the given
-parameter value for a parameter marker(“?”) in the SQL statement of its
+parameter value for a parameter marker("?") in the SQL statement of its
 enclosing _SQLExecutionTag_ action.
 
 Parameters are substituted in the order
@@ -5875,14 +5874,14 @@ of text type (_CHAR_, _VARCHAR_ or _LONGVARCHAR_).
 
 === <sql:dateParam>
 
-Sets the values of parameter markers (“?”) in
+Sets the values of parameter markers ("?") in
 a SQL statement for values of type _java.util.Date_. Subtag of
 _SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<sql:dateParam value=” _value_ ” {blank}[type=”{[underline]#timestamp#|time|date}”]/>
+<sql:dateParam value=" _value_ " {blank}[type="{[underline]#timestamp#|time|date}"]/>
 
 .*Body Content*
 
@@ -5931,7 +5930,7 @@ appropriate type by calling that type's constructor with a parameter of
 _date.getTime()_, where _date_ is the value of the _value_ attribute.
 
 The `<sql:dateParam>` action substitutes the
-given parameter value for a parameter marker(“?”) in the SQL statement
+given parameter value for a parameter marker("?") in the SQL statement
 of its enclosing _SQLExecutionTag_ action.
 
 Parameters are substituted in the order
@@ -6230,10 +6229,10 @@ therefore handled through the `<c:import>` action that works seamlessly
 with the XML tags as shown below:
 
 ....
-<c:import url=”http://acme.com/productInfo” var=”doc”>
-    <c:param name=”productName” value=”${product.name}”/>
+<c:import url="http://acme.com/productInfo" var="doc">
+    <c:param name="productName" value="${product.name}"/>
 </c:import>
-<x:parse doc=”${doc}” var=”parsedDoc”/>
+<x:parse doc="${doc}" var="parsedDoc"/>
 ....
 
 To resolve references to external entities,
@@ -6249,8 +6248,8 @@ using an _EntityResolver_ and _URIResolver_ as necessary
 
 ==== Core Actions
 
-The XML core actions provide “expression
-language support” for XPath. These actions are therefore similar to the
+The XML core actions provide "expression
+language support" for XPath. These actions are therefore similar to the
 EL support actions `<c:out>` and `<c:set>` covered in
 <<General-Purpose Actions: core tag library>>, except that they apply to XPath
 expressions.
@@ -6261,15 +6260,15 @@ can then be processed by the XPath engine. For example:
 
 ....
 <!-- parse an XML document -->
-<c:import url=”http://acme.com/customer?id=76567” var=”doc”/>
-<x:parse doc=”${doc}” var=”parsedDoc”/>
+<c:import url="http://acme.com/customer?id=76567" var="doc"/>
+<x:parse doc="${doc}" var="parsedDoc"/>
 
 <!-- access XML data via XPath expressions -->
-<x:out select=”$parsedDoc/name”/>
-<x:out select=”$parsedDoc/address”/>
+<x:out select="$parsedDoc/name"/>
+<x:out select="$parsedDoc/address"/>
 
 <!-- set a scoped variable -->
-<x:set var=”custName” scope=”request” select=”$parsedDoc/name”/>
+<x:set var="custName" scope="request" select="$parsedDoc/name"/>
 ....
 
 The context for the evaluation of an XPath
@@ -6280,8 +6279,8 @@ that can be used by nested tags. An example of this is with action
 
 ....
 <!-- context set by ancestor tag <x:forEach> -->
-<x:forEach select=”$parsedDoc//customer”>
-    <x:out select=”name”/>
+<x:forEach select="$parsedDoc//customer">
+    <x:out select="name"/>
 </x:forEach>
 ....
 
@@ -6296,21 +6295,21 @@ Parses an XML document.
 _Syntax 1: XML document specified via a
 String or Reader object_
 ....
-<x:parse {doc=”XMLDocument”|xmllink:#a3277[10]=”XMLDocument”}
-    {var=”var” [scope=”scope”]|varDom=”var”
-    [scopeDom=”scope”]}
-    [systemId=”systemId”]
-    [filter=”filter”]/>
+<x:parse {doc="XMLDocument"|xmllink:#a3277[10]="XMLDocument"}
+    {var="var" [scope="scope"]|varDom="var"
+    [scopeDom="scope"]}
+    [systemId="systemId"]
+    [filter="filter"]/>
 ....
 
 _Syntax 2: XML document specified via the
 body content_
 ....
 <x:parse
-    {var=”var” [scope=”scope”]|varDom=”var”
-    [scopeDom=”scope”]}
-    [systemId=”systemId”]
-    [filter=”filter”]>
+    {var="var" [scope="scope"]|varDom="var"
+    [scopeDom="scope"]}
+    [systemId="systemId"]
+    [filter="filter"]>
         XML Document to parse
 </x:parse>
 ....
@@ -6417,9 +6416,9 @@ and complexity of the resulting DOM structure if all non-European
 customers are pruned from the XML document prior to parsing.
 
 ....
-<c:import url=”http://acme.com/customers” var=”doc”/>
-    <x:parse doc=”${doc}” filter=”${filterEuropeanCust}”
-            var=”parsedDoc”/>
+<c:import url="http://acme.com/customers" var="doc"/>
+    <x:parse doc="${doc}" filter="${filterEuropeanCust}"
+            var="parsedDoc"/>
 ....
 
 The _filter_ attribute accepts an object of
@@ -6437,7 +6436,7 @@ result of the evaluation to the current _JspWriter_ object.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<x:out select=”XPathExpression” {blank}[escapeXml=”{[underline]#true#|false}”]/>
+<x:out select="XPathExpression" {blank}[escapeXml="{[underline]#true#|false}"]/>
 
 .*Body Content*
 
@@ -6456,7 +6455,7 @@ _false_ | _String_
 
 | _escapeXml_ |
 _true_ | _boolean_
-|Determines whether characters <,>,&,’,” in
+|Determines whether characters <,>,&,'," in
 the resulting string should be converted to their corresponding
 character entity codes. Default value is true.
 |===
@@ -6488,9 +6487,9 @@ character conversions are applied:
 
 | _&_ | \&amp;
 
-|‘ |\&#039;
+|' |\&#039;
 
-|‘’ |\&#034;
+|" |\&#034;
 |===
 
 <<<
@@ -6503,8 +6502,8 @@ result into a scoped variable.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<x:set select=”XPathExpression”
-    var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<x:set select="XPathExpression"
+    var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 .*Body Content*
 
@@ -6577,7 +6576,7 @@ non-zero
 true. For example:
 
 ....
-<x:if select=”$customer/[location=’UK’]”>
+<x:if select="$customer/[location='UK']">
     UK based customer
 </x:if>
 ....
@@ -6598,8 +6597,8 @@ is evaluated, if present.
 
 ....
 <x:choose>
-    <x:when select=”$customer/firstName”>
-        Hello <x:out select=”$customer/firstName”/>
+    <x:when select="$customer/firstName">
+        Hello <x:out select="$customer/firstName"/>
     </x:when>
     <x:otherwise>
         Hello my friend
@@ -6612,8 +6611,8 @@ XPath expression and iterates over the result, setting the context node
 to each element in the iteration. For example:
 
 ....
-<x:forEach select=”$doc//author”>
-    <x:out select=”@name”/>
+<x:forEach select="$doc//author">
+    <x:out select="@name"/>
 </x:forEach>
 ....
 
@@ -6630,14 +6629,14 @@ evaluates to true.
 _Syntax 1: Without body content_
 
 [literal, subs="+quotes, +attributes"]
-<x:if select=”XPathExpression”
-        var=”varName” {blank}[scope=”{[underline]#page#|request|session|application}”]/>
+<x:if select="XPathExpression"
+        var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]/>
 
 _Syntax 2: With body content_
 
 [literal, subs="+quotes, +attributes"]
-<x:if select=”XPathExpression”
-        [var=”varName”] {blank}[scope=”{[underline]#page#|request|session|application}”]>
+<x:if select="XPathExpression"
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     body content
 </x:if>
 
@@ -6736,7 +6735,7 @@ Represents an alternative within an
 
 .*Syntax*
 ....
-<x:when select=”XPathExpression”>
+<x:when select="XPathExpression">
     body content
 </x:when>
 ....
@@ -6826,9 +6825,9 @@ node to each element in the iteration.
 
 .*Syntax*
 ....
-<x:forEach [var=”varName”] select=”XPathExpression”>
-        [varStatus=”varStatusName”]
-        [begin=”begin”] [end=”end”] [step=”step”]>
+<x:forEach [var="varName"] select="XPathExpression">
+        [varStatus="varStatusName"]
+        [begin="begin"] [end="end"] [step="step"]>
     body content
 </x:forEach>
 ....
@@ -6929,17 +6928,17 @@ stylesheet (context relative path). The result of the transformation is
 written to the page.
 
 ....
-<c:import url=”http://acme.com/customers” var=”doc”/>
-<c:import url=”/WEB-INF/xslt/customerList.xsl” var=”xslt”/>
-<x:transform doc=”${doc}” xslt=”${xslt}”/>
+<c:import url="http://acme.com/customers" var="doc"/>
+<c:import url="/WEB-INF/xslt/customerList.xsl" var="xslt"/>
+<x:transform doc="${doc}" xslt="${xslt}"/>
 ....
 
 It is possible to set transformation
 parameters via nested `<x:param>` actions. For example:
 
 ....
-<x:transform doc=”${doc}” xslt=”${xslt}”>
-    <x:param name=”foo” value=”foo-value”/>
+<x:transform doc="${doc}" xslt="${xslt}">
+    <x:param name="foo" value="foo-value"/>
 </x:transform>
 ....
 
@@ -6963,22 +6962,22 @@ an XML document.
 _Syntax 1: Without body contentt_
 ....
 <x:transform
-        {doc=”XMLDocument”|xmllink:#a3279[12]=”XMLDocument”} xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        [xsltSystemId=”XSLTSystemId”]
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        {doc="XMLDocument"|xmllink:#a3279[12]="XMLDocument"} xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [xsltSystemId="XSLTSystemId"]
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
 ....
 
 _Syntax 2: With a body to specify
 transformation parameters_
 ....
 <x:transform
-        {doc=”XMLDocument”|xml1=”XMLDocument”} xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        [xsltSystemId=”XSLTSystemId”]
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        {doc="XMLDocument"|xml1="XMLDocument"} xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [xsltSystemId="XSLTSystemId"]
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
     <x:param> actions
 </x:transform>
 ....
@@ -6987,11 +6986,11 @@ _Syntax 3: With a body to specify XML
 document and optional transformation parameters_
 ....
 <x:transform
-        xslt=”XSLTStylesheet”
-        [{docSystemId=”XMLSystemId”|xmlSystemId1=”XMLSystemId”}]
-        xsltSystemId=”XSLTSystemId”
-        [{var=”varName”
-        [scope=”scopeName”]|result=”resultObject”}]
+        xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        xsltSystemId="XSLTSystemId"
+        [{var="varName"
+        [scope="scopeName"]|result="resultObject"}]
     XML Document to parse
     optional <x:param> actions
 </x:parse>
@@ -7072,7 +7071,7 @@ a _JspException_ is thrown.
 .*Description*
 
 The `<x:transform>` tag applies a
-transformation to an XML document (attribute _doc_ or the action’s body
+transformation to an XML document (attribute _doc_ or the action's body
 content), given a specific XSLT stylesheet (attribute _xslt_). It does
 not perform any validation against DTD's or Schemas.
 
@@ -7104,15 +7103,15 @@ of `<x:transform>`.
 .*Syntax*
 
 _Syntax 1: Parameter value specified in
-attribute “value”_
+attribute "value"_
 ....
-<x:param name=”name” value=”value”/>
+<x:param name="name" value="value"/>
 ....
 
 _Syntax 2: Parameter value specified in the
 body content_
 ....
-<x:param name=”name”>
+<x:param name="name">
     parameter value
 </x:param>
 ....
@@ -7143,7 +7142,7 @@ of the parameter.
 The _<x:param>_ action must be nested within
 _<x:transform>_ to set transformation parameters. The value of the
 parameter can be specified either via the _value_ attribute, or via the
-action’s body content.
+action's body content.
 
 <<<
 
@@ -7160,7 +7159,7 @@ information about which elements, if any, are in violation of its
 specific constraints, along with textual descriptions of the syntactic
 violation.
 
-The Jakarta Standard Tag Library provides TLVs that perform “reusable”
+The Jakarta Standard Tag Library provides TLVs that perform "reusable"
 validation; i.e. generic validation that custom tag-library authors
 might wish to incorporate in their own tag libraries. These tag
 libraries do not necessarily need to be substantial collections of tags;
@@ -7235,7 +7234,7 @@ also be disabled through the use of the _scripting-invalid_
 configuration element (see the JSP specification for details).
 
 Similarly, to restrict a Jakarta Server Pages page to a set of
-permitted tag-libraries (in the example below, the Jakarta Standard Tag Library “EL” tag
+permitted tag-libraries (in the example below, the Jakarta Standard Tag Library "EL" tag
 libraries), a developer could create the following TLD:
 
 ....
@@ -7341,8 +7340,8 @@ functions.
 <%-- truncate name to 30 chars and display it in uppercase --%>
 ${fn:toUpperCase(fn:substring(name, 0, 30))}
 
-<%-- Display the text value prior to the first ’*’ character --%>
-${fn:substringBefore(text, ’*’)}
+<%-- Display the text value prior to the first '*' character --%>
+${fn:substringBefore(text, '*')}
 
 <%-- Scoped variable "custId" may contain whitespaces at the beginning
 or end. Trim it first, otherwise we end up with +'s in the URL --%> 
@@ -7351,8 +7350,8 @@ or end. Trim it first, otherwise we end up with +'s in the URL --%>
 </c:url> 
 
 <%-- Display the text in between brackets --%>
-${fn:substring(text, fn:indexOf(text, ’(’)+1,
-                     fn:indexOf(text, ’)’))}
+${fn:substring(text, fn:indexOf(text, '(')+1,
+                     fn:indexOf(text, ')'))}
 
 <%-- Display the name if it contains the search string --%>
 <c:if test="${fn:containsIgnoreCase(name, searchString)}">
@@ -7362,8 +7361,8 @@ ${fn:substring(text, fn:indexOf(text, ’(’)+1,
 <%-- Display the last 10 characters of the text value --%>
 ${fn:substring(text, fn:length(text)-10)}
 
-<%-- Display text value with bullets instead of ’-’ --%>
-${fn:replace(text, ’-’, ’&#149;’)}
+<%-- Display text value with bullets instead of '-' --%>
+${fn:replace(text, '-', '&#149;')}
 ....
 
 While one can always use `<c:out>` to make sure
@@ -8202,7 +8201,7 @@ features of the latest Jakarta Standard Tag Library release.
 
 JSTL 1.2 is backwards compatible with JSTL 1.1.
 This means that a web-application that was developed to run with JSTL
-1.1 won’t require any modification when run with JSTL 1.2.
+1.1 won't require any modification when run with JSTL 1.2.
 
 Note that JSTL is part of the Java EE platform
 as of the JSTL 1.2 version. A web application therefore does not need to
@@ -8216,7 +8215,7 @@ specification).
 
 JSTL 1.1 is backwards compatible with JSTL 1.0.
 This means that a web-application that was developed to run with JSTL
-1.0 won’t require any modification when run with JSTL 1.1. Details
+1.0 won't require any modification when run with JSTL 1.1. Details
 explaining how this backwards compatibility is achieved are given in
 <<How JSTL 1.1 Backwards Compatibility is Achieved>> below.
 
@@ -8304,7 +8303,7 @@ descriptor (web.xml) from servlet 2.3 to servlet 2.4.
 * Replace all the JSTL 1.0 EL & RT URIs by the new
 JSTL 1.1 URIs
 
-* Escape all occurrences of “$\{“ in RT actions
+* Escape all occurrences of "$\{" in RT actions
 and template text.
 
 ** See JSP 2.0 specification for details.
