@@ -500,7 +500,7 @@ For instance, if `<c:forEach>` were to throw an
 exception when given a null value for the attribute _items_, it would
 be impossible to easily loop over a possibly missing string array that
 represents check-box selection in an HTML form (retrieved with an EL
-expression like _$\{paramValues.selections}_). A better choice is to do
+expression like _${paramValues.selections}_). A better choice is to do
 nothing in this case.
 
 The conventions used in the Jakarta Standard Tag Library with respect to
@@ -676,12 +676,12 @@ definition of the EL.
 === Expressions and Attribute Values
 
 The EL is invoked exclusively via the
-construct _$\{expr}_. In the sample code below, an EL expression is
+construct _${expr}_. In the sample code below, an EL expression is
 used to set the value of attribute _test_, while a second one is used
 to display the title of a book.
 
 ....
-<c:if test="$\{book.price <= user.preferences.spendingLimit}">
+<c:if test="${book.price <= user.preferences.spendingLimit}">
     The book ${book.title} fits your budget!
 </c:if>
 ....
@@ -692,8 +692,8 @@ example, the following would display "Price of productName is
 productPrice" for a list of products.
 
 ....
-<c:forEach var="product" items="$\{products}">
-    <c:out value="Price of $\{product.name} is $\{product.price}"/>
+<c:forEach var="product" items="${products}">
+    <c:out value="Price of ${product.name} is ${product.price}"/>
 </c:forEach>
 ....
 
@@ -842,7 +842,7 @@ Default values are type-correct values that allow a page to easily
 recover from these error conditions.
 
 In the following example, the expression
-"$\{user.address.city}" evaluates to _null_ rather than throwing a
+"${user.address.city}" evaluates to _null_ rather than throwing a
 _NullPointerException_ if there is no address associated with the _user_
 object. This way, a sensible default value can be displayed without
 having to worry about exceptions being thrown by the Jakarta Server Pages page.
@@ -871,7 +871,7 @@ handle error conditions.
 
 The `<c:out>` action provides a capability
 similar to Jakarta Server Pages expressions such as <%= scripting-language-expression %>
-or $\{el-expression}. For example:
+or ${el-expression}. For example:
 
 ....
 You have <c:out value="${sessionScope.user.itemCount}"/> items.
@@ -7309,7 +7309,7 @@ example below where scoped variable _athletes_ is a collection of
 _Athletes_ objects.
 
 ....
-There are $\{fn:length(athletes)} athletes representing $\{country}
+There are ${fn:length(athletes)} athletes representing ${country}
 ....
 
 ==== String Manipulation Functions
@@ -8303,7 +8303,7 @@ descriptor (web.xml) from servlet 2.3 to servlet 2.4.
 * Replace all the JSTL 1.0 EL & RT URIs by the new
 JSTL 1.1 URIs
 
-* Escape all occurrences of "$\{" in RT actions
+* Escape all occurrences of "${" in RT actions
 and template text.
 
 ** See JSP 2.0 specification for details.
