@@ -1029,7 +1029,7 @@ content, then the action trims it and processes it further.
 
 | _escapeXml_ |
 _true_ | _boolean_
-|Deterrmines whether characters <,>,&,'," in
+|Determines whether characters <,>,&,'," in
 the resulting string should be converted to their corresponding
 character entity codes. Default value is true.
 
@@ -1785,8 +1785,8 @@ collection, and the second containing the name of the product.
     <c:forEach var="product" items="${products}"
             varStatus="status">
         <tr>
-            <td>${status.count}"</td>
-            <td>${product.name}"</td>
+            <td>${status.count}</td>
+            <td>${product.name}</td>
         </tr>
     </c:forEach>
 </table>
@@ -2293,7 +2293,7 @@ types of URL are shown in the sample code below.
 
 ....
 <%-- import a resource with an absolute URL --%>
-<c:import url="http://acme.com/exec/customers?country=Japan/>_
+<c:import url="http://acme.com/exec/customers?country=Japan"/>
 
 <%-- import a resource with a relative URL - same context --%>
 <c:import url="/copyright.html"/>
@@ -5814,7 +5814,7 @@ and `<sql:update>`.
 _Syntax 1: Parameter value specified in
 attribute "value"_
 ....
-<sql:param value=" _value_ "/>
+<sql:param value="value"/>
 ....
 
 _Syntax 2: Parameter value specified in the
@@ -5881,7 +5881,7 @@ _SQLExecutionTag_ actions, such as `<sql:query>` and `<sql:update>`.
 .*Syntax*
 
 [literal, subs="+quotes, +attributes"]
-<sql:dateParam value=" _value_ " {blank}[type="{[underline]#timestamp#|time|date}"]/>
+<sql:dateParam value="value" {blank}[type="{[underline]#timestamp#|time|date}"]/>
 
 .*Body Content*
 
