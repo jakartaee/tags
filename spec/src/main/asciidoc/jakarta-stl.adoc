@@ -20,20 +20,20 @@ https://jakarta.ee/specifications/pages/[Jakarta Server Pages Specification]
 |https://projects.eclipse.org/projects/ee4j.servlet[Jakarta Servlet Project] +
 https://jakarta.ee/specifications/servlet/[Jakarta Servlet Specification]
 
-|Java 2 Platform, Standard Edition
-|http://java.sun.com/j2se
+|Java™, Standard Edition, Version 8.0 API Specification
+|https://docs.oracle.com/javase/8/docs/api
 
-|Java 2 Platform, Enterprise Edition
-|http://java.sun.com/j2ee
+|Jakarta EE
+|https://jakarta.ee
 
 |JavaBeans
-|http://java.sun.com/beans
+|https://docs.oracle.com/javase/8/docs/technotes/guides/beans
 
 |JDBC
-|http://java.sun.com/jdbc
+|https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc
 
 |Java Technology and XML
-|http://java.sun.com/xml
+|https://docs.oracle.com/javase/8/docs/technotes/guides/xml
 
 |XPath specification
 |http://www.w3.org/TR/xpath
