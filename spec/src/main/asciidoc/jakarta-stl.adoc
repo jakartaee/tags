@@ -6294,13 +6294,13 @@ Parses an XML document.
 
 _Syntax 1: XML document specified via a
 String or Reader object_
-....
-<x:parse {doc="XMLDocument"|xmllink:#a3277[10]="XMLDocument"}
+
+[literal, subs="+macros"]
+<x:parse {doc="XMLDocument"|xmlfootnote:[Deprecated.]="XMLDocument"}
     {var="var" [scope="scope"]|varDom="var"
     [scopeDom="scope"]}
     [systemId="systemId"]
     [filter="filter"]/>
-....
 
 _Syntax 2: XML document specified via the
 body content_
@@ -6960,14 +6960,14 @@ an XML document.
 .*Syntax*
 
 _Syntax 1: Without body contentt_
-....
+
+[literal, subs="+macros"]
 <x:transform
-        {doc="XMLDocument"|xmllink:#a3279[12]="XMLDocument"} xslt="XSLTStylesheet"
+        {doc="XMLDocument"|xmlfootnote:[Deprecated.]="XMLDocument"} xslt="XSLTStylesheet"
         [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
         [xsltSystemId="XSLTSystemId"]
         [{var="varName"
         [scope="scopeName"]|result="resultObject"}]
-....
 
 _Syntax 2: With a body to specify
 transformation parameters_
@@ -8324,7 +8324,3 @@ changes in the JSTL specification. This appendix is non-normative.
 <<< 
 
 '''''
-
-[.footnoteNumber]# 10.# [[a3277]]Deprecated.
-
-[.footnoteNumber]# 12.# [[a3279]]Deprecated.
