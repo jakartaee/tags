@@ -711,7 +711,7 @@ support easy access to application data that is of interest to a page
 author. Implicit objects _pageScope_, _requestScope_, _session_ Scope,
 and _applicationScope_ provide access to the scoped variables in each
 one of these Jakarta Server Pages scopes. It is also possible to access HTTP request
-parameters via the implicit objects _param_ and _paramValues_. _param_
+parameters via the implicit objects _param_ and _paramValues_. The implicit object _param_
 is a _Map_ object where _param["foo"]_ returns the first string value
 associated with request parameter _foo_, while _paramValues["foo"]_
 returns an array of all string values associated with that request
@@ -6347,9 +6347,7 @@ system identifier (URI) for parsing the XML document.
 
 | _filter_ |
 _true_ a|
-_org.xml.sax._
-
-_XMLFilter_
+_org.xml.sax.XMLFilter_
 
 |Filter to be applied to the source document.
 
@@ -6963,38 +6961,38 @@ _Syntax 1: Without body contentt_
 
 [literal, subs="+macros"]
 <x:transform
-        {doc="XMLDocument"|xmlfootnote:[Deprecated.]="XMLDocument"} xslt="XSLTStylesheet"
-        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        {doc="XMLDocument"|xmlfootnote:deprecated[Deprecated.]="XMLDocument"} xslt="XSLTStylesheet"
+        [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         [xsltSystemId="XSLTSystemId"]
         [{var="varName"
         [scope="scopeName"]|result="resultObject"}]
 
 _Syntax 2: With a body to specify
 transformation parameters_
-....
+
+[literal, subs="+macros"]
 <x:transform
         {doc="XMLDocument"|xml1="XMLDocument"} xslt="XSLTStylesheet"
-        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         [xsltSystemId="XSLTSystemId"]
         [{var="varName"
         [scope="scopeName"]|result="resultObject"}]
     <x:param> actions
 </x:transform>
-....
 
 _Syntax 3: With a body to specify XML
 document and optional transformation parameters_
-....
+
+[literal, subs="+macros"]
 <x:transform
         xslt="XSLTStylesheet"
-        [{docSystemId="XMLSystemId"|xmlSystemId1="XMLSystemId"}]
+        [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         xsltSystemId="XSLTSystemId"
         [{var="varName"
         [scope="scopeName"]|result="resultObject"}]
     XML Document to parse
     optional <x:param> actions
-</x:parse>
-....
+</x:transform>
 
 
 where scopeName is
