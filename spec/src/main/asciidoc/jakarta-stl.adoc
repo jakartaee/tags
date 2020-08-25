@@ -238,9 +238,8 @@ _http://java.sun.com/jsp/jstl/functions_ |fn
 
 === Container Requirement
 
-JSTL 1.2 requires a JSP 2.1 web container.
-Please note that the expression language is part of the JSP
-specification starting with JSP 2.0.
+Jakarta Standard Tag Library requires a Jakarta Server Pages 3.0 web container.
+Please note that the expression language is an individual specification: Jakarta Expression Language 4.0.
 
 == Conventions
 
@@ -318,7 +317,7 @@ true or false. A false value in the dynamic column means that only a
 static string value can be specified for the attribute. A true value
 means that a _request-time attribute value_ can be specified. As defined
 in the Jakarta Server Pages specification, a "request-time attribute value" can be either
-a Java expression, an EL expression, or a value set by a
+a Java expression, an Expression Language expression, or a value set by a
 `<jsp:attribute>`.
 
 ==== Syntax Notation
@@ -415,7 +414,7 @@ visible within the body of the action and are stored in "page"
 scopefootnote:[Since nested scoped variables are always saved in page scope, no scope attribute is associated with them.]. The action must create the variable
 according to the semantics of _PageContext.setAttribute(varName,PAGE_SCOPE)_, and it must remove it at the end of the action according
 to the semantics of _PageContext.removeAttribute(varName, PAGE_SCOPE)_
-.footnote:[It is important to note that the Jakarta Server Pages specification says that "A name should refer to a unique object at all points in the execution, that is all the different scopes really should behave as a single name space." The Jakarta Server Pages specification also says that "A JSP container implementation may or may not enforce this rule explicitly due to performance reasons". Because of this, if a scoped variable with the same name as a nested variable already exists in a scope other than 'page', exactly what happens to that scoped variable depends on how the Jakarta Server Pages container has been implemented. To comply with the Jakarta Server Pages specification, and to avoid non-portable behavior, page authors should therefore avoid using the same name in different scopes.]
+.footnote:[It is important to note that the Jakarta Server Pages specification says that "A name should refer to a unique object at all points in the execution, that is all the different scopes really should behave as a single name space." The Jakarta Server Pages specification also says that "A Jakarta Server Pages container implementation may or may not enforce this rule explicitly due to performance reasons". Because of this, if a scoped variable with the same name as a nested variable already exists in a scope other than 'page', exactly what happens to that scoped variable depends on how the Jakarta Server Pages container has been implemented. To comply with the Jakarta Server Pages specification, and to avoid non-portable behavior, page authors should therefore avoid using the same name in different scopes.]
 
 At-end scoped variables are only visible at
 the end of the action. Their lifecycle is the one associated with their
@@ -659,8 +658,8 @@ Date: <c:out value="${formattedDate}" default="not specified"/>
 
 == Expression Language Overview
 
-JSTL 1.0 introduced the notion of an
-expression language (EL) to make it easy for page authors to access and
+Jakarta Standard Tag Library 1.0 introduced the notion of an
+expression language to make it easy for page authors to access and
 manipulate application data without having to master the complexity
 associated with programming languages such as Java and JavaScript.
 
@@ -671,11 +670,11 @@ defined there.
 This chapter provides a simple overview of
 the key features of the expression language, it is therefore
 non-normative. Please refer to the Jakarta Server Pages specification for the formal
-definition of the EL.
+definition of the Expression Language.
 
 === Expressions and Attribute Values
 
-The EL is invoked exclusively via the
+The Expression Language is invoked exclusively via the
 construct _${expr}_. In the sample code below, an EL expression is
 used to set the value of attribute _test_, while a second one is used
 to display the title of a book.
@@ -687,7 +686,7 @@ to display the title of a book.
 ....
 
 It is also possible for an attribute to
-contain more than one EL expression, mixed with static text. For
+contain more than one Expression Language expression, mixed with static text. For
 example, the following would display "Price of productName is
 productPrice" for a list of products.
 
@@ -699,14 +698,14 @@ productPrice" for a list of products.
 
 === Accessing Application Data
 
-An identifier in the EL refers to the Jakarta Server Pages
+An identifier in the Expression Language refers to the Jakarta Server Pages
 scoped variable returned by a call to
 _PageContext.findAttribute(identifier)_. This variable can therefore
 reside in any of the four Jakarta Server Pages scopes: page, request, session, or
 application. A null value is returned if the variable does not exist in
 any of the scopes.
 
-The EL also defines implicit objects to
+The Expression Language also defines implicit objects to
 support easy access to application data that is of interest to a page
 author. Implicit objects _pageScope_, _requestScope_, _session_ Scope,
 and _applicationScope_ provide access to the scoped variables in each
@@ -748,7 +747,7 @@ manipulates in a Jakarta Server Pages page usually consists of objects that comp
 the JavaBeans specification, or that represent collections such as
 lists, maps, or arrays.
 
-The EL recognizes the importance of these
+The Expression Language recognizes the importance of these
 data structures and provides two operators, "." and "[]", to make it
 easy to access the data encapsulated in these objects.
 
@@ -776,9 +775,9 @@ ${user.preferences["shipping"]}
 
 === Operators
 
-The operators supported in the EL handle the
+The operators supported in the Expression Language handle the
 most common data manipulations. The standard relational, arithmetic, and
-logical operators are provided in the EL. A very useful "empty" operator
+logical operators are provided in the Expression Language. A very useful "empty" operator
 is also provided.
 
 The six standard relational operators are
@@ -805,7 +804,7 @@ that can used to determine if a value is null or empty. For example:
 
 The application data a page author has access
 to may not always exactly match the type expected by the attribute of an
-action or the type expected for an EL operator. The EL supports an
+action or the type expected for an Expression Language operator. The Expression Language supports an
 exhaustive set of rules to coerce the type of the resulting value to the
 expected type.
 
@@ -836,7 +835,7 @@ yield an int value for attribute _begin_.
 Jakarta Server Pages are mostly used in presentation.
 Experience suggests that it is important to be able to provide as good a
 presentation as possible, even when simple errors occur in the page. To
-satisfy this requirement, the EL provides default values rather than
+satisfy this requirement, the Expression Language provides default values rather than
 errors when failure to evaluate an expression is deemed "recoverable".
 Default values are type-correct values that allow a page to easily
 recover from these error conditions.
@@ -887,7 +886,7 @@ conversion may be bypassed by specifying false to the _escapeXml_
 attribute.
 
 The `<c:out>` action also supports the notion
-of default values for cases where the value of an EL expression is null.
+of default values for cases where the value of an Expression Language expression is null.
 In the example below, the value "unknown" will be displayed if the
 property _city_ is not accessible.
 
@@ -1014,7 +1013,7 @@ _With a body_
 </c:out>
 
 .*Body Content*
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1131,7 +1130,7 @@ _Syntax 5: Set a deferred value_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1223,13 +1222,13 @@ performed according to the conversion rules defined in the expression
 language (see link:EL-152.html#UNKNOWN[See Type Conversion]). With the
 exception of a null value, setting a bean property with <c:set> is
 therefore exactly the same as setting an attribute value of an action
-using the EL. A failure of these conversion rules to determine an
+using the Expression Language. A failure of these conversion rules to determine an
 appropriate type coersion leads to a _JspException_ at runtime.
 
 Syntax 5:
 
 * Map the deferred-value specified to the "var"
-attribute into the EL VariableMapper.
+attribute into the Expression Language VariableMapper.
 
 * Some implementation notes illustrating how
 the <c:set> tag handler may process a deferred-value specified for the
@@ -1240,12 +1239,12 @@ the <c:set> tag handler may process a deferred-value specified for the
 |doStartTag() +
 ... +
  // 'value' is a deferred-value +
- // Get the current EL VariableMapper +
+ // Get the current Expression Language VariableMapper +
 VariableMapper vm = jspContext.getELContext().getVariableMapper(); +
  // Assign the expression to the variable specified +
  // in the 'var' attribute, so any reference to that +
  // variable will be replaced by the expression is +
- // subsequent EL evaluations. +
+ // subsequent Expression Language evaluations. +
 vm.setVariable(getVar(), (ValueExpression)getValue()); +
 ...
 |===
@@ -1305,7 +1304,7 @@ of its nested actions.
 
 .*Body Content*
 
-JSP. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_.
 
 .*Attributes*
@@ -1535,7 +1534,7 @@ conditional execution.
 
 .*Body Content*
 
-JSP. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested actions will be processed) and
 written to the current _JspWriter_.
 
@@ -1581,7 +1580,7 @@ action.
 
 .*Body Content*
 
-JSP. If this is the first <c:when> action to
+Jakarta Server Pages. If this is the first <c:when> action to
 evaluate to true within <c:choose>, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -1629,7 +1628,7 @@ Represents the last alternative within a
 
 .*Body Content*
 
-JSP. If no `<c:when>` action nested within
+Jakarta Server Pages. If no `<c:when>` action nested within
 `<c:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -1915,7 +1914,7 @@ _Syntax 2: Iterate a fixed number of times_
 
 .*Body Content*
 
-JSP. As long as there are items to iterate
+Jakarta Server Pages. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -2038,7 +2037,7 @@ Tokens are processed in their sequential order in the string.
 
 When a deferred-value is specified for the
 _items_ attribute, the tag handler now adds at each iteration a mapping
-for the _var_ attribute into the EL _VariableMapper_.
+for the _var_ attribute into the Expression Language _VariableMapper_.
 
 
 Below are some implementation notes
@@ -2049,7 +2048,7 @@ specified for the _items_ attribute.
 doStartTag() +
     ...
     // 'items' is a deferred-value +
-    // Get the current EL VariableMapper
+    // Get the current Expression Language VariableMapper
     VariableMapper vm = 
         jspContext.getELContext().getVariableMapper();
     // Create an expression to be assigned to the variable
@@ -2059,8 +2058,8 @@ doStartTag() +
         new myimpl.IndexExpression(getItems(), index);
     // Assign the expression to the variable specified in
     // the 'var' attribute, so any reference to that variable
-    // will be replaced by the expression in subsequent EL
-    // evaluations.
+    // will be replaced by the expression in subsequent
+    // Expression Language evaluations.
     oldMapping = vm.setVariable(getVar(), expr);
     ...
 
@@ -2098,7 +2097,7 @@ supplied delimiters.
 
 .*Body Content*
 
-JSP. As long as there are items to iterate
+Jakarta Server Pages. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -2395,7 +2394,7 @@ Reader object_
 
 .*Body Content*
 
-JSP. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_.
 
 .*Attributes*
@@ -2488,7 +2487,7 @@ properly closed by the time the end of the page is
 reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_, or because the page author might remove the consumer tag while leaving inadvertantly the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
 the exported _Reader_ as having nested visibility: it may not currently
 be accessed after the end-tag for the `<c:import>`
-actionfootnote:[This restriction could eventually be lifted when the JSP spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use JSP 1.2
+actionfootnote:[This restriction could eventually be lifted when the Jakarta Server Pages spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use JSP 1.2
 tag-extension API will likely need to implement _TryCatchFinally_ with
 their `<c:import>` tag handlers and close the exported Reader in
 _doFinally()_.
@@ -2553,7 +2552,7 @@ relative URL may either be a context-relative path, or a page-relative
 path. A context-relative path is a path that starts with a "/". It is to
 be interpreted as relative to the application to which the Jakarta Server Pages page
 belongs. A page-relative path is a path that does not start with a "/".
-It is to be interpreted as relative to the current JSP page, as defined
+It is to be interpreted as relative to the current Jakarta Server Pages page, as defined
 by the rules of inclusion of the `<jsp:include>` action in the Jakarta Server Pages
 specification.
 
@@ -2648,7 +2647,7 @@ query string parameters_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2746,7 +2745,7 @@ query string parameters_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2817,7 +2816,7 @@ body content_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3448,7 +3447,7 @@ used by its body content.
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
@@ -3627,7 +3626,7 @@ optional message parameters_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3745,7 +3744,7 @@ _Syntax 2: value specified via body content_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3831,7 +3830,7 @@ This action calls the
 _setCharacterEncoding()_ method on the servlet request with the
 character encoding name specified in the _value_ attribute. It must be
 used before any parameters are retrieved, either explicitly or through
-the use of an EL expression.
+the use of an Expression Language expression.
 
 If the character encoding of the request
 parameters is not known in advance (since the locale and thus character
@@ -4234,7 +4233,7 @@ information is to be formatted or parsed in its body content.
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
@@ -4380,7 +4379,7 @@ numeric value to be formatted_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4584,7 +4583,7 @@ numeric value to be parsed_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4879,7 +4878,7 @@ value to be parsed_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5336,7 +5335,7 @@ optional query parameters_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5505,7 +5504,7 @@ statement and optional update parameters_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5602,7 +5601,7 @@ isolationLevel ::= "read_committed"
 
 .*Body Content*
 
-JSP. The Jakart Server Pages container processes the body
+Jakarta Server Pages. The Jakart Server Pages container processes the body
 content and then writes the result to the current _JspWriter_. The
 action ignores the body content.
 
@@ -5827,7 +5826,7 @@ body content_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6206,7 +6205,7 @@ This clear separation, where only the
 _select_ attribute of XML actions evaluates XPath expressions, helps
 avoid confusion between XPath (expression language that is local to the
 XML actions) and the Jakarta Standard Tag Library expression language (global to all actions
-with dynamic attributes in the EL version of the tag library).
+with dynamic attributes in the Expression Language version of the tag library).
 
 ==== Default Context Node
 
@@ -6250,7 +6249,7 @@ using an _EntityResolver_ and _URIResolver_ as necessary
 
 The XML core actions provide "expression
 language support" for XPath. These actions are therefore similar to the
-EL support actions `<c:out>` and `<c:set>` covered in
+Expression Language support actions `<c:out>` and `<c:set>` covered in
 <<General-Purpose Actions: core tag library>>, except that they apply to XPath
 expressions.
 
@@ -6322,7 +6321,7 @@ where scope is
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6553,7 +6552,7 @@ actions provide these capabilities.
 
 The XML flow control actions provide flow
 control based on the value of XPath expressions. These actions are
-therefore similar to the EL flow control actions (`<c:if>`, `<c:choose>`,
+therefore similar to the Expression Language flow control actions (`<c:if>`, `<c:choose>`,
 and <`c:forEach>`), except that they apply to XPath expressions.
 
 The _<x:if>_ action has a _select_ attribute
@@ -6640,7 +6639,7 @@ _Syntax 2: With body content_
 
 .*Body Content*
 
-JSP. If the test condition evaluates to true,
+Jakarta Server Pages. If the test condition evaluates to true,
 the Jakarta Server Pages container processes the body content and then writes it to the
 current _JspWriter_.
 
@@ -6695,7 +6694,7 @@ conditional execution.
 
 .*Body Content*
 
-JSP. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested elements will be processed) and
 written to the current _JspWriter_.
 
@@ -6740,7 +6739,7 @@ Represents an alternative within an
 
 .*Body Content*
 
-JSP. If this is the first _<x:when>_ action
+Jakarta Server Pages. If this is the first _<x:when>_ action
 to evaluate to true within _<x:choose>_, the Jakarta Server Pages container processes
 the body content and then writes it to the current _JspWriter_.
 
@@ -6790,7 +6789,7 @@ Represents the last alternative within a
 
 .*Body Content*
 
-JSP. If no `<x:when>` action nested within
+Jakarta Server Pages. If no `<x:when>` action nested within
 `<x:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -6832,7 +6831,7 @@ node to each element in the iteration.
 
 .*Body Content*
 
-JSP. As long as there are items to iterate
+Jakarta Server Pages. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -7000,7 +6999,7 @@ where scopeName is
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7116,7 +7115,7 @@ body content_
 
 .*Body Content*
 
-JSP. The Jakarta Server Pages container processes the body
+Jakarta Server Pages. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7146,13 +7145,13 @@ action's body content.
 
 == Tag Library Validators
 
-JSP 1.2 provides tag library validators
+Jakarta Server Pages provides tag library validators
 (TLVs) as a mechanism for a tag library to enforce constraints on the
-JSP document (the "XML view") associated with any JSP page into which
+Jakarta Server Pages document (the "XML view") associated with any Jakarta Server Pages page into which
 the tag library is imported. While the expectation is that TLVs used by
 a tag library will typically enforce multi-tag constraints related to
 usage of the library's tags themselves, a TLV is free to perform
-arbitrary validation of JSP documents. A TLV returns to the container
+arbitrary validation of Jakarta Server Pages documents. A TLV returns to the container
 information about which elements, if any, are in violation of its
 specific constraints, along with textual descriptions of the syntactic
 violation.
@@ -7164,7 +7163,7 @@ libraries do not necessarily need to be substantial collections of tags;
 a taglib may exist simply to provide site-specific validation logic.
 Just like tag libraries whose primary focus is to provide new tags, such
 "validation-centric" tag libraries may be configured and used by
-"back-end" developers in order to affect the "front-end" JSP page
+"back-end" developers in order to affect the "front-end" Jakarta Server Pages page
 author's environment.
 
 This chapter covers the Jakarta Standard Tag Library tag library
@@ -7196,7 +7195,7 @@ developer could create the following TLD:
         "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
     version="2.0">
     <description>
-        Validates JSP pages to prohibit use of scripting elements.
+        Validates Jakarta Server Pages pages to prohibit use of scripting elements.
     </description>
     <tlib-version>1.0</tlib-version>
     <jsp-version>2.0</jsp.version>
@@ -7227,12 +7226,12 @@ developer could create the following TLD:
 </taglib>
 ....
 
-Note that in JSP 2.0, scripting elements can
+Note that in Jakarta Server Pages, scripting elements can
 also be disabled through the use of the _scripting-invalid_
-configuration element (see the JSP specification for details).
+configuration element (see the Jakarta Server Pages specification for details).
 
 Similarly, to restrict a Jakarta Server Pages page to a set of
-permitted tag-libraries (in the example below, the Jakarta Standard Tag Library "EL" tag
+permitted tag-libraries (in the example below, the Jakarta Standard Tag Library "Expression Language" tag
 libraries), a developer could create the following TLD:
 
 ....
@@ -7277,7 +7276,7 @@ extend the Jakarta Server Pages syntax with their own customized behavior, the e
 The Jakarta Standard Tag Library is about the standardization, via these
 extension mechanisms, of behavior that is commonly needed by page
 authors. In addition to defining a standard set of actions, the Jakarta Standard Tag Library
-therefore also defines a standardized set of EL functions. These
+therefore also defines a standardized set of Expression Language functions. These
 functions are described in this chapter.
 
 === Overview
@@ -8195,116 +8194,10 @@ information on compatibility between different versions of the Jakarta Standard 
 as on how to migrate your web application to take advantage of the new
 features of the latest Jakarta Standard Tag Library release.
 
-=== JSTL 1.2 Backwards Compatibility
+=== Java EE Backwards Compatibility
 
-JSTL 1.2 is backwards compatible with JSTL 1.1.
-This means that a web-application that was developed to run with JSTL
-1.1 won't require any modification when run with JSTL 1.2.
-
-Note that JSTL is part of the Java EE platform
-as of the JSTL 1.2 version. A web application therefore does not need to
-bundle JSTL anymore when it runs on a web container that is Java EE
-technology compliant. Should JSTL be bundled with a web-application, it
-will simply be ignored as JSTL provided by the platform always takes
-precedence (see Section JSP.7.3.2, "TLD resource path" of the JSP
-specification).
-
-=== JSTL 1.1 Backwards Compatibility
-
-JSTL 1.1 is backwards compatible with JSTL 1.0.
-This means that a web-application that was developed to run with JSTL
-1.0 won't require any modification when run with JSTL 1.1. Details
-explaining how this backwards compatibility is achieved are given in
-<<How JSTL 1.1 Backwards Compatibility is Achieved>> below.
-
-If your application executes in an environment
-that has JSTL 1.1, it is however recommended that you migrate to JSTL
-1.1 to take full advantage of the new capabilities it offers. Details on
-how to migrate your web-application from JSTL 1.0 to JSTL 1.1 are given
-in <<Migrating to JSTL 1.1>>.
-
-==== How JSTL 1.1 Backwards Compatibility is Achieved
-
-JSTL 1.0 requires JSP 1.2 (J2EE 1.3 platform).
-The key difference between JSTL 1.0 and JSTL 1.1 is that the expression
-language (EL) has moved from the JSTL specification to the JSP
-specification. The EL is therefore now part of the JSP 2.0
-specification, and JSTL 1.1 requires JSP 2.0 (J2EE 1.4 platform).
-
-A web application developed for JSP 1.2 has a
-servlet 2.3 deployment descriptor (web.xml). JSP 2.0 provides backwards
-compatibility for JSP 1.2 web applications by disabling by default the
-EL machinery (i.e. evaluation of EL expressions) when a web application
-has a servlet 2.3 deployment descriptor. A web application that uses
-JSTL 1.0 and which is deployed with a servlet 2.3 deployment descriptor
-therefore runs without any modification in a J2EE 1.4 environment
-because EL expressions are ignored by JSP 2.0, and JSTL 1.0 keeps
-evaluating them as was the case with JSP 1.2.
-
-To support backwards compatibility, JSTL 1.1
-introduces new URIs that must be specified to use the new capabilities
-offered in JSTL 1.1. Among these new capabilities is the evaluation of
-EL expressions being performed by the JSP 2.0 container rather than JSTL
-itself. The new URIs for JSTL 1.1 are as follows:
-
-JSTL 1.1 Tag Libraries
-
-
-
-[width="100%",cols="34%,33%,33%",options="header",]
-|===
-|Functional Area |URI
-|Prefix
-|core |
-_http://java.sun.com/jsp/jstl/core_ | _c_
-
-|XML processing |
-_http://java.sun.com/jsp/jstl/xml_ | _x_
-
-|I18N capable formatting
-| _http://java.sun.com/jsp/jstl/fmt_
-| _fmt_
-
-|relational db access (SQL)
-| _http://java.sun.com/jsp/jstl/sql_
-| _sql_
-|===
-
-The new URIs are similar to the old JSTL 1.0 EL
-URIs, except that _jsp/_ has been added in front of _jstl_, stressing
-JSTL's dependency on the JSP specification (which now "owns" the EL). It
-would have been desirable to move forward with the same EL URIs in JSTL
-1.1, however this would have only been possible at the cost of losing
-full backwards compatibility. The JSTL Expert Group felt that
-maintaining backwards compatibility was more important than preserving
-the old URIs.
-
-The JSTL 1.0 URIs are deprecated as of JSTL 1.1.
-If used, they should normally appear in a web application that has a
-servlet 2.3 deployment descriptor to disable the JSP 2.0 EL machinery.
-If used with a servlet 2.4 deployment descriptor, the JSP 2.0 EL
-machinery must be explicitely disabled for the pages where the JSTL 1.0
-tag libraries are used. Consult the JSP specification for details.
-
-
-=== Migrating to JSTL 1.1
-
-To migrate from JSTL 1.0 to JSTL 1.1, so a web
-application can take advantage of the new features associated with JSTL
-1.1, one must do the following:
-
-* Migrate the web application deployment
-descriptor (web.xml) from servlet 2.3 to servlet 2.4.
-
-** See Servlet 2.4 specification for details
-
-* Replace all the JSTL 1.0 EL & RT URIs by the new
-JSTL 1.1 URIs
-
-* Escape all occurrences of "${" in RT actions
-and template text.
-
-** See JSP 2.0 specification for details.
+The API has moved from the Java EE (JCP) `javax.servlet.jsp.jstl` package to the Jakarta EE (Eclipse Foundation) `jakarta.servlet.jsp.jstl` package. Applications
+using the Java EE package will need to change this to the Jakarta EE package.
 
 <<<
 
@@ -8312,7 +8205,7 @@ and template text.
 == Changes
 
 This appendix lists the
-changes in the JSTL specification. This appendix is non-normative.
+changes in the Jakarta Standard Tag Library specification. This appendix is non-normative.
 
 === Changed between Jakarta Standard Tag Library 2.0 and JSR-52
 
