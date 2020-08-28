@@ -1741,7 +1741,7 @@ a list of comma separated values (e.g.
 "Monday,Tuesday,Wednesday,Thursday,Friday").footnote:[The proper way to process strings of tokens is via <c:forTokens> or via functions _split_ and _join_.]
 
 Absent from the list of supported types is
-_java.sql.ResultSet_ (which includes _jakarta.sql.RowSet_). The reason
+_java.sql.ResultSet_ (which includes _javax.sql.RowSet_). The reason
 for this is that the SQL actions described in
 <<SQL_Action_Overview>> use the
 _jakarta.servlet.jsp.jstl.sql.Result_ interface to access the data
@@ -5066,7 +5066,7 @@ transaction
 ==== Data Source
 
 SQL actions operate on a data source, as
-defined by the Java class _jakarta.sql.DataSource_. A _DataSource_ object
+defined by the Java class _javax.sql.DataSource_. A _DataSource_ object
 provides connections to the physical data source it represents. Within
 the context of a _Connection_ retrieved from the _DataSource_, SQL
 statements are executed and results are returned.
@@ -5352,7 +5352,7 @@ statement.
 
 | _dataSource_
 |true
-|jakarta.sql.DataSource or String
+|javax.sql.DataSource or String
 |Data source associated with the database to
 query. A _String_ value represents a relative path to a JNDI resource or
 the parameters for the _DriverManager_ class.
@@ -5521,7 +5521,7 @@ update statement.
 
 |dataSource |true
 a|
-jakarta.sql.
+javax.sql.
 
 DataSource or String
 
@@ -5615,7 +5615,7 @@ action ignores the body content.
 |Type |Description
 | _dataSource_
 |true a|
-jakarta.sql.
+javax.sql.
 
 DataSource
 
@@ -5742,7 +5742,7 @@ Empty.
 |Type |Description
 | _dataSource_
 |true |String or
-jakarta.sql.DataSource |Data source. If
+javax.sql.DataSource |Data source. If
 specified as a string, it can either be a relative path to a JNDI
 resource, or a JDBC parameters string as defined in
 <<Data Source>>.
@@ -5959,7 +5959,7 @@ information on how the Jakarta Standard Tag Library processes configuration data
 _Config.SQL_DATA_SOURCE_
 
 |Type |String or
-jakarta.sql.DataSource
+javax.sql.DataSource
 
 |Set by
 |`<sql:setDataSource>`, Deployment Descriptor,
@@ -5973,7 +5973,7 @@ The data source to be accessed by the SQL
 actions. It can be specified as a string representing either a JNDI
 relative path or a JDBC parameters string (as defined in
 <<Data Source>>), or as a
-_jakarta.sql.DataSource_ object.
+_javax.sql.DataSource_ object.
 
 ==== MaxRows
 
@@ -7012,20 +7012,20 @@ content, then the action trims it and processes it further.
 |Type |Description
 | _doc_ | _true_
 | _String, Reader,
-jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
+javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_. |Source XML document to
 be transformed. (If exported by <x:set>, it must correspond to a
 well-formed XML document, not a partial document.)
 
 | _xml_ | _true_
 | _String, Reader,
-jakarta.xml.transform.Source, org.w3c.dom.Document, or object exported by
+javax.xml.transform.Source, org.w3c.dom.Document, or object exported by
 <x:parse>, <x:set>_. |
 _Deprecated_ footnote:[Names beginning with the string "xml" are reserved by the XML specification.]. Use attribute _doc_ instead.
 
 | _xslt_ | _true_
 | _String, Reader or
-jakarta.xml.transform.Source_ |Transformation
+javax.xml.transform.Source_ |Transformation
 stylesheet as a _String_, _Reader_, or _Source_ object.
 
 |docSystemId |true
@@ -7052,7 +7052,7 @@ _false_ | _String_
 
 | _result_ |
 _true_ a|
-_jakarta.xml.transform.Result_
+_javax.xml.transform.Result_
 
 |Object that captures or processes the
 transformation result.
@@ -7085,7 +7085,7 @@ The result of the transformation is written
 to the page by default. It is also possible to capture the result of the
 transformation in two other ways:
 
-* _jakarta.xml.transform.Result_ object
+* _javax.xml.transform.Result_ object
 specified by the _result_ attribute.
 
 * _org.w3c.dom.Document_ object saved in the
