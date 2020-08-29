@@ -421,7 +421,7 @@ document.
     </attribute>
     <attribute>
         <description>
-jakarta.xml.transform.Source
+javax.xml.transform.Source
 Transformation stylesheet as
 a String, Reader, or
 Source object.
