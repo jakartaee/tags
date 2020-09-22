@@ -148,7 +148,7 @@ your comments to us at:
 
 The Jakarta Standard Tag Library provides a specification document, API and
 TCK that extends the Jakarta Server Pages specification by adding a tag
-library of Java Server Pages tags for common tasks, such as XML data
+library of Jakarta Server Pages tags for common tasks, such as XML data
 processing, conditional execution, database access, loops and
 internationalization.
 
@@ -1467,19 +1467,18 @@ specified with the _test_ attribute is true.
 
 _Syntax 1: Without body content_
 
-....
+[literal, subs="+quotes, +attributes"]
 <c:if test="testCondition"
-    var="varName" [scope="{page|request|session|application}"]/>
-....
+    var="varName" {blank}[scope="{[underline]#page#|request|session|application}"]/>
+
 
 _Syntax 2: With body content_
 
-....
+[literal, subs="+quotes, +attributes"]
 <c:if test="testCondition"
-        [var="varName"] [scope="{page|request|session|application}"]>
+        [var="varName"] {blank}[scope="{[underline]#page#|request|session|application}"]>
     body content
 </c:if>
-....
 
 .*Body Content*
 
@@ -6297,8 +6296,7 @@ String or Reader object_
 
 [literal, subs="+macros"]
 <x:parse {doc="XMLDocument"|xmlfootnote:[Deprecated.]="XMLDocument"}
-    {var="var" [scope="scope"]|varDom="var"
-    [scopeDom="scope"]}
+    {var="var" [scope="scope"]|varDom="var" [scopeDom="scope"]}
     [systemId="systemId"]
     [filter="filter"]/>
 
@@ -6306,8 +6304,7 @@ _Syntax 2: XML document specified via the
 body content_
 ....
 <x:parse
-    {var="var" [scope="scope"]|varDom="var"
-    [scopeDom="scope"]}
+    {var="var" [scope="scope"]|varDom="var" [scopeDom="scope"]}
     [systemId="systemId"]
     [filter="filter"]>
         XML Document to parse
@@ -6964,8 +6961,7 @@ _Syntax 1: Without body contentt_
         {doc="XMLDocument"|xmlfootnote:deprecated[Deprecated.]="XMLDocument"} xslt="XSLTStylesheet"
         [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         [xsltSystemId="XSLTSystemId"]
-        [{var="varName"
-        [scope="scopeName"]|result="resultObject"}]
+        [{var="varName" [scope="scopeName"]|result="resultObject"}]
 
 _Syntax 2: With a body to specify
 transformation parameters_
@@ -6975,8 +6971,7 @@ transformation parameters_
         {doc="XMLDocument"|xml1="XMLDocument"} xslt="XSLTStylesheet"
         [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         [xsltSystemId="XSLTSystemId"]
-        [{var="varName"
-        [scope="scopeName"]|result="resultObject"}]
+        [{var="varName" [scope="scopeName"]|result="resultObject"}]
     <x:param> actions
 </x:transform>
 
@@ -6988,8 +6983,7 @@ document and optional transformation parameters_
         xslt="XSLTStylesheet"
         [{docSystemId="XMLSystemId"|xmlSystemIdfootnote:deprecated[]="XMLSystemId"}]
         xsltSystemId="XSLTSystemId"
-        [{var="varName"
-        [scope="scopeName"]|result="resultObject"}]
+        [{var="varName" [scope="scopeName"]|result="resultObject"}]
     XML Document to parse
     optional <x:param> actions
 </x:transform>
