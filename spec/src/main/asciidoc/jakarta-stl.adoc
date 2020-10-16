@@ -658,18 +658,11 @@ Date: <c:out value="${formattedDate}" default="not specified"/>
 
 == Expression Language Overview
 
-Jakarta Standard Tag Library 1.0 introduced the notion of an
-expression language to make it easy for page authors to access and
-manipulate application data without having to master the complexity
-associated with programming languages such as Java and JavaScript.
-
-Starting with JSP 2.0 / JSTL 1.1, the EL has
-become the responsibility of the JSP specification and is now formally
-defined there.
+Jakarta Standard Tag Library makes use of the Jakarta Expression Language. 
 
 This chapter provides a simple overview of
 the key features of the expression language, it is therefore
-non-normative. Please refer to the Jakarta Server Pages specification for the formal
+non-normative. Please refer to the Jakarta Expression Language specification for the formal
 definition of the Expression Language.
 
 === Expressions and Attribute Values
@@ -1013,7 +1006,7 @@ _With a body_
 </c:out>
 
 .*Body Content*
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1130,7 +1123,7 @@ _Syntax 5: Set a deferred value_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -1304,7 +1297,7 @@ of its nested actions.
 
 .*Body Content*
 
-Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages content. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_.
 
 .*Attributes*
@@ -1482,7 +1475,7 @@ _Syntax 2: With body content_
 
 .*Body Content*
 
-JSP. If the test condition evaluates to true,
+Jakarta Server Pages content. If the test condition evaluates to true,
 the Jakarta Server Pages container processes the body content and then writes it to the
 current _JspWriter_.
 
@@ -1534,7 +1527,7 @@ conditional execution.
 
 .*Body Content*
 
-Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages content. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested actions will be processed) and
 written to the current _JspWriter_.
 
@@ -1580,7 +1573,7 @@ action.
 
 .*Body Content*
 
-Jakarta Server Pages. If this is the first <c:when> action to
+Jakarta Server Pages content. If this is the first <c:when> action to
 evaluate to true within <c:choose>, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -1628,7 +1621,7 @@ Represents the last alternative within a
 
 .*Body Content*
 
-Jakarta Server Pages. If no `<c:when>` action nested within
+Jakarta Server Pages content. If no `<c:when>` action nested within
 `<c:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -1914,7 +1907,7 @@ _Syntax 2: Iterate a fixed number of times_
 
 .*Body Content*
 
-Jakarta Server Pages. As long as there are items to iterate
+Jakarta Server Pages content. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -2097,7 +2090,7 @@ supplied delimiters.
 
 .*Body Content*
 
-Jakarta Server Pages. As long as there are items to iterate
+Jakarta Server Pages content. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -2394,7 +2387,7 @@ Reader object_
 
 .*Body Content*
 
-Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages content. The body content is processed by the Jakarta Server Pages
 container and the result is written to the current _JspWriter_.
 
 .*Attributes*
@@ -2487,7 +2480,7 @@ properly closed by the time the end of the page is
 reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_, or because the page author might remove the consumer tag while leaving inadvertantly the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
 the exported _Reader_ as having nested visibility: it may not currently
 be accessed after the end-tag for the `<c:import>`
-actionfootnote:[This restriction could eventually be lifted when the Jakarta Server Pages spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use JSP 1.2
+actionfootnote:[This restriction could eventually be lifted when the Jakarta Server Pages spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use the
 tag-extension API will likely need to implement _TryCatchFinally_ with
 their `<c:import>` tag handlers and close the exported Reader in
 _doFinally()_.
@@ -2647,7 +2640,7 @@ query string parameters_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2693,7 +2686,7 @@ encoded (e.g. space), it is the user's responsibility to encode them.
 
 The URL must be either an absolute URL
 starting with a scheme (e.g. "http://server/context/page.jsp") or a
-relative URL as defined by JSP 1.2 in JSP.2.2.1 "Relative URL
+relative URL as defined by Jakarta Server Pages in JSP.2.2.1 "Relative URL
 Specification". As a consequence, an implementation must prepend the
 context path to a URL that starts with a slash (e.g. "/page2.jsp") so
 that such URLs can be properly interpreted by a client browser.
@@ -2745,7 +2738,7 @@ query string parameters_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -2773,7 +2766,7 @@ _SKIP_PAGE_ from _doEndTag()_.
 
 The URL must be either an absolute URL
 starting with a scheme (e.g. "http://server/context/page.jsp") or a
-relative URL as defined by JSP 1.2 in JSP.2.2.1 "Relative URL
+relative URL as defined by Jakarta Server Pages in JSP.2.2.1 "Relative URL
 Specification". As a consequence, an implementation must prepend the
 context path to a URL that starts with a slash (e.g. "/page2.jsp") if
 the behavior is implemented using the
@@ -2816,7 +2809,7 @@ body content_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3447,7 +3440,7 @@ used by its body content.
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
@@ -3626,7 +3619,7 @@ optional message parameters_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -3744,7 +3737,7 @@ _Syntax 2: value specified via body content_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4233,7 +4226,7 @@ information is to be formatted or parsed in its body content.
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_. The action
 ignores the body content.
 
@@ -4379,7 +4372,7 @@ numeric value to be formatted_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4583,7 +4576,7 @@ numeric value to be parsed_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -4878,7 +4871,7 @@ value to be parsed_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5335,7 +5328,7 @@ optional query parameters_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5504,7 +5497,7 @@ statement and optional update parameters_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -5601,7 +5594,7 @@ isolationLevel ::= "read_committed"
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakart Server Pages container processes the body
+Jakarta Server Pages content. The Jakart Server Pages container processes the body
 content and then writes the result to the current _JspWriter_. The
 action ignores the body content.
 
@@ -5826,7 +5819,7 @@ body content_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6321,7 +6314,7 @@ where scope is
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -6639,7 +6632,7 @@ _Syntax 2: With body content_
 
 .*Body Content*
 
-Jakarta Server Pages. If the test condition evaluates to true,
+Jakarta Server Pages content. If the test condition evaluates to true,
 the Jakarta Server Pages container processes the body content and then writes it to the
 current _JspWriter_.
 
@@ -6694,7 +6687,7 @@ conditional execution.
 
 .*Body Content*
 
-Jakarta Server Pages. The body content is processed by the Jakarta Server Pages
+Jakarta Server Pages content. The body content is processed by the Jakarta Server Pages
 container (at most one of the nested elements will be processed) and
 written to the current _JspWriter_.
 
@@ -6739,7 +6732,7 @@ Represents an alternative within an
 
 .*Body Content*
 
-Jakarta Server Pages. If this is the first _<x:when>_ action
+Jakarta Server Pages content. If this is the first _<x:when>_ action
 to evaluate to true within _<x:choose>_, the Jakarta Server Pages container processes
 the body content and then writes it to the current _JspWriter_.
 
@@ -6789,7 +6782,7 @@ Represents the last alternative within a
 
 .*Body Content*
 
-Jakarta Server Pages. If no `<x:when>` action nested within
+Jakarta Server Pages content. If no `<x:when>` action nested within
 `<x:choose>` evaluates to true, the Jakarta Server Pages container processes the body
 content and then writes it to the current _JspWriter_.
 
@@ -6831,7 +6824,7 @@ node to each element in the iteration.
 
 .*Body Content*
 
-Jakarta Server Pages. As long as there are items to iterate
+Jakarta Server Pages content. As long as there are items to iterate
 over, the body content is processed by the Jakarta Server Pages container and written to
 the current _JspWriter_.
 
@@ -6999,7 +6992,7 @@ where scopeName is
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7115,7 +7108,7 @@ body content_
 
 .*Body Content*
 
-Jakarta Server Pages. The Jakarta Server Pages container processes the body
+Jakarta Server Pages content. The Jakarta Server Pages container processes the body
 content, then the action trims it and processes it further.
 
 .*Attributes*
@@ -7195,7 +7188,7 @@ developer could create the following TLD:
         "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
     version="2.0">
     <description>
-        Validates Jakarta Server Pages pages to prohibit use of scripting elements.
+        Validates Jakarta Server Pages to prohibit use of scripting elements.
     </description>
     <tlib-version>1.0</tlib-version>
     <jsp-version>2.0</jsp.version>
