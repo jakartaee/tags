@@ -3,7 +3,7 @@ EE4J implementation of Jakarta Standard Tag Library
 
 Certification
 -------------
-* [Jakarta Standard Tag Library 2.0 TCK results summary](https://eclipse-ee4j.github.io/tags/certifications/jakarta-tags/2.0/TCK-Results)
+* [Jakarta Standard Tag Library 2.0 TCK results summary](https://eclipse-ee4j.github.io/jstl-api/certifications/jakarta-tags/2.0/TCK-Results)
 
 # Prerequisites
 
