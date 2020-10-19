@@ -7,11 +7,11 @@ title: [Eclipse Soteria]
 description: [Eclipse EE4J implementation of Jakarta Security]
 
 links:
-  source: https://github.com/eclipse-ee4j/soteria
+  source: https://github.com/eclipse-ee4j/jstl-api
   javadocs: docs/api/
   issues_url: site.github.issues_url
-  download: https://github.com/eclipse-ee4j/soteria/releases
-  mailinglist: https://accounts.eclipse.org/mailing-list/soteria-dev
+  download: https://github.com/eclipse-ee4j/jstl-api/releases
+  mailinglist: https://accounts.eclipse.org/mailing-list/jstl-dev
   # faq: FAQ
 
 include:
