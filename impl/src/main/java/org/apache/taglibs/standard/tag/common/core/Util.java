@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -213,7 +214,7 @@ public class Util {
 	    enc = "UTF-8";	// Is this right?
 	}
 
-	StringBuffer out = new StringBuffer(s.length());
+	StringBuilder out = new StringBuilder(s.length());
 	ByteArrayOutputStream buf = new ByteArrayOutputStream();
 	OutputStreamWriter writer = null;
 	try {

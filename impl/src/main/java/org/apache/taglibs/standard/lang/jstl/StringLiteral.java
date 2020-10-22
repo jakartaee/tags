@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,9 +65,8 @@ public class StringLiteral
    *
    * Parses the given token into the literal value
    **/
-  public static String getValueFromToken (String pToken)
-  {
-    StringBuffer buf = new StringBuffer ();
+  public static String getValueFromToken (String pToken) {
+    StringBuilder buf = new StringBuilder ();
     int len = pToken.length () - 1;
     boolean escaping = false;
     for (int i = 1; i < len; i++) {
@@ -101,7 +101,7 @@ public class StringLiteral
 
     // Escaping is needed
     else {
-      StringBuffer buf = new StringBuffer ();
+      StringBuilder buf = new StringBuilder ();
       buf.append ('\"');
       int len = pValue.length ();
       for (int i = 0; i < len; i++) {

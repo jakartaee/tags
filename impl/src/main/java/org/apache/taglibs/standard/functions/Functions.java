@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -147,7 +148,7 @@ public class Functions {
         if (substringBefore == null) substringBefore = "";
         if (substringBefore.length() == 0) return input;
                 
-        StringBuffer buf = new StringBuffer(input.length());
+        StringBuilder buf = new StringBuilder(input.length());
         int startIndex = 0;
         int index;
         while ((index = input.indexOf(substringBefore, startIndex)) != -1) {
@@ -221,7 +222,7 @@ public class Functions {
         if (array == null) return "";         
         if (separator == null) separator = "";
         
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for (int i=0; i<array.length; i++) {
             buf.append(array[i]);
             if (i < array.length-1) buf.append(separator);

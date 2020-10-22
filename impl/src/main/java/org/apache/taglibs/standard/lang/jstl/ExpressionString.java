@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,48 +67,43 @@ public class ExpressionString
 			  Logger pLogger)
     throws ELException
   {
-    StringBuffer buf = new StringBuffer ();
-    for (int i = 0; i < mElements.length; i++) {
-      Object elem = mElements [i];
-      if (elem instanceof String) {
-	buf.append ((String) elem);
+        StringBuilder buf = new StringBuilder();
+      for (Object elem : mElements) {
+          if (elem instanceof String) {
+              buf.append((String) elem);
+          } else if (elem instanceof Expression) {
+              Object val
+                      = ((Expression) elem).evaluate(pContext,
+                              pResolver,
+                              functions,
+                              defaultPrefix,
+                              pLogger);
+              if (val != null) {
+                  buf.append(val.toString());
+              }
+          }
       }
-      else if (elem instanceof Expression) {
-	Object val = 
-	  ((Expression) elem).evaluate (pContext,
-					pResolver,
-					functions,
-					defaultPrefix,
-					pLogger);
-	if (val != null) {
-	  buf.append (val.toString ());
-	}
-      }
+        return buf.toString();
     }
-    return buf.toString ();
-  }
 
   //-------------------------------------
   /**
    *
    * Returns the expression in the expression language syntax
    **/
-  public String getExpressionString ()
-  {
-    StringBuffer buf = new StringBuffer ();
-    for (int i = 0; i < mElements.length; i++) {
-      Object elem = mElements [i];
-      if (elem instanceof String) {
-	buf.append ((String) elem);
-      }
-      else if (elem instanceof Expression) {
-	buf.append ("${");
-	buf.append (((Expression) elem).getExpressionString ());
-	buf.append ("}");
-      }
+    public String getExpressionString() {
+        StringBuilder buf = new StringBuilder();
+        for (Object elem : mElements) {
+            if (elem instanceof String) {
+                buf.append((String) elem);
+            } else if (elem instanceof Expression) {
+                buf.append("${");
+                buf.append(((Expression) elem).getExpressionString());
+                buf.append("}");
+            }
+        }
+        return buf.toString();
     }
-    return buf.toString ();
-  }
 
   //-------------------------------------
 }
