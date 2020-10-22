@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,18 +75,18 @@ public class ComplexValue
    *
    * Returns the expression in the expression language syntax
    **/
-  public String getExpressionString ()
-  {
-    StringBuffer buf = new StringBuffer ();
-    buf.append (mPrefix.getExpressionString ());
+    @Override
+    public String getExpressionString() {
+        StringBuilder buf = new StringBuilder();
+        buf.append(mPrefix.getExpressionString());
 
-    for (int i = 0; mSuffixes != null && i < mSuffixes.size (); i++) {
-      ValueSuffix suffix = (ValueSuffix) mSuffixes.get (i);
-      buf.append (suffix.getExpressionString ());
+        for (int i = 0; mSuffixes != null && i < mSuffixes.size(); i++) {
+            ValueSuffix suffix = (ValueSuffix) mSuffixes.get(i);
+            buf.append(suffix.getExpressionString());
+        }
+
+        return buf.toString();
     }
-
-    return buf.toString ();
-  }
 
   //-------------------------------------
   /**

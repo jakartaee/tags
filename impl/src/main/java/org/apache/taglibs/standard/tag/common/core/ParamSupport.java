@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -156,7 +157,7 @@ public abstract class ParamSupport extends BodyTagSupport {
 	    // build a string from the parameter list 
 	    StringBuffer newParams = new StringBuffer();
 	    for (int i = 0; i < names.size(); i++) {
-		newParams.append(names.get(i) + "=" + values.get(i));
+		newParams.append(names.get(i)).append("=").append(values.get(i));
 		if (i < (names.size() - 1))
 		    newParams.append("&");
 	    }
@@ -167,7 +168,7 @@ public abstract class ParamSupport extends BodyTagSupport {
 	        if (questionMark == -1) {
 		    return (url + "?" + newParams);
 	        } else {
-		    StringBuffer workingUrl = new StringBuffer(url);
+		    StringBuilder workingUrl = new StringBuilder(url);
 		    workingUrl.insert(questionMark + 1, (newParams + "&"));
 		    return workingUrl.toString();
 	        }
