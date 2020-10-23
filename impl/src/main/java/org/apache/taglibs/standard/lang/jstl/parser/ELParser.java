@@ -127,23 +127,12 @@ public class ELParser implements ELParserConstants {
         if (elems != null) {
             ret = new ExpressionString(elems.toArray());
         }
-        {
-            if (true) {
-                return ret;
-            }
-        }
-        throw new Error("Missing return statement in function");
+        return ret;
     }
 
     final public String AttrValueString() throws ParseException {
-        Token t;
-        t = jj_consume_token(NON_EXPRESSION_TEXT);
-        {
-            if (true) {
-                return t.image;
-            }
-        }
-        throw new Error("Missing return statement in function");
+        Token t = jj_consume_token(NON_EXPRESSION_TEXT);
+        return t.image;
     }
 
     final public Expression AttrValueExpression() throws ParseException {
@@ -151,19 +140,12 @@ public class ELParser implements ELParserConstants {
         jj_consume_token(START_EXPRESSION);
         exp = Expression();
         jj_consume_token(END_EXPRESSION);
-        if (true) {
-            return exp;
-        }
-        throw new Error("Missing return statement in function");
+        return exp;
     }
 
     final public Expression Expression() throws ParseException {
-        Expression ret;
-        ret = OrExpression();
-        if (true) {
-            return ret;
-        }
-        throw new Error("Missing return statement in function");
+        Expression ret = OrExpression();
+        return ret;
     }
 
     final public Expression OrExpression() throws ParseException {
@@ -178,7 +160,6 @@ public class ELParser implements ELParserConstants {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                 case OR1:
                 case OR2:
-        ;
                     break;
                 default:
                     jj_la1[3] = jj_gen;
@@ -206,15 +187,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-            if (true) {
                 return startExpression;
-            }
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression AndExpression() throws ParseException {
@@ -256,15 +232,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
                 return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
         } else {
-            if (true) {
                 return startExpression;
-            }
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression EqualityExpression() throws ParseException {
@@ -333,15 +304,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-            if (true) {
-                return startExpression;
-            }
+            return startExpression;
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression RelationalExpression() throws ParseException {
@@ -446,15 +412,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-            if (true) {
-                return startExpression;
-            }
+            return startExpression;
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression AddExpression() throws ParseException {
@@ -497,15 +458,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-            if (true) {
-                return startExpression;
-            }
+            return startExpression;
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression MultiplyExpression() throws ParseException {
@@ -579,15 +535,10 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            if (true) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
-            }
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-            if (true) {
-                return startExpression;
-            }
+            return startExpression;
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression UnaryExpression() throws ParseException {
@@ -649,19 +600,12 @@ public class ELParser implements ELParserConstants {
         }
         expression = Value();
         if (operators != null) {
-            if (true) {
-                return new UnaryOperatorExpression(null, operators, expression);
-            }
+            return new UnaryOperatorExpression(null, operators, expression);
         } else if (singleOperator != null) {
-            if (true) {
-                return new UnaryOperatorExpression(singleOperator, null, expression);
-            }
+            return new UnaryOperatorExpression(singleOperator, null, expression);
         } else {
-            if (true) {
-                return expression;
-            }
+            return expression;
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public Expression Value() throws ParseException {
@@ -686,15 +630,10 @@ public class ELParser implements ELParserConstants {
             suffixes.add(suffix);
         }
         if (suffixes == null) {
-            if (true) {
-                return prefix;
-            }
+            return prefix;
         } else {
-            if (true) {
-                return new ComplexValue(prefix, suffixes);
-            }
+            return new ComplexValue(prefix, suffixes);
         }
-        throw new Error("Missing return statement in function");
     }
 
     /**
@@ -733,19 +672,12 @@ public class ELParser implements ELParserConstants {
                     }
                 }
         }
-        if (true) {
-            return ret;
-        }
-        throw new Error("Missing return statement in function");
+        return ret;
     }
 
     final public NamedValue NamedValue() throws ParseException {
-        Token t;
-        t = jj_consume_token(IDENTIFIER);
-        if (true) {
-            return new NamedValue(t.image);
-        }
-        throw new Error("Missing return statement in function");
+        Token t = jj_consume_token(IDENTIFIER);
+        return new NamedValue(t.image);
     }
 
     final public FunctionInvocation FunctionInvocation() throws ParseException {
@@ -790,14 +722,9 @@ public class ELParser implements ELParserConstants {
         jj_consume_token(RPAREN);
         String allowed = System.getProperty("jakarta.servlet.jsp.functions.allowed");
         if (allowed == null || !allowed.equalsIgnoreCase("true")) {
-            if (true) {
-                throw new ParseException("EL functions are not supported.");
-            }
+            throw new ParseException("EL functions are not supported.");
         }
-        if (true) {
-            return new FunctionInvocation(qualifiedName, argumentList);
-        }
-        throw new Error("Missing return statement in function");
+        return new FunctionInvocation(qualifiedName, argumentList);
     }
 
     final public ValueSuffix ValueSuffix() throws ParseException {
@@ -814,10 +741,7 @@ public class ELParser implements ELParserConstants {
                 jj_consume_token(-1);
                 throw new ParseException();
         }
-        if (true) {
-            return suffix;
-        }
-        throw new Error("Missing return statement in function");
+        return suffix;
     }
 
     final public PropertySuffix PropertySuffix() throws ParseException {
@@ -825,10 +749,7 @@ public class ELParser implements ELParserConstants {
         String property;
         jj_consume_token(DOT);
         property = Identifier();
-        if (true) {
-            return new PropertySuffix(property);
-        }
-        throw new Error("Missing return statement in function");
+        return new PropertySuffix(property);
     }
 
     final public ArraySuffix ArraySuffix() throws ParseException {
@@ -836,10 +757,7 @@ public class ELParser implements ELParserConstants {
         jj_consume_token(LBRACKET);
         index = Expression();
         jj_consume_token(RBRACKET);
-        if (true) {
-            return new ArraySuffix(index);
-        }
-        throw new Error("Missing return statement in function");
+        return new ArraySuffix(index);
     }
 
     final public Literal Literal() throws ParseException {
@@ -866,76 +784,50 @@ public class ELParser implements ELParserConstants {
                 jj_consume_token(-1);
                 throw new ParseException();
         }
-        if (true) {
-            return ret;
-        }
-        throw new Error("Missing return statement in function");
+        return ret;
     }
 
     final public BooleanLiteral BooleanLiteral() throws ParseException {
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
             case TRUE:
                 jj_consume_token(TRUE);
-                if (true) {
-                    return BooleanLiteral.TRUE;
-                }
-                break;
+                return BooleanLiteral.TRUE;
             case FALSE:
                 jj_consume_token(FALSE);
-                if (true) {
-                    return BooleanLiteral.FALSE;
-                }
-                break;
+                return BooleanLiteral.FALSE;
             default:
                 jj_la1[33] = jj_gen;
                 jj_consume_token(-1);
                 throw new ParseException();
         }
-        throw new Error("Missing return statement in function");
     }
 
     final public StringLiteral StringLiteral() throws ParseException {
-        Token t;
-        t = jj_consume_token(STRING_LITERAL);
-        if (true) {
-            return StringLiteral.fromToken(t.image);
-        }
-        throw new Error("Missing return statement in function");
+        Token t = jj_consume_token(STRING_LITERAL);
+        return StringLiteral.fromToken(t.image);
     }
 
     final public IntegerLiteral IntegerLiteral() throws ParseException {
         Token t;
         t = jj_consume_token(INTEGER_LITERAL);
-        if (true) {
-            return new IntegerLiteral(t.image);
-        }
-        throw new Error("Missing return statement in function");
+        return new IntegerLiteral(t.image);
     }
 
     final public FloatingPointLiteral FloatingPointLiteral() throws ParseException {
         Token t;
         t = jj_consume_token(FLOATING_POINT_LITERAL);
-        if (true) {
-            return new FloatingPointLiteral(t.image);
-        }
-        throw new Error("Missing return statement in function");
+        return new FloatingPointLiteral(t.image);
     }
 
     final public NullLiteral NullLiteral() throws ParseException {
         jj_consume_token(NULL);
-        if (true) {
-            return NullLiteral.SINGLETON;
-        }
-        throw new Error("Missing return statement in function");
+        return NullLiteral.SINGLETON;
     }
 
     final public String Identifier() throws ParseException {
         Token t;
         t = jj_consume_token(IDENTIFIER);
-        if (true) {
-            return t.image;
-        }
-        throw new Error("Missing return statement in function");
+        return t.image;
     }
 
     final public String QualifiedName() throws ParseException {
@@ -943,20 +835,14 @@ public class ELParser implements ELParserConstants {
         if (jj_2_2(2147483647)) {
             prefix = Identifier();
             jj_consume_token(COLON);
-        } else {
-            ;
         }
+        
         localPart = Identifier();
         if (prefix == null) {
-            if (true) {
-                return localPart;
-            }
+            return localPart;
         } else {
-            if (true) {
-                return prefix + ":" + localPart;
-            }
+            return prefix + ":" + localPart;
         }
-        throw new Error("Missing return statement in function");
     }
 
     private boolean jj_2_1(int xla) {
