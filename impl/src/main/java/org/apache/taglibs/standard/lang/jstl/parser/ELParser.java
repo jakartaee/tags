@@ -72,14 +72,13 @@ public class ELParser implements ELParserConstants {
 
     /**
      * ***************************************
-     * GRAMMAR PRODUCTIONS *
- ****************************************
+     * GRAMMAR PRODUCTIONS * ***************************************
      */
     /**
      *
      * Returns a String if the expression string is a single String, an Expression if the expression string is a single Expression, an ExpressionString if it's
      * a mixture of both.
- *
+     *
      */
     final public Object ExpressionString() throws ParseException {
         Object ret = "";
@@ -102,7 +101,6 @@ public class ELParser implements ELParserConstants {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                 case NON_EXPRESSION_TEXT:
                 case START_EXPRESSION:
-        ;
                     break;
                 default:
                     jj_la1[1] = jj_gen;
@@ -153,10 +151,8 @@ public class ELParser implements ELParserConstants {
         jj_consume_token(START_EXPRESSION);
         exp = Expression();
         jj_consume_token(END_EXPRESSION);
-        {
-            if (true) {
-                return exp;
-            }
+        if (true) {
+            return exp;
         }
         throw new Error("Missing return statement in function");
     }
@@ -164,10 +160,8 @@ public class ELParser implements ELParserConstants {
     final public Expression Expression() throws ParseException {
         Expression ret;
         ret = OrExpression();
-        {
-            if (true) {
-                return ret;
-            }
+        if (true) {
+            return ret;
         }
         throw new Error("Missing return statement in function");
     }
@@ -212,18 +206,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -241,7 +229,6 @@ public class ELParser implements ELParserConstants {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                 case AND1:
                 case AND2:
-        ;
                     break;
                 default:
                     jj_la1[5] = jj_gen;
@@ -269,18 +256,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -300,7 +281,6 @@ public class ELParser implements ELParserConstants {
                 case EQ2:
                 case NE1:
                 case NE2:
-        ;
                     break;
                 default:
                     jj_la1[7] = jj_gen;
@@ -353,18 +333,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -388,7 +362,6 @@ public class ELParser implements ELParserConstants {
                 case LE2:
                 case GE1:
                 case GE2:
-        ;
                     break;
                 default:
                     jj_la1[11] = jj_gen;
@@ -473,18 +446,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -502,7 +469,6 @@ public class ELParser implements ELParserConstants {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                 case PLUS:
                 case MINUS:
-        ;
                     break;
                 default:
                     jj_la1[17] = jj_gen;
@@ -531,18 +497,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -563,7 +523,6 @@ public class ELParser implements ELParserConstants {
                 case DIVIDE2:
                 case MODULUS1:
                 case MODULUS2:
-        ;
                     break;
                 default:
                     jj_la1[19] = jj_gen;
@@ -620,18 +579,12 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-            {
-                if (true) {
-                    return new BinaryOperatorExpression(startExpression,
-                            operators,
-                            expressions);
-                }
+            if (true) {
+                return new BinaryOperatorExpression(startExpression, operators, expressions);
             }
         } else {
-            {
-                if (true) {
-                    return startExpression;
-                }
+            if (true) {
+                return startExpression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -649,7 +602,6 @@ public class ELParser implements ELParserConstants {
                 case NOT1:
                 case NOT2:
                 case EMPTY:
-        ;
                     break;
                 default:
                     jj_la1[23] = jj_gen;
@@ -697,22 +649,16 @@ public class ELParser implements ELParserConstants {
         }
         expression = Value();
         if (operators != null) {
-            {
-                if (true) {
-                    return new UnaryOperatorExpression(null, operators, expression);
-                }
+            if (true) {
+                return new UnaryOperatorExpression(null, operators, expression);
             }
         } else if (singleOperator != null) {
-            {
-                if (true) {
-                    return new UnaryOperatorExpression(singleOperator, null, expression);
-                }
+            if (true) {
+                return new UnaryOperatorExpression(singleOperator, null, expression);
             }
         } else {
-            {
-                if (true) {
-                    return expression;
-                }
+            if (true) {
+                return expression;
             }
         }
         throw new Error("Missing return statement in function");
@@ -728,7 +674,6 @@ public class ELParser implements ELParserConstants {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                 case DOT:
                 case LBRACKET:
-        ;
                     break;
                 default:
                     jj_la1[26] = jj_gen;
@@ -741,16 +686,12 @@ public class ELParser implements ELParserConstants {
             suffixes.add(suffix);
         }
         if (suffixes == null) {
-            {
-                if (true) {
-                    return prefix;
-                }
+            if (true) {
+                return prefix;
             }
         } else {
-            {
-                if (true) {
-                    return new ComplexValue(prefix, suffixes);
-                }
+            if (true) {
+                return new ComplexValue(prefix, suffixes);
             }
         }
         throw new Error("Missing return statement in function");
@@ -758,7 +699,7 @@ public class ELParser implements ELParserConstants {
 
     /**
      * This is an element that can start a value
- *
+     *
      */
     final public Expression ValuePrefix() throws ParseException {
         Expression ret;
@@ -792,10 +733,8 @@ public class ELParser implements ELParserConstants {
                     }
                 }
         }
-        {
-            if (true) {
-                return ret;
-            }
+        if (true) {
+            return ret;
         }
         throw new Error("Missing return statement in function");
     }
@@ -803,10 +742,8 @@ public class ELParser implements ELParserConstants {
     final public NamedValue NamedValue() throws ParseException {
         Token t;
         t = jj_consume_token(IDENTIFIER);
-        {
-            if (true) {
-                return new NamedValue(t.image);
-            }
+        if (true) {
+            return new NamedValue(t.image);
         }
         throw new Error("Missing return statement in function");
     }
@@ -836,7 +773,6 @@ public class ELParser implements ELParserConstants {
                 while (true) {
                     switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
                         case COMMA:
-          ;
                             break;
                         default:
                             jj_la1[29] = jj_gen;
@@ -858,10 +794,8 @@ public class ELParser implements ELParserConstants {
                 throw new ParseException("EL functions are not supported.");
             }
         }
-        {
-            if (true) {
-                return new FunctionInvocation(qualifiedName, argumentList);
-            }
+        if (true) {
+            return new FunctionInvocation(qualifiedName, argumentList);
         }
         throw new Error("Missing return statement in function");
     }
@@ -880,10 +814,8 @@ public class ELParser implements ELParserConstants {
                 jj_consume_token(-1);
                 throw new ParseException();
         }
-        {
-            if (true) {
-                return suffix;
-            }
+        if (true) {
+            return suffix;
         }
         throw new Error("Missing return statement in function");
     }
@@ -893,10 +825,8 @@ public class ELParser implements ELParserConstants {
         String property;
         jj_consume_token(DOT);
         property = Identifier();
-        {
-            if (true) {
-                return new PropertySuffix(property);
-            }
+        if (true) {
+            return new PropertySuffix(property);
         }
         throw new Error("Missing return statement in function");
     }
@@ -906,10 +836,8 @@ public class ELParser implements ELParserConstants {
         jj_consume_token(LBRACKET);
         index = Expression();
         jj_consume_token(RBRACKET);
-        {
-            if (true) {
-                return new ArraySuffix(index);
-            }
+        if (true) {
+            return new ArraySuffix(index);
         }
         throw new Error("Missing return statement in function");
     }
@@ -938,10 +866,8 @@ public class ELParser implements ELParserConstants {
                 jj_consume_token(-1);
                 throw new ParseException();
         }
-        {
-            if (true) {
-                return ret;
-            }
+        if (true) {
+            return ret;
         }
         throw new Error("Missing return statement in function");
     }
@@ -950,18 +876,14 @@ public class ELParser implements ELParserConstants {
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
             case TRUE:
                 jj_consume_token(TRUE);
-                 {
-                    if (true) {
-                        return BooleanLiteral.TRUE;
-                    }
+                if (true) {
+                    return BooleanLiteral.TRUE;
                 }
                 break;
             case FALSE:
                 jj_consume_token(FALSE);
-                 {
-                    if (true) {
-                        return BooleanLiteral.FALSE;
-                    }
+                if (true) {
+                    return BooleanLiteral.FALSE;
                 }
                 break;
             default:
@@ -975,10 +897,8 @@ public class ELParser implements ELParserConstants {
     final public StringLiteral StringLiteral() throws ParseException {
         Token t;
         t = jj_consume_token(STRING_LITERAL);
-        {
-            if (true) {
-                return StringLiteral.fromToken(t.image);
-            }
+        if (true) {
+            return StringLiteral.fromToken(t.image);
         }
         throw new Error("Missing return statement in function");
     }
@@ -986,10 +906,8 @@ public class ELParser implements ELParserConstants {
     final public IntegerLiteral IntegerLiteral() throws ParseException {
         Token t;
         t = jj_consume_token(INTEGER_LITERAL);
-        {
-            if (true) {
-                return new IntegerLiteral(t.image);
-            }
+        if (true) {
+            return new IntegerLiteral(t.image);
         }
         throw new Error("Missing return statement in function");
     }
@@ -997,20 +915,16 @@ public class ELParser implements ELParserConstants {
     final public FloatingPointLiteral FloatingPointLiteral() throws ParseException {
         Token t;
         t = jj_consume_token(FLOATING_POINT_LITERAL);
-        {
-            if (true) {
-                return new FloatingPointLiteral(t.image);
-            }
+        if (true) {
+            return new FloatingPointLiteral(t.image);
         }
         throw new Error("Missing return statement in function");
     }
 
     final public NullLiteral NullLiteral() throws ParseException {
         jj_consume_token(NULL);
-        {
-            if (true) {
-                return NullLiteral.SINGLETON;
-            }
+        if (true) {
+            return NullLiteral.SINGLETON;
         }
         throw new Error("Missing return statement in function");
     }
@@ -1018,10 +932,8 @@ public class ELParser implements ELParserConstants {
     final public String Identifier() throws ParseException {
         Token t;
         t = jj_consume_token(IDENTIFIER);
-        {
-            if (true) {
-                return t.image;
-            }
+        if (true) {
+            return t.image;
         }
         throw new Error("Missing return statement in function");
     }
