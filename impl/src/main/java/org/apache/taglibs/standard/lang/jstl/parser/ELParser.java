@@ -136,16 +136,14 @@ public class ELParser implements ELParserConstants {
     }
 
     final public Expression AttrValueExpression() throws ParseException {
-        Expression exp;
         jj_consume_token(START_EXPRESSION);
-        exp = Expression();
+        Expression exp = Expression();
         jj_consume_token(END_EXPRESSION);
         return exp;
     }
 
     final public Expression Expression() throws ParseException {
-        Expression ret = OrExpression();
-        return ret;
+        return OrExpression();
     }
 
     final public Expression OrExpression() throws ParseException {
@@ -189,7 +187,7 @@ public class ELParser implements ELParserConstants {
         if (operators != null) {
             return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-                return startExpression;
+            return startExpression;
         }
     }
 
@@ -232,9 +230,9 @@ public class ELParser implements ELParserConstants {
             expressions.add(expression);
         }
         if (operators != null) {
-                return new BinaryOperatorExpression(startExpression, operators, expressions);
+            return new BinaryOperatorExpression(startExpression, operators, expressions);
         } else {
-                return startExpression;
+            return startExpression;
         }
     }
 
@@ -717,7 +715,7 @@ public class ELParser implements ELParserConstants {
                 break;
             default:
                 jj_la1[30] = jj_gen;
-                ;
+                break;
         }
         jj_consume_token(RPAREN);
         String allowed = System.getProperty("jakarta.servlet.jsp.functions.allowed");
@@ -745,17 +743,14 @@ public class ELParser implements ELParserConstants {
     }
 
     final public PropertySuffix PropertySuffix() throws ParseException {
-        Token t;
-        String property;
         jj_consume_token(DOT);
-        property = Identifier();
+        String property = Identifier();
         return new PropertySuffix(property);
     }
 
     final public ArraySuffix ArraySuffix() throws ParseException {
-        Expression index;
         jj_consume_token(LBRACKET);
-        index = Expression();
+        Expression index = Expression();
         jj_consume_token(RBRACKET);
         return new ArraySuffix(index);
     }
@@ -808,14 +803,12 @@ public class ELParser implements ELParserConstants {
     }
 
     final public IntegerLiteral IntegerLiteral() throws ParseException {
-        Token t;
-        t = jj_consume_token(INTEGER_LITERAL);
+        Token t = jj_consume_token(INTEGER_LITERAL);
         return new IntegerLiteral(t.image);
     }
 
     final public FloatingPointLiteral FloatingPointLiteral() throws ParseException {
-        Token t;
-        t = jj_consume_token(FLOATING_POINT_LITERAL);
+        Token t = jj_consume_token(FLOATING_POINT_LITERAL);
         return new FloatingPointLiteral(t.image);
     }
 
@@ -825,8 +818,7 @@ public class ELParser implements ELParserConstants {
     }
 
     final public String Identifier() throws ParseException {
-        Token t;
-        t = jj_consume_token(IDENTIFIER);
+        Token t = jj_consume_token(IDENTIFIER);
         return t.image;
     }
 
@@ -836,7 +828,7 @@ public class ELParser implements ELParserConstants {
             prefix = Identifier();
             jj_consume_token(COLON);
         }
-        
+
         localPart = Identifier();
         if (prefix == null) {
             return localPart;
@@ -943,7 +935,6 @@ public class ELParser implements ELParserConstants {
     private Token jj_scanpos, jj_lastpos;
     private int jj_la;
     public boolean lookingAhead = false;
-    private boolean jj_semLA;
     private int jj_gen;
     final private int[] jj_la1 = new int[34];
     final private int[] jj_la1_0 = {0x6, 0x6, 0x6, 0x0, 0x0, 0x0, 0x0, 0x18600000, 0x600000, 0x18000000, 0x18600000, 0x79e0000, 0x180000, 0x60000, 0x6000000, 0x1800000, 0x79e0000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10000, 0x20007580, 0x0, 0x80000000, 0x20007580, 0x10000, 0x7580, 0x3000,};
@@ -1046,8 +1037,7 @@ public class ELParser implements ELParserConstants {
             jj_gen++;
             if (++jj_gc > 100) {
                 jj_gc = 0;
-                for (int i = 0; i < jj_2_rtns.length; i++) {
-                    JJCalls c = jj_2_rtns[i];
+                for (JJCalls c : jj_2_rtns) {
                     while (c != null) {
                         if (c.gen < jj_gen) {
                             c.first = null;
