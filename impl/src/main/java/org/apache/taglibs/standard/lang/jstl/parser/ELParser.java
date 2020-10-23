@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Servicer Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +18,9 @@
 package org.apache.taglibs.standard.lang.jstl.parser;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.taglibs.standard.lang.jstl.AndOperator;
 import org.apache.taglibs.standard.lang.jstl.ArraySuffix;
@@ -62,8 +65,7 @@ import org.apache.taglibs.standard.lang.jstl.ValueSuffix;
  */
 public class ELParser implements ELParserConstants {
 
-    public static void main(String args[])
-            throws ParseException {
+    public static void main(String args[]) throws ParseException {
         ELParser parser = new ELParser(System.in);
         parser.ExpressionString();
     }
@@ -81,7 +83,7 @@ public class ELParser implements ELParserConstants {
      */
     final public Object ExpressionString() throws ParseException {
         Object ret = "";
-        List elems = null;
+        List<Object> elems = null;
         Object elem;
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
             case NON_EXPRESSION_TEXT:
@@ -119,7 +121,7 @@ public class ELParser implements ELParserConstants {
                     throw new ParseException();
             }
             if (elems == null) {
-                elems = new ArrayList();
+                elems = new ArrayList<>();
                 elems.add(ret);
             }
             elems.add(elem);
@@ -174,8 +176,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = AndExpression();
         label_2:
         while (true) {
@@ -203,8 +205,8 @@ public class ELParser implements ELParserConstants {
             operator = OrOperator.SINGLETON;
             expression = AndExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -231,8 +233,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = EqualityExpression();
         label_3:
         while (true) {
@@ -260,8 +262,8 @@ public class ELParser implements ELParserConstants {
             operator = AndOperator.SINGLETON;
             expression = EqualityExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -288,8 +290,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = RelationalExpression();
         label_4:
         while (true) {
@@ -344,8 +346,8 @@ public class ELParser implements ELParserConstants {
             }
             expression = RelationalExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -372,8 +374,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = AddExpression();
         label_5:
         while (true) {
@@ -464,8 +466,8 @@ public class ELParser implements ELParserConstants {
             }
             expression = AddExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -492,8 +494,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = MultiplyExpression();
         label_6:
         while (true) {
@@ -522,8 +524,8 @@ public class ELParser implements ELParserConstants {
             }
             expression = MultiplyExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -550,8 +552,8 @@ public class ELParser implements ELParserConstants {
         Expression startExpression;
         BinaryOperator operator;
         Expression expression;
-        List operators = null;
-        List expressions = null;
+        List<BinaryOperator> operators = null;
+        List<Expression> expressions = null;
         startExpression = UnaryExpression();
         label_7:
         while (true) {
@@ -611,8 +613,8 @@ public class ELParser implements ELParserConstants {
             }
             expression = UnaryExpression();
             if (operators == null) {
-                operators = new ArrayList();
-                expressions = new ArrayList();
+                operators = new ArrayList<>();
+                expressions = new ArrayList<>();
             }
             operators.add(operator);
             expressions.add(expression);
@@ -639,7 +641,7 @@ public class ELParser implements ELParserConstants {
         Expression expression;
         UnaryOperator singleOperator = null;
         UnaryOperator operator;
-        List operators = null;
+        List<UnaryOperator> operators = null;
         label_8:
         while (true) {
             switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
@@ -686,7 +688,7 @@ public class ELParser implements ELParserConstants {
             if (singleOperator == null) {
                 singleOperator = operator;
             } else if (operators == null) {
-                operators = new ArrayList();
+                operators = new ArrayList<>();
                 operators.add(singleOperator);
                 operators.add(operator);
             } else {
@@ -719,7 +721,7 @@ public class ELParser implements ELParserConstants {
     final public Expression Value() throws ParseException {
         Expression prefix;
         ValueSuffix suffix;
-        List suffixes = null;
+        List<ValueSuffix> suffixes = null;
         prefix = ValuePrefix();
         label_9:
         while (true) {
@@ -734,7 +736,7 @@ public class ELParser implements ELParserConstants {
             }
             suffix = ValueSuffix();
             if (suffixes == null) {
-                suffixes = new ArrayList();
+                suffixes = new ArrayList<>();
             }
             suffixes.add(suffix);
         }
@@ -811,7 +813,7 @@ public class ELParser implements ELParserConstants {
 
     final public FunctionInvocation FunctionInvocation() throws ParseException {
         String qualifiedName;
-        List argumentList = new ArrayList();
+        List<Expression> argumentList = new ArrayList<>();
         Expression exp;
         qualifiedName = QualifiedName();
         jj_consume_token(LPAREN);
@@ -1045,7 +1047,7 @@ public class ELParser implements ELParserConstants {
         throw new Error("Missing return statement in function");
     }
 
-    final private boolean jj_2_1(int xla) {
+    private boolean jj_2_1(int xla) {
         jj_la = xla;
         jj_lastpos = jj_scanpos = token;
         boolean retval = !jj_3_1();
@@ -1053,7 +1055,7 @@ public class ELParser implements ELParserConstants {
         return retval;
     }
 
-    final private boolean jj_2_2(int xla) {
+    private boolean jj_2_2(int xla) {
         jj_la = xla;
         jj_lastpos = jj_scanpos = token;
         boolean retval = !jj_3_2();
@@ -1061,7 +1063,7 @@ public class ELParser implements ELParserConstants {
         return retval;
     }
 
-    final private boolean jj_3R_13() {
+    private boolean jj_3R_13() {
         if (jj_3R_12()) {
             return true;
         }
@@ -1077,7 +1079,7 @@ public class ELParser implements ELParserConstants {
         return false;
     }
 
-    final private boolean jj_3_2() {
+    private boolean jj_3_2() {
         if (jj_3R_12()) {
             return true;
         }
@@ -1093,7 +1095,7 @@ public class ELParser implements ELParserConstants {
         return false;
     }
 
-    final private boolean jj_3_1() {
+    private boolean jj_3_1() {
         if (jj_3R_11()) {
             return true;
         }
@@ -1109,7 +1111,7 @@ public class ELParser implements ELParserConstants {
         return false;
     }
 
-    final private boolean jj_3R_12() {
+    private boolean jj_3R_12() {
         if (jj_scan_token(IDENTIFIER)) {
             return true;
         }
@@ -1119,7 +1121,7 @@ public class ELParser implements ELParserConstants {
         return false;
     }
 
-    final private boolean jj_3R_11() {
+    private boolean jj_3R_11() {
         Token xsp;
         xsp = jj_scanpos;
         if (jj_3R_13()) {
@@ -1234,7 +1236,7 @@ public class ELParser implements ELParserConstants {
         }
     }
 
-    final private Token jj_consume_token(int kind) throws ParseException {
+    private Token jj_consume_token(int kind) throws ParseException {
         Token oldToken;
         if ((oldToken = token).next != null) {
             token = token.next;
@@ -1263,7 +1265,7 @@ public class ELParser implements ELParserConstants {
         throw generateParseException();
     }
 
-    final private boolean jj_scan_token(int kind) {
+    private boolean jj_scan_token(int kind) {
         if (jj_scanpos == jj_lastpos) {
             jj_la--;
             if (jj_scanpos.next == null) {
@@ -1311,7 +1313,7 @@ public class ELParser implements ELParserConstants {
         return t;
     }
 
-    final private int jj_ntk() {
+    private int jj_ntk() {
         if ((jj_nt = token.next) == null) {
             return (jj_ntk = (token.next = token_source.getNextToken()).kind);
         } else {
@@ -1319,7 +1321,7 @@ public class ELParser implements ELParserConstants {
         }
     }
 
-    private java.util.Vector jj_expentries = new java.util.Vector();
+    private Vector<int[]> jj_expentries = new Vector<>();
     private int[] jj_expentry;
     private int jj_kind = -1;
     private int[] jj_lasttokens = new int[100];
@@ -1333,12 +1335,10 @@ public class ELParser implements ELParserConstants {
             jj_lasttokens[jj_endpos++] = kind;
         } else if (jj_endpos != 0) {
             jj_expentry = new int[jj_endpos];
-            for (int i = 0; i < jj_endpos; i++) {
-                jj_expentry[i] = jj_lasttokens[i];
-            }
+            System.arraycopy(jj_lasttokens, 0, jj_expentry, 0, jj_endpos);
             boolean exists = false;
-            for (java.util.Enumeration enum_ = jj_expentries.elements(); enum_.hasMoreElements();) {
-                int[] oldentry = (int[]) (enum_.nextElement());
+            for (Enumeration<int[]> enum_ = jj_expentries.elements(); enum_.hasMoreElements();) {
+                int[] oldentry = enum_.nextElement();
                 if (oldentry.length == jj_expentry.length) {
                     exists = true;
                     for (int i = 0; i < jj_expentry.length; i++) {
@@ -1395,7 +1395,7 @@ public class ELParser implements ELParserConstants {
         jj_add_error_token(0, 0);
         int[][] exptokseq = new int[jj_expentries.size()][];
         for (int i = 0; i < jj_expentries.size(); i++) {
-            exptokseq[i] = (int[]) jj_expentries.elementAt(i);
+            exptokseq[i] = jj_expentries.elementAt(i);
         }
         return new ParseException(token, exptokseq, tokenImage);
     }
@@ -1406,7 +1406,7 @@ public class ELParser implements ELParserConstants {
     final public void disable_tracing() {
     }
 
-    final private void jj_rescan_token() {
+    private void jj_rescan_token() {
         jj_rescan = true;
         for (int i = 0; i < 2; i++) {
             JJCalls p = jj_2_rtns[i];
@@ -1429,7 +1429,7 @@ public class ELParser implements ELParserConstants {
         jj_rescan = false;
     }
 
-    final private void jj_save(int index, int xla) {
+    private void jj_save(int index, int xla) {
         JJCalls p = jj_2_rtns[index];
         while (p.gen > jj_gen) {
             if (p.next == null) {
