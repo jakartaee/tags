@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,8 +45,7 @@ public abstract class FormatNumberSupport extends BodyTagSupport {
     //*********************************************************************
     // Private constants
 
-    private static final Class[] GET_INSTANCE_PARAM_TYPES =
-	new Class[] { String.class };
+    private static final Class<?>[] GET_INSTANCE_PARAM_TYPES = new Class[] { String.class };
     private static final String NUMBER = "number";    
     private static final String CURRENCY = "currency";
     private static final String PERCENT = "percent";
@@ -309,15 +309,14 @@ public abstract class FormatNumberSupport extends BodyTagSupport {
 	    /*
 	     * java.util.Currency.getInstance()
 	     */
-	    Method m = currencyClass.getMethod("getInstance",
-					       GET_INSTANCE_PARAM_TYPES);
+	    Method m = currencyClass.getMethod("getInstance", GET_INSTANCE_PARAM_TYPES);
 	    methodArgs[0] = code;
 	    Object currency = m.invoke(null, methodArgs);
 
 	    /*
 	     * java.text.NumberFormat.setCurrency()
 	     */
-	    Class[] paramTypes = new Class[1];
+	    Class<?>[] paramTypes = new Class[1];
 	    paramTypes[0] = currencyClass;
 	    Class numberFormatClass = Class.forName("java.text.NumberFormat");
 	    m = numberFormatClass.getMethod("setCurrency", paramTypes);

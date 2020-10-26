@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +79,7 @@ public abstract class SetLocaleSupport extends TagSupport {
      * by getFormattingLocale(PageContext).
      */
     static {
-        Vector vec = new Vector(dateLocales.length);
+        Vector<Locale> vec = new Vector<>(dateLocales.length);
         for (int i=0; i<dateLocales.length; i++) {
             for (int j=0; j<numberLocales.length; j++) {
                 if (dateLocales[i].equals(numberLocales[j])) {
@@ -88,7 +89,7 @@ public abstract class SetLocaleSupport extends TagSupport {
             }
         }
         availableFormattingLocales = new Locale[vec.size()];
-        availableFormattingLocales = (Locale[])vec.toArray(availableFormattingLocales);
+        availableFormattingLocales = vec.toArray(availableFormattingLocales);
     }
 
     public SetLocaleSupport() {

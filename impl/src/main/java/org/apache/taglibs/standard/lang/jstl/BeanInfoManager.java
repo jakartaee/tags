@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,8 +49,8 @@ public class BeanInfoManager
   //-------------------------------------
   // property beanClass
 
-  Class mBeanClass;
-  public Class getBeanClass ()
+  Class<?> mBeanClass;
+  public Class<?> getBeanClass ()
   { return mBeanClass; }
 
   //-------------------------------------
@@ -59,20 +60,20 @@ public class BeanInfoManager
   // The BeanInfo
   BeanInfo mBeanInfo;
 
-  // Mapping from property name to BeanInfoProperty
-  Map mPropertyByName;
+  /** Mapping from property name to BeanInfoProperty */
+  Map<String, BeanInfoProperty> mPropertyByName;
 
-  // Mapping from property name to BeanInfoIndexedProperty
-  Map mIndexedPropertyByName;
+  /** Mapping from property name to BeanInfoIndexedProperty */
+  Map<String, BeanInfoIndexedProperty> mIndexedPropertyByName;
 
-  // Mapping from event set name to event set descriptor
-  Map mEventSetByName;
+  /**  Mapping from event set name to event set descriptor */
+  Map<String, EventSetDescriptor> mEventSetByName;
 
   // Flag if this is initialized
   boolean mInitialized;
 
-  // The global mapping from class to BeanInfoManager
-  static Map mBeanInfoManagerByClass = new HashMap ();
+  /** The global mapping from class to BeanInfoManager */
+  static Map<Class<?>, BeanInfoManager> mBeanInfoManagerByClass = new HashMap<>();
 
   //-------------------------------------
   /**
@@ -89,10 +90,9 @@ public class BeanInfoManager
    *
    * Returns the BeanInfoManager for the specified class
    **/
-  public static BeanInfoManager getBeanInfoManager (Class pClass)
+  public static BeanInfoManager getBeanInfoManager (Class<?> pClass)
   {
-    BeanInfoManager ret = (BeanInfoManager) 
-      mBeanInfoManagerByClass.get (pClass);
+    BeanInfoManager ret = mBeanInfoManagerByClass.get(pClass);
     if (ret == null) {
       ret = createBeanInfoManager (pClass);
     }
@@ -105,8 +105,7 @@ public class BeanInfoManager
    * Creates and registers the BeanInfoManager for the given class if
    * it isn't already registered.
    **/
-  static synchronized BeanInfoManager createBeanInfoManager (Class pClass)
-  {
+  static synchronized BeanInfoManager createBeanInfoManager(Class<?> pClass) {
     // Because this method is synchronized statically, the
     // BeanInfoManager is not initialized at this time (otherwise it
     // could end up being a bottleneck for the entire system).  It is
@@ -115,8 +114,7 @@ public class BeanInfoManager
     // synchronizations in place to make sure it is only initialized
     // once).
 
-    BeanInfoManager ret = (BeanInfoManager) 
-      mBeanInfoManagerByClass.get (pClass);
+    BeanInfoManager ret = mBeanInfoManagerByClass.get(pClass);
     if (ret == null) {
       ret = new BeanInfoManager (pClass);
       mBeanInfoManagerByClass.put (pClass, ret);
@@ -131,7 +129,7 @@ public class BeanInfoManager
    * given class, or null if not found.
    **/
   public static BeanInfoProperty getBeanInfoProperty
-    (Class pClass,
+    (Class<?> pClass,
      String pPropertyName,
      Logger pLogger)
     throws ELException
@@ -185,8 +183,8 @@ public class BeanInfoManager
     try {
       mBeanInfo = Introspector.getBeanInfo (mBeanClass);
 
-      mPropertyByName = new HashMap ();
-      mIndexedPropertyByName = new HashMap ();
+      mPropertyByName = new HashMap<>();
+      mIndexedPropertyByName = new HashMap<>();
       PropertyDescriptor [] pds = mBeanInfo.getPropertyDescriptors ();
       for (int i = 0; pds != null && i < pds.length; i++) {
 	// Treat as both an indexed property and a normal property
@@ -213,7 +211,7 @@ public class BeanInfoManager
 	mPropertyByName.put (pd.getName (), property);
       }
 
-      mEventSetByName = new HashMap ();
+      mEventSetByName = new HashMap<>();
       EventSetDescriptor [] esds = mBeanInfo.getEventSetDescriptors ();
       for (int i = 0; esds != null && i < esds.length; i++) {
 	EventSetDescriptor esd = esds [i];
@@ -248,13 +246,10 @@ public class BeanInfoManager
    * Returns the BeanInfoProperty for the given property name, or null
    * if not found.
    **/
-  public BeanInfoProperty getProperty (String pPropertyName,
-				       Logger pLogger)
-    throws ELException
-  {
-    checkInitialized (pLogger);
-    return (BeanInfoProperty) mPropertyByName.get (pPropertyName);
-  }
+    public BeanInfoProperty getProperty(String pPropertyName, Logger pLogger) throws ELException {
+        checkInitialized(pLogger);
+        return mPropertyByName.get(pPropertyName);
+    }
 
   //-------------------------------------
   /**
@@ -268,8 +263,7 @@ public class BeanInfoManager
     throws ELException
   {
     checkInitialized (pLogger);
-    return (BeanInfoIndexedProperty) 
-      mIndexedPropertyByName.get (pIndexedPropertyName);
+    return mIndexedPropertyByName.get(pIndexedPropertyName);
   }
 
   //-------------------------------------
@@ -283,7 +277,7 @@ public class BeanInfoManager
     throws ELException
   {
     checkInitialized (pLogger);
-    return (EventSetDescriptor) mEventSetByName.get (pEventSetName);
+    return mEventSetByName.get (pEventSetName);
   }
 
   //-------------------------------------

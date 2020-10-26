@@ -76,9 +76,9 @@ public class JstlSqlTLV extends JstlBaseTLV {
 
 	// parser state
 	private int depth = 0;
-        private Stack queryDepths = new Stack();
-        private Stack updateDepths = new Stack();
-        private Stack transactionDepths = new Stack();
+        private Stack<Integer> queryDepths = new Stack<>();
+        private Stack<Integer> updateDepths = new Stack<>();
+        private Stack<Integer> transactionDepths = new Stack<>();
 	private String lastElementName = null;
 	private boolean bodyNecessary = false;
 	private boolean bodyIllegal = false;

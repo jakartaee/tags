@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,8 +96,8 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
 
     protected String uri;			// our taglib's uri (as passed by JSP container on XML View)
     protected String prefix;			// our taglib's prefix
-    protected Vector messageVector;		// temporary error messages
-    protected Map config;			// configuration (Map of Sets)
+    protected Vector<ValidationMessage> messageVector;		// temporary error messages
+    protected Map<String, Set<String>> config;			// configuration (Map of Sets)
     protected boolean failed;			// have we failed >0 times?
     protected String lastElementId;		// the last element we've seen
 
@@ -130,7 +131,7 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
 	    this.tlvType = type;
 	    this.uri = uri;
 	    // initialize
-	    messageVector = new Vector();
+	    messageVector = new Vector<>();
 
 	    // save the prefix
 	    this.prefix = prefix;
@@ -300,7 +301,7 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
     // parses our configuration parameter for element:attribute pairs
     private void configure(String info) {
         // construct our configuration map
-	config = new HashMap();
+	config = new HashMap<>();
 
 	// leave the map empty if we have nothing to configure
 	if (info == null)
@@ -313,12 +314,12 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
 	    StringTokenizer pairTokens = new StringTokenizer(pair, ":");
 	    String element = pairTokens.nextToken();
 	    String attribute = pairTokens.nextToken();
-	    Object atts = config.get(element);
+	    Set<String> atts = config.get(element);
 	    if (atts == null) {
-	        atts = new HashSet();
+	        atts = new HashSet<>();
 	        config.put(element, atts);
 	    }
-	    ((Set) atts).add(attribute);
+	    atts.add(attribute);
 	}
     }
 
@@ -330,10 +331,11 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
     }
 
     // constructs a ValidationMessage[] from a ValidationMessage Vector
-    static ValidationMessage[] vmFromVector(Vector v) {
+    static ValidationMessage[] vmFromVector(Vector<ValidationMessage> v) {
 	ValidationMessage[] vm = new ValidationMessage[v.size()];
-	for (int i = 0; i < vm.length; i++)
-	   vm[i] = (ValidationMessage) v.get(i);
+	for (int i = 0; i < vm.length; i++) {
+	   vm[i] = v.get(i);
+        }
 	return vm;
     }
 }

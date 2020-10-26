@@ -93,12 +93,11 @@ public class ELEvaluator
 
   /** The mapping from expression String to its parsed form (String,
       Expression, or ExpressionString) **/
-  static Map sCachedExpressionStrings = 
-    Collections.synchronizedMap (new HashMap ());
+  static Map<String, Object> sCachedExpressionStrings =  Collections.synchronizedMap(new HashMap<>());
 
   /** The mapping from ExpectedType to Maps mapping literal String to
       parsed value **/
-  static Map sCachedExpectedTypes = new HashMap ();
+  static Map<Class, Map> sCachedExpectedTypes = new HashMap<>();
 
   /** The static Logger **/
   static Logger sLogger = new Logger (System.out);
@@ -250,10 +249,7 @@ public class ELEvaluator
     }
 
     // See if it's in the cache
-    Object ret = 
-      mBypassCache ?
-      null :
-      sCachedExpressionStrings.get (pExpressionString);
+    Object ret = mBypassCache ? null : sCachedExpressionStrings.get(pExpressionString);
 
     if (ret == null) {
       // Parse the expression
@@ -261,7 +257,7 @@ public class ELEvaluator
       ELParser parser = new ELParser (r);
       try {
 	ret = parser.ExpressionString ();
-	sCachedExpressionStrings.put (pExpressionString, ret);
+	sCachedExpressionStrings.put(pExpressionString, ret);
       }
       catch (ParseException exc) {
 	throw new ELException 
@@ -334,10 +330,10 @@ public class ELEvaluator
   static Map getOrCreateExpectedTypeMap (Class pExpectedType)
   {
     synchronized (sCachedExpectedTypes) {
-      Map ret = (Map) sCachedExpectedTypes.get (pExpectedType);
+      Map ret = sCachedExpectedTypes.get (pExpectedType);
       if (ret == null) {
-	ret = Collections.synchronizedMap (new HashMap ());
-	sCachedExpectedTypes.put (pExpectedType, ret);
+	ret = Collections.synchronizedMap(new HashMap<>());
+	sCachedExpectedTypes.put(pExpectedType, ret);
       }
       return ret;
     }

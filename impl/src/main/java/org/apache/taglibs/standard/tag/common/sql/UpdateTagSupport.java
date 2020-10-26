@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +61,7 @@ public abstract class UpdateTagSupport extends BodyTagSupport
      * Instance variables that are not for attributes
      */
     private Connection conn;
-    private List parameters;
+    private List<Object> parameters;
     private boolean isPartOfTransaction;
 
 
@@ -197,9 +198,10 @@ public abstract class UpdateTagSupport extends BodyTagSupport
      * Called by nested parameter elements to add PreparedStatement
      * parameter values.
      */
+    @Override
     public void addSQLParameter(Object o) {
 	if (parameters == null) {
-	    parameters = new ArrayList();
+	    parameters = new ArrayList<>();
 	}
 	parameters.add(o);
     }

@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -977,9 +978,9 @@ public class ImplicitObjects
 
 	    // Drain the header enumeration
 
-	    List l = new ArrayList ();
+	    List<String> l = new ArrayList<>();
 
-	    Enumeration enum_ = request.getHeaders ((String) pKey);
+	    Enumeration<String> enum_ = request.getHeaders((String) pKey);
 
 	    if (enum_ != null) {
 
@@ -991,7 +992,7 @@ public class ImplicitObjects
 
 	    }
 
-	    String [] ret = (String []) l.toArray (new String [l.size ()]);
+	    String [] ret = l.toArray(new String [l.size()]);
 
 	    return ret;
 
@@ -1098,10 +1099,7 @@ public class ImplicitObjects
    * Cookie in request.getCookies().
 
    **/
-
-  public static Map createCookieMap (PageContext pContext)
-
-  {
+  public static Map<String, Cookie> createCookieMap (PageContext pContext) {
 
     // Read all the cookies and construct the entire map
 
@@ -1109,7 +1107,7 @@ public class ImplicitObjects
 
     Cookie [] cookies = request.getCookies ();
 
-    Map ret = new HashMap ();
+    Map<String, Cookie> ret = new HashMap<>();
 
     for (int i = 0; cookies != null && i < cookies.length; i++) {
 

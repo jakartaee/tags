@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,10 +38,10 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
      * No-arg constructor which would create empty HashMap of namespaces
      */
     public JSTLXPathNamespaceContext() {
-        namespaces = new HashMap();
+        namespaces = new HashMap<>();
     }
 
-    public JSTLXPathNamespaceContext(HashMap nses) {
+    public JSTLXPathNamespaceContext(HashMap<String, String> nses) {
         namespaces = nses;
     }
 
@@ -48,7 +49,7 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
      * The context to resolve the prefix from, if the context
      * is not given. 
      */
-    HashMap namespaces;
+    HashMap<String, String> namespaces;
 
     /**
      * Get Namespace URI bound to a prefix in the current scope
@@ -73,7 +74,7 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
             return XMLConstants.XMLNS_ATTRIBUTE_NS_URI;
         }
 
-        String namespaceURI = (String)namespaces.get(prefix);
+        String namespaceURI = namespaces.get(prefix);
         // p("[getNamespaceURI] namespaceURI: " + namespaceURI);
         if (namespaceURI != null) {
             return namespaceURI;
@@ -104,10 +105,8 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
             return XMLConstants.XMLNS_ATTRIBUTE;
         }
 
-        Iterator iter = namespaces.keySet().iterator();
-        while (iter.hasNext()) {
-            String key = (String)iter.next();
-            String value = (String)namespaces.get(key);
+        for (String key : namespaces.keySet()) {
+            String value = namespaces.get(key);
             if (value.equals(namespaceURI)) {
                 // p("[getPrefix] value: " + value);
                 return value;
@@ -127,7 +126,8 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
      *
      * @throws IllegalArgumentException if Namespace URI is null
      */
-    public Iterator getPrefixes(String namespaceURI) {
+    @Override
+    public Iterator<String> getPrefixes(String namespaceURI) {
         // p("[getPrefixes] namespaceURI: " + namespaceURI);
         if (namespaceURI == null) {
             throw new IllegalArgumentException("Cannot get prefix for null NamespaceURI");
@@ -140,11 +140,9 @@ public class JSTLXPathNamespaceContext implements NamespaceContext {
             return Arrays.asList(new String[] {XMLConstants.XMLNS_ATTRIBUTE}).iterator();
         }
 
-        ArrayList prefixList = new ArrayList();
-        Iterator iter = namespaces.keySet().iterator();
-        while (iter.hasNext()) {
-            String key = (String)iter.next();
-            String value = (String)namespaces.get(key);
+        ArrayList<String> prefixList = new ArrayList<>();
+        for (String key : namespaces.keySet()) {
+            String value = namespaces.get(key);
             if (value.equals(namespaceURI)) {
                 prefixList.add(key);
             }

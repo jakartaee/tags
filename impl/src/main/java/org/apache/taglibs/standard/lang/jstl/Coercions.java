@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -644,7 +645,7 @@ public class Coercions
    * of the above cases
    **/
   public static Object coerceToObject (Object pValue,
-				       Class pClass,
+				       Class<?> pClass,
 				       Logger pLogger)
     throws ELException
   {
