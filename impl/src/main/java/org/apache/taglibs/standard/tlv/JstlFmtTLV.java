@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -114,7 +115,7 @@ public class JstlFmtTLV extends JstlBaseTLV {
 
 	// parser state
 	private int depth = 0;
-	private Stack messageDepths = new Stack();
+	private Stack<Integer> messageDepths = new Stack<>();
 	private String lastElementName = null;
 	private boolean bodyNecessary = false;
 	private boolean bodyIllegal = false;

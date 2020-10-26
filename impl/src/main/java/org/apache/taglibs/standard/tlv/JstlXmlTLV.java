@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,13 +110,13 @@ public class JstlXmlTLV extends JstlBaseTLV {
 
 	// parser state
 	private int depth = 0;
-	private Stack chooseDepths = new Stack();
-	private Stack chooseHasOtherwise = new Stack();
-        private Stack chooseHasWhen = new Stack();
+	private Stack<Integer> chooseDepths = new Stack<>();
+	private Stack<Boolean> chooseHasOtherwise = new Stack<>();
+        private Stack<Boolean> chooseHasWhen = new Stack<>();
 	private String lastElementName = null;
 	private boolean bodyNecessary = false;
 	private boolean bodyIllegal = false;
-	private Stack transformWithSource = new Stack();
+	private Stack<Integer> transformWithSource = new Stack<>();
 
 	// process under the existing context (state), then modify it
 	public void startElement(
@@ -135,9 +136,8 @@ public class JstlXmlTLV extends JstlBaseTLV {
 		fail(Resources.getMessage("TLV_ILLEGAL_BODY", lastElementName));
 
             // validate expression syntax if we need to
-            Set expAtts;
-            if (qn.startsWith(prefix + ":")
-                    && (expAtts = (Set) config.get(ln)) != null) {
+            Set<String> expAtts;
+            if (qn.startsWith(prefix + ":") && (expAtts = config.get(ln)) != null) {
                 for (int i = 0; i < a.getLength(); i++) {
                     String attName = a.getLocalName(i);
                     if (expAtts.contains(attName)) {
@@ -176,7 +176,7 @@ public class JstlXmlTLV extends JstlBaseTLV {
 		}
 
 		// make sure <otherwise> is the last tag
-		if (((Boolean) chooseHasOtherwise.peek()).booleanValue()) {
+		if (chooseHasOtherwise.peek()) {
 		   fail(Resources.getMessage("TLV_ILLEGAL_ORDER",
 			qn, prefix, OTHERWISE, CHOOSE));
 		}
@@ -276,8 +276,8 @@ public class JstlXmlTLV extends JstlBaseTLV {
 
 	    // update <choose>-related state
 	    if (isXmlTag(ns, ln, CHOOSE)) {
-                Boolean b = (Boolean) chooseHasWhen.pop();
-                if (!b.booleanValue())
+                Boolean b = chooseHasWhen.pop();
+                if (!b)
                     fail(Resources.getMessage("TLV_PARENT_WITHOUT_SUBTAG",
                         CHOOSE, WHEN));
 		chooseDepths.pop();
@@ -295,13 +295,12 @@ public class JstlXmlTLV extends JstlBaseTLV {
 
 	// are we directly under a <choose>?
 	private boolean chooseChild() {
-	    return (!chooseDepths.empty()
-		&& (depth - 1) == ((Integer) chooseDepths.peek()).intValue());
+	    return (!chooseDepths.empty() && (depth - 1) == chooseDepths.peek());
 	}
 
         // returns the top int depth (peeked at) from a Stack of Integer
-        private int topDepth(Stack s) {
-            return ((Integer) s.peek()).intValue();
+        private int topDepth(Stack<Integer> s) {
+            return (s.peek());
         }
     }
 }

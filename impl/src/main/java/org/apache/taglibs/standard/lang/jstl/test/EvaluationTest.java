@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -301,14 +302,14 @@ public class EvaluationTest
 	"string4"
       });
       {
-	List l = new ArrayList ();
-	l.add (new Integer (14));
-	l.add ("another value");
-	l.add (b1.getStringArray1 ());
+	List<Object> l = new ArrayList<>();
+	l.add(new Integer (14));
+	l.add("another value");
+	l.add(b1.getStringArray1 ());
 	b1.setList1 (l);
       }
       {
-	Map m = new HashMap ();
+	Map<Object, Object> m = new HashMap<>();
 	m.put ("key1", "value1");
 	m.put (new Integer (14), "value2");
 	m.put (new Long (14), "value3");
@@ -341,24 +342,24 @@ public class EvaluationTest
 
     // Create the empty tests
     {
-      Map m = new HashMap ();
+      Map<String, Object> m = new HashMap<>();
       m.put ("emptyArray", new Object [0]);
       m.put ("nonemptyArray", new Object [] {"abc"});
-      m.put ("emptyList", new ArrayList ());
+      m.put ("emptyList", new ArrayList<>());
       {
-	List l = new ArrayList ();
+	List<String> l = new ArrayList<>();
 	l.add ("hello");
 	m.put ("nonemptyList", l);
       }
-      m.put ("emptyMap", new HashMap ());
+      m.put ("emptyMap", new HashMap<>());
       {
-	Map m2 = new HashMap ();
+	Map<String, String> m2 = new HashMap<>();
 	m2.put ("a", "a");
 	m.put ("nonemptyMap", m2);
       }
-      m.put ("emptySet", new HashSet ());
+      m.put ("emptySet", new HashSet<>());
       {
-	Set s = new HashSet ();
+	Set<String> s = new HashSet<>();
 	s.add ("hello");
 	m.put ("nonemptySet", s);
       }

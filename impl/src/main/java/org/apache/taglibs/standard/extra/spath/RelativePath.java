@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,13 +45,14 @@ public class RelativePath extends Path {
     }
 
     // inherit JavaDoc comment
-    public List getSteps() {
+    @Override
+    public List<Step> getSteps() {
 	// simply merge our 'step' with our 'next'
-	List l;
+	List<Step> l;
 	if (next != null)
 	    l = next.getSteps();
 	else
-	    l = new Vector();
+	    l = new Vector<>();
 	l.add(0, step);
 	return l;
     }

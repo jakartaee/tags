@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +18,7 @@
 
 package org.apache.taglibs.standard.lang.jstl.test;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +34,7 @@ import org.apache.taglibs.standard.lang.jstl.Evaluator;
 public class StaticFunctionTests {
 
   public static void main(String args[]) throws Exception {
-    Map m = getSampleMethodMap();
+    Map<String, Method> m = getSampleMethodMap();
     Evaluator e = new Evaluator();
     Object o;
     o = e.evaluate("", "4", Integer.class, null, null, m, "foo");
@@ -80,17 +82,13 @@ public class StaticFunctionTests {
     return Integer.valueOf(i);
   }
 
-  public static Map getSampleMethodMap() throws Exception {
-    Map m = new HashMap();
-    Class c = StaticFunctionTests.class;
-    m.put("foo:add",
-     c.getMethod("add", new Class[] { Integer.TYPE, Integer.TYPE }));
-    m.put("foo:multiply",
-     c.getMethod("multiply", new Class[] { Integer.TYPE, Integer.TYPE }));
-    m.put("foo:getInt",
-     c.getMethod("getInt", new Class[] { Integer.class }));
-    m.put("foo:getInteger",
-     c.getMethod("getInteger", new Class[] { Integer.TYPE }));
+  public static Map<String, Method> getSampleMethodMap() throws Exception {
+    Map<String, Method> m = new HashMap<>();
+    Class<?> c = StaticFunctionTests.class;
+    m.put("foo:add", c.getMethod("add", new Class<?>[] { Integer.TYPE, Integer.TYPE }));
+    m.put("foo:multiply", c.getMethod("multiply", new Class<?>[] { Integer.TYPE, Integer.TYPE }));
+    m.put("foo:getInt", c.getMethod("getInt", new Class<?>[] { Integer.class }));
+    m.put("foo:getInteger", c.getMethod("getInteger", new Class<?>[] { Integer.TYPE }));
     return m;
   }
 

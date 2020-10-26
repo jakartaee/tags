@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,8 +52,8 @@ public class ExpressionEvaluatorManager {
     //*********************************************************************
     // Internal, static state
 
-    private static HashMap nameMap = new HashMap();
-    private static Logger logger = new Logger(System.out);
+    private static final HashMap<String, ExpressionEvaluator> nameMap = new HashMap<>();
+    private static final Logger logger = new Logger(System.out);
 
     //*********************************************************************
     // Public static methods
@@ -137,7 +138,7 @@ public class ExpressionEvaluatorManager {
     }
 
     /** Performs a type conversion according to the EL's rules. */
-    public static Object coerce(Object value, Class classe)
+    public static Object coerce(Object value, Class<?> classe)
             throws JspException {
 	try {
 	    // just delegate the call

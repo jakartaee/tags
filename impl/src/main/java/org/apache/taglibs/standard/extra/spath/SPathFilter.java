@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +53,7 @@ public class SPathFilter extends XMLFilterImpl {
     // Private state in support of filtering
 
     private int depth;				// depth in parsed document
-    private Stack acceptedDepths;		// depth of acceptance
+    private Stack<Integer> acceptedDepths;		// depth of acceptance
     private int excludedDepth;			// depth of exclusion
 
     private static final boolean DEBUG = false;
@@ -103,7 +104,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     private void init() {
 	depth = 0;
 	excludedDepth = -1;
-	acceptedDepths = new Stack();
+	acceptedDepths = new Stack<>();
     }
 
     //*********************************************************************

@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,9 +43,7 @@ import jakarta.servlet.jsp.el.VariableResolver;
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
  **/
 
-public class PageContextImpl
-  extends PageContext
-{
+public class PageContextImpl extends PageContext {
   //-------------------------------------
   // Properties
   //-------------------------------------
@@ -53,10 +52,10 @@ public class PageContextImpl
   // Member variables
   //-------------------------------------
 
-  Map mPage = Collections.synchronizedMap (new HashMap ());
-  Map mRequest = Collections.synchronizedMap (new HashMap ());
-  Map mSession = Collections.synchronizedMap (new HashMap ());
-  Map mApp = Collections.synchronizedMap (new HashMap ());
+  Map<String, Object> mPage = Collections.synchronizedMap(new HashMap<>());
+  Map<String, Object> mRequest = Collections.synchronizedMap (new HashMap<>());
+  Map<String, Object> mSession = Collections.synchronizedMap (new HashMap<>());
+  Map<String, Object> mApp = Collections.synchronizedMap (new HashMap<>());
 
   //-------------------------------------
   /**
@@ -86,9 +85,8 @@ public class PageContextImpl
   }
 
   //-------------------------------------
-  public void setAttribute (String name,
-			    Object attribute)
-  {
+  @Override
+  public void setAttribute (String name, Object attribute) {
     mPage.put (name, attribute);
   }
 
@@ -219,8 +217,8 @@ public class PageContextImpl
   }
 
   //-------------------------------------
-  public Enumeration getAttributeNamesInScope (int scope)
-  {
+  @Override
+  public Enumeration<String> getAttributeNamesInScope(int scope) {
     return null;
   }
 

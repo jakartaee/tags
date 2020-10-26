@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -114,17 +115,17 @@ public class JstlCoreTLV extends JstlBaseTLV {
 
 	// parser state
 	private int depth = 0;
-	private Stack chooseDepths = new Stack();
-	private Stack chooseHasOtherwise = new Stack();
-	private Stack chooseHasWhen = new Stack();
-        private Stack urlTags = new Stack();
+	private final Stack<Integer> chooseDepths = new Stack<>();
+	private final Stack<Boolean> chooseHasOtherwise = new Stack<>();
+	private final Stack<Boolean> chooseHasWhen = new Stack<>();
+        private final Stack<String> urlTags = new Stack<>();
 	private String lastElementName = null;
 	private boolean bodyNecessary = false;
 	private boolean bodyIllegal = false;
 
 	// process under the existing context (state), then modify it
-	public void startElement(
-	        String ns, String ln, String qn, Attributes a) {
+        @Override
+	public void startElement(String ns, String ln, String qn, Attributes a) {
 
 	    // substitute our own parsed 'ln' if it's not provided
 	    if (ln == null)
@@ -181,9 +182,8 @@ public class JstlCoreTLV extends JstlBaseTLV {
 		}
 
 		// make sure <otherwise> is the last tag
-		if (((Boolean) chooseHasOtherwise.peek()).booleanValue()) {
-		   fail(Resources.getMessage("TLV_ILLEGAL_ORDER",
-			qn, prefix, OTHERWISE, CHOOSE));
+		if (chooseHasOtherwise.peek()) {
+		   fail(Resources.getMessage("TLV_ILLEGAL_ORDER", qn, prefix, OTHERWISE, CHOOSE));
 		}
 		if (isCoreTag(ns, ln, OTHERWISE)) {
 		    chooseHasOtherwise.pop();
@@ -215,7 +215,7 @@ public class JstlCoreTLV extends JstlBaseTLV {
 
 	    // we're a choose, so record new choose-specific state
 	    if (isCoreTag(ns, ln, CHOOSE)) {
-                chooseDepths.push(Integer.valueOf(depth));
+                chooseDepths.push(depth);
                 chooseHasWhen.push(Boolean.FALSE);
                 chooseHasOtherwise.push(Boolean.FALSE);
             }
@@ -298,8 +298,8 @@ public class JstlCoreTLV extends JstlBaseTLV {
 
 	    // update <choose>-related state
 	    if (isCoreTag(ns, ln, CHOOSE)) {
-		Boolean b = (Boolean) chooseHasWhen.pop();
-		if (!b.booleanValue())
+		Boolean b = chooseHasWhen.pop();
+		if (!b)
 		    fail(Resources.getMessage("TLV_PARENT_WITHOUT_SUBTAG",
 			CHOOSE, WHEN));
 		chooseDepths.pop();
@@ -319,8 +319,7 @@ public class JstlCoreTLV extends JstlBaseTLV {
 
 	// are we directly under a <choose>?
 	private boolean chooseChild() {
-	    return (!chooseDepths.empty()
-		&& (depth - 1) == ((Integer) chooseDepths.peek()).intValue());
+	    return (!chooseDepths.empty() && (depth - 1) == chooseDepths.peek());
 	}
 
     }

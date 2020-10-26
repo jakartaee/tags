@@ -38,9 +38,7 @@ import java.util.Set;
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
  **/
 
-public abstract class EnumeratedMap
-  implements Map
-{
+public abstract class EnumeratedMap implements Map {
   //-------------------------------------
   // Member variables
   //-------------------------------------
@@ -168,10 +166,9 @@ public abstract class EnumeratedMap
    *
    * Converts to a Map
    **/
-  Map convertToMap ()
-  {
+  Map convertToMap () {
     Map ret = new HashMap ();
-    for (Enumeration e = enumerateKeys (); e.hasMoreElements (); ) {
+    for (Enumeration e = enumerateKeys(); e.hasMoreElements (); ) {
       Object key = e.nextElement ();
       Object value = getValue (key);
       ret.put (key, value);

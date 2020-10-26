@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -209,7 +210,7 @@ public class XPathUtil {
     /** 
      * Evaluate an XPath expression to a List of nodes. 
      */
-    public List selectNodes(Node contextNode, String xpathString)  
+    public List<Node> selectNodes(Node contextNode, String xpathString)  
         throws JspTagException {
         XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
         
@@ -283,16 +284,16 @@ public class XPathUtil {
     }    
 }
 
-class JSTLNodeList extends Vector implements NodeList   {
+class JSTLNodeList extends Vector<Node> implements NodeList   {
     
-    Vector nodeVector;
+    Vector<Node> nodeVector;
 
-    public JSTLNodeList ( Vector nodeVector ) {
+    public JSTLNodeList ( Vector<Node> nodeVector ) {
         this.nodeVector = nodeVector;
     }
 
     public JSTLNodeList ( NodeList nl ) {
-        nodeVector = new Vector();
+        nodeVector = new Vector<>();
         //p("[JSTLNodeList] nodelist details");
         for ( int i=0; i<nl.getLength(); i++ ) {
             Node currNode = nl.item(i);
@@ -302,12 +303,12 @@ class JSTLNodeList extends Vector implements NodeList   {
     }
 
     public JSTLNodeList ( Node n ) {
-        nodeVector = new Vector();
+        nodeVector = new Vector<>();
         nodeVector.addElement( n );
     }
 
     public JSTLNodeList (Object o) {
-        nodeVector = new Vector();
+        nodeVector = new Vector<>();
         
         if (o instanceof NodeList) {
             NodeList nl = (NodeList)o;
@@ -317,23 +318,27 @@ class JSTLNodeList extends Vector implements NodeList   {
                 nodeVector.add(i, nl.item(i) );
             }
         } else {
-            nodeVector.addElement( o );
+            nodeVector.addElement((Node) o );
         }
     }
 
+    @Override
     public Node item ( int index ) {
-        return (Node)nodeVector.elementAt( index );
-    }
-
-    public Object elementAt ( int index ) {
         return nodeVector.elementAt( index );
     }
 
-    public Object get ( int index ) {
+    @Override
+    public Node elementAt ( int index ) {
+        return nodeVector.elementAt( index );
+    }
+
+    @Override
+    public Node get( int index ) {
         return nodeVector.get( index );
     }
 
-    public int getLength (  ) {
+    @Override
+    public int getLength() {
         return nodeVector.size( );
     }
 

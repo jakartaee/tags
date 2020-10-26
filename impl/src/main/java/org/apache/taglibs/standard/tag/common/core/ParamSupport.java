@@ -117,8 +117,8 @@ public abstract class ParamSupport extends BodyTagSupport {
         //*********************************
         // Private state
 
-	private List names = new LinkedList();
-        private List values = new LinkedList();
+	private List<String> names = new LinkedList<>();
+        private List<String> values = new LinkedList<>();
 	private boolean done = false;
         
 	//*********************************
@@ -130,10 +130,11 @@ public abstract class ParamSupport extends BodyTagSupport {
 		throw new IllegalStateException();
 	    if (name != null) {
 	        names.add(name);
-	        if (value != null)
+	        if (value != null) {
 		    values.add(value);
-	        else
+                } else {
 		    values.add("");
+                }
 	    }
 	}
 

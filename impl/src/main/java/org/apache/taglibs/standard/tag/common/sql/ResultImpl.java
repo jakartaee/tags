@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +42,8 @@ import jakarta.servlet.jsp.jstl.sql.Result;
  */
 
 public class ResultImpl implements Result {
-    private List rowMap;
-    private List rowByIndex;
+    private List<SortedMap<String, Object>> rowMap;
+    private List<Object[]> rowByIndex;
     private String[] columnNames;
     private boolean isLimited;
 
@@ -59,8 +60,8 @@ public class ResultImpl implements Result {
     public ResultImpl(ResultSet rs, int startRow, int maxRows)
         throws SQLException 
     {
-        rowMap = new ArrayList();
-        rowByIndex = new ArrayList();
+        rowMap = new ArrayList<>();
+        rowByIndex = new ArrayList<>();
 
         ResultSetMetaData rsmd = rs.getMetaData();
         int noOfColumns = rsmd.getColumnCount();
@@ -84,8 +85,7 @@ public class ResultImpl implements Result {
                 break;
             }
             Object[] columns = new Object[noOfColumns];
-            SortedMap columnMap = 
-                new TreeMap(String.CASE_INSENSITIVE_ORDER);
+            SortedMap<String, Object> columnMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
             // JDBC uses 1 as the lowest index!
             for (int i = 1; i <= noOfColumns; i++) {
@@ -111,13 +111,14 @@ public class ResultImpl implements Result {
      *
      * @return an array of Map, or null if there are no rows
      */
+    @Override
     public SortedMap[] getRows() {
         if (rowMap == null) {
             return null;
         }
 
         //should just be able to return SortedMap[] object
-        return (SortedMap []) rowMap.toArray(new SortedMap[0]);
+        return rowMap.toArray(new SortedMap[0]);
     }
 
 
@@ -128,13 +129,14 @@ public class ResultImpl implements Result {
      *
      * @return an array of Object[], or null if there are no rows
      */
+    @Override
     public Object[][] getRowsByIndex() {
         if (rowByIndex == null) {
             return null;
         }
 
         //should just be able to return Object[][] object
-        return (Object [][])rowByIndex.toArray(new Object[0][0]);
+        return rowByIndex.toArray(new Object[0][0]);
     }
 
     /**
