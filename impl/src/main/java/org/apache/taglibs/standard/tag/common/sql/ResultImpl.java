@@ -53,8 +53,8 @@ public class ResultImpl implements Result {
      *
      * @param rs an open <tt>ResultSet</tt>, positioned before the first
      * row
-     * @param startRow, beginning row to be cached
-     * @param maxRows, query maximum rows limit
+     * @param startRow beginning row to be cached
+     * @param maxRows query maximum rows limit
      * @exception if a database error occurs
      */
     public ResultImpl(ResultSet rs, int startRow, int maxRows)
