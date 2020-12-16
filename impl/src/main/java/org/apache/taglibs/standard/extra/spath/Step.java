@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +29,7 @@ public class Step {
 
     private boolean depthUnlimited;
     private String name;
-    private List predicates;
+    private List<Predicate> predicates;
 
     // record a few things for for efficiency...
     private String uri, localPart;
@@ -41,7 +42,7 @@ public class Step {
      * if false, then this Step is rooted as a direct child of the node
      * under consideration.
      */
-    public Step(boolean depthUnlimited, String name, List predicates) {
+    public Step(boolean depthUnlimited, String name, List<Predicate> predicates) {
 	if (name == null)
 	    throw new IllegalArgumentException("non-null name required");
 	this.depthUnlimited = depthUnlimited;
@@ -99,7 +100,7 @@ public class Step {
     }
 
     /** Returns a list of this Step object's predicates. */
-    public List getPredicates() {
+    public List<Predicate> getPredicates() {
 	return predicates;
     }
 
