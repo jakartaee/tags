@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,8 +96,7 @@ public final class ASCII_UCodeESC_CharStream
   private int nextCharInd = -1;
   private int inBuf = 0;
 
-  private final void ExpandBuff(boolean wrapAround)
-  {
+  private void ExpandBuff(boolean wrapAround) {
      char[] newbuffer = new char[bufsize + 2048];
      int newbufline[] = new int[bufsize + 2048];
      int newbufcolumn[] = new int[bufsize + 2048];
@@ -143,23 +143,19 @@ public final class ASCII_UCodeESC_CharStream
      tokenBegin = 0;
   }
 
-  private final void FillBuff() throws java.io.IOException
-  {
+  private void FillBuff() throws java.io.IOException {
      int i;
      if (maxNextCharInd == 4096)
         maxNextCharInd = nextCharInd = 0;
 
      try {
-        if ((i = inputStream.read(nextCharBuf, maxNextCharInd,
-                                            4096 - maxNextCharInd)) == -1)
-        {
-           inputStream.close();
-           throw new java.io.IOException();
-        }
-        else
-           maxNextCharInd += i;
-        return;
-     }
+          if ((i = inputStream.read(nextCharBuf, maxNextCharInd, 4096 - maxNextCharInd)) == -1) {
+              inputStream.close();
+              throw new java.io.IOException();
+          } else {
+              maxNextCharInd += i;
+          }
+      }
      catch(java.io.IOException e) {
         if (bufpos != 0)
         {
@@ -175,10 +171,10 @@ public final class ASCII_UCodeESC_CharStream
      }
   }
 
-  private final char ReadByte() throws java.io.IOException
-  {
-     if (++nextCharInd >= maxNextCharInd)
+  private char ReadByte() throws java.io.IOException {
+     if (++nextCharInd >= maxNextCharInd) {
         FillBuff();
+     }
 
      return nextCharBuf[nextCharInd];
   }
@@ -198,28 +194,24 @@ public final class ASCII_UCodeESC_CharStream
      return readChar();
   }     
 
-  private final void AdjustBuffSize()
-  {
-     if (available == bufsize)
-     {
-        if (tokenBegin > 2048)
-        {
-           bufpos = 0;
-           available = tokenBegin;
+  private void AdjustBuffSize() {
+        if (available == bufsize) {
+            if (tokenBegin > 2048) {
+                bufpos = 0;
+                available = tokenBegin;
+            } else {
+                ExpandBuff(false);
+            }
+        } else if (available > tokenBegin) {
+            available = bufsize;
+        } else if ((tokenBegin - available) < 2048) {
+            ExpandBuff(true);
+        } else {
+            available = tokenBegin;
         }
-        else
-           ExpandBuff(false);
-     }
-     else if (available > tokenBegin)
-        available = bufsize;
-     else if ((tokenBegin - available) < 2048)
-        ExpandBuff(true);
-     else
-        available = tokenBegin;
-  }
+    }
 
-  private final void UpdateLineColumn(char c)
-  {
+  private void UpdateLineColumn(char c) {
      column++;
 
      if (prevCharIsLF)
@@ -505,7 +497,8 @@ public final class ASCII_UCodeESC_CharStream
      }
 
      int i = 0, j = 0, k = 0;
-     int nextColDiff = 0, columnDiff = 0;
+     int nextColDiff = 0;
+     int columnDiff = 0;
 
      while (i < len &&
             bufline[j = start % bufsize] == bufline[k = ++start % bufsize])

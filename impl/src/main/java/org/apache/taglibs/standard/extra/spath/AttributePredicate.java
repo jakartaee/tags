@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,10 +35,9 @@ public class AttributePredicate extends Predicate {
     public AttributePredicate(String attribute, String target) {
 	if (attribute == null)
 	    throw new IllegalArgumentException("non-null attribute needed");
-	if (attribute.indexOf(":") != -1)
-	    throw new IllegalArgumentException(
-		"namespace-qualified attribute names are not currently " +
-		"supported");
+	if (attribute.contains(":")) {
+	    throw new IllegalArgumentException("namespace-qualified attribute names are not currently supported");
+        }
 	this.attribute = attribute;
 
 	if (target == null)

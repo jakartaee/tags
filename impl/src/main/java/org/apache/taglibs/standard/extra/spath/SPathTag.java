@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +59,7 @@ public class SPathTag extends TagSupport {
     // Tag logic
 
     // applies XPath expression from 'select' and exposes a filter as 'var'
+    @Override
     public int doStartTag() throws JspException {
       try {
 	SPathFilter s = new SPathFilter(new SPathParser(select).expression());
@@ -69,6 +71,7 @@ public class SPathTag extends TagSupport {
     }
 
     // Releases any resources we may have (or inherit)
+    @Override
     public void release() {
         super.release();
         init();

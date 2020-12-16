@@ -18,7 +18,6 @@
 
 package org.apache.taglibs.standard.extra.spath;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Stack;
 
@@ -28,12 +27,8 @@ import org.apache.xalan.serialize.SerializerFactory;
 import org.apache.xalan.templates.OutputProperties;
 */
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLFilter;
-import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLFilterImpl;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
  * <p>Filters a SAX stream based on a single supplied SPath
@@ -47,7 +42,7 @@ public class SPathFilter extends XMLFilterImpl {
     // Protected state
 
     /** The steps in the SPath expression we use for filtering. */
-    protected List steps;
+    protected List<Step> steps;
 
     //*********************************************************************
     // Private state in support of filtering
@@ -114,6 +109,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     // state.  They contain and direct the bulk of the filter's operation.
 
     /** Filter for startElement(). */
+    @Override
     public void startElement(String uri,
 			     String localName,
 			     String qName,
@@ -134,13 +130,13 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
 	// now, not accepted or excluded, let's see if we've got a match.
 	// we need to get the appropriate step based on the number of
 	// steps we've previously accepted
-	Step currentStep = (Step) steps.get(acceptedDepths.size());
+	Step currentStep = steps.get(acceptedDepths.size());
 
 	if (nodeMatchesStep(currentStep, uri, localName, qName, a)) {
 	    if (DEBUG)
 		System.err.println("*** Progressive match (" + acceptedDepths.size() + "): " + localName);
 	    // new match (progressive)
-	    acceptedDepths.push(Integer.valueOf(depth - 1));
+	    acceptedDepths.push(depth - 1);
 
 	    // is it enough?  give acceptance another chance...
 	    if (isAccepted())
@@ -156,6 +152,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for endElement(). */
+    @Override
     public void endElement(String uri, String localName, String qName)
 	    throws SAXException {
 	// reduce the depth
@@ -171,20 +168,20 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
 	}
 
 	// if we're excepted (for now), include ourselves...
-	if (isAccepted())
+	if (isAccepted()) {
 	    getContentHandler().endElement(uri, localName, qName);
 
 	    if (DEBUG) {
 		System.err.println("***   Closing tag: " + localName);
 		System.err.println("***   acceptedDepths.size(): " + acceptedDepths.size());
-		System.err.println("***   last accepted depth: " + ((Integer)acceptedDepths.peek()).intValue());
+		System.err.println("***   last accepted depth: " + acceptedDepths.peek());
 		System.err.println("***   depth: " + depth);
 	    }
-
+        }
 	// now, back off if we correspond to a "successful" start tag
-        if (acceptedDepths.size() > 0 &&
-		(((Integer)acceptedDepths.peek()).intValue()) == depth)
+        if (acceptedDepths.size() > 0 && acceptedDepths.peek() == depth) {
 	    acceptedDepths.pop();
+        }
     }
 
     // The remaining ContentHandler functions require only one bit of
@@ -193,6 +190,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     // information and cannot have any effect on the current state.
 
     /** Filter for ignoreableWhitespace(). */
+    @Override
     public void ignorableWhitespace(char[] ch, int start, int length)
 	    throws SAXException {
 	if (isAccepted())
@@ -200,6 +198,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for characters(). */
+    @Override
     public void characters(char[] ch, int start, int length)
 	    throws SAXException {
 	if (isAccepted())
@@ -207,6 +206,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for startPrefixMapping(). */
+    @Override
     public void startPrefixMapping(String prefix, String uri)
 	    throws SAXException {
 	if (isAccepted())
@@ -214,6 +214,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for endPrefixMapping(). */
+    @Override
     public void endPrefixMapping(String prefix)
 	    throws SAXException {
 	if (isAccepted())
@@ -221,6 +222,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for processingInstruction(). */
+    @Override
     public void processingInstruction(String target, String data)
 	    throws SAXException {
 	if (isAccepted())
@@ -228,6 +230,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
     }
 
     /** Filter for skippedEntity(). */
+    @Override
     public void skippedEntity(String name) throws SAXException {
 	if (isAccepted())
 	    getContentHandler().skippedEntity(name);
@@ -235,6 +238,7 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
 
     // We reset state in startDocument(), in case we're reused
     /** Resets state. */
+    @Override
     public void startDocument() {
 	init();
     }
@@ -252,9 +256,9 @@ System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
 	    return false;
 
 	// it's still in the game; check the predicates
-	List l = s.getPredicates();
+	List<Predicate> l = s.getPredicates();
 	for (int i = 0; l != null && i < l.size(); i++) {
-	    Predicate p = (Predicate) l.get(i);
+	    Predicate p = l.get(i);
 	    if (!(p instanceof AttributePredicate))
 		throw new UnsupportedOperationException
 		    ("only attribute predicates are supported by filter");

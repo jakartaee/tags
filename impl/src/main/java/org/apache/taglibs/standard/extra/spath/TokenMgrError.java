@@ -89,11 +89,10 @@ public class TokenMgrError extends Error
            default:
               if ((ch = str.charAt(i)) < 0x20 || ch > 0x7e) {
                  String s = "0000" + Integer.toString(ch, 16);
-                 retval.append("\\u" + s.substring(s.length() - 4, s.length()));
+                 retval.append("\\u").append(s.substring(s.length() - 4, s.length()));
               } else {
                  retval.append(ch);
               }
-              continue;
         }
       }
       return retval.toString();
@@ -111,7 +110,7 @@ public class TokenMgrError extends Error
     *    curchar     : the offending character
     * Note: You can customize the lexical error message by modifying this method.
     */
-   private static final String LexicalError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) {
+   private static String LexicalError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) {
       return("Lexical error at line " +
            errorLine + ", column " +
            errorColumn + ".  Encountered: " +
@@ -128,6 +127,7 @@ public class TokenMgrError extends Error
     *
     * from this method for such cases in the release version of your parser.
     */
+   @Override
    public String getMessage() {
       return super.getMessage();
    }

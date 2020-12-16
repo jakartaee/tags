@@ -29,7 +29,7 @@ public class SPathParser implements SPathParserConstants {
     public static void main(String args[]) throws ParseException {
         SPathParser parser = new SPathParser(System.in);
         Path p = parser.expression();
-        List stepList = p.getSteps();
+        List<Step> stepList = p.getSteps();
 
         // output for simple testing
         System.out.println();
@@ -37,7 +37,7 @@ public class SPathParser implements SPathParserConstants {
             System.out.println("Root: /");
         }
         for (int i = 0; i < stepList.size(); i++) {
-            Step s = (Step) stepList.get(i);
+            Step s = stepList.get(i);
             System.out.print("Step: " + s.getName());
             if (s.isDepthUnlimited()) {
                 System.out.print("(*)");

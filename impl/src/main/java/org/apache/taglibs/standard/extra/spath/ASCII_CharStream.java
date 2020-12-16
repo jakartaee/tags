@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +47,7 @@ public final class ASCII_CharStream
   private int maxNextCharInd = 0;
   private int inBuf = 0;
 
-  private final void ExpandBuff(boolean wrapAround)
-  {
+  private void ExpandBuff(boolean wrapAround) {
      char[] newbuffer = new char[bufsize + 2048];
      int newbufline[] = new int[bufsize + 2048];
      int newbufcolumn[] = new int[bufsize + 2048];
@@ -96,50 +96,43 @@ public final class ASCII_CharStream
      tokenBegin = 0;
   }
 
-  private final void FillBuff() throws java.io.IOException
-  {
-     if (maxNextCharInd == available)
-     {
-        if (available == bufsize)
-        {
-           if (tokenBegin > 2048)
-           {
-              bufpos = maxNextCharInd = 0;
-              available = tokenBegin;
-           }
-           else if (tokenBegin < 0)
-              bufpos = maxNextCharInd = 0;
-           else
-              ExpandBuff(false);
+  private void FillBuff() throws java.io.IOException {
+        if (maxNextCharInd == available) {
+            if (available == bufsize) {
+                if (tokenBegin > 2048) {
+                    bufpos = maxNextCharInd = 0;
+                    available = tokenBegin;
+                } else if (tokenBegin < 0) {
+                    bufpos = maxNextCharInd = 0;
+                } else {
+                    ExpandBuff(false);
+                }
+            } else if (available > tokenBegin) {
+                available = bufsize;
+            } else if ((tokenBegin - available) < 2048) {
+                ExpandBuff(true);
+            } else {
+                available = tokenBegin;
+            }
         }
-        else if (available > tokenBegin)
-           available = bufsize;
-        else if ((tokenBegin - available) < 2048)
-           ExpandBuff(true);
-        else
-           available = tokenBegin;
-     }
 
-     int i;
-     try {
-        if ((i = inputStream.read(buffer, maxNextCharInd,
-                                    available - maxNextCharInd)) == -1)
-        {
-           inputStream.close();
-           throw new java.io.IOException();
+        int i;
+        try {
+            if ((i = inputStream.read(buffer, maxNextCharInd, available - maxNextCharInd)) == -1) {
+                inputStream.close();
+                throw new java.io.IOException();
+            } else {
+                maxNextCharInd += i;
+            }
+        } catch (java.io.IOException e) {
+            --bufpos;
+            backup(0);
+            if (tokenBegin == -1) {
+                tokenBegin = bufpos;
+            }
+            throw e;
         }
-        else
-           maxNextCharInd += i;
-        return;
-     }
-     catch(java.io.IOException e) {
-        --bufpos;
-        backup(0);
-        if (tokenBegin == -1)
-           tokenBegin = bufpos;
-        throw e;
-     }
-  }
+    }
 
   public final char BeginToken() throws java.io.IOException
   {
@@ -150,8 +143,7 @@ public final class ASCII_CharStream
      return c;
   }
 
-  private final void UpdateLineColumn(char c)
-  {
+  private void UpdateLineColumn(char c) {
      column++;
 
      if (prevCharIsLF)
@@ -362,7 +354,8 @@ public final class ASCII_CharStream
      }
 
      int i = 0, j = 0, k = 0;
-     int nextColDiff = 0, columnDiff = 0;
+     int nextColDiff = 0;
+     int columnDiff = 0;
 
      while (i < len &&
             bufline[j = start % bufsize] == bufline[k = ++start % bufsize])
