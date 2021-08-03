@@ -478,8 +478,7 @@ XML-processing tag library.
 === Errors and Exceptions
 
 All syntax errors (as defined in the syntax
-section of each action, as well as the syntax of EL expressions as
-defined in link:EL-152.html#UNKNOWN[See] ) must be reported at translation
+section of each action, as well as the syntax of Expression Language expressions) must be reported at translation
 time.
 
 Constraints, as defined in the constraints
@@ -1212,7 +1211,7 @@ the _Map_ object.
 _property_ of the JavaBeans object _target_. If the type of the value
 to be set does not match the type of the bean property, conversion is
 performed according to the conversion rules defined in the expression
-language (see link:EL-152.html#UNKNOWN[See Type Conversion]). With the
+language (see Section 1.23. Type Conversion of the Jakarta Expression Language specification). With the
 exception of a null value, setting a bean property with <c:set> is
 therefore exactly the same as setting an attribute value of an action
 using the Expression Language. A failure of these conversion rules to determine an
@@ -6045,8 +6044,7 @@ namespace prefixes to be used within an XPath expression.
 The XPath engine supports the following
 scopes to easily access web application data within an XPath expression.
 These scopes are defined in exactly the same way as their implicit
-object counterparts in the Jakarta Standard Tag Library expression language (see
-link:EL-152.html#UNKNOWN[See Implicit Objects]).
+object counterparts in the Jakarta Standard Tag Library expression language (see Section 2.4 Implicit Objects in the Jakarta Server Pages specification).
 
 
 
@@ -8202,3 +8200,4 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 <<< 
 
 '''''
+section of each action, as well as the syntax of EL expressions
