@@ -8194,6 +8194,8 @@ using the Java EE package will need to change this to the Jakarta EE package.
 This appendix lists the
 changes in the Jakarta Standard Tag Library specification. This appendix is non-normative.
 
+=== Changed between Jakarta Standard Tag Library 2.0 and Jakarta Standard Tag Library 3.0
+
 === Changed between Jakarta Standard Tag Library 2.0 and JSR-52
 
 ** The API has moved from the `javax.servlet.jsp.jstl` package to the `jakarta.servlet.jsp.jstl` package.
