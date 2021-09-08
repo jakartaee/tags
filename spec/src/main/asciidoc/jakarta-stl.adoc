@@ -8194,6 +8194,8 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 
 === Changed between Jakarta Standard Tag Library 2.0 and Jakarta Standard Tag Library 3.0
 
+** https://github.com/eclipse-ee4j/jstl-api/issues/115 : Update Expression Language links in the specification document
+
 === Changed between Jakarta Standard Tag Library 2.0 and JSR-52
 
 ** The API has moved from the `javax.servlet.jsp.jstl` package to the `jakarta.servlet.jsp.jstl` package.
