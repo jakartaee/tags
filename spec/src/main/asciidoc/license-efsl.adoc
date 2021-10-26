@@ -10,7 +10,7 @@ Release: {revdate}
 ....
 
 == Copyright
- Copyright (c) 2018, 2020 Eclipse Foundation.
+Copyright (c) 2018, {revyear} Eclipse Foundation.
 
 === Eclipse Foundation Specification License
 
