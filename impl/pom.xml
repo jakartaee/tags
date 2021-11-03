@@ -146,7 +146,7 @@
         </resources>
         
         <plugins>
-              <!-- Sets minimal Maven version to 3.5.4 -->
+              <!-- Sets minimal Maven version to 3.5.4 and Java version to 11 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -162,19 +162,22 @@
                                 <requireMavenVersion>
                                     <version>3.5.4</version>
                                 </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>11</version>
+                                    <message>You need Java 11 or higher</message>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             
-            <!-- Restricts the Java version to 1.8 -->
+            <!-- Restricts the Java version to 11 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
@@ -351,7 +354,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <source>1.8</source>
+                    <source>11</source>
                     <additionalJOption>-Xdoclint:none</additionalJOption>
                     <bottom><![CDATA[
 Copyright &#169; 2019,2020 Eclipse Foundation. All rights reserved.
