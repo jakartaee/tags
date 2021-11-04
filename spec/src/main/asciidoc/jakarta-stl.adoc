@@ -8208,4 +8208,3 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 <<< 
 
 '''''
-section of each action, as well as the syntax of EL expressions
