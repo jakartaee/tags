@@ -84,7 +84,7 @@ public class Config {
      * @param name Configuration variable name
      * @param scope Scope in which the configuration variable is to be looked up
      *
-     * @return The <tt>java.lang.Object</tt> associated with the configuration variable, or null if it is not defined.
+     * @return The <code>java.lang.Object</code> associated with the configuration variable, or null if it is not defined.
      */
     public static Object get(PageContext pageContext, String name, int scope) {
         switch (scope) {
@@ -111,7 +111,7 @@ public class Config {
      * @param request Request object in which the configuration variable is to be looked up
      * @param name Configuration variable name
      *
-     * @return The <tt>java.lang.Object</tt> associated with the configuration variable, or null if it is not defined.
+     * @return The <code>java.lang.Object</code> associated with the configuration variable, or null if it is not defined.
      */
     public static Object get(ServletRequest request, String name) {
         return request.getAttribute(name + REQUEST_SCOPE_SUFFIX);
@@ -128,7 +128,7 @@ public class Config {
      * @param session Session object in which the configuration variable is to be looked up
      * @param name Configuration variable name
      *
-     * @return The <tt>java.lang.Object</tt> associated with the configuration variable, or null if it is not defined, if
+     * @return The <code>java.lang.Object</code> associated with the configuration variable, or null if it is not defined, if
      * session is null, or if the session is invalidated.
      */
     public static Object get(HttpSession session, String name) {
@@ -152,7 +152,7 @@ public class Config {
      * @param context Servlet context in which the configuration variable is to be looked up
      * @param name Configuration variable name
      *
-     * @return The <tt>java.lang.Object</tt> associated with the configuration variable, or null if it is not defined.
+     * @return The <code>java.lang.Object</code> associated with the configuration variable, or null if it is not defined.
      */
     public static Object get(ServletContext context, String name) {
         return context.getAttribute(name + APPLICATION_SCOPE_SUFFIX);
@@ -312,13 +312,13 @@ public class Config {
      *
      * <p>
      * For each of the JSP scopes (page, request, session, application), get the value of the configuration variable
-     * identified by <tt>name</tt> using method <tt>get()</tt>. Return as soon as a non-null value is found. If no value is
-     * found, get the value of the context initialization parameter identified by <tt>name</tt>.
+     * identified by <code>name</code> using method <code>get()</code>. Return as soon as a non-null value is found. If no value is
+     * found, get the value of the context initialization parameter identified by <code>name</code>.
      *
      * @param pageContext Page context in which the configuration setting is to be searched
      * @param name Context initialization parameter name of the configuration setting
      *
-     * @return The <tt>java.lang.Object</tt> associated with the configuration setting identified by <tt>name</tt>, or null
+     * @return The <code>java.lang.Object</code> associated with the configuration setting identified by <code>name</code>, or null
      * if it is not defined.
      */
     public static Object find(PageContext pageContext, String name) {

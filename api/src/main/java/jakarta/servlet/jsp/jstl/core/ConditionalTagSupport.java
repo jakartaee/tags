@@ -34,9 +34,9 @@ import jakarta.servlet.jsp.tagext.TagSupport;
  *
  * <ul>
  * <li>Conditional processing of the action's body based on the returned value of the abstract method
- * <tt>condition()</tt>.</li>
- * <li>Storing the result of <tt>condition()</tt> as a <tt>Boolean</tt> object into a JSP scoped variable identified by
- * attributes <tt>var</tt> and <tt>scope</tt>.
+ * <code>condition()</code>.</li>
+ * <li>Storing the result of <code>condition()</code> as a <code>Boolean</code> object into a JSP scoped variable identified by
+ * attributes <code>var</code> and <code>scope</code>.
  * </ul>
  *
  * @author Shawn Bayern
@@ -48,7 +48,7 @@ public abstract class ConditionalTagSupport extends TagSupport {
     /**
      * <p>
      * Subclasses implement this method to compute the boolean result of the conditional action. This method is invoked once
-     * per tag invocation by <tt>doStartTag()</tt>.
+     * per tag invocation by <code>doStartTag()</code>.
      *
      * @return a boolean representing the condition that a particular subclass uses to drive its conditional logic.
      */
@@ -58,7 +58,7 @@ public abstract class ConditionalTagSupport extends TagSupport {
     // Constructor
 
     /**
-     * Base constructor to initialize local state. As with <tt>TagSupport</tt>, subclasses should not implement constructors
+     * Base constructor to initialize local state. As with <code>TagSupport</code>, subclasses should not implement constructors
      * with arguments, and no-argument constructors implemented by subclasses must call the superclass constructor.
      */
     public ConditionalTagSupport() {
@@ -70,7 +70,7 @@ public abstract class ConditionalTagSupport extends TagSupport {
     // Lifecycle management and implementation of conditional behavior
 
     /**
-     * Includes its body if <tt>condition()</tt> evaluates to true.
+     * Includes its body if <code>condition()</code> evaluates to true.
      */
     @Override
     public int doStartTag() throws JspException {
@@ -111,7 +111,7 @@ public abstract class ConditionalTagSupport extends TagSupport {
     /**
      * Sets the 'var' attribute.
      *
-     * @param var Name of the exported scoped variable storing the result of <tt>condition()</tt>.
+     * @param var Name of the exported scoped variable storing the result of <code>condition()</code>.
      */
     public void setVar(String var) {
         this.var = var;

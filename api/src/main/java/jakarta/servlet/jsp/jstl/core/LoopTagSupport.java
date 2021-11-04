@@ -41,7 +41,7 @@ import jakarta.servlet.jsp.tagext.TryCatchFinally;
  * <p>
  * Since most iteration tags will behave identically with respect to actual iterative behavior, the Jakarta Standard Tag
  * Library provides this base support class to facilitate implementation. Many iteration tags will extend this and
- * merely implement the <tt>hasNext()</tt> and <tt>next()</tt> methods to provide contents for the handler to iterate
+ * merely implement the <code>hasNext()</code> and <code>next()</code> methods to provide contents for the handler to iterate
  * over.
  * </p>
  *
@@ -50,20 +50,20 @@ import jakarta.servlet.jsp.tagext.TryCatchFinally;
  * </p>
  *
  * <ul>
- * <li>Iteration control, based on protected <tt>prepare()</tt>, <tt>next()</tt>, and <tt>hasNext()</tt> methods
- * <li>Subsetting (<tt>begin</tt>, <tt>end</tt>, <tt>step</tt> functionality, including validation of subset parameters
+ * <li>Iteration control, based on protected <code>prepare()</code>, <code>next()</code>, and <code>hasNext()</code> methods
+ * <li>Subsetting (<code>begin</code>, <code>end</code>, <code>step</code> functionality, including validation of subset parameters
  * for sensibility)
- * <li>item retrieval (<tt>getCurrent()</tt>)
- * <li>status retrieval (<tt>LoopTagStatus</tt>)
- * <li>exposing attributes (set by <tt>var</tt> and <tt>varStatus</tt> attributes)
+ * <li>item retrieval (<code>getCurrent()</code>)
+ * <li>status retrieval (<code>LoopTagStatus</code>)
+ * <li>exposing attributes (set by <code>var</code> and <code>varStatus</code> attributes)
  * </ul>
  *
  * <p>
- * In providing support for these tasks, <tt>LoopTagSupport</tt> contains certain control variables that act to modify
+ * In providing support for these tasks, <code>LoopTagSupport</code> contains certain control variables that act to modify
  * the iteration. Accessors are provided for these control variables when the variables represent information needed or
- * wanted at translation time (e.g., <tt>var</tt>, <tt>varStatus</tt>). For other variables, accessors cannot be
+ * wanted at translation time (e.g., <code>var</code>, <code>varStatus</code>). For other variables, accessors cannot be
  * provided here since subclasses may differ on their implementations of how those accessors are received. For instance,
- * one subclass might accept a <tt>String</tt> and convert it into an object of a specific type by using an expression
+ * one subclass might accept a <code>String</code> and convert it into an object of a specific type by using an expression
  * evaluator; others might accept objects directly. Still others might not want to expose such information to outside
  * control.
  * </p>
@@ -181,7 +181,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
      * See <a href="#next()">next</a> for more information about the purpose and expectations behind this tag.
      * </p>
      *
-     * @return <tt>true</tt> if there is at least one more item to iterate over, <tt>false</tt> otherwise
+     * @return <code>true</code> if there is at least one more item to iterate over, <code>false</code> otherwise
      * @exception jakarta.servlet.jsp.JspTagException
      * @see #next
      */
