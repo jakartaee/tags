@@ -28,8 +28,8 @@ import java.util.TreeMap;
 
 /**
  * <p>
- * This class creates a cached version of a <tt>ResultSet</tt>. It's represented as a <tt>Result</tt> implementation,
- * capable of returing an array of <tt>Row</tt> objects containing a <tt>Column</tt> instance for each column in the
+ * This class creates a cached version of a <code>ResultSet</code>. It's represented as a <code>Result</code> implementation,
+ * capable of returing an array of <code>Row</code> objects containing a <code>Column</code> instance for each column in the
  * row. It is not part of the Jakarta Standard Tab Library API; it serves merely as a back-end to ResultSupport's static
  * methods. Thus, we scope its access to the package.
  *
@@ -47,7 +47,7 @@ class ResultImpl implements Result, Serializable {
      * This constructor reads the ResultSet and saves a cached copy. It's important to note that this object will be
      * serializable only if the objects returned by the ResultSet are serializable too.
      *
-     * @param resultSet an open <tt>ResultSet</tt>, positioned before the first row
+     * @param resultSet an open <code>ResultSet</code>, positioned before the first row
      * @param startRow beginning row to be cached
      * @param maxRows query maximum rows limit
      * @exception java.sql.SQLException if a database error occurs

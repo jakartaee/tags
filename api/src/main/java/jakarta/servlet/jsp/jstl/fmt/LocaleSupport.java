@@ -51,7 +51,7 @@ public class LocaleSupport {
      *
      * <p>
      * The given key is looked up in the resource bundle of the default I18N localization context, which is retrieved from
-     * the <tt>jakarta.servlet.jsp.jstl.fmt.localizationContext</tt> configuration setting.
+     * the <code>jakarta.servlet.jsp.jstl.fmt.localizationContext</code> configuration setting.
      *
      * <p>
      * If the configuration setting is empty, or the default I18N localization context does not contain any resource bundle,
@@ -89,7 +89,7 @@ public class LocaleSupport {
 
     /**
      * Retrieves the localized message corresponding to the given key, and performs parametric replacement using the
-     * arguments specified via <tt>args</tt>.
+     * arguments specified via <code>args</code>.
      *
      * <p>
      * See the specification of the &lt;fmt:message&gt; action for a description of how parametric replacement is
@@ -111,7 +111,7 @@ public class LocaleSupport {
 
     /**
      * Retrieves the localized message corresponding to the given key, and performs parametric replacement using the
-     * arguments specified via <tt>args</tt>.
+     * arguments specified via <code>args</code>.
      *
      * <p>
      * See the specification of the &lt;fmt:message&gt; action for a description of how parametric replacement is
@@ -187,13 +187,13 @@ public class LocaleSupport {
      * Gets the resource bundle with the given base name, whose locale is determined as follows:
      *
      * Check if a match exists between the ordered set of preferred locales and the available locales, for the given base
-     * name. The set of preferred locales consists of a single locale (if the <tt>jakarta.servlet.jsp.jstl.fmt.locale</tt>
+     * name. The set of preferred locales consists of a single locale (if the <code>jakarta.servlet.jsp.jstl.fmt.locale</code>
      * configuration setting is present) or is equal to the client's preferred locales determined from the client's browser
      * settings.
      *
      * <p>
      * If no match was found in the previous step, check if a match exists between the fallback locale (given by the
-     * <tt>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</tt> configuration setting) and the available locales, for the given
+     * <code>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</code> configuration setting) and the available locales, for the given
      * base name.
      *
      * @param pageContext Page in which the resource bundle with the given base name is requested
@@ -268,7 +268,7 @@ public class LocaleSupport {
      * @param basename the resource bundle's base name
      *
      * @return the localization context containing the resource bundle with the given base name and best matching locale, or
-     * <tt>null</tt> if no resource bundle match was found
+     * <code>null</code> if no resource bundle match was found
      */
     private static LocalizationContext findMatch(PageContext pageContext, String basename) {
         LocalizationContext locCtxt = null;
@@ -297,7 +297,7 @@ public class LocaleSupport {
      *
      * @param pref the preferred locale
      *
-     * @return the requested resource bundle, or <tt>null</tt> if no resource bundle with the given base name exists or if
+     * @return the requested resource bundle, or <code>null</code> if no resource bundle with the given base name exists or if
      * there is no exact- or language-match between the preferred locale and the locale of the bundle returned by
      * java.util.ResourceBundle.getBundle().
      */
@@ -380,14 +380,14 @@ public class LocaleSupport {
 
     /**
      * Parses the given locale string into its language and (optionally) country components, and returns the corresponding
-     * <tt>java.util.Locale</tt> object.
+     * <code>java.util.Locale</code> object.
      *
      * If the given locale string is null or empty, the runtime's default locale is returned.
      *
      * @param locale the locale string to parse
      * @param variant the variant
      *
-     * @return <tt>java.util.Locale</tt> object corresponding to the given locale string, or the runtime's default locale if
+     * @return <code>java.util.Locale</code> object corresponding to the given locale string, or the runtime's default locale if
      * the locale string is null or empty
      *
      * @throws IllegalArgumentException if the given locale does not have a language component or has an empty country

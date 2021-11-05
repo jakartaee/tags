@@ -22,13 +22,13 @@ import jakarta.servlet.jsp.tagext.Tag;
 /**
  * <p>
  * The Jakarta Standard Tag Library allows developers to write custom iteration tags by implementing the LoopTag
- * interface. This is not to be confused with <tt>jakarta.servlet.jsp.tagext.IterationTag</tt> as defined in Jakarta
+ * interface. This is not to be confused with <code>jakarta.servlet.jsp.tagext.IterationTag</code> as defined in Jakarta
  * Server Pages 1.2. LoopTag establishes a mechanism for iteration tags to be recognized and for type-safe implicit
  * collaboration with custom subtags.
  *
  * <p>
  * In most cases, it will not be necessary to implement this interface manually, for a base support class
- * (<tt>LoopTagSupport</tt>) is provided to facilitate implementation.
+ * (<code>LoopTagSupport</code>) is provided to facilitate implementation.
  * </p>
  *
  * @author Shawn Bayern
@@ -47,7 +47,7 @@ public interface LoopTag extends Tag {
     /**
      * Retrieves a 'status' object to provide information about the current round of the iteration.
      *
-     * @return The LoopTagStatus for the current <tt>LoopTag</tt>.
+     * @return The LoopTagStatus for the current <code>LoopTag</code>.
      */
     LoopTagStatus getLoopStatus();
 }

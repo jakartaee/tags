@@ -70,7 +70,7 @@ public interface LoopTagStatus {
      * 'first' even when getIndex() != 0, for 'index' refers to the absolute index of the current 'item' in the context of
      * its underlying collection. It is always that case that a true result from isFirst() implies getCount() == 1.
      *
-     * @return <tt>true</tt> if the current round is the first in the iteration, <tt>false</tt> otherwise.
+     * @return <code>true</code> if the current round is the first in the iteration, <code>false</code> otherwise.
      */
     boolean isFirst();
 
@@ -79,7 +79,7 @@ public interface LoopTagStatus {
      * is taken into account. isLast() doesn't necessarily refer to the status of the underlying Iterator; it refers to
      * whether or not the current round will be the final round of iteration for the tag associated with this LoopTagStatus.
      *
-     * @return <tt>true</tt> if the current round is the last in the iteration, <tt>false</tt> otherwise.
+     * @return <code>true</code> if the current round is the last in the iteration, <code>false</code> otherwise.
      */
     boolean isLast();
 
