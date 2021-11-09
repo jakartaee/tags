@@ -370,9 +370,28 @@
                 </executions>
             </plugin>
             
-             <!-- 
-               Create Javadoc for IMPL jar
-             -->
+            <!-- 
+                Create Javadoc for IMPL jar
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <name>current.year</name>
+                            <pattern>yyyy</pattern>
+                            <locale>en_US</locale>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -381,7 +400,7 @@
                     <source>11</source>
                     <additionalJOption>-Xdoclint:none</additionalJOption>
                     <bottom><![CDATA[
-Copyright &#169; 2019,2020 Eclipse Foundation. All rights reserved.
+Copyright &#169; 2019, ${current.year} Eclipse Foundation. All rights reserved.
 ]]>
                     </bottom>
                     <docfilessubdirs>true</docfilessubdirs>
