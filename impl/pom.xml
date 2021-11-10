@@ -335,9 +335,15 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo level="info">Replacing in ${project.build.directory}/tlddoc</echo>
+                                <echo level="info">Replacing javax.el.ValueExpression in ${project.build.directory}/tlddoc</echo>
                                 <replace token="javax.el.ValueExpression" value="jakarta.el.ValueExpression" dir="${project.build.directory}/tlddoc" summary="yes">
                                     <include name="**/*.html"/>
+                                </replace>
+                                <echo level="info">Adding copyright in ${project.build.directory}/tlddoc</echo>
+                                <replace dir="${project.build.directory}/tlddoc" summary="yes">
+                                    <include name="**/*.html"/>
+                                    <replacetoken><![CDATA[</body>]]></replacetoken>
+                                    <replacevalue><![CDATA[<br>Copyright &#169; 2019, 2020 Eclipse Foundation. All rights reserved.<br></body>]]></replacevalue>
                                 </replace>
                             </target>
                         </configuration>
