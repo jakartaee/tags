@@ -197,7 +197,6 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Automatic-Module-Name>jakarta.servlet.jsp.jstl</Automatic-Module-Name>
                         <Bundle-Version>${spec.bundle.version}</Bundle-Version>
                         <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
                         <Extension-Name>${spec.extension.name}</Extension-Name>
