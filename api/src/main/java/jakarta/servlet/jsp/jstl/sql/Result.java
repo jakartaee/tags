@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2021-2021 Contributors to the Eclipse Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
