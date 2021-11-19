@@ -8200,6 +8200,8 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 
 ** https://github.com/eclipse-ee4j/jstl-api/issues/156 : Update Jakarta Tags to Java 11
 
+** https://github.com/eclipse-ee4j/jstl-api/issues/157 : Add JPMS Module Info Class
+
 === Changed between Jakarta Standard Tag Library 2.0 and JSR-52
 
 ** The API has moved from the `javax.servlet.jsp.jstl` package to the `jakarta.servlet.jsp.jstl` package.
