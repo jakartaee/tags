@@ -8,15 +8,15 @@ Building
 
 Prerequisites:
 
-* JDK8+
-* Maven 3.0.3+
+* JDK11+
+* Maven 3.5.4+
 
 Run the full build:
 
 `mvn install`
 
 Locate the html files:
-- `target/generated-docs/jstl-spec-1_2.html`
+- `target/generated-docs/jstl-spec-<version>.html`
 
 Locate the PDF files:
-- `target/generated-docs/jstl-spec-1_2.pdf`
+- `target/generated-docs/jstl-spec-<version>.pdf`
