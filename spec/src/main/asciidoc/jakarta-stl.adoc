@@ -2,7 +2,9 @@
 == Preface
 
 This is the Jakarta Standard Tag
-Library 2.0 specification, developed by the Jakarta Standard Tag Library Team, https://projects.eclipse.org/projects/ee4j.jstl
+Library {revnumber} specification, developed by the Jakarta Standard Tag Library Team, https://projects.eclipse.org/projects/ee4j.jstl
+
+Oracle, Java, and MySQL are registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.
 
 == Related Documentation
 
