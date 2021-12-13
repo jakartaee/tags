@@ -499,7 +499,7 @@ possible, without causing other problems.
 For instance, if `<c:forEach>` were to throw an
 exception when given a null value for the attribute _items_, it would
 be impossible to easily loop over a possibly missing string array that
-represents check-box selection in an HTML form (retrieved with an EL
+represents check-box selection in an HTML form (retrieved with an Expression Language
 expression like _${paramValues.selections}_). A better choice is to do
 nothing in this case.
 
@@ -529,15 +529,15 @@ likely a typo or another mistake.
 * Dynamic attributes without a fixed set of
 valid values: +
 The rules below assume that if the type of
-the value does not match the expected type, the EL will have applied
+the value does not match the expected type, the Expression Language will have applied
 coercion rules to try to accomodate the input value. Moreover, if the
-expected type is one of the types handled by the EL coercion rules, the
-EL will in most cases coerce null to an approriate value. For instance,
-if the expected type is a _Number_, the EL will coerce a null value to
+expected type is one of the types handled by the Expression Language coercion rules, the
+Expression Language will in most cases coerce null to an approriate value. For instance,
+if the expected type is a _Number_, the Expression Language will coerce a null value to
 0, if it's _Boolean_ it will be coerced to false.
 
 ** null – behavior specific to the action +
-If this rule is applied, it's because the EL
+If this rule is applied, it's because the Expression Language
 could not coerce the null into an appropriate default value. It is
 therefore up to the action to deal with the null value and is documented
 in the "Null & Error Handling" section of the action.
@@ -554,7 +554,7 @@ them (e.g. `<sql:transaction>`).
 Always propagate, possibly after handling
 them.
 
-* Exceptions caused by the EL: +
+* Exceptions caused by the Expression Language: +
 Always propagate.
 
 * Exceptions caused by XPath: +
@@ -639,7 +639,7 @@ value of a configuration variable does not match one of those supported
 by the configuration variable, conversion is performed according to the
 conversion rules defined in the expression language. Setting a
 configuration variable is therefore exactly the same as setting an
-attribute value of an action using the EL. A failure of these conversion
+attribute value of an action using the Expression Language. A failure of these conversion
 rules to determine an appropriate type coersion leads to a
 _JspException_ at runtime.
 
@@ -669,7 +669,7 @@ definition of the Expression Language.
 === Expressions and Attribute Values
 
 The Expression Language is invoked exclusively via the
-construct _${expr}_. In the sample code below, an EL expression is
+construct _${expr}_. In the sample code below, an Expression Language expression is
 used to set the value of attribute _test_, while a second one is used
 to display the title of a book.
 
