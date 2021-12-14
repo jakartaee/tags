@@ -2038,9 +2038,9 @@ illustrating how an iteration tag handler may process a deferred-value
 specified for the _items_ attribute.
 
 ....
-doStartTag() +
+doStartTag()
     ...
-    // 'items' is a deferred-value +
+    // 'items' is a deferred-value
     // Get the current Expression Language VariableMapper
     VariableMapper vm = 
         jspContext.getELContext().getVariableMapper();
@@ -4825,7 +4825,7 @@ _java.util.Date_ using the `<fmt:parseDate>` action, whose parsing result
 may then be supplied to the `<fmt:formatDate>` action:
 
 ....
-<fmt:parseDate value="4/13/02" pattern="M/d/yy" var="parsed"/> +
+<fmt:parseDate value="4/13/02" pattern="M/d/yy" var="parsed"/>
 <fmt:formatDate value="${parsed}" dateStyle="full"/>
 ....
 
@@ -7229,7 +7229,7 @@ libraries), a developer could create the following TLD:
 <taglib
     xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation= +
+    xsi:schemaLocation=
         "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
     version="2.0">
     <description>
