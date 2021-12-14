@@ -4194,8 +4194,8 @@ includes the time zone, but that would still require clients to convert
 the formatted time into their own time zone).
 
 When formatting time information using the
-`<fmt:formatDate>` action (see Section 9.8), or parsing time information
-that does not specify a time zone using the `<fmt:parseDate>` action (see Section 9.9), the time zone to use is determined as follows and in this order:
+`<fmt:formatDate>` action (see <<fmt:formatDate>>), or parsing time information
+that does not specify a time zone using the `<fmt:parseDate>` action (see <<fmt:parseDate>>), the time zone to use is determined as follows and in this order:
 
 * Use the time zone from the action's _timeZone_ attribute.
 
@@ -4259,7 +4259,7 @@ is used.
 
 The `<fmt:timeZone>` action specifies the time
 zone in which to format or parse the time information of any nested time
-formatting (see Section 9.8) or parsing (see Section 9.9) actions.
+formatting (see <<fmt:formatDate>>) or parsing (see <<fmt:parseDate>>) actions.
 
 If the time zone is given as a string, it is
 parsed using _java.util.TimeZone.getTimeZone()_.
@@ -4695,6 +4695,7 @@ using _java.lang.Number.toString()_.
 
 <<<
 
+[[fmt:formatDate]]
 === <fmt:formatDate>
 
 Allows the formatting of dates and times in a
@@ -4834,6 +4835,7 @@ case it is stored in the named scoped variable.
 
 <<<
 
+[[fmt:parseDate]]
 === <fmt:parseDate>
 
 Parses the string representation of dates and
