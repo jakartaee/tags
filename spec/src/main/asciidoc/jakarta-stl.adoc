@@ -221,21 +221,21 @@ Jakarta Standard Tag Library Tag Libraries
 |Functional Area
 |URI |Prefix
 |core |
-_http://java.sun.com/jsp/jstl/core_ | _c_
+_jakarta.tags.core_ | _c_
 
 |XML processing |
-_http://java.sun.com/jsp/jstl/xml_ | _x_
+_jakarta.tags.xml_ | _x_
 
 |I18N capable formatting
-| _http://java.sun.com/jsp/jstl/fmt_
+| _jakarta.tags.fmt_
 | _fmt_
 
 |relational db access (SQL)
-| _http://java.sun.com/jsp/jstl/sql_
+| _jakarta.tags.sql_
 | _sql_
 
 |Functions |
-_http://java.sun.com/jsp/jstl/functions_ |fn
+_jakarta.tags.functions_ |fn
 |===
 
 === Container Requirement
@@ -7226,8 +7226,7 @@ libraries), a developer could create the following TLD:
 ....
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<taglib
-    xmlns="http://java.sun.com/xml/ns/j2ee"
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation=
         "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
@@ -7247,10 +7246,10 @@ libraries), a developer could create the following TLD:
         <init-param>
             <param-name>permittedTaglibs</param-name>
             <param-value>
-                http://java.sun.com/jstl/core
-                http://java.sun.com/jstl/xml
-                http://java.sun.com/jstl/fmt
-                http://java.sun.com/jstl/sql
+                jakarta.tags.core
+                jakarta.tags.xml
+                jakarta.tags.fmt
+                jakarta.tags.sql
             </param-value>
         </init-param>
     </validator>
@@ -8205,6 +8204,8 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 ** https://github.com/eclipse-ee4j/jstl-api/issues/156 : Update Jakarta Tags to Java 11
 
 ** https://github.com/eclipse-ee4j/jstl-api/issues/157 : Add JPMS Module Info Class
+
+** https://github.com/eclipse-ee4j/jstl-api/issues/144 : Rename Tag URIs to 'jakarta.tags.*'
 
 === Changed between Jakarta Standard Tag Library 2.0 and JSR-52
 
