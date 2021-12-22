@@ -3052,7 +3052,7 @@ used for localization.
 If the resource bundle of an i18n
 localization context needs to be determined, it is retrieved from the
 web application's resources according to the algorithm described in
-section Section 8.3. This algorithm requires two pieces of information:
+Section <<Determinining the Resource Bundle for an i18n Localization Context>>. This algorithm requires two pieces of information:
 the basename of the resource bundle (as described in the previous
 section) and the preferred locales.
 
@@ -4988,7 +4988,7 @@ given date string must strictly adhere to the parsing format.
 
 If the given time information does not
 specify a time zone, it is interpreted in the time zone determined
-according to Section 9.4.
+according to Section <<Time Zone>>.
 
 If the _var_ attribute is given, the parsing
 result (of type _java.util.Date_ ) is stored in the named scoped
