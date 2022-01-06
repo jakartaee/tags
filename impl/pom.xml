@@ -197,8 +197,6 @@
                             org.apache.taglibs.standard.functions,
                             org.apache.taglibs.standard.lang.jstl,
                             org.apache.taglibs.standard.lang.jstl.parser,
-                            org.apache.taglibs.standard.lang.jstl.test,
-                            org.apache.taglibs.standard.lang.jstl.test.beans,
                             org.apache.taglibs.standard.lang.support,
                             org.apache.taglibs.standard.resources,
                             org.apache.taglibs.standard.tag.common.core,
