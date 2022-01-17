@@ -183,7 +183,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
      * </p>
      *
      * @return <code>true</code> if there is at least one more item to iterate over, <code>false</code> otherwise
-     * @exception jakarta.servlet.jsp.JspTagException
+     * @exception jakarta.servlet.jsp.JspTagException - thrown on error
      * @see #next
      */
     protected abstract boolean hasNext() throws JspTagException;
@@ -194,7 +194,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
      * Subclasses can assume that prepare() will be called once for each invocation of doStartTag() in the superclass.
      * </p>
      *
-     * @exception jakarta.servlet.jsp.JspTagException
+     * @exception jakarta.servlet.jsp.JspTagException - thrown on error
      */
     protected abstract void prepare() throws JspTagException;
 
@@ -450,6 +450,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
 
     /**
      * Ensures the "begin" property is sensible, throwing an exception expected to propagate up if it isn't
+     * @throws JspTagException - thrown on error
      */
     protected void validateBegin() throws JspTagException {
         if (begin < 0) {
@@ -459,6 +460,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
 
     /**
      * Ensures the "end" property is sensible, throwing an exception expected to propagate up if it isn't
+     * @throws JspTagException - thrown on error
      */
     protected void validateEnd() throws JspTagException {
         if (end < 0) {
@@ -468,6 +470,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
 
     /**
      * Ensures the "step" property is sensible, throwing an exception expected to propagate up if it isn't
+     * @throws JspTagException - thrown on error
      */
     protected void validateStep() throws JspTagException {
         if (step < 1) {

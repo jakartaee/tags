@@ -32,7 +32,8 @@ public final class IndexedValueExpression extends ValueExpression {
     protected final ValueExpression orig;
 
     /**
-     *
+     * @param orig - ValueExpression that refers to a specific member of an indexed variable
+     * @param i - the index value
      */
     public IndexedValueExpression(ValueExpression orig, int i) {
         this.i = Integer.valueOf(i);

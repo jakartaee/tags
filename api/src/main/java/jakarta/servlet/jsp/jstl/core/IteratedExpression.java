@@ -41,6 +41,11 @@ public final class IteratedExpression /* implements Serializable */ {
     private int index;
     private Iterator iter;
 
+    /**
+     *
+     * @param orig - ValueExpression to process
+     * @param delims - Delimiters to use to split a String expression
+     */
     public IteratedExpression(ValueExpression orig, String delims) {
         this.orig = orig;
         this.delims = delims;
@@ -51,6 +56,7 @@ public final class IteratedExpression /* implements Serializable */ {
      *
      * @param context The ELContext used to evaluate the ValueExpression
      * @param i The index of the item to be retrieved
+     * @return The value expression result at i
      */
     public Object getItem(ELContext context, int i) {
 

@@ -52,6 +52,7 @@ public abstract class ConditionalTagSupport extends TagSupport {
      * per tag invocation by <code>doStartTag()</code>.
      *
      * @return a boolean representing the condition that a particular subclass uses to drive its conditional logic.
+     * @throws JspTagException - on failure
      */
     protected abstract boolean condition() throws JspTagException;
 
