@@ -43,8 +43,8 @@ public final class IteratedExpression /* implements Serializable */ {
 
     /**
      *
-     * @param orig - ValueExpression to process
-     * @param delims - Delimiters to use to split a String expression
+     * @param orig ValueExpression to process
+     * @param delims Delimiters to use to split a String expression
      */
     public IteratedExpression(ValueExpression orig, String delims) {
         this.orig = orig;
