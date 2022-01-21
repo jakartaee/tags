@@ -450,7 +450,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
 
     /**
      * Ensures the "begin" property is sensible, throwing an exception expected to propagate up if it isn't
-     * @throws JspTagException - thrown on error
+     * @throws JspTagException thrown on error
      */
     protected void validateBegin() throws JspTagException {
         if (begin < 0) {
