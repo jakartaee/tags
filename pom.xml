@@ -59,6 +59,7 @@
     </mailingLists>
 
     <modules>
+        <module>tagsdoc</module>
         <module>api</module>
         <module>impl</module>
         <module>spec</module>

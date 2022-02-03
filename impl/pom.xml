@@ -459,9 +459,9 @@ Copyright &#169; 2019, ${current.year} Eclipse Foundation. All rights reserved.
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>taglibrarydoc</groupId>
-                        <artifactId>tlddoc</artifactId>
-                        <version>1.3</version>
+                        <groupId>org.glassfish.web</groupId>
+                        <artifactId>tagsdoc</artifactId>
+                        <version>1.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
             </plugin>
