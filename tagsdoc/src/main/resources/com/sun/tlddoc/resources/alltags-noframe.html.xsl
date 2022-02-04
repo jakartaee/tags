@@ -3,6 +3,7 @@
 <!--
   - <license>
   - Copyright (c) 2003-2004, Sun Microsystems, Inc.
+  - Copyright (c) 2022 Contributors to the Eclipse Foundation
   - All rights reserved.
   - 
   - Redistribution and use in source and binary forms, with or without 
@@ -41,7 +42,7 @@
 -->
 
 <xsl:stylesheet version="1.0"
-    xmlns:javaee="http://java.sun.com/xml/ns/javaee" 
+    xmlns:jakartaee="https://jakarta.ee/xml/ns/jakartaee" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:fo="http://www.w3.org/1999/XSL/Format">
     
@@ -68,9 +69,9 @@
             <tr>
               <td nowrap="true"><font class="FrameItemFont">
                 <xsl:apply-templates 
-                    select="javaee:tlds/javaee:taglib/javaee:tag|javaee:tlds/javaee:taglib/javaee:tag-file|javaee:tlds/javaee:taglib/javaee:function">
-                  <xsl:sort select="../javaee:short-name"/>
-                  <xsl:sort select="javaee:name"/>
+                    select="jakartaee:tlds/jakartaee:taglib/jakartaee:tag|jakartaee:tlds/jakartaee:taglib/jakartaee:tag-file|jakartaee:tlds/jakartaee:taglib/jakartaee:function">
+                  <xsl:sort select="../jakartaee:short-name"/>
+                  <xsl:sort select="jakartaee:name"/>
                 </xsl:apply-templates>
               </font></td>
             </tr>
@@ -79,11 +80,11 @@
       </html>    
     </xsl:template>
     
-    <xsl:template match="javaee:tag|javaee:tag-file">
+    <xsl:template match="jakartaee:tag|jakartaee:tag-file">
       <xsl:element name="a">
-        <xsl:attribute name="href"><xsl:value-of select="../javaee:short-name"/>/<xsl:value-of select="javaee:name"/>.html</xsl:attribute>
+        <xsl:attribute name="href"><xsl:value-of select="../jakartaee:short-name"/>/<xsl:value-of select="jakartaee:name"/>.html</xsl:attribute>
         <xsl:attribute name="target"></xsl:attribute>
-        <xsl:value-of select="../javaee:short-name"/>:<xsl:value-of select="javaee:name"/>
+        <xsl:value-of select="../jakartaee:short-name"/>:<xsl:value-of select="jakartaee:name"/>
       </xsl:element>
       <br/>
     </xsl:template>
@@ -92,11 +93,11 @@
       - Same as above, but add the () to indicate it's a function 
       - and change the HTML to .fn.html
       -->
-    <xsl:template match="javaee:function">
+    <xsl:template match="jakartaee:function">
       <xsl:element name="a">
-        <xsl:attribute name="href"><xsl:value-of select="../javaee:short-name"/>/<xsl:value-of select="javaee:name"/>.fn.html</xsl:attribute>
+        <xsl:attribute name="href"><xsl:value-of select="../jakartaee:short-name"/>/<xsl:value-of select="jakartaee:name"/>.fn.html</xsl:attribute>
         <xsl:attribute name="target">tagFrame</xsl:attribute>
-        <i><xsl:value-of select="../javaee:short-name"/>:<xsl:value-of select="javaee:name"/>()</i>
+        <i><xsl:value-of select="../jakartaee:short-name"/>:<xsl:value-of select="jakartaee:name"/>()</i>
       </xsl:element>
       <br/>
     </xsl:template>
