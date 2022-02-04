@@ -1,6 +1,7 @@
 /*
  * <license>
  * Copyright (c) 2003-2004, Sun Microsystems, Inc.
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -183,16 +184,16 @@ public class TagDirImplicitTagLibrary
         String path ) 
     {
         Element taglibElement = result.createElementNS(
-            Constants.NS_JAVAEE, "taglib" );
+            Constants.NS_JAKARTAEE, "taglib" );
         // JDK 1.4 does not add xmlns for some reason - add it manually:
         taglibElement.setAttributeNS( "http://www.w3.org/2000/xmlns/", 
-            "xmlns", Constants.NS_JAVAEE );
+            "xmlns", Constants.NS_JAKARTAEE );
         taglibElement.setAttributeNS( "http://www.w3.org/2000/xmlns/", 
             "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" );
         taglibElement.setAttributeNS( 
             "http://www.w3.org/2001/XMLSchema-instance",
             "xsi:schemaLocation", 
-            Constants.NS_JAVAEE + 
+            Constants.NS_JAKARTAEE + 
             " http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" );
         taglibElement.setAttribute( "version", "2.1" );
         result.appendChild( taglibElement );

@@ -499,24 +499,24 @@ public class TLDDocGenerator {
         summaryTLD = documentBuilder.newDocument();
         
         // Create root <tlds> element:
-        Element rootElement = summaryTLD.createElementNS( Constants.NS_JAVAEE, 
+        Element rootElement = summaryTLD.createElementNS( Constants.NS_JAKARTAEE, 
             "tlds" );
         summaryTLD.appendChild( rootElement );
         // JDK 1.4 does not add xmlns for some reason - add it manually:
         rootElement.setAttributeNS( "http://www.w3.org/2000/xmlns/", 
-            "xmlns", Constants.NS_JAVAEE );
+            "xmlns", Constants.NS_JAKARTAEE );
         
         // Create configuration element:
-        Element configElement = summaryTLD.createElementNS( Constants.NS_JAVAEE, 
+        Element configElement = summaryTLD.createElementNS( Constants.NS_JAKARTAEE, 
             "config" );
         rootElement.appendChild( configElement );
         
-        Element windowTitle = summaryTLD.createElementNS( Constants.NS_JAVAEE, 
+        Element windowTitle = summaryTLD.createElementNS( Constants.NS_JAKARTAEE, 
             "window-title" );
         windowTitle.appendChild( summaryTLD.createTextNode( this.windowTitle));
         configElement.appendChild( windowTitle );
         
-        Element docTitle = summaryTLD.createElementNS( Constants.NS_JAVAEE, 
+        Element docTitle = summaryTLD.createElementNS( Constants.NS_JAKARTAEE, 
             "doc-title" );
         docTitle.appendChild( summaryTLD.createTextNode( this.docTitle));
         configElement.appendChild( docTitle );
@@ -551,11 +551,10 @@ public class TLDDocGenerator {
 
                 Element taglibNode = (Element)summaryTLD.importNode( 
                     doc.getDocumentElement(), true );
-                if( !taglibNode.getNamespaceURI().equals( Constants.NS_JAVAEE )
-                    && !taglibNode.getNamespaceURI().equals( Constants.NS_J2EE )) {
+                if( !taglibNode.getNamespaceURI().equals( Constants.NS_JAKARTAEE ) ) {
                     throw new GeneratorException( "Error: " + 
                         tagLibrary.getPathDescription() + 
-                        " does not have xmlns=\"" + Constants.NS_JAVAEE + "\"" );
+                        " does not have xmlns=\"" + Constants.NS_JAKARTAEE + "\"" );
                 }
                 if( !taglibNode.getLocalName().equals( "taglib" ) ) {
                     throw new GeneratorException( "Error: " + 
@@ -749,7 +748,7 @@ public class TLDDocGenerator {
                 name.equals( "description" ) ||
                 name.equals( "example" ) )
             {
-                element = doc.createElementNS( Constants.NS_JAVAEE, name );
+                element = doc.createElementNS( Constants.NS_JAKARTAEE, name );
                 element.appendChild( doc.createTextNode( value ) );
                 tagFileNode.appendChild( element );
             }
@@ -759,13 +758,13 @@ public class TLDDocGenerator {
                 NodeList icons = tagFileNode.getElementsByTagNameNS( "*", "icon" );
                 Element icon;
                 if( icons.getLength() == 0 ) {
-                    icon = doc.createElementNS( Constants.NS_JAVAEE, "icon" );
+                    icon = doc.createElementNS( Constants.NS_JAKARTAEE, "icon" );
                     tagFileNode.appendChild( icon );
                 }
                 else {
                     icon = (Element)icons.item( 0 );
                 }
-                element = doc.createElementNS( Constants.NS_JAVAEE, name );
+                element = doc.createElementNS( Constants.NS_JAKARTAEE, name );
                 element.appendChild( doc.createTextNode( value ) );
                 icon.appendChild( element );
             }
@@ -805,7 +804,7 @@ public class TLDDocGenerator {
         String defaultValue ) 
     {
         if( findElementValue( parent, tagName ) == null ) {
-            Element element = doc.createElementNS( Constants.NS_JAVAEE, tagName );
+            Element element = doc.createElementNS( Constants.NS_JAKARTAEE, tagName );
             element.appendChild( doc.createTextNode( defaultValue ) );
             parent.appendChild( element );
         }
@@ -824,7 +823,7 @@ public class TLDDocGenerator {
         Element tagFileNode, Document doc, Directive directive )
     {
         Iterator attributes = directive.getAttributes();
-        Element attributeNode = doc.createElementNS( Constants.NS_JAVAEE, 
+        Element attributeNode = doc.createElementNS( Constants.NS_JAKARTAEE, 
             "attribute" );
         tagFileNode.appendChild( attributeNode );
         String deferredValueType = null;
@@ -841,7 +840,7 @@ public class TLDDocGenerator {
                 name.equals( "type" ) ||
                 name.equals( "description" ) )
             {
-                element = doc.createElementNS( Constants.NS_JAVAEE, name );
+                element = doc.createElementNS( Constants.NS_JAKARTAEE, name );
                 element.appendChild( doc.createTextNode( value ) );
                 attributeNode.appendChild( element );
             }
@@ -864,19 +863,19 @@ public class TLDDocGenerator {
         }
         if(deferredValueType != null) {
             Element deferredValueElement =
-                doc.createElementNS(Constants.NS_JAVAEE, "deferred-value");
+                doc.createElementNS(Constants.NS_JAKARTAEE, "deferred-value");
             attributeNode.appendChild(deferredValueElement);
             Element typeElement =
-                doc.createElementNS(Constants.NS_JAVAEE, "type");
+                doc.createElementNS(Constants.NS_JAKARTAEE, "type");
             typeElement.appendChild(doc.createTextNode(deferredValueType));
             deferredValueElement.appendChild(typeElement);
         }
         if(deferredMethodSignature != null) {
             Element deferredMethodElement =
-                doc.createElementNS(Constants.NS_JAVAEE, "deferred-method");
+                doc.createElementNS(Constants.NS_JAKARTAEE, "deferred-method");
             attributeNode.appendChild(deferredMethodElement);
             Element methodSignatureElement =
-                doc.createElementNS(Constants.NS_JAVAEE, "method-signature");
+                doc.createElementNS(Constants.NS_JAKARTAEE, "method-signature");
             methodSignatureElement.appendChild(
                 doc.createTextNode(deferredMethodSignature));
             deferredMethodElement.appendChild(methodSignatureElement);
@@ -908,7 +907,7 @@ public class TLDDocGenerator {
         Element tagFileNode, Document doc, Directive directive )
     {
         Iterator attributes = directive.getAttributes();
-        Element variableNode = doc.createElementNS( Constants.NS_JAVAEE, 
+        Element variableNode = doc.createElementNS( Constants.NS_JAKARTAEE, 
             "variable" );
         tagFileNode.appendChild( variableNode );
         while( attributes.hasNext() ) {
@@ -923,7 +922,7 @@ public class TLDDocGenerator {
                 name.equals( "scope" ) ||
                 name.equals( "description" ) )
             {
-                element = doc.createElementNS( Constants.NS_JAVAEE, name );
+                element = doc.createElementNS( Constants.NS_JAKARTAEE, name );
                 element.appendChild( doc.createTextNode( value ) );
                 variableNode.appendChild( element );
             }
@@ -950,7 +949,7 @@ public class TLDDocGenerator {
         {
             String prefix = "prefix" + substitutePrefix;
             substitutePrefix++;
-            Element shortName = doc.createElementNS( Constants.NS_JAVAEE, 
+            Element shortName = doc.createElementNS( Constants.NS_JAKARTAEE, 
                 "short-name" );
             shortName.appendChild( doc.createTextNode( prefix ) );
             root.appendChild( shortName );
@@ -999,7 +998,7 @@ public class TLDDocGenerator {
                     
                     // Create <type> element and append to attribute
                     Element typeElement = doc.createElementNS( 
-                        Constants.NS_JAVAEE, "type" );
+                        Constants.NS_JAKARTAEE, "type" );
                     typeElement.appendChild( 
                         doc.createTextNode( defaultType ) );
                     attributeElement.appendChild( typeElement );
