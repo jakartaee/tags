@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
+    Copyright (c) 2021, 2022 Contributors to the Eclipse Foundation
     Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
-    Copyright (c) 2021-2021 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -149,7 +149,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -320,30 +320,6 @@
                     </execution>
                 </executions>
             </plugin>
-            
-            <!-- Update incorrect javax.el.ValueExpression references to jakarta.el.ValueExpression. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generate-tlddoc-post-process</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo level="info">Replacing in ${project.build.directory}/tlddoc</echo>
-                                <replace token="javax.el.ValueExpression" value="jakarta.el.ValueExpression" dir="${project.build.directory}/tlddoc" summary="yes">
-                                    <include name="**/*.html"/>
-                                </replace>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
        
             <!-- Creates the source jar -->
             <plugin>
@@ -423,48 +399,102 @@ Copyright &#169; 2019, ${current.year} Eclipse Foundation. All rights reserved.
                     </execution>
                 </executions>
             </plugin>
-            
-           
-            <!-- Generate the TLD docs -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generateTldDoc</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <configuration>
-                            <includePluginDependencies>true</includePluginDependencies>
-                            <includeProjectDependencies>false</includeProjectDependencies>
-                            <mainClass>com.sun.tlddoc.TLDDoc</mainClass>
-                            <arguments>
-                                <argument>-doctitle</argument>
-                                <argument>Jakarta Tags doc</argument>
-                                <argument>-windowtitle</argument>
-                                <argument>Jakarta Tags Doc</argument>
-                                <argument>-d</argument>
-                                <argument>${project.build.directory}/tlddoc</argument>
-                                <argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
-                                <argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
-                                <argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
-                                <argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
-                                <argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.glassfish.web</groupId>
-                        <artifactId>tagsdoc</artifactId>
-                        <version>1.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
+    
+	<profiles>
+		<!-- 
+		    Generation of TLDDocs typically fails with the following when excuted directly from the impl module:
+		
+		    [WARNING] 
+			Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): 
+			
+			transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
+
+		    [WARNING] 
+			org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt. 
+			This failure was cached in the local repository and resolution will not be reattempted until the update interval of 
+			maven-default-http-blocker has elapsed or updates are forced. 
+			
+			
+			Original error: 
+			
+			Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): 
+			
+			transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
+		
+		
+		-->
+		<profile>
+			<id>tlddocs</id>
+			<build>
+				<plugins>
+					<!-- Generate the TLD docs -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>3.0.0</version>
+						<executions>
+							<execution>
+								<id>generateTldDoc</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<includePluginDependencies>true</includePluginDependencies>
+									<includeProjectDependencies>false</includeProjectDependencies>
+									<mainClass>com.sun.tlddoc.TLDDoc</mainClass>
+									<arguments>
+										<argument>-doctitle</argument>
+										<argument>Jakarta Tags doc</argument>
+										<argument>-windowtitle</argument>
+										<argument>Jakarta Tags Doc</argument>
+										<argument>-d</argument>
+										<argument>${project.build.directory}/tlddoc</argument>
+										<argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
+										<argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
+										<argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
+										<argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
+										<argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.glassfish.web</groupId>
+								<artifactId>tagsdoc</artifactId>
+								<version>1.0-SNAPSHOT</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					
+					<!-- Update incorrect javax.el.ValueExpression references to jakarta.el.ValueExpression. -->
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-antrun-plugin</artifactId>
+		                <version>3.0.0</version>
+		                <executions>
+		                    <execution>
+		                        <id>generate-tlddoc-post-process</id>
+		                        <phase>package</phase>
+		                        <goals>
+		                            <goal>run</goal>
+		                        </goals>
+		                        <configuration>
+		                            <target>
+		                                <echo level="info">Replacing in ${project.build.directory}/tlddoc</echo>
+		                                <replace token="javax.el.ValueExpression" value="jakarta.el.ValueExpression" dir="${project.build.directory}/tlddoc" summary="yes">
+		                                    <include name="**/*.html"/>
+		                                </replace>
+		                            </target>
+		                        </configuration>
+		                    </execution>
+		                </executions>
+		            </plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
