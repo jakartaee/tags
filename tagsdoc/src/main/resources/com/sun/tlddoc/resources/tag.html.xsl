@@ -354,11 +354,7 @@
           <xsl:choose>
             <xsl:when test="jakartaee:deferred-value">
                 <xsl:choose>
-<<<<<<< HEAD
-                    <xsl:when test="javaee:deferred-value/javaee:type">
-=======
                     <xsl:when test="jakartaee:deferred-value/jakartaee:type">
->>>>>>> Update xsl stylesheets to jakartaee
                         <code>jakarta.el.ValueExpression</code>
                         <br/>(<i>must evaluate to </i><code><xsl:value-of
                                 select="jakartaee:deferred-value/jakartaee:type"/></code>)
@@ -371,11 +367,7 @@
             </xsl:when>
             <xsl:when test="jakartaee:deferred-method">
                 <xsl:choose>
-<<<<<<< HEAD
-                    <xsl:when test="javaee:deferred-method/javaee:method-signature">
-=======
                     <xsl:when test="jakartaee:deferred-method/jakartaee:method-signature">
->>>>>>> Update xsl stylesheets to jakartaee
                         <code>jakarta.el.MethodExpression</code>
                         <br/>(<i>signature must match </i><code><xsl:value-of
                                 select="jakartaee:deferred-method/jakartaee:method-signature"/></code>)
