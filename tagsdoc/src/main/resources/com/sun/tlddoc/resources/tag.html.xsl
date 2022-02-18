@@ -3,6 +3,7 @@
 <!--
   - <license>
   - Copyright (c) 2003-2004, Sun Microsystems, Inc.
+  - Copyright (c) 2022-2022 Contributors to the Eclipse Foundation
   - All rights reserved.
   - 
   - Redistribution and use in source and binary forms, with or without 
@@ -361,12 +362,12 @@
             <xsl:when test="javaee:deferred-value">
                 <xsl:choose>
                     <xsl:when test="javaee:deferred-value/javaee:type">
-                        <code>javax.el.ValueExpression</code>
+                        <code>jakarta.el.ValueExpression</code>
                         <br/>(<i>must evaluate to </i><code><xsl:value-of
                                 select="javaee:deferred-value/javaee:type"/></code>)
                     </xsl:when>
                     <xsl:otherwise>
-                        <code>javax.el.ValueExpression</code>
+                        <code>jakarta.el.ValueExpression</code>
                         <br/>(<i>must evaluate to </i><code>java.lang.Object</code>)
                     </xsl:otherwise>
                 </xsl:choose>                                
@@ -374,12 +375,12 @@
             <xsl:when test="javaee:deferred-method">
                 <xsl:choose>
                     <xsl:when test="javaee:deferred-method/javaee:method-signature">
-                        <code>javax.el.MethodExpression</code>
+                        <code>jakarta.el.MethodExpression</code>
                         <br/>(<i>signature must match </i><code><xsl:value-of
                                 select="javaee:deferred-method/javaee:method-signature"/></code>)
                     </xsl:when>
                     <xsl:otherwise>
-                        <code>javax.el.MethodExpression</code>
+                        <code>jakarta.el.MethodExpression</code>
                         <br/>(<i>signature must match </i><code>void methodname()</code>)
                     </xsl:otherwise>
                 </xsl:choose>
