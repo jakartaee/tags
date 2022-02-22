@@ -1,6 +1,7 @@
 /*
  * <license>
  * Copyright (c) 2003-2004, Sun Microsystems, Inc.
+ * Copyright (c) 2022-2022 Contributors to the Eclipse Foundation
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
