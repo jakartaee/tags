@@ -346,7 +346,7 @@ public class TLDDocGenerator {
      * Adds all the tag libraries found in the given web application
      * packaged as a WAR file.
      *
-     * @param war The war containing the web application
+     * @param path The war containing the web application
      */
     public void addWAR( File path ) {
         try {
@@ -370,7 +370,7 @@ public class TLDDocGenerator {
     /**
      * Adds the given directory of tag files.
      *
-     * @param tld The tag directory to add
+     * @param tagdir The tag directory to add
      */
     public void addTagDir( File tagdir ) {
         addTagLibrary( new TagDirImplicitTagLibrary( tagdir ) );
