@@ -22,9 +22,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
     version="2.1">
     
-  <description>JSTL 1.2 core library</description>
-  <display-name>JSTL core</display-name>
-  <tlib-version>1.2</tlib-version>
+  <description>Tags 3.0 core library</description>
+  <display-name>Tags core</display-name>
+  <tlib-version>3.0</tlib-version>
   <short-name>c</short-name>
   <uri>jakarta.tags.core</uri>
 
