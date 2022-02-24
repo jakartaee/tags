@@ -2,7 +2,8 @@
 <!--
 
     Copyright (c) 2010, 2020 Oracle and/or its affiliates. All rights reserved.
-
+    Copyright (c) 2022-2022 Contributors to the Eclipse Foundation
+    
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
     http://www.eclipse.org/legal/epl-2.0.
@@ -22,9 +23,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
     version="2.0">
     
-  <description>JSTL 1.1 i18n-capable formatting library</description>
-  <display-name>JSTL fmt</display-name>
-  <tlib-version>1.1</tlib-version>
+  <description>Tags 3.0 i18n-capable formatting library</description>
+  <display-name>Tags fmt</display-name>
+  <tlib-version>3.0</tlib-version>
   <short-name>fmt</short-name>
   <uri>jakarta.tags.fmt</uri>
 
