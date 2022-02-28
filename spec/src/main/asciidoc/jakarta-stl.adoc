@@ -7178,11 +7178,10 @@ developer could create the following TLD:
 ....
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation=
-        "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
-    version="2.0">
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd"
+    version="3.0">
     <description>
         Validates Jakarta Server Pages to prohibit use of scripting elements.
     </description>
@@ -7226,11 +7225,10 @@ libraries), a developer could create the following TLD:
 ....
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation=
-        "http://java.sun.com/xml/ns/j2ee web jsptaglibrary_2_0.xsd"
-    version="2.0">
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd"
+    version="3.0">
     <description>
         Restricts Jakarta Server Pages to the Jakarta Standard Tag Library tag libraries
     </description>
