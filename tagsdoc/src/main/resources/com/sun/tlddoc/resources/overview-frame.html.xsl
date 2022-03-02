@@ -3,6 +3,7 @@
 <!--
   - <license>
   - Copyright (c) 2003-2004, Sun Microsystems, Inc.
+  - Copyright (c) 2022-2022 Contributors to the Eclipse Foundation
   - All rights reserved.
   - 
   - Redistribution and use in source and binary forms, with or without 
@@ -43,7 +44,7 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:fo="http://www.w3.org/1999/XSL/Format"
-    xmlns:javaee="http://java.sun.com/xml/ns/javaee">
+    xmlns:jakartaee="https://jakarta.ee/xml/ns/jakartaee">
     
     <xsl:output method="html" indent="yes"/>
 
@@ -52,13 +53,13 @@
       <html>
         <head>
           <title>
-            Overview (<xsl:value-of select="/javaee:tlds/javaee:config/javaee:window-title"/>)
+            Overview (<xsl:value-of select="/jakartaee:tlds/jakartaee:config/jakartaee:window-title"/>)
           </title>
           <link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style"/>
         </head>
         <script>
           function asd() {
-            parent.document.title="Overview (<xsl:value-of select="normalize-space(/javaee:tlds/javaee:config/javaee:window-title)"/>)";
+            parent.document.title="Overview (<xsl:value-of select="normalize-space(/jakartaee:tlds/jakartaee:config/jakartaee:window-title)"/>)";
           }
         </script>
         <body bgcolor="white" onload="asd();">
@@ -66,7 +67,7 @@
             <tr>
               <td nowrap="true">
                 <font size="+1" class="FrameTitleFont">
-                  <b><xsl:value-of select="/javaee:tlds/javaee:config/javaee:doc-title"/></b>
+                  <b><xsl:value-of select="/jakartaee:tlds/jakartaee:config/jakartaee:doc-title"/></b>
                 </font>
               </td>
             </tr>
@@ -82,7 +83,7 @@
                   Tag Libraries
                 </font>
                 <br/>
-                <xsl:apply-templates select="javaee:tlds/javaee:taglib"/>
+                <xsl:apply-templates select="jakartaee:tlds/jakartaee:taglib"/>
               </td>
             </tr>
           </table>
@@ -91,17 +92,17 @@
       </html>
     </xsl:template>
     
-    <xsl:template match="javaee:taglib">
+    <xsl:template match="jakartaee:taglib">
       <font class="FrameItemFont">
         <xsl:element name="a">
-          <xsl:attribute name="href"><xsl:value-of select="javaee:short-name"/>/tld-frame.html</xsl:attribute>
+          <xsl:attribute name="href"><xsl:value-of select="jakartaee:short-name"/>/tld-frame.html</xsl:attribute>
           <xsl:attribute name="target">tldFrame</xsl:attribute>
           <xsl:choose>
-            <xsl:when test="javaee:display-name!=''">
-              <xsl:value-of select="javaee:display-name"/>
+            <xsl:when test="jakartaee:display-name!=''">
+              <xsl:value-of select="jakartaee:display-name"/>
             </xsl:when>
-            <xsl:when test="javaee:short-name!=''">
-              <xsl:value-of select="javaee:short-name"/>
+            <xsl:when test="jakartaee:short-name!=''">
+              <xsl:value-of select="jakartaee:short-name"/>
             </xsl:when>
             <xsl:otherwise>
               Unnamed TLD

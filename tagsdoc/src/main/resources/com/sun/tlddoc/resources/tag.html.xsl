@@ -42,7 +42,7 @@
 -->
 
 <xsl:stylesheet version="1.0"
-    xmlns:javaee="http://java.sun.com/xml/ns/javaee" 
+    xmlns:jakartaee="https://jakarta.ee/xml/ns/jakartaee" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:fo="http://www.w3.org/1999/XSL/Format">
     
@@ -53,24 +53,24 @@
 
     <!-- template rule matching source root element -->
     <xsl:template match="/">
-      <xsl:apply-templates select="javaee:tlds/javaee:taglib"/>
+      <xsl:apply-templates select="jakartaee:tlds/jakartaee:taglib"/>
     </xsl:template>
     
-    <xsl:template match="javaee:taglib">
-      <xsl:if test="javaee:short-name=$tlddoc-shortName">
-        <xsl:apply-templates select="javaee:tag|javaee:tag-file"/>
+    <xsl:template match="jakartaee:taglib">
+      <xsl:if test="jakartaee:short-name=$tlddoc-shortName">
+        <xsl:apply-templates select="jakartaee:tag|jakartaee:tag-file"/>
       </xsl:if>
     </xsl:template>
     
-    <xsl:template match="javaee:tag|javaee:tag-file">
-      <xsl:if test="javaee:name=$tlddoc-tagName">
+    <xsl:template match="jakartaee:tag|jakartaee:tag-file">
+      <xsl:if test="jakartaee:name=$tlddoc-tagName">
         <xsl:variable name="tldname">
           <xsl:choose>
-            <xsl:when test="../javaee:display-name!=''">
-              <xsl:value-of select="../javaee:display-name"/>
+            <xsl:when test="../jakartaee:display-name!=''">
+              <xsl:value-of select="../jakartaee:display-name"/>
             </xsl:when>
-            <xsl:when test="../javaee:short-name!=''">
-              <xsl:value-of select="../javaee:short-name"/>
+            <xsl:when test="../jakartaee:short-name!=''">
+              <xsl:value-of select="../jakartaee:short-name"/>
             </xsl:when>
             <xsl:otherwise>
               Unnamed TLD
@@ -78,8 +78,8 @@
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="title">
-          <xsl:value-of select="javaee:name"/>
-          (<xsl:value-of select="/javaee:tlds/javaee:config/javaee:window-title"/>)
+          <xsl:value-of select="jakartaee:name"/>
+          (<xsl:value-of select="/jakartaee:tlds/jakartaee:config/jakartaee:window-title"/>)
         </xsl:variable>
         <html>
           <head>
@@ -122,7 +122,7 @@
               <td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2">
                 &#160;<a HREF="../index.html" TARGET="_top"><b>FRAMES</b></a>&#160;
                 &#160;<xsl:element name="a">
-                  <xsl:attribute name="href"><xsl:value-of select="javaee:name"/>.html</xsl:attribute>
+                  <xsl:attribute name="href"><xsl:value-of select="jakartaee:name"/>.html</xsl:attribute>
                   <xsl:attribute name="target">_top</xsl:attribute>
                   <b>NO FRAMES</b>
                 </xsl:element>&#160;
@@ -143,14 +143,14 @@
             
             <hr/>
             <h2><font size="-1"><xsl:value-of select="$tldname"/></font><br/>
-            Tag <xsl:value-of select="javaee:name"/></h2>
+            Tag <xsl:value-of select="jakartaee:name"/></h2>
             <hr/>
-            <xsl:value-of select="javaee:description" disable-output-escaping="yes"/><br/>
+            <xsl:value-of select="jakartaee:description" disable-output-escaping="yes"/><br/>
             <p/>
-            <xsl:if test="javaee:example!=''">
+            <xsl:if test="jakartaee:example!=''">
               <b>Example:</b><br/>
               <pre>
-<xsl:value-of select="javaee:example"/>              
+<xsl:value-of select="jakartaee:example"/>              
               </pre>
               <p/>
             </xsl:if>
@@ -169,8 +169,8 @@
                 <td>Tag Class</td>
                 <td>
                   <xsl:choose>
-                    <xsl:when test="javaee:tag-class!=''">
-                      <xsl:value-of select="javaee:tag-class"/>
+                    <xsl:when test="jakartaee:tag-class!=''">
+                      <xsl:value-of select="jakartaee:tag-class"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <i>None</i>
@@ -182,8 +182,8 @@
                 <td>TagExtraInfo Class</td>
                 <td>
                   <xsl:choose>
-                    <xsl:when test="javaee:tei-class!=''">
-                      <xsl:value-of select="javaee:tei-class"/>
+                    <xsl:when test="jakartaee:tei-class!=''">
+                      <xsl:value-of select="jakartaee:tei-class"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <i>None</i>
@@ -195,8 +195,8 @@
                 <td>Body Content</td>
                 <td>
                   <xsl:choose>
-                    <xsl:when test="javaee:body-content!=''">
-                      <xsl:value-of select="javaee:body-content"/>
+                    <xsl:when test="jakartaee:body-content!=''">
+                      <xsl:value-of select="jakartaee:body-content"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <i>None</i>
@@ -208,8 +208,8 @@
                 <td>Display Name</td>
                 <td>
                   <xsl:choose>
-                    <xsl:when test="javaee:display-name!=''">
-                      <xsl:value-of select="javaee:display-name"/>
+                    <xsl:when test="jakartaee:display-name!=''">
+                      <xsl:value-of select="jakartaee:display-name"/>
                     </xsl:when>
                     <xsl:otherwise>
                       <i>None</i>
@@ -231,7 +231,7 @@
                 </td>
               </tr>
               <xsl:choose>
-                <xsl:when test="count(javaee:attribute)>0">
+                <xsl:when test="count(jakartaee:attribute)>0">
                   <tr>
                     <td><b>Name</b></td>
                     <td><b>Required</b></td>
@@ -239,7 +239,7 @@
                     <td><b>Type</b></td>
                     <td><b>Description</b></td>
                   </tr>
-                  <xsl:apply-templates select="javaee:attribute"/>
+                  <xsl:apply-templates select="jakartaee:attribute"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <td colspan="5"><i>No Attributes Defined.</i></td>
@@ -259,7 +259,7 @@
                 </td>
               </tr>
               <xsl:choose>
-                <xsl:when test="count(javaee:variable)>0">
+                <xsl:when test="count(jakartaee:variable)>0">
                   <tr>
                     <td><b>Name</b></td>
                     <td><b>Type</b></td>
@@ -267,7 +267,7 @@
                     <td><b>Scope</b></td>
                     <td><b>Description</b></td>
                   </tr>
-                  <xsl:apply-templates select="javaee:variable"/>
+                  <xsl:apply-templates select="jakartaee:variable"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <td colspan="2"><i>No Variables Defined.</i></td>
@@ -304,7 +304,7 @@
               <td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2">
                 &#160;<a HREF="../index.html" TARGET="_top"><b>FRAMES</b></a>&#160;
                 &#160;<xsl:element name="a">
-                  <xsl:attribute name="href"><xsl:value-of select="javaee:name"/>.html</xsl:attribute>
+                  <xsl:attribute name="href"><xsl:value-of select="jakartaee:name"/>.html</xsl:attribute>
                   <xsl:attribute name="target">_top</xsl:attribute>
                   <b>NO FRAMES</b>
                 </xsl:element>&#160;
@@ -331,33 +331,33 @@
       </xsl:if>
     </xsl:template>
 
-    <xsl:template match="javaee:attribute">
+    <xsl:template match="jakartaee:attribute">
       <tr valign="top">
-        <td><xsl:apply-templates select="javaee:name"/></td>
+        <td><xsl:apply-templates select="jakartaee:name"/></td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:required!=''">
-              <xsl:value-of select="javaee:required"/>
+            <xsl:when test="jakartaee:required!=''">
+              <xsl:value-of select="jakartaee:required"/>
             </xsl:when>
             <xsl:otherwise>false</xsl:otherwise>
           </xsl:choose>
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:rtexprvalue!=''">
-              <xsl:value-of select="javaee:rtexprvalue"/>
+            <xsl:when test="jakartaee:rtexprvalue!=''">
+              <xsl:value-of select="jakartaee:rtexprvalue"/>
             </xsl:when>
             <xsl:otherwise>false</xsl:otherwise>
           </xsl:choose>
         </td>        
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:deferred-value">
+            <xsl:when test="jakartaee:deferred-value">
                 <xsl:choose>
-                    <xsl:when test="javaee:deferred-value/javaee:type">
+                    <xsl:when test="jakartaee:deferred-value/jakartaee:type">
                         <code>jakarta.el.ValueExpression</code>
                         <br/>(<i>must evaluate to </i><code><xsl:value-of
-                                select="javaee:deferred-value/javaee:type"/></code>)
+                                select="jakartaee:deferred-value/jakartaee:type"/></code>)
                     </xsl:when>
                     <xsl:otherwise>
                         <code>jakarta.el.ValueExpression</code>
@@ -365,12 +365,12 @@
                     </xsl:otherwise>
                 </xsl:choose>                                
             </xsl:when>
-            <xsl:when test="javaee:deferred-method">
+            <xsl:when test="jakartaee:deferred-method">
                 <xsl:choose>
-                    <xsl:when test="javaee:deferred-method/javaee:method-signature">
+                    <xsl:when test="jakartaee:deferred-method/jakartaee:method-signature">
                         <code>jakarta.el.MethodExpression</code>
                         <br/>(<i>signature must match </i><code><xsl:value-of
-                                select="javaee:deferred-method/javaee:method-signature"/></code>)
+                                select="jakartaee:deferred-method/jakartaee:method-signature"/></code>)
                     </xsl:when>
                     <xsl:otherwise>
                         <code>jakarta.el.MethodExpression</code>
@@ -378,8 +378,8 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="javaee:type!=''">
-              <code><xsl:value-of select="javaee:type"/></code>
+            <xsl:when test="jakartaee:type!=''">
+              <code><xsl:value-of select="jakartaee:type"/></code>
             </xsl:when>
             <xsl:otherwise>
                 <code>java.lang.String</code>                
@@ -388,8 +388,8 @@
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:description!=''">
-              <xsl:value-of select="javaee:description" disable-output-escaping="yes"/>
+            <xsl:when test="jakartaee:description!=''">
+              <xsl:value-of select="jakartaee:description" disable-output-escaping="yes"/>
             </xsl:when>
             <xsl:otherwise><i>No Description</i></xsl:otherwise>
           </xsl:choose>
@@ -397,15 +397,15 @@
       </tr>
     </xsl:template>
     
-    <xsl:template match="javaee:variable">
+    <xsl:template match="jakartaee:variable">
       <tr>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:name-given!=''">
-              <xsl:value-of select="javaee:name-given"/>
+            <xsl:when test="jakartaee:name-given!=''">
+              <xsl:value-of select="jakartaee:name-given"/>
             </xsl:when>
-            <xsl:when test="javaee:name-from-attribute!=''">
-              <i>From attribute '<xsl:value-of select="javaee:name-from-attribute"/>'</i>
+            <xsl:when test="jakartaee:name-from-attribute!=''">
+              <i>From attribute '<xsl:value-of select="jakartaee:name-from-attribute"/>'</i>
             </xsl:when>
             <xsl:otherwise>
               <i>Unknown</i>
@@ -414,32 +414,32 @@
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:variable-class!=''">
-              <code><xsl:value-of select="javaee:variable-class"/></code>
+            <xsl:when test="jakartaee:variable-class!=''">
+              <code><xsl:value-of select="jakartaee:variable-class"/></code>
             </xsl:when>
             <xsl:otherwise><code>java.lang.String</code></xsl:otherwise>
           </xsl:choose>
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:declare!=''">
-              <xsl:value-of select="javaee:declare"/>
+            <xsl:when test="jakartaee:declare!=''">
+              <xsl:value-of select="jakartaee:declare"/>
             </xsl:when>
             <xsl:otherwise>true</xsl:otherwise>
           </xsl:choose>
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:scope!=''">
-              <xsl:value-of select="javaee:scope"/>
+            <xsl:when test="jakartaee:scope!=''">
+              <xsl:value-of select="jakartaee:scope"/>
             </xsl:when>
             <xsl:otherwise>NESTED</xsl:otherwise>
           </xsl:choose>
         </td>
         <td>
           <xsl:choose>
-            <xsl:when test="javaee:description!=''">
-              <xsl:value-of select="javaee:description" disable-output-escaping="yes"/>
+            <xsl:when test="jakartaee:description!=''">
+              <xsl:value-of select="jakartaee:description" disable-output-escaping="yes"/>
             </xsl:when>
             <xsl:otherwise><i>No Description</i></xsl:otherwise>
           </xsl:choose>
