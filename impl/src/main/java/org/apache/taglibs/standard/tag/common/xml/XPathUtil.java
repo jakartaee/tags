@@ -210,7 +210,7 @@ public class XPathUtil {
     /** 
      * Evaluate an XPath expression to a List of nodes. 
      */
-    public List<Node> selectNodes(Node contextNode, String xpathString)  
+    public List<Object> selectNodes(Node contextNode, String xpathString)  
         throws JspTagException {
         XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
         
@@ -284,11 +284,11 @@ public class XPathUtil {
     }    
 }
 
-class JSTLNodeList extends Vector<Node> implements NodeList   {
+class JSTLNodeList extends Vector<Object> implements NodeList   {
     
-    Vector<Node> nodeVector;
+    Vector<Object> nodeVector;
 
-    public JSTLNodeList ( Vector<Node> nodeVector ) {
+    public JSTLNodeList ( Vector<Object> nodeVector ) {
         this.nodeVector = nodeVector;
     }
 
@@ -318,22 +318,22 @@ class JSTLNodeList extends Vector<Node> implements NodeList   {
                 nodeVector.add(i, nl.item(i) );
             }
         } else {
-            nodeVector.addElement((Node) o );
+            nodeVector.addElement( o );
         }
     }
 
     @Override
     public Node item ( int index ) {
+        return (Node) nodeVector.elementAt( index );
+    }
+
+    @Override
+    public Object elementAt ( int index ) {
         return nodeVector.elementAt( index );
     }
 
     @Override
-    public Node elementAt ( int index ) {
-        return nodeVector.elementAt( index );
-    }
-
-    @Override
-    public Node get( int index ) {
+    public Object get( int index ) {
         return nodeVector.get( index );
     }
 
