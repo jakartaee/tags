@@ -29,7 +29,7 @@
 
     <groupId>jakarta.stl</groupId>
     <artifactId>jakarta-stl-spec</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>3.0</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Standard Tag Library Specification</name>
@@ -53,7 +53,7 @@
         <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>
         <jruby.version>9.3.2.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
-        <status>DRAFT</status>
+        <status>FINAL</status>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
         <revisiondate>${maven.build.timestamp}</revisiondate>
     </properties>
@@ -132,7 +132,7 @@
                         <configuration>
                             <backend>html5</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/jstl-spec-${project.version}.html</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-tags-spec-${project.version}.html</outputFile>
                             <attributes>
                                 <source-highlighter>coderay</source-highlighter>
                                 <imagesdir>images</imagesdir>
@@ -158,7 +158,7 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/jstl-spec-${project.version}.pdf</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-tags-spec-${project.version}.pdf</outputFile>
                             <attributes>
                                 <source-highlighter>coderay</source-highlighter>
                                 <imagesdir>images</imagesdir>
