@@ -162,6 +162,8 @@
           <hr/>
           <small><i>
             Copyright &#169; 2018, 2022 Eclipse Foundation. All rights reserved.
+            Use is subject to
+            <a href="./EFSL.html"> license terms</a>
           </i></small>
         </body>
       </html>

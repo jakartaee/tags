@@ -325,12 +325,9 @@
             <!-- =========== END OF NAVBAR =========== -->
             <hr/>
             <small><i>
-            Java, JSP, and JavaServer Pages are trademarks or registered 
-            trademarks of Sun Microsystems, Inc. in the US and other countries.
-            Copyright 2002-3 Sun Microsystems, Inc.
-            4150 Network Circle
-            Santa Clara, CA 95054, U.S.A.
-            All Rights Reserved. 
+              Copyright &#169; 2018, 2022 Eclipse Foundation. All rights reserved.
+              Use is subject to
+              <a href="../EFSL.html"> license terms</a>
             </i></small>
           </body>
         </html>
