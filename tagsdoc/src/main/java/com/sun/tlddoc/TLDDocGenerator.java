@@ -470,6 +470,8 @@ public class TLDDocGenerator {
     {
         copyResourceToFile( new File( this.outputDirectory, "stylesheet.css" ), 
             RESOURCE_PATH + "/stylesheet.css" );
+        copyResourceToFile( new File( this.outputDirectory, "EFSL.html" ), 
+            RESOURCE_PATH + "/EFSL.html" );
     }
     
     /**
