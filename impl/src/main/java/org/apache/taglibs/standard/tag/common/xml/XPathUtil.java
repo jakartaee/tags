@@ -298,7 +298,7 @@ class JSTLNodeList extends Vector<Object> implements NodeList   {
         for ( int i=0; i<nl.getLength(); i++ ) {
             Node currNode = nl.item(i);
             //XPathUtil.printDetails ( currNode );
-            nodeVector.add(i, nl.item(i) );
+            nodeVector.add(i, currNode);
         }
     }
 
@@ -315,7 +315,7 @@ class JSTLNodeList extends Vector<Object> implements NodeList   {
             for ( int i=0; i<nl.getLength(); i++ ) {
                 Node currNode = nl.item(i);
                 //XPathUtil.printDetails ( currNode );
-                nodeVector.add(i, nl.item(i) );
+                nodeVector.add(i, currNode);
             }
         } else {
             nodeVector.addElement( o );
