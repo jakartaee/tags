@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -17,6 +18,12 @@
 
 package org.apache.taglibs.standard.tag.common.xml;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -24,14 +31,8 @@ import java.io.StringReader;
 import java.io.Writer;
 import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspTagException;
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -81,7 +82,6 @@ public abstract class TransformSupport extends BodyTagSupport {
     private Transformer t;			   // actual Transformer
     private TransformerFactory tf;		   // reusable factory
     private DocumentBuilder db;			   // reusable factory
-    private DocumentBuilderFactory dbf;		   // reusable factory
 
 
     //*********************************************************************
@@ -115,21 +115,9 @@ public abstract class TransformSupport extends BodyTagSupport {
 
 	//************************************
 	// Initialize
-
-	// set up our DocumentBuilderFactory if necessary
-	if (dbf == null) {
-	    dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            dbf.setValidating(false);
-            try {
-                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-            } catch (ParserConfigurationException e) {
-                throw new AssertionError("Parser does not support secure processing");
-            }
-	}
-        if (db == null)
-	    db = dbf.newDocumentBuilder();
-
+        if (db == null) {
+            db = DocumentBuilderProvider.createSecureDocumentBuilder();
+        }
 	// set up the TransformerFactory if necessary
         if (tf == null) {
             tf = TransformerFactory.newInstance();

@@ -24,13 +24,13 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
         <relativePath/>
     </parent>
 
     <groupId>org.glassfish.web</groupId>
     <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Standard Tag Library Implementation</name>
@@ -106,12 +106,20 @@
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>xalan</groupId>
             <artifactId>xalan</artifactId>
             <version>2.7.2</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -172,7 +180,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Restricts the Java version to 11 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -183,13 +191,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Execute unit tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M6</version>
-            </plugin>
-            
             <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -223,17 +224,15 @@
                             org.glassfish.jstl.integration
                         </Export-Package>
                         <Import-Package>
-                            !org.apache.xpath,
-                            !org.apache.xpath.objects,
-                            !org.apache.xpath.jaxp,
+                            !org.apache.bcel,
+                            !org.apache.regexp,
                             !org.apache.xml,
                             !org.apache.xml.dtm,
                             !org.apache.xml.utils,
-                            !org.apache.xalan,
-                            !org.apache.xalan.res,
+                            !org.apache.xpath,
+                            !org.apache.xpath.jaxp,
+                            !org.apache.xpath.objects,
                             !org.apache.xpath.res,
-                            !org.apache.regexp,
-                            !org.apache.bcel,
                             !java_cup.runtime,
                             !trax,
                             org.xml.sax.ext,
@@ -251,7 +250,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -272,7 +271,7 @@
                     </archive>
                 </configuration>
             </plugin>
-            
+
             <!-- Post process the jar we created by including XALAN and moving packages -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -333,12 +332,9 @@
                     </execution>
                 </executions>
             </plugin>
-       
-            <!-- Creates the source jar -->
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -346,15 +342,12 @@
                     <execution>
                        <id>attach-sources</id>
                        <goals>
-                           <goal>jar-no-fork</goal> 
+                           <goal>jar-no-fork</goal>
                        </goals>
                     </execution>
                 </executions>
             </plugin>
-            
-            <!-- 
-                Create Javadoc for IMPL jar
-            -->
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -375,7 +368,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
@@ -414,76 +406,74 @@ Copyright &#169; 2019, ${current.year} Eclipse Foundation. All rights reserved.
             </plugin>
         </plugins>
     </build>
-    
-	<profiles>
-		<!-- 
-		    Generation of TLDDocs typically fails with the following when excuted directly from the impl module:
-		
-		    [WARNING] 
-			Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): 
-			
-			transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
 
-		    [WARNING] 
-			org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt. 
-			This failure was cached in the local repository and resolution will not be reattempted until the update interval of 
-			maven-default-http-blocker has elapsed or updates are forced. 
-			
-			
-			Original error: 
-			
-			Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): 
-			
-			transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
-		
-		
-		-->
-		<profile>
-			<id>tlddocs</id>
-			<build>
-				<plugins>
-					<!-- Generate the TLD docs -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<version>3.0.0</version>
-						<executions>
-							<execution>
-								<id>generateTldDoc</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>java</goal>
-								</goals>
-								<configuration>
-									<includePluginDependencies>true</includePluginDependencies>
-									<includeProjectDependencies>false</includeProjectDependencies>
-									<mainClass>com.sun.tlddoc.TLDDoc</mainClass>
-									<arguments>
-										<argument>-doctitle</argument>
-										<argument>Jakarta Tags doc</argument>
-										<argument>-windowtitle</argument>
-										<argument>Jakarta Tags Doc</argument>
-										<argument>-d</argument>
-										<argument>${project.build.directory}/tlddoc</argument>
-										<argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
-										<argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
-										<argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
-										<argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
-										<argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
-									</arguments>
-								</configuration>
-							</execution>
-						</executions>
-						<dependencies>
-							<dependency>
-								<groupId>org.glassfish.web</groupId>
-								<artifactId>tagsdoc</artifactId>
-								<version>1.0-SNAPSHOT</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <profiles>
+        <!--
+          Generation of TLDDocs typically fails with the following when excuted directly from the impl module:
+
+          [WARNING]
+          Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/):
+
+          transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
+
+          [WARNING]
+          org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt.
+          This failure was cached in the local repository and resolution will not be reattempted until the update interval of
+          maven-default-http-blocker has elapsed or updates are forced.
+
+
+          Original error:
+
+          Could not transfer metadata org.glassfish.web:tagsdoc:1.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/):
+
+          transfer failed for http://0.0.0.0/org/glassfish/web/tagsdoc/1.0-SNAPSHOT/maven-metadata.xml
+        -->
+        <profile>
+            <id>tlddocs</id>
+            <build>
+                <plugins>
+                    <!-- Generate the TLD docs -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>generateTldDoc</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <includePluginDependencies>true</includePluginDependencies>
+                                    <includeProjectDependencies>false</includeProjectDependencies>
+                                    <mainClass>com.sun.tlddoc.TLDDoc</mainClass>
+                                    <arguments>
+                                        <argument>-doctitle</argument>
+                                        <argument>Jakarta Tags doc</argument>
+                                        <argument>-windowtitle</argument>
+                                        <argument>Jakarta Tags Doc</argument>
+                                        <argument>-d</argument>
+                                        <argument>${project.build.directory}/tlddoc</argument>
+                                        <argument>${project.basedir}/src/main/resources/META-INF/sql.tld</argument>
+                                        <argument>${project.basedir}/src/main/resources/META-INF/x.tld</argument>
+                                        <argument>${project.basedir}/src/main/resources/META-INF/fmt.tld</argument>
+                                        <argument>${project.basedir}/src/main/resources/META-INF/c.tld</argument>
+                                        <argument>${project.basedir}/src/main/resources/META-INF/fn.tld</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.glassfish.web</groupId>
+                                <artifactId>tagsdoc</artifactId>
+                                <version>1.0-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
