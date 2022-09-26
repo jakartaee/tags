@@ -1,7 +1,8 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
- * Copyright 2004 The Apache Software Foundation
  * Copyright (c) 2020 Payara Servicer Ltd.
+ * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.taglibs.standard.lang.jstl.parser;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
 
@@ -718,7 +719,7 @@ public class ELParser implements ELParserConstants {
                 break;
         }
         jj_consume_token(RPAREN);
-        String allowed = System.getProperty("jakarta.servlet.jsp.functions.allowed");
+        String allowed = System.getProperty(ELParserConstants.SYSTEM_PROPERTY_ALLOW_FUNCTIONS);
         if (allowed == null || !allowed.equalsIgnoreCase("true")) {
             throw new ParseException("EL functions are not supported.");
         }
@@ -1109,10 +1110,10 @@ public class ELParser implements ELParserConstants {
         }
     }
 
-    private Vector<int[]> jj_expentries = new Vector<>();
+    private final Vector<int[]> jj_expentries = new Vector<>();
     private int[] jj_expentry;
     private int jj_kind = -1;
-    private int[] jj_lasttokens = new int[100];
+    private final int[] jj_lasttokens = new int[100];
     private int jj_endpos;
 
     private void jj_add_error_token(int kind, int pos) {
@@ -1125,8 +1126,7 @@ public class ELParser implements ELParserConstants {
             jj_expentry = new int[jj_endpos];
             System.arraycopy(jj_lasttokens, 0, jj_expentry, 0, jj_endpos);
             boolean exists = false;
-            for (Enumeration<int[]> enum_ = jj_expentries.elements(); enum_.hasMoreElements();) {
-                int[] oldentry = enum_.nextElement();
+            for (int[] oldentry : jj_expentries) {
                 if (oldentry.length == jj_expentry.length) {
                     exists = true;
                     for (int i = 0; i < jj_expentry.length; i++) {

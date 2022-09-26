@@ -246,32 +246,20 @@ Attribute value: ${ empty }
 Causes an error: An error occurred while parsing custom action attribute "test" with value "${ empty }": Encountered "}", expected one of [<INTEGER_LITERAL>, <FLOATING_POINT_LITERAL>, <STRING_LITERAL>, "true", "false", "null", "(", "-", "not", "!", "empty", <IDENTIFIER>]
 
 # functions
-Attribute value: ${a()}
-Parses to: ${a()}
-Attribute value: ${ a() }
-Parses to: ${a()}
-Attribute value: ${a(b)}
-Parses to: ${a(b)}
-Attribute value: ${ a(b) }
-Parses to: ${a(b)}
-Attribute value: ${a(b,c)}
-Parses to: ${a(b, c)}
-Attribute value: ${a(b,c,d)}
-Parses to: ${a(b, c, d)}
-Attribute value: ${a:b(c)}
-Parses to: ${a:b(c)}
-Attribute value: ${a:b(c,d)}
-Parses to: ${a:b(c, d)}
-Attribute value: ${a:b(c,d,e)}
-Parses to: ${a:b(c, d, e)}
-Attribute value: ${a(b).c}
-Parses to: ${a(b).c}
-Attribute value: ${a(b)[c]}
-Parses to: ${a(b)[c]}
-Attribute value: ${a[b()]}
-Parses to: ${a[b()]}
+#${a()}
+#${ a() }
+#${a(b)}
+#${ a(b) }
+#${a(b,c)}
+#${a(b,c,d)}
+#${a:b(c)}
+#${a:b(c,d)}
+#${a:b(c,d,e)}
+#${a(b).c}
+#${a(b)[c]}
+#${a[b()]}
 
 # non-ascii input - the parser automatically translates the @@non-ascii
 # into a UNICODE string with value \u1111
-Attribute value: ?
-Parses to: ?
+Attribute value: ᄑ
+Parses to: ᄑ

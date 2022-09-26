@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -18,6 +19,8 @@
 package org.apache.taglibs.standard.lang.jstl.parser;
 
 public interface ELParserConstants {
+  String SYSTEM_PROPERTY_ALLOW_FUNCTIONS = "jakarta.servlet.jsp.functions.allowed";
+
 
   int EOF = 0;
   int NON_EXPRESSION_TEXT = 1;
