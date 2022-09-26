@@ -1,7 +1,8 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
- * Copyright 2004 The Apache Software Foundation
  * Copyright (c) 2020 Payara Services Ltd.
+ * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +17,7 @@
  * limitations under the License.
  */
 
-package org.apache.taglibs.standard.lang.jstl.test;
-
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+package org.apache.taglibs.standard.lang.jstl.test.mock;
 
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
@@ -34,15 +30,18 @@ import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.el.ExpressionEvaluator;
 import jakarta.servlet.jsp.el.VariableResolver;
 
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- *
  * <p>This is a "dummy" implementation of PageContext whose only
  * purpose is to serve the attribute getter/setter API's.
- * 
+ *
  * @author Nathan Abramson - Art Technology Group
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
- **/
-
+ */
 public class PageContextImpl extends PageContext {
   //-------------------------------------
   // Properties
@@ -69,7 +68,8 @@ public class PageContextImpl extends PageContext {
   //-------------------------------------
   // PageContext methods
   //-------------------------------------
-  public void initialize (Servlet servlet,
+  @Override
+public void initialize (Servlet servlet,
 			  ServletRequest request,
 			  ServletResponse response,
 			  String errorPageURL,
@@ -80,7 +80,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public void release ()
+  @Override
+public void release ()
   {
   }
 
@@ -91,7 +92,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public void setAttribute (String name,
+  @Override
+public void setAttribute (String name,
 			    Object attribute,
 			    int scope)
   {
@@ -114,13 +116,15 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public Object getAttribute (String name)
+  @Override
+public Object getAttribute (String name)
   {
     return mPage.get (name);
   }
 
   //-------------------------------------
-  public Object getAttribute (String name,
+  @Override
+public Object getAttribute (String name,
 			      int scope)
   {
     switch (scope) {
@@ -138,7 +142,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public Object findAttribute (String name)
+  @Override
+public Object findAttribute (String name)
   {
     if (mPage.containsKey (name)) {
       return mPage.get (name);
@@ -158,7 +163,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public void removeAttribute (String name)
+  @Override
+public void removeAttribute (String name)
   {
     if (mPage.containsKey (name)) {
       mPage.remove (name);
@@ -175,7 +181,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public void removeAttribute (String name,
+  @Override
+public void removeAttribute (String name,
 			       int scope)
   {
     switch (scope) {
@@ -197,7 +204,8 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public int getAttributesScope (String name)
+  @Override
+public int getAttributesScope (String name)
   {
     if (mPage.containsKey (name)) {
       return PAGE_SCOPE;
@@ -223,81 +231,97 @@ public class PageContextImpl extends PageContext {
   }
 
   //-------------------------------------
-  public JspWriter getOut ()
+  @Override
+public JspWriter getOut ()
   {
     return null;
   }
 
   //-------------------------------------
-  public HttpSession getSession ()
+  @Override
+public HttpSession getSession ()
   {
     return null;
   }
 
   //-------------------------------------
-  public Object getPage ()
+  @Override
+public Object getPage ()
   {
     return null;
   }
 
   //-------------------------------------
-  public ServletRequest getRequest ()
+  @Override
+public ServletRequest getRequest ()
   {
     return null;
   }
 
   //-------------------------------------
-  public ServletResponse getResponse ()
+  @Override
+public ServletResponse getResponse ()
   {
     return null;
   }
 
   //-------------------------------------
-  public Exception getException ()
+  @Override
+public Exception getException ()
   {
     return null;
   }
 
   //-------------------------------------
-  public ServletConfig getServletConfig ()
+  @Override
+public ServletConfig getServletConfig ()
   {
     return null;
   }
 
   //-------------------------------------
-  public ServletContext getServletContext ()
+  @Override
+public ServletContext getServletContext ()
   {
     return null;
   }
 
   //-------------------------------------
-  public void forward (String path)
+  @Override
+public void forward (String path)
   {
   }
 
   //-------------------------------------
-  public void include (String path)
+  @Override
+public void include (String path)
   {
   }
 
   //-------------------------------------
-  public void handlePageException (Exception exc)
+  @Override
+public void handlePageException (Exception exc)
   {
   }
 
   //-------------------------------------
-  public void handlePageException (Throwable exc)
+  @Override
+public void handlePageException (Throwable exc)
   {
   }
 
   //-------------------------------------
-  
+
   // Since JSP 2.0
-  public void include(java.lang.String relativeUrlPath, boolean flush) {}
-  public ExpressionEvaluator getExpressionEvaluator() { return null; }
-  public VariableResolver getVariableResolver() { return null; }  
+  @Override
+public void include(java.lang.String relativeUrlPath, boolean flush) {}
+  @Override
+public ExpressionEvaluator getExpressionEvaluator() { return null; }
+  @Override
+public VariableResolver getVariableResolver() { return null; }
 
   // Since JSP 2.1
-  public jakarta.el.ELContext getELContext() { return null; }
-  
+  @Override
+public jakarta.el.ELContext getELContext() { return null; }
+
 }
