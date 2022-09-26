@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -17,21 +18,20 @@
 
 package org.apache.taglibs.standard.tag.common.xml;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspTagException;
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
@@ -72,7 +72,6 @@ public abstract class ParseSupport extends BodyTagSupport {
     private int scopeDom;			   // processed 'scopeDom' attr
 
     // state in support of XML parsing...
-    private DocumentBuilderFactory dbf;
     private DocumentBuilder db;
     private TransformerFactory tf;
     private TransformerHandler th;
@@ -91,7 +90,6 @@ public abstract class ParseSupport extends BodyTagSupport {
 	xml = null;
 	systemId = null;
 	filter = null;
-	dbf = null;
 	db = null;
 	tf = null;
 	th = null;
@@ -107,18 +105,7 @@ public abstract class ParseSupport extends BodyTagSupport {
     public int doEndTag() throws JspException {
       try {
 	
-	// set up our DocumentBuilder
-        if (dbf == null) {
-            dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            dbf.setValidating(false);
-            try {
-                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-            } catch (ParserConfigurationException e) {
-                throw new AssertionError("Parser does not support secure processing");
-            }
-        }
-        db = dbf.newDocumentBuilder();
+    db = DocumentBuilderProvider.createSecureDocumentBuilder();
 
 	// if we've gotten a filter, set up a transformer to support it
 	if (filter != null) {
@@ -166,8 +153,6 @@ public abstract class ParseSupport extends BodyTagSupport {
       } catch (SAXException ex) {
 	throw new JspException(ex);
       } catch (IOException ex) {
-	throw new JspException(ex);
-      } catch (ParserConfigurationException ex) {
 	throw new JspException(ex);
       } catch (TransformerConfigurationException ex) {
 	throw new JspException(ex);

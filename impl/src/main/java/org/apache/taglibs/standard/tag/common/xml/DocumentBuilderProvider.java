@@ -16,14 +16,34 @@
 
 package org.apache.taglibs.standard.tag.common.xml;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
+ * Provides preconfigured {@link DocumentBuilder} instances.
+ *
  * @author David Matejcek
  */
 public class DocumentBuilderProvider {
+
+    private static final DocumentBuilderFactory DBF;
+    private static final DocumentBuilderFactory DBF_SECURE;
+    static {
+        DBF = DocumentBuilderFactory.newInstance();
+        DBF.setNamespaceAware(true);
+        DBF.setValidating(false);
+
+        DBF_SECURE = DocumentBuilderFactory.newInstance();
+        DBF_SECURE.setNamespaceAware(true);
+        DBF_SECURE.setValidating(false);
+        try {
+            DBF_SECURE.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        } catch (ParserConfigurationException e) {
+            throw new Error("Parser does not support secure processing");
+        }
+    }
 
     /**
      * Creates a namespace-aware {@link DocumentBuilder} with disabled validation.
@@ -33,15 +53,29 @@ public class DocumentBuilderProvider {
      *
      * @return new {@link DocumentBuilder} instance.
      */
-    static DocumentBuilder createDocumentBuilder() {
+    public static DocumentBuilder createDocumentBuilder() {
         try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            dbf.setValidating(false);
-            return dbf.newDocumentBuilder();
+            return DBF.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            // this should never happen with a well-behaving JAXP implementation.
-            throw new Error(e);
+            throw new Error("Could not initialize the DocumentBuilder!", e);
+        }
+    }
+
+
+    /**
+     * Creates a namespace-aware {@link DocumentBuilder} with disabled validation and enabled
+     * {@link XMLConstants#FEATURE_SECURE_PROCESSING}.
+     * <p>
+     * Note that {@link DocumentBuilder} instances are not thread-safe and their implementation can
+     * be chosen as described in {@link DocumentBuilderFactory} documentation.
+     *
+     * @return new {@link DocumentBuilder} instance.
+     */
+    public static DocumentBuilder createSecureDocumentBuilder() {
+        try {
+            return DBF_SECURE.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            throw new Error("Could not initialize the DocumentBuilder!", e);
         }
     }
 }
