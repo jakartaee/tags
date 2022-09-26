@@ -1,7 +1,8 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2020 Oracle and/or its affiliates. All rights reserved.
- * Copyright 2004 The Apache Software Foundation
  * Copyright (c) 2020 Payara Services Ltd.
+ * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,139 +20,142 @@
 package org.apache.taglibs.standard.tag.common.xml;
 
 import java.util.List;
-import java.util.Vector;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 
 import jakarta.servlet.jsp.JspTagException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.Tag;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import javax.xml.xpath.XPathVariableResolver;
-import javax.xml.xpath.XPathFactoryConfigurationException;
-
 import org.apache.taglibs.standard.resources.Resources;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
- * <p>Support for tag handlers that evaluate XPath expressions.</p>
+ * Support for tag handlers that evaluate XPath expressions.
  *
  * @author Shawn Bayern
  * @author Ramesh Mandava ( ramesh.mandava@sun.com )
  * @author Pierre Delisle ( pierre.delisle@sun.com )
  * @author Dongbin Nie
+ * @author David Matejcek
  */
-// would ideally be a base class, but some of our user handlers already
-// have their own parents
 public class XPathUtil {
-    
-    //*********************************************************************
-    // Constructor
-    
+
+    private static final String PAGE_NS_URL = "http://java.sun.com/jstl/xpath/page";
+    private static final String REQUEST_NS_URL = "http://java.sun.com/jstl/xpath/request";
+    private static final String SESSION_NS_URL = "http://java.sun.com/jstl/xpath/session";
+    private static final String APP_NS_URL = "http://java.sun.com/jstl/xpath/app";
+    private static final String PARAM_NS_URL = "http://java.sun.com/jstl/xpath/param";
+    private static final String INITPARAM_NS_URL = "http://java.sun.com/jstl/xpath/initParam";
+    private static final String COOKIE_NS_URL = "http://java.sun.com/jstl/xpath/cookie";
+    private static final String HEADER_NS_URL = "http://java.sun.com/jstl/xpath/header";
+
+    private static final XPathFactory XPATH_FACTORY = new JSTLXPathFactory();
+    private static final JSTLXPathNamespaceContext JSTL_XPATH_NS_CTX = initXPathNamespaceContext();
+
+    private final PageContext pageContext;
+
     /**
      * Constructs a new XPathUtil object associated with the given
      * PageContext.
      */
     public XPathUtil(PageContext pc) {
         pageContext = pc;
-    }    
-    
-    //*********************************************************************
-    // Support for JSTL variable resolution
-    
-    // The URLs
-    private static final String PAGE_NS_URL
-    = "http://java.sun.com/jstl/xpath/page";
-    private static final String REQUEST_NS_URL
-    = "http://java.sun.com/jstl/xpath/request";
-    private static final String SESSION_NS_URL
-    = "http://java.sun.com/jstl/xpath/session";
-    private static final String APP_NS_URL
-    = "http://java.sun.com/jstl/xpath/app";
-    private static final String PARAM_NS_URL
-    = "http://java.sun.com/jstl/xpath/param";
-    private static final String INITPARAM_NS_URL
-    = "http://java.sun.com/jstl/xpath/initParam";
-    private static final String COOKIE_NS_URL
-    = "http://java.sun.com/jstl/xpath/cookie";
-    private static final String HEADER_NS_URL
-    = "http://java.sun.com/jstl/xpath/header";
-    
-    //*********************************************************************
-    // Support for XPath evaluation
-    
-    private PageContext pageContext;
-    
-    private static final String XPATH_FACTORY_CLASS_NAME = 
-            "org.apache.taglibs.standard.tag.common.xml.JSTLXPathFactory";
-    private static XPathFactory XPATH_FACTORY;
-    
-    private static JSTLXPathNamespaceContext jstlXPathNamespaceContext = null;
-    
-    private static DocumentBuilderFactory dbf = null;
-    
-    static {
-        initXPathFactory();
-        initXPathNamespaceContext();
-        initDocumentBuilderFactory();
     }
 
-    private static void initXPathFactory() {
-        // If the system property DEFAULT_PROPERTY_NAME + ":uri" is present, 
-        // where uri is the parameter to this method, then its value is read 
-        // as a class name. The method will try to create a new instance of 
-        // this class by using the class loader, and returns it if it is 
-        // successfully created.
-        if (System.getSecurityManager() !=  null) {
-             AccessController.doPrivileged(new PrivilegedAction<Object>(){
-                public Object run(){
-                    System.setProperty(XPathFactory.DEFAULT_PROPERTY_NAME + 
-                            ":" + XPathFactory.DEFAULT_OBJECT_MODEL_URI, 
-                            XPATH_FACTORY_CLASS_NAME);
-                    return null;
-                }
-            });
-        } else {
-            System.setProperty(XPathFactory.DEFAULT_PROPERTY_NAME + 
-                ":" + XPathFactory.DEFAULT_OBJECT_MODEL_URI, 
-                XPATH_FACTORY_CLASS_NAME);
-        }
+
+    /**
+     * Evaluate an XPath expression to a String value.
+     */
+    public String valueOf(Node contextNode, String xpathString) throws JspTagException {
+        XPath xpath = XPATH_FACTORY.newXPath();
+        xpath.setNamespaceContext(JSTL_XPATH_NS_CTX);
+        xpath.setXPathVariableResolver(new JSTLXPathVariableResolver(pageContext));
         try {
-            XPATH_FACTORY = XPathFactory.newInstance(XPathFactory.DEFAULT_OBJECT_MODEL_URI);
-        } catch (XPathFactoryConfigurationException xpce) {
-            xpce.printStackTrace();
+            return xpath.evaluate(xpathString, contextNode);
+        } catch (XPathExpressionException ex) {
+            throw new JspTagException(ex.toString(), ex);
         }
-	}
-    
-    /** Initialize globally useful data. */
-    private static void initXPathNamespaceContext() {
+    }
+
+
+    /**
+     * Evaluate an XPath expression to a boolean value.
+     */
+    public boolean booleanValueOf(Node contextNode, String xpathString) throws JspTagException {
+        XPath xpath = XPATH_FACTORY.newXPath();
+        xpath.setNamespaceContext(JSTL_XPATH_NS_CTX);
+        xpath.setXPathVariableResolver(new JSTLXPathVariableResolver(pageContext));
+        try {
+            return ((Boolean) xpath.evaluate(xpathString, contextNode, XPathConstants.BOOLEAN)).booleanValue();
+        } catch (XPathExpressionException ex) {
+            throw new JspTagException(Resources.getMessage("XPATH_ERROR_XOBJECT", ex.toString()), ex);
+        }
+    }
+
+
+    /**
+     * Evaluate an XPath expression to a List of nodes.
+     */
+    public List<Object> selectNodes(Node contextNode, String xpathString) throws JspTagException {
+        try {
+            XPath xpath = XPATH_FACTORY.newXPath();
+            xpath.setNamespaceContext(JSTL_XPATH_NS_CTX);
+            xpath.setXPathVariableResolver(new JSTLXPathVariableResolver(pageContext));
+            Object nl = xpath.evaluate(xpathString, contextNode, JSTLXPathConstants.OBJECT);
+            return new JSTLNodeList(nl);
+        } catch (XPathExpressionException ex) {
+            throw new JspTagException(ex.toString(), ex);
+        }
+    }
+
+
+    /**
+     * Evaluate an XPath expression to a single node.
+     */
+    public Node selectSingleNode(Node contextNode, String xpathString) throws JspTagException {
+        XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
+        try {
+            XPath xpath = XPATH_FACTORY.newXPath();
+            xpath.setNamespaceContext(JSTL_XPATH_NS_CTX);
+            xpath.setXPathVariableResolver(jxvr);
+            return (Node) xpath.evaluate(xpathString, contextNode, XPathConstants.NODE);
+        } catch (XPathExpressionException ex) {
+            throw new JspTagException(ex.toString(), ex);
+        }
+    }
+
+
+    public static Node getContext(Tag t) throws JspTagException {
+        ForEachTag xt = (ForEachTag) TagSupport.findAncestorWithClass(t, ForEachTag.class);
+        if (xt == null) {
+            return newEmptyDocument();
+        }
+        return xt.getContext();
+    }
+
+
+    /**
+     * Initialize globally useful data.
+     */
+    private static JSTLXPathNamespaceContext initXPathNamespaceContext() {
         // register supported namespaces
-        jstlXPathNamespaceContext = new JSTLXPathNamespaceContext();
-        jstlXPathNamespaceContext.addNamespace("pageScope", PAGE_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("requestScope", REQUEST_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("sessionScope", SESSION_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("applicationScope", APP_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("param", PARAM_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("initParam", INITPARAM_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("header", HEADER_NS_URL);
-        jstlXPathNamespaceContext.addNamespace("cookie", COOKIE_NS_URL);
+        JSTLXPathNamespaceContext context = new JSTLXPathNamespaceContext();
+        context.addNamespace("pageScope", PAGE_NS_URL);
+        context.addNamespace("requestScope", REQUEST_NS_URL);
+        context.addNamespace("sessionScope", SESSION_NS_URL);
+        context.addNamespace("applicationScope", APP_NS_URL);
+        context.addNamespace("param", PARAM_NS_URL);
+        context.addNamespace("initParam", INITPARAM_NS_URL);
+        context.addNamespace("header", HEADER_NS_URL);
+        context.addNamespace("cookie", COOKIE_NS_URL);
+        return context;
     }
-    
-    private static void initDocumentBuilderFactory() {
-        dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware( true );
-        dbf.setValidating( false );
-    }
-    
+
     /**
      * Create a new empty document.
      *
@@ -161,199 +165,10 @@ public class XPathUtil {
      * @return a new empty document
      */
     private static Document newEmptyDocument() {
-        try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            return db.newDocument();
-        } catch (ParserConfigurationException e) {
-        	throw new AssertionError();
-        }
+        return DocumentBuilderProvider.createDocumentBuilder().newDocument();
     }
-    
-    /**
-     * Evaluate an XPath expression to a String value. 
-     */
-    public String valueOf(Node contextNode, String xpathString) 
-        throws JspTagException {
-        // p("******** valueOf(" + n + ", " + xpathString + ")");
-        XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
-        
-        XPath xpath = XPATH_FACTORY.newXPath();
-        xpath.setNamespaceContext(jstlXPathNamespaceContext);
-        xpath.setXPathVariableResolver(jxvr);
-        try {
-            return xpath.evaluate(xpathString, contextNode);
-        } catch (XPathExpressionException ex) {
-            throw new JspTagException(ex.toString(), ex);
-        }
-    }
-    
-    
-    /** 
-     * Evaluate an XPath expression to a boolean value. 
-     */
-    public boolean booleanValueOf(Node contextNode, String xpathString)
-    throws JspTagException {
-        XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
-        
-        XPath xpath = XPATH_FACTORY.newXPath();
-        xpath.setNamespaceContext(jstlXPathNamespaceContext);
-        xpath.setXPathVariableResolver(jxvr);
-        try {
-            return ((Boolean) xpath.evaluate(
-              xpathString, contextNode, XPathConstants.BOOLEAN)).booleanValue();
-        } catch (XPathExpressionException ex) {
-            throw new JspTagException(
-                Resources.getMessage("XPATH_ERROR_XOBJECT", ex.toString()), ex);            
-        }
-    }
-    
-    /** 
-     * Evaluate an XPath expression to a List of nodes. 
-     */
-    public List<Object> selectNodes(Node contextNode, String xpathString)  
-        throws JspTagException {
-        XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
-        
-        try {
-            XPath xpath = XPATH_FACTORY.newXPath();
-            xpath.setNamespaceContext(jstlXPathNamespaceContext);
-            xpath.setXPathVariableResolver(jxvr);
-            Object nl = xpath.evaluate(
-                xpathString, contextNode, JSTLXPathConstants.OBJECT);
-            return new JSTLNodeList( nl );
-        } catch (XPathExpressionException ex ) {
-            throw new JspTagException(ex.toString(), ex);
-        }
-    }
-    
-    /** 
-     * Evaluate an XPath expression to a single node. 
-     */
-    public Node selectSingleNode(Node contextNode, String xpathString)
-    throws JspTagException {
-        //p("selectSingleNode of XPathUtil = passed node:" +
-        //   "xpathString => " + n + " : " + xpathString );
-        XPathVariableResolver jxvr = new JSTLXPathVariableResolver(pageContext);
-        
-        try {
-            XPath xpath = XPATH_FACTORY.newXPath();
-            xpath.setNamespaceContext(jstlXPathNamespaceContext);
-            xpath.setXPathVariableResolver(jxvr);
-            return (Node) xpath.evaluate(
-                xpathString, contextNode, XPathConstants.NODE);
-        } catch (XPathExpressionException ex) {
-            throw new JspTagException(ex.toString(), ex);            
-        }
-    }
-    
-    //*********************************************************************
-    // Static support for context retrieval from parent <forEach> tag
-    
-    public static Node getContext(Tag t) throws JspTagException {
-        ForEachTag xt =
-        (ForEachTag) TagSupport.findAncestorWithClass(
-        t, ForEachTag.class);
-        if (xt == null)
-            return newEmptyDocument();
-        else
-            return (xt.getContext());
-    }
-    
-    //*********************************************************************
-    // Utility methods
-    
-    private static void p(String s) {
-        System.out.println("[XPathUtil] " + s);
-    }
-    
-    public static void printDetails(Node n) {
-        p("\n\nDetails of Node = > " + n ) ;
-        p("Name:Type:Node Value = > " + n.getNodeName() +
-        ":" + n.getNodeType() + ":" + n.getNodeValue()  ) ;
-        p("Namespace URI : Prefix : localName = > " +
-        n.getNamespaceURI() + ":" +n.getPrefix() + ":" + n.getLocalName());
-        p("\n Node has children => " + n.hasChildNodes() );
-        if ( n.hasChildNodes() ) {
-            NodeList nl = n.getChildNodes();
-            p("Number of Children => " + nl.getLength() );
-            for ( int i=0; i<nl.getLength(); i++ ) {
-                Node childNode = nl.item(i);
-                printDetails( childNode );
-            }
-        }
-    }    
 }
 
-class JSTLNodeList extends Vector<Object> implements NodeList   {
-    
-    Vector<Object> nodeVector;
-
-    public JSTLNodeList ( Vector<Object> nodeVector ) {
-        this.nodeVector = nodeVector;
-    }
-
-    public JSTLNodeList ( NodeList nl ) {
-        nodeVector = new Vector<>();
-        //p("[JSTLNodeList] nodelist details");
-        for ( int i=0; i<nl.getLength(); i++ ) {
-            Node currNode = nl.item(i);
-            //XPathUtil.printDetails ( currNode );
-            nodeVector.add(i, currNode);
-        }
-    }
-
-    public JSTLNodeList ( Node n ) {
-        nodeVector = new Vector<>();
-        nodeVector.addElement( n );
-    }
-
-    public JSTLNodeList (Object o) {
-        nodeVector = new Vector<>();
-        
-        if (o instanceof NodeList) {
-            NodeList nl = (NodeList)o;
-            for ( int i=0; i<nl.getLength(); i++ ) {
-                Node currNode = nl.item(i);
-                //XPathUtil.printDetails ( currNode );
-                nodeVector.add(i, currNode);
-            }
-        } else {
-            nodeVector.addElement( o );
-        }
-    }
-
-    @Override
-    public Node item ( int index ) {
-        return (Node) nodeVector.elementAt( index );
-    }
-
-    @Override
-    public Object elementAt ( int index ) {
-        return nodeVector.elementAt( index );
-    }
-
-    @Override
-    public Object get( int index ) {
-        return nodeVector.get( index );
-    }
-
-    @Override
-    public int getLength() {
-        return nodeVector.size( );
-    }
-
-    public int size (  ) {
-        //p("JSTL node list size => " + nodeVector.size() );
-        return nodeVector.size( );
-    }
-
-    // Can implement other Vector methods to redirect those methods to 
-    // the vector in the variable param. As we are not using them as part 
-    // of this implementation we are not doing that here. If this changes
-    // then we need to override those methods accordingly  
-
-}
-         
 
 
 

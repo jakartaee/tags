@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2022 Contributors to the Eclipse Foundation
  * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -17,18 +18,21 @@
 
 package org.apache.taglibs.standard.tag.common.xml;
 
+import javax.xml.xpath.XPath;
+
 import org.apache.xpath.jaxp.XPathFactoryImpl;
 
 /**
  * This factory class is added to provide access to our own implementation
  * of XPath, so that we can support a generic Object type in return type
- * arguement for XPath's evaluate instance method. 
- * 
+ * arguement for XPath's evaluate instance method.
+ *
  * @author dhirup
  */
 public class JSTLXPathFactory extends XPathFactoryImpl {
-    
-    public javax.xml.xpath.XPath newXPath() {
-        return new org.apache.taglibs.standard.tag.common.xml.JSTLXPathImpl(null, null);
-    }    
+
+    @Override
+    public XPath newXPath() {
+        return new JSTLXPathImpl(null, null);
+    }
 }
