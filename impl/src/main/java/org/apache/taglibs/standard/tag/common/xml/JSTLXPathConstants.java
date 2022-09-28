@@ -19,6 +19,7 @@ package org.apache.taglibs.standard.tag.common.xml;
 
 
 import javax.xml.namespace.QName;
+import javax.xml.xpath.XPathConstants;
 
 /**
  * This class is added to provide support for a generic Object type in return type
@@ -37,5 +38,20 @@ public class JSTLXPathConstants {
     // To support generic Object types
     public static final QName OBJECT = new QName("http://www.w3.org/1999/XSL/Transform", "OBJECT");
 
+    public static QName LOCAL_TO_XPATH_CONSTANT(String local){
+        String lowerCaseLocal = local.toLowerCase();
+        if(lowerCaseLocal.equals(XPathConstants.BOOLEAN.getLocalPart().toLowerCase()))
+            return XPathConstants.BOOLEAN;
+        if(lowerCaseLocal.equals(XPathConstants.NUMBER.getLocalPart().toLowerCase()))
+            return XPathConstants.NUMBER;
+        if(lowerCaseLocal.equals(XPathConstants.STRING.getLocalPart().toLowerCase()))
+            return XPathConstants.STRING;
+        if(lowerCaseLocal.equals(XPathConstants.NODE.getLocalPart().toLowerCase()))
+            return XPathConstants.NODE;
+        if(lowerCaseLocal.equals(XPathConstants.NODESET.getLocalPart().toLowerCase()))
+            return XPathConstants.NODESET;
+        return QName.valueOf(local);
+
+    }
     
 }

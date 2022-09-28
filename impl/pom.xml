@@ -127,6 +127,11 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>11.4</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -288,17 +293,24 @@
                             <artifactSet>
                                 <includes>
                                     <include>xalan:xalan</include>
+                                    <include>net.sf.saxon:Saxon-HE</include>
                                 </includes>
                             </artifactSet>
                             <filters>
                                 <filter>
                                     <artifact>xalan:xalan</artifact>
+                                    <artifact>net.sf.saxon:Saxon-HE</artifact>
                                     <excludes>
                                         <exclude>META-INF/**</exclude>
+                                        <exlude>net/sf/saxon/xpath/JAXPVariableReference.class</exlude>
                                     </excludes>
                                 </filter>
                             </filters>
                             <relocations>
+                                <relocation>
+                                    <pattern>net.sf.saxon</pattern>
+                                    <shadedPattern>org.eclipse.tags.shaded.net.sf.saxon</shadedPattern>
+                                </relocation>
                                 <relocation>
                                     <pattern>org.apache.xpath</pattern>
                                     <shadedPattern>org.eclipse.tags.shaded.org.apache.xpath</shadedPattern>
