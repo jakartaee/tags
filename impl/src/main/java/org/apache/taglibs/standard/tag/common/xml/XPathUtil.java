@@ -54,10 +54,22 @@ public class XPathUtil {
     private static final String COOKIE_NS_URL = "http://java.sun.com/jstl/xpath/cookie";
     private static final String HEADER_NS_URL = "http://java.sun.com/jstl/xpath/header";
 
-    private static final XPathFactory XPATH_FACTORY = new JSTLXPathFactory();
+    private static final String USE_SAXON_PROPERTY = "org.apache.tags.useSaxonTransformer";
+    private static final boolean USE_SAXON = Boolean.getBoolean(USE_SAXON_PROPERTY);
+
+    private static final XPathFactory XPATH_FACTORY;
     private static final JSTLXPathNamespaceContext JSTL_XPATH_NS_CTX = initXPathNamespaceContext();
 
     private final PageContext pageContext;
+
+    static{
+        System.out.println("Using Saxon library? " + USE_SAXON);
+        if(USE_SAXON){
+            XPATH_FACTORY = new JSTLSaxonXPathFactory();
+        }else{
+            XPATH_FACTORY = new JSTLXPathFactory();
+        }
+    }
 
     /**
      * Constructs a new XPathUtil object associated with the given

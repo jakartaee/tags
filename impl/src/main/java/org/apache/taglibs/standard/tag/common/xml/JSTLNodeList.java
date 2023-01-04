@@ -16,6 +16,7 @@
 
 package org.apache.taglibs.standard.tag.common.xml;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 import org.w3c.dom.Node;
@@ -92,6 +93,12 @@ class JSTLNodeList extends Vector<Object> implements NodeList   {
     @Override
     public int size() {
         return nodeVector.size();
+    }
+
+    @Override
+    public synchronized Iterator iterator() {
+        // TODO Auto-generated method stub
+        return nodeVector.iterator();
     }
 
     // Can implement other Vector methods to redirect those methods to
