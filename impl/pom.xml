@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+    Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
     Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -235,6 +235,8 @@
                             !org.apache.xpath.res,
                             !java_cup.runtime,
                             !trax,
+                            jakarta.el;version="[5.0,7)",
+                            jakarta.servlet.jsp;version="[3.1,5)",
                             org.xml.sax.ext,
                             *
                         </Import-Package>
