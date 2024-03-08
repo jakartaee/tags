@@ -2,7 +2,7 @@
 <!--
 
     Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
-    Copyright (c) 2021-2022 Contributors to the Eclipse Foundation
+    Copyright (c) 2021-2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -204,6 +204,11 @@
                         <Specification-Vendor>${project.organization.name}</Specification-Vendor>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
+                        <Import-Package>
+                            jakarta.el;version="[5.0,7)",
+                            jakarta.servlet.jsp;version="[3.1,5)",
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
                 <executions>
