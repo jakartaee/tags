@@ -22,6 +22,10 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.Writer;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -83,6 +87,10 @@ public abstract class TransformSupport extends BodyTagSupport {
     private DocumentBuilder db;			   // reusable factory
     private DocumentBuilderFactory dbf;		   // reusable factory
 
+    // To secure XML processing
+    private static final String ACCESS_EXTERNAL_DTD_SETTING = "javax.xml.accessExternalDTD";
+    private static final String ACCESS_EXTERNAL_SCHEMA_SETTING = "javax.xml.accessExternalSchema";
+
 
     //*********************************************************************
     // Constructor and initialization
@@ -123,6 +131,39 @@ public abstract class TransformSupport extends BodyTagSupport {
             dbf.setValidating(false);
             try {
                 dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+                 // JDK may not implement FEATURE_SECURE_PROCESSING, so force it to be secure if 
+                 // neither property is set explicity.
+                 String accessExternalDTD = null;
+                 String accessExternalSchema = null;
+                 final SecurityManager sm = System.getSecurityManager();
+                 if (sm != null) {
+                	 try {
+	                     accessExternalDTD = AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
+	                         public String run() throws PrivilegedActionException {
+	                             return System.getProperty(ACCESS_EXTERNAL_DTD_SETTING);
+	                         }
+	                     });
+                	 } catch (PrivilegedActionException pae) {} // eat the exception
+
+                	 try {
+                        accessExternalSchema = AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
+	                         public String run() throws PrivilegedActionException {
+	                             return System.getProperty(ACCESS_EXTERNAL_SCHEMA_SETTING);
+	                         }
+	                     });
+                	 } catch (PrivilegedActionException pae) {} // eat the exception
+                 } else {
+                	 accessExternalDTD = System.getProperty(ACCESS_EXTERNAL_DTD_SETTING);
+                	 accessExternalSchema = System.getProperty(ACCESS_EXTERNAL_SCHEMA_SETTING);
+                 }
+
+                 if(accessExternalDTD == null){
+                    dbf.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                }
+                if(accessExternalSchema == null){
+                    dbf.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+                }
             } catch (ParserConfigurationException e) {
                 throw new AssertionError("Parser does not support secure processing");
             }
