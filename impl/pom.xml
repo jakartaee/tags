@@ -237,6 +237,7 @@
                             !trax,
                             jakarta.el;version="[5.0,7)",
                             jakarta.servlet.jsp;version="[3.1,5)",
+                            jakarta.servlet.jsp.tagext;version="[3.1,5)",
                             org.xml.sax.ext,
                             *
                         </Import-Package>

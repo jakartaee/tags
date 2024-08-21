@@ -207,6 +207,7 @@
                         <Import-Package>
                             jakarta.el;version="[5.0,7)",
                             jakarta.servlet.jsp;version="[3.1,5)",
+                            jakarta.servlet.jsp.tagext;version="[3.1,5)",
                             *
                         </Import-Package>
                     </instructions>
