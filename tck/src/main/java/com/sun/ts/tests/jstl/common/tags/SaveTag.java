@@ -25,26 +25,25 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class SaveTag extends SimpleTagSupport {
 
-  private ValueExpression attr;
+    private ValueExpression attr;
 
-  public void setAttr(ValueExpression attr) {
-    this.attr = attr;
-  }
-
-  public void doTag() throws JspException {
-
-    PageContext pc = (PageContext) getJspContext();
-
-    try {
-      ArrayList list = (ArrayList) pc.getAttribute("alist",
-          PageContext.APPLICATION_SCOPE);
-      if (list == null) {
-        list = new ArrayList();
-        pc.setAttribute("alist", list, PageContext.APPLICATION_SCOPE);
-      }
-      list.add(attr);
-    } catch (Exception ex) {
-      throw new JspException(ex);
+    public void setAttr(ValueExpression attr) {
+        this.attr = attr;
     }
-  }
+
+    public void doTag() throws JspException {
+
+        PageContext pc = (PageContext) getJspContext();
+
+        try {
+            ArrayList list = (ArrayList) pc.getAttribute("alist", PageContext.APPLICATION_SCOPE);
+            if (list == null) {
+                list = new ArrayList();
+                pc.setAttribute("alist", list, PageContext.APPLICATION_SCOPE);
+            }
+            list.add(attr);
+        } catch (Exception ex) {
+            throw new JspException(ex);
+        }
+    }
 }

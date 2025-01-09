@@ -27,24 +27,21 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 
 public class FormatRequestWrapper extends HttpServletRequestWrapper {
 
-  /** Creates new FormatRequestWrapper */
-  public FormatRequestWrapper(HttpServletRequest request) {
-    super(request);
-  }
+    /** Creates new FormatRequestWrapper */
+    public FormatRequestWrapper(HttpServletRequest request) {
+        super(request);
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods ========================================================================
+     */
 
-  /**
-   * This wrapper method will add an attribute to the passed request when this
-   * method is called.
-   */
-  public void setCharacterEncoding(String enc)
-      throws UnsupportedEncodingException {
-    super.setAttribute("charenc", enc.toLowerCase());
-    super.setCharacterEncoding(enc);
-  }
+    /**
+     * This wrapper method will add an attribute to the passed request when this method is called.
+     */
+    public void setCharacterEncoding(String enc) throws UnsupportedEncodingException {
+        super.setAttribute("charenc", enc.toLowerCase());
+        super.setCharacterEncoding(enc);
+    }
 
 }

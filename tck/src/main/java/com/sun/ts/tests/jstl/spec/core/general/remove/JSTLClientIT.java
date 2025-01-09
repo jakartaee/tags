@@ -14,8 +14,6 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-
-
 package com.sun.ts.tests.jstl.spec.core.general.remove;
 
 import java.io.IOException;
@@ -38,41 +36,40 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
+    public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
+    /** Creates new JSTLClient */
+    public JSTLClientIT() {
+        setContextRoot("/jstl_core_gen_rem_web");
+    }
 
-  /** Creates new JSTLClient */
-  public JSTLClientIT() {
-    setContextRoot("/jstl_core_gen_rem_web");
-  }
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_gen_rem_web.war");
+        archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/jstl_core_gen_rem_web.xml"));
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_gen_rem_web.war");
-    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_core_gen_rem_web.xml"));
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveRemoveScopeVarTest.jsp")),
+                "positiveRemoveScopeVarTest.jsp");
+        archive.addAsLibrary(getCommonJarArchive());
 
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveRemoveScopeVarTest.jsp")), "positiveRemoveScopeVarTest.jsp");
-    archive.addAsLibrary(getCommonJarArchive());
+        return archive;
+    }
 
-    return archive;
-  }
-
-  /*
-   * @testName: positiveRemoveScopeVarTest
-   * 
-   * @assertion_ids: JSTL:SPEC:41.1; JSTL:SPEC:41.2; JSTL:SPEC:41.3
-   * 
-   * @testStrategy: Validate that the remove action can properly remove a scoped
-   * attribute by providing only a value to the var attribute. This should
-   * remove the attribute no matter the scope in which it exists. Also validate
-   * that if scope is specified, the var is properly removed.
-   */
-  @Test
-  public void positiveRemoveScopeVarTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveRemoveScopeVarTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveRemoveScopeVarTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveRemoveScopeVarTest
+     * 
+     * @assertion_ids: JSTL:SPEC:41.1; JSTL:SPEC:41.2; JSTL:SPEC:41.3
+     * 
+     * @testStrategy: Validate that the remove action can properly remove a scoped attribute by providing only a value to
+     * the var attribute. This should remove the attribute no matter the scope in which it exists. Also validate that if
+     * scope is specified, the var is properly removed.
+     */
+    @Test
+    public void positiveRemoveScopeVarTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveRemoveScopeVarTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveRemoveScopeVarTest");
+        invoke();
+    }
 }

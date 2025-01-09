@@ -40,145 +40,150 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
+    public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
-  /** Creates new JSTLClient */
-  public JSTLClientIT() {
-    setContextRoot("/jstl_fmt_stz_web");
-  }
-
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
-
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_stz_web.war");
-    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_fmt_stz_web.xml"));
-
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneAttrScopeTest.jsp")), "positiveSetTimezoneAttrScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneScopeTest.jsp")), "positiveSetTimezoneScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneSetAttrTest.jsp")), "positiveSetTimezoneSetAttrTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueNullEmptyTest.jsp")), "positiveSetTimezoneValueNullEmptyTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueTest.jsp")), "positiveSetTimezoneValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneVarTest.jsp")), "positiveSetTimezoneVarTest.jsp");
-
-    archive.addAsLibrary(getCommonJarArchive());
-
-    return archive;
-  }
-
-  /*
-   * @testName: positiveSetTimezoneValueTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93; JSTL:SPEC:93.1; JSTL:SPEC:93.1.1;
-   * JSTL:SPEC:93.1.2; JSTL:SPEC:93.1.3; JSTL:SPEC:93.1.4; JSTL:SPEC:93.1.5;
-   * JSTL:SPEC:93.1.6
-   * 
-   * @testStrategy: Validate that the value attribute can accept dynamic values
-   * as well as three letter timezones (ex. PST) or fully qualified values (ex.
-   * America/Los_Angeles).
-   */
-  @Test
-  public void positiveSetTimezoneValueTest() throws Exception {
-    InputStream gfStream;
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
-    TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
-    if (isJavaVersion20OrGreater()) {
-        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTestJava20Plus.gf");
-    } else {
-        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    /** Creates new JSTLClient */
+    public JSTLClientIT() {
+        setContextRoot("/jstl_fmt_stz_web");
     }
-    setGoldenFileStream(gfStream);
-    invoke();
-  }
 
-  /*
-   * @testName: positiveSetTimezoneVarTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93.2; JSTL:SPEC:93.2.1
-   * 
-   * @testStrategy: Validate that a scoped variable of type java.util.TimeZone
-   * is properly set and associated with the variable name specified by var.
-   */
-  @Test
-  public void positiveSetTimezoneVarTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneVarTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneVarTest");
-    invoke();
-  }
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-  /*
-   * @testName: positiveSetTimezoneScopeTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2;
-   * JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4; JSTL:SPEC:93.3.5
-   * 
-   * @testStrategy: Validate that the through explicit use of the scope
-   * attribute, var is exported to the appropriate scope. Additionally, validate
-   * that if var is specified and scope is not, that var is exported to the page
-   * scope by default.
-   */
-  @Test
-  public void positiveSetTimezoneScopeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneScopeTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneScopeTest");
-    invoke();
-  }
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_stz_web.war");
+        archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/jstl_fmt_stz_web.xml"));
 
-  /*
-   * @testName: positiveSetTimezoneValueNullEmptyTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93.7
-   * 
-   * @testStrategy: Validate that if the value attribute is null or empty, the
-   * GMT+0 timezone is used by the formatting actions that rely on timezone.
-   */
-  @Test
-  public void positiveSetTimezoneValueNullEmptyTest() throws Exception {
-    InputStream gfStream;
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
-    TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
-    if (isJavaVersion20OrGreater()) {
-        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTestJava20Plus.gf");
-    } else {
-        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTest.gf");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneAttrScopeTest.jsp")),
+                "positiveSetTimezoneAttrScopeTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneScopeTest.jsp")),
+                "positiveSetTimezoneScopeTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneSetAttrTest.jsp")),
+                "positiveSetTimezoneSetAttrTest.jsp");
+        archive.add(
+                new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneValueNullEmptyTest.jsp")),
+                "positiveSetTimezoneValueNullEmptyTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneValueTest.jsp")),
+                "positiveSetTimezoneValueTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveSetTimezoneVarTest.jsp")),
+                "positiveSetTimezoneVarTest.jsp");
+
+        archive.addAsLibrary(getCommonJarArchive());
+
+        return archive;
     }
-    setGoldenFileStream(gfStream);
-    invoke();
-  }
 
-  /*
-   * @testName: positiveSetTimezoneSetAttrTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93.4
-   * 
-   * @testStrategy: Validate that if var is not set, the scoped variable
-   * jakarta.servlet.jsp.jstl.fmt.timeZone is properly set.
-   */
-  @Test
-  public void positiveSetTimezoneSetAttrTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneSetAttrTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneSetAttrTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveSetTimezoneValueTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93; JSTL:SPEC:93.1; JSTL:SPEC:93.1.1; JSTL:SPEC:93.1.2; JSTL:SPEC:93.1.3; JSTL:SPEC:93.1.4;
+     * JSTL:SPEC:93.1.5; JSTL:SPEC:93.1.6
+     * 
+     * @testStrategy: Validate that the value attribute can accept dynamic values as well as three letter timezones (ex.
+     * PST) or fully qualified values (ex. America/Los_Angeles).
+     */
+    @Test
+    public void positiveSetTimezoneValueTest() throws Exception {
+        InputStream gfStream;
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
+        TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+        if (isJavaVersion20OrGreater()) {
+            gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneValueTestJava20Plus.gf");
+        } else {
+            gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneValueTest.gf");
+        }
+        setGoldenFileStream(gfStream);
+        invoke();
+    }
 
-  /*
-   * @testName: positiveSetTimezoneAttrScopeTest
-   * 
-   * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2;
-   * JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4; JSTL:SPEC:93.3.5; JSTL:SPEC:93.4
-   * 
-   * @testStrategy: Validate that if var is not specified, but scope is, that
-   * the scoped variable, jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the
-   * appropriate scope.
-   */
-  @Test
-  public void positiveSetTimezoneAttrScopeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneAttrScopeTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneAttrScopeTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveSetTimezoneVarTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93.2; JSTL:SPEC:93.2.1
+     * 
+     * @testStrategy: Validate that a scoped variable of type java.util.TimeZone is properly set and associated with the
+     * variable name specified by var.
+     */
+    @Test
+    public void positiveSetTimezoneVarTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneVarTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneVarTest");
+        invoke();
+    }
+
+    /*
+     * @testName: positiveSetTimezoneScopeTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2; JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4;
+     * JSTL:SPEC:93.3.5
+     * 
+     * @testStrategy: Validate that the through explicit use of the scope attribute, var is exported to the appropriate
+     * scope. Additionally, validate that if var is specified and scope is not, that var is exported to the page scope by
+     * default.
+     */
+    @Test
+    public void positiveSetTimezoneScopeTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneScopeTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneScopeTest");
+        invoke();
+    }
+
+    /*
+     * @testName: positiveSetTimezoneValueNullEmptyTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93.7
+     * 
+     * @testStrategy: Validate that if the value attribute is null or empty, the GMT+0 timezone is used by the formatting
+     * actions that rely on timezone.
+     */
+    @Test
+    public void positiveSetTimezoneValueNullEmptyTest() throws Exception {
+        InputStream gfStream;
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
+        TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+        if (isJavaVersion20OrGreater()) {
+            gfStream = JSTLClientIT.class.getClassLoader()
+                    .getResourceAsStream(packagePath + "/positiveSetTimezoneValueNullEmptyTestJava20Plus.gf");
+        } else {
+            gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneValueNullEmptyTest.gf");
+        }
+        setGoldenFileStream(gfStream);
+        invoke();
+    }
+
+    /*
+     * @testName: positiveSetTimezoneSetAttrTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93.4
+     * 
+     * @testStrategy: Validate that if var is not set, the scoped variable jakarta.servlet.jsp.jstl.fmt.timeZone is properly
+     * set.
+     */
+    @Test
+    public void positiveSetTimezoneSetAttrTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveSetTimezoneSetAttrTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneSetAttrTest");
+        invoke();
+    }
+
+    /*
+     * @testName: positiveSetTimezoneAttrScopeTest
+     * 
+     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2; JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4;
+     * JSTL:SPEC:93.3.5; JSTL:SPEC:93.4
+     * 
+     * @testStrategy: Validate that if var is not specified, but scope is, that the scoped variable,
+     * jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the appropriate scope.
+     */
+    @Test
+    public void positiveSetTimezoneAttrScopeTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader()
+                .getResourceAsStream(packagePath + "/positiveSetTimezoneAttrScopeTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneAttrScopeTest");
+        invoke();
+    }
 
 }

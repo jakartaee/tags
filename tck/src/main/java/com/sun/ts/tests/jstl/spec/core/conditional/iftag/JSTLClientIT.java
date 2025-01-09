@@ -36,128 +36,125 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
+    public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
-  public JSTLClientIT() {
-    setContextRoot("/jstl_core_cond_if_web");
-  }
+    public JSTLClientIT() {
+        setContextRoot("/jstl_core_cond_if_web");
+    }
 
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_if_web.war");
+        archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/jstl_core_cond_if_web.xml"));
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_if_web.war");
-    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_if_web.xml"));
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/negativeIfExcBodyContentTest.jsp")),
+                "negativeIfExcBodyContentTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/negativeIfTestTypeTest.jsp")),
+                "negativeIfTestTypeTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveIfBodyBehaviorTest.jsp")),
+                "positiveIfBodyBehaviorTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveIfExportedVarTypeTest.jsp")),
+                "positiveIfExportedVarTypeTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveIfScopeTest.jsp")),
+                "positiveIfScopeTest.jsp");
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveIfTest.jsp")),
+                "positiveIfTest.jsp");
 
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeIfExcBodyContentTest.jsp")), "negativeIfExcBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeIfTestTypeTest.jsp")), "negativeIfTestTypeTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfBodyBehaviorTest.jsp")), "positiveIfBodyBehaviorTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfExportedVarTypeTest.jsp")), "positiveIfExportedVarTypeTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfTest.jsp")), "positiveIfTest.jsp");
+        archive.addAsLibrary(getCommonJarArchive());
 
-    archive.addAsLibrary(getCommonJarArchive());
+        return archive;
+    }
 
-    return archive;
-  }
+    /*
+     * @testName: positiveIfTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.2
+     * 
+     * @testStrategy: Verify 'test' and 'var' attribute behavior of the 'if' action with no content body
+     */
+    @Test
+    public void positiveIfTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveIfTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveIfTest");
+        invoke();
+    }
 
-  /*
-   * @testName: positiveIfTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.2
-   * 
-   * @testStrategy: Verify 'test' and 'var' attribute behavior of the 'if'
-   * action with no content body
-   */
-  @Test
-  public void positiveIfTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveIfTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveIfBodyBehaviorTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.1.1; JSTL:SPEC:14.1.2
+     * 
+     * @testStrategy: Verify the behavior of the 'if' action with regards to the result of it's test and it's body content
+     */
+    @Test
+    public void positiveIfBodyBehaviorTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveIfBodyBehaviorTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveIfBodyBehaviorTest");
+        invoke();
+    }
 
-  /*
-   * @testName: positiveIfBodyBehaviorTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.1.1; JSTL:SPEC:14.1.2
-   * 
-   * @testStrategy: Verify the behavior of the 'if' action with regards to the
-   * result of it's test and it's body content
-   */
-  @Test
-  public void positiveIfBodyBehaviorTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfBodyBehaviorTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveIfBodyBehaviorTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveIfScopeTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.3.1; JSTL:SPEC:14.3.2; JSTL:SPEC:14.3.3; JSTL:SPEC:14.3.4; JSTL:SPEC:14.3.5
+     * 
+     * @testStrategy: Verify the behavior of the 'if' action when using the scope attribute. If scope is not specified, the
+     * exported var should be in the page scope, otherwise the exported var should be in the designated scope.
+     */
+    @Test
+    public void positiveIfScopeTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveIfScopeTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveIfScopeTest");
+        invoke();
+    }
 
-  /*
-   * @testName: positiveIfScopeTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.3.1; JSTL:SPEC:14.3.2; JSTL:SPEC:14.3.3;
-   * JSTL:SPEC:14.3.4; JSTL:SPEC:14.3.5
-   * 
-   * @testStrategy: Verify the behavior of the 'if' action when using the scope
-   * attribute. If scope is not specified, the exported var should be in the
-   * page scope, otherwise the exported var should be in the designated scope.
-   */
-  @Test
-  public void positiveIfScopeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveIfScopeTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveIfExportedVarTypeTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.2.1
+     * 
+     * @testStrategy: Validate that the variable exported by the 'if' action is of type 'java.lang.Boolean'
+     */
+    @Test
+    public void positiveIfExportedVarTypeTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveIfExportedVarTypeTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveIfExportedVarTypeTest");
+        invoke();
+    }
 
-  /*
-   * @testName: positiveIfExportedVarTypeTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.2.1
-   * 
-   * @testStrategy: Validate that the variable exported by the 'if' action is of
-   * type 'java.lang.Boolean'
-   */
-  @Test
-  public void positiveIfExportedVarTypeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfExportedVarTypeTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveIfExportedVarTypeTest");
-    invoke();
-  }
+    /*
+     * @testName: negativeIfTestTypeTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.1.3
+     * 
+     * @testStrategy: Validate that an instance of jakarta.servlet.jsp.JspTagException is thrown if the resulting expression
+     * passed ot the 'test' attribute is not of the expected type (boolean/Boolean for EL, and boolean for RT).
+     */
+    @Test
+    public void negativeIfTestTypeTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/negativeIfTestTypeTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "negativeIfTestTypeTest");
+        invoke();
+    }
 
-  /*
-   * @testName: negativeIfTestTypeTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.1.3
-   * 
-   * @testStrategy: Validate that an instance of
-   * jakarta.servlet.jsp.JspTagException is thrown if the resulting expression
-   * passed ot the 'test' attribute is not of the expected type (boolean/Boolean
-   * for EL, and boolean for RT).
-   */
-  @Test
-  public void negativeIfTestTypeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfTestTypeTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "negativeIfTestTypeTest");
-    invoke();
-  }
-
-  /*
-   * @testName: negativeIfExcBodyContentTest
-   * 
-   * @assertion_ids: JSTL:SPEC:14.7
-   * 
-   * @testStrategy: Validate that exceptions caused by the body content are
-   * propagated.
-   */
-  @Test
-  public void negativeIfExcBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfExcBodyContentTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "negativeIfExcBodyContentTest");
-    invoke();
-  }
+    /*
+     * @testName: negativeIfExcBodyContentTest
+     * 
+     * @assertion_ids: JSTL:SPEC:14.7
+     * 
+     * @testStrategy: Validate that exceptions caused by the body content are propagated.
+     */
+    @Test
+    public void negativeIfExcBodyContentTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/negativeIfExcBodyContentTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "negativeIfExcBodyContentTest");
+        invoke();
+    }
 }

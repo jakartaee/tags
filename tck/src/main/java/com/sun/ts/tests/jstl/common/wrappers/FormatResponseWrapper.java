@@ -32,34 +32,32 @@ import jakarta.servlet.http.HttpServletResponseWrapper;
 
 public class FormatResponseWrapper extends HttpServletResponseWrapper {
 
-  /** Creates new FormatResponseWrapper */
-  public FormatResponseWrapper(HttpServletResponse response) {
-    super(response);
-  }
+    /** Creates new FormatResponseWrapper */
+    public FormatResponseWrapper(HttpServletResponse response) {
+        super(response);
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods ========================================================================
+     */
 
-  /*
-   * Sets the locale of the response.
-   *
-   * @param locale the locale of the response
-   */
-  public void setLocale(Locale locale) {
-    super.setHeader("setlocale", locale.toString());
-    super.setLocale(locale);
-  }
+    /*
+     * Sets the locale of the response.
+     *
+     * @param locale the locale of the response
+     */
+    public void setLocale(Locale locale) {
+        super.setHeader("setlocale", locale.toString());
+        super.setLocale(locale);
+    }
 
-  /*
-   * Returns the name of the charset used for the MIME body sent in this reponse
-   *
-   * @return a String specifying the name of the charset, for example,
-   * ISO-8859-1
-   */
-  public String getCharacterEncoding() {
-    super.setHeader("charencoding", "called");
-    return super.getCharacterEncoding();
-  }
+    /*
+     * Returns the name of the charset used for the MIME body sent in this reponse
+     *
+     * @return a String specifying the name of the charset, for example, ISO-8859-1
+     */
+    public String getCharacterEncoding() {
+        super.setHeader("charencoding", "called");
+        return super.getCharacterEncoding();
+    }
 }

@@ -14,8 +14,6 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-
-
 package com.sun.ts.tests.jstl.spec.core.iteration.loopstatus;
 
 import java.io.IOException;
@@ -38,39 +36,38 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
+    public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
-  /** Creates new JSTLClient */
-  public JSTLClientIT() {
-    setContextRoot("/jstl_core_iter_lstat_web");
-  }
+    /** Creates new JSTLClient */
+    public JSTLClientIT() {
+        setContextRoot("/jstl_core_iter_lstat_web");
+    }
 
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_iter_lstat_web.war");
+        archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/jstl_core_iter_lstat_web.xml"));
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_iter_lstat_web.war");
-    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_core_iter_lstat_web.xml"));
+        archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath + "/positiveLoopTagStatusTest.jsp")),
+                "positiveLoopTagStatusTest.jsp");
+        archive.addAsLibrary(getCommonJarArchive());
 
-    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveLoopTagStatusTest.jsp")), "positiveLoopTagStatusTest.jsp");
-    archive.addAsLibrary(getCommonJarArchive());
+        return archive;
+    }
 
-    return archive;
-  }
-
-  /*
-   * @testName: positiveLoopTagStatusTest
-   * 
-   * @assertion_ids: JSTL:SPEC:21.4.1
-   * 
-   * @testStrategy: Validate behavior of LoopStatusTag during an iteration
-   * through an array.
-   */
-  @Test
-  public void positiveLoopTagStatusTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveLoopTagStatusTest.gf");
-    setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positiveLoopTagStatusTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveLoopTagStatusTest
+     * 
+     * @assertion_ids: JSTL:SPEC:21.4.1
+     * 
+     * @testStrategy: Validate behavior of LoopStatusTag during an iteration through an array.
+     */
+    @Test
+    public void positiveLoopTagStatusTest() throws Exception {
+        InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/positiveLoopTagStatusTest.gf");
+        setGoldenFileStream(gfStream);
+        TEST_PROPS.setProperty(STANDARD, "positiveLoopTagStatusTest");
+        invoke();
+    }
 }

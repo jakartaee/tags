@@ -29,23 +29,22 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ThrowTag extends TagSupport {
 
-  /** Creates new ThrowTag */
-  public ThrowTag() {
-    super();
-  }
+    /** Creates new ThrowTag */
+    public ThrowTag() {
+        super();
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods ========================================================================
+     */
 
-  /**
-   * The tag will throw a JspException when doEndTag() is called.
-   * 
-   * @throws JspException
-   * @return int
-   */
-  public int doEndTag() throws JspException {
-    throw new IllegalArgumentException();
-  }
+    /**
+     * The tag will throw a JspException when doEndTag() is called.
+     * 
+     * @throws JspException
+     * @return int
+     */
+    public int doEndTag() throws JspException {
+        throw new IllegalArgumentException();
+    }
 }
