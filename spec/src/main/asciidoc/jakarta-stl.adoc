@@ -4905,7 +4905,7 @@ _type_ is missing or is equal to "date", "both", "localDate", "localDateTime", "
 |Predefined formatting styles for times which
 determines how the time component in the date string is to be parsed.
 Applied only when formatting a time or both a date and time (i.e. if
-_type_ is equal to "time", "both", "localTime", or "offsetTime"); ignored otherwise.
+_type_ is equal to "time", "both", "localTime", "offsetTime", "localDateTime", "offsetDateTime", and "zonedDateTime); ignored otherwise.
 
 |pattern | _true_
 |String |Custom
