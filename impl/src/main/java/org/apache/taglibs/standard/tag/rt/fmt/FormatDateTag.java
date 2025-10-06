@@ -17,26 +17,25 @@
 
 package org.apache.taglibs.standard.tag.rt.fmt;
 
-import java.util.Date;
-
 import jakarta.servlet.jsp.JspTagException;
 
-import org.apache.taglibs.standard.tag.common.fmt.FormatDateSupport;
+import org.glassfish.wasp.taglibs.standard.tag.common.fmt.FormatDateSupport;
 
 /**
- * <p>A handler for &lt;formatDate&gt; that supports rtexprvalue-based
- * attributes.</p>
+ * A handler for &lt;formatDate&gt; that supports rtexprvalue-based attributes.
  *
  * @author Jan Luehe
  */
 
 public class FormatDateTag extends FormatDateSupport {
 
-    //*********************************************************************
+    private static final long serialVersionUID = 1L;
+
+    // *********************************************************************
     // Accessor methods
 
     // 'value' attribute
-    public void setValue(Date value) throws JspTagException {
+    public void setValue(Object value) throws JspTagException {
         this.value = value;
     }
 
