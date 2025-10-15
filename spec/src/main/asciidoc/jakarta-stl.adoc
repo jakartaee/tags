@@ -8,7 +8,7 @@ Oracle, Java, and MySQL are registered trademarks of Oracle and/or its affiliate
 
 == Related Documentation
 
-Implementors of Jakarta Standard Tag Lbrary and authors of Jakarta Server Pages
+Implementors of Jakarta Standard Tag Library and authors of Jakarta Server Pages
 may find the following documents worth consulting for additional
 information:.
 
@@ -479,7 +479,7 @@ _docSystemId_ and _varDom_.
 In some cases, attribute names for Jakarta Standard Tag Library
 actions carry conventional meanings. For instance,
 <<var and scope>> discussed the _var_ and
-_scope_ attibutes. <<The _select_ Attribute>> discusses the _select_ attribute used in Jakarta Standard Tag Library's
+_scope_ attributes. <<The _select_ Attribute>> discusses the _select_ attribute used in Jakarta Standard Tag Library's
 XML-processing tag library.
 
 === Errors and Exceptions
@@ -535,9 +535,9 @@ likely a typo or another mistake.
 valid values: +
 The rules below assume that if the type of
 the value does not match the expected type, the Expression Language will have applied
-coercion rules to try to accomodate the input value. Moreover, if the
+coercion rules to try to accommodate the input value. Moreover, if the
 expected type is one of the types handled by the Expression Language coercion rules, the
-Expression Language will in most cases coerce null to an approriate value. For instance,
+Expression Language will in most cases coerce null to an appropriate value. For instance,
 if the expected type is a _Number_, the Expression Language will coerce a null value to
 0, if it's _Boolean_ it will be coerced to false.
 
@@ -636,7 +636,7 @@ As mentioned above, application developers
 may access configuration data through class _jakarta.servlet.jsp.jstl.core.Config_. As a convenience,
 constant _String_ values have been defined in the _Config_ class for
 each configuration setting supported by the Jakarta Standard Tag Library. The values of these
-constants are the names of the context intialization parameters.
+constants are the names of the context initialization parameters.
 
 Each configuration variable clearly specifies
 the Java data type(s) it supports. If the type of the object used as the
@@ -645,7 +645,7 @@ by the configuration variable, conversion is performed according to the
 conversion rules defined in the expression language. Setting a
 configuration variable is therefore exactly the same as setting an
 attribute value of an action using the Expression Language. A failure of these conversion
-rules to determine an appropriate type coersion leads to a
+rules to determine an appropriate type coercion leads to a
 _JspException_ at runtime.
 
 === Default Values
@@ -1222,7 +1222,7 @@ language (see Section 1.23. Type Conversion of the Jakarta Expression Language s
 exception of a null value, setting a bean property with <c:set> is
 therefore exactly the same as setting an attribute value of an action
 using the Expression Language. A failure of these conversion rules to determine an
-appropriate type coersion leads to a _JspException_ at runtime.
+appropriate type coercion leads to a _JspException_ at runtime.
 
 Syntax 5:
 
@@ -2482,7 +2482,7 @@ comes with some restrictions.
 It is the responsibility of the `<c:import>`
 tag handler to ensure that if it exports a _Reader_, this _Reader_ is
 properly closed by the time the end of the page is
-reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_, or because the page author might remove the consumer tag while leaving inadvertantly the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
+reachedfootnote:[If the responsibility was left to the consumer tag, this could lead to resource leaks (e.g. connection left open, memory space for buffers) until garbage collection is activated. This is because a consumer tag might not close the _Reader_, or because the page author might remove the consumer tag while leaving inadvertently the <c:import> tag in the page.]. Because of this requirement, the Jakarta Standard Tag Library defines
 the exported _Reader_ as having nested visibility: it may not currently
 be accessed after the end-tag for the `<c:import>`
 actionfootnote:[This restriction could eventually be lifted when the Jakarta Server Pages spec supports the notion of page events that actions could register to. On a _pageExit_ event, an <c:import> tag would then simply release its resources if it had not already been done, removing the requirement for nested visibility.]. Implementations that use the
@@ -3018,7 +3018,7 @@ If `<fmt:message>` actions are nested inside a
 `<fmt:bundle>` action is used for localization. The `<fmt:bundle>` action
 determines the resource bundle of its i18n localization context
 according to the resource bundle determination algorithm in
-<<Determinining the Resource Bundle for an i18n Localization Context>>, using the basename attribute as the
+<<Determining the Resource Bundle for an i18n Localization Context>>, using the basename attribute as the
 resource bundle basename.
 
 * I18n default localization context +
@@ -3031,7 +3031,7 @@ component is used for localization. Otherwise, the configuration setting
 is of type _String_, and the action establishes its own i18n
 localization context whose resource bundle component is determined
 according to the resource bundle determination algorithm in
-<<Determinining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
+<<Determining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
 resource bundle basename.
 
 The example below shows how the various
@@ -3057,7 +3057,7 @@ used for localization.
 If the resource bundle of an i18n
 localization context needs to be determined, it is retrieved from the
 web application's resources according to the algorithm described in
-Section <<Determinining the Resource Bundle for an i18n Localization Context>>. This algorithm requires two pieces of information:
+Section <<Determining the Resource Bundle for an i18n Localization Context>>. This algorithm requires two pieces of information:
 the basename of the resource bundle (as described in the previous
 section) and the preferred locales.
 
@@ -3091,10 +3091,10 @@ that the client wants to use.
 
 Whether application- or browser-based locale
 setting is used, an ordered list of preferred locales is fed into the
-algorithm described in section <<Determinining the Resource Bundle for an i18n Localization Context>> to
+algorithm described in section <<Determining the Resource Bundle for an i18n Localization Context>> to
 determine the resource bundle for an i18n localization context.
 
-=== Determinining the Resource Bundle for an i18n Localization Context
+=== Determining the Resource Bundle for an i18n Localization Context
 
 Given a basename and an ordered set of
 preferred locales, the resource bundle for an i18n localization context
@@ -3350,7 +3350,7 @@ API calls.
 It is therefore important to note that, as
 defined in the Servlet spec, a call to _ServletResponse.setLocale()_
 modifies the character encoding of the response only if it has not
-already been set explicitely by calls to
+already been set explicitly by calls to
 _ServletResponse.setContentType()_ (with CHARSET specified) or
 _ServletResponse.setCharacterEncoding()_.
 
@@ -4067,7 +4067,7 @@ enclosing <fmt:bundle> action is used as the formatting locale. The
 <fmt:bundle> action determines the resource bundle of its i18n
 localization context according to the resource bundle determination
 algorithm in 
-<<Determinining the Resource Bundle for an i18n Localization Context>>, using the basename attribute
+<<Determining the Resource Bundle for an i18n Localization Context>>, using the basename attribute
 as the resource bundle basename. If the i18n localization context of the
 enclosing <fmt:bundle> action does not contain any locale, go to the
 next step.
@@ -4082,7 +4082,7 @@ _String_, the formatting action establishes its own i18n localization
 context and uses its locale as the formatting locale (in this case, the
 resource bundle component of the i18n localization context is determined
 according to the resource bundle determination algorithm in
-<<Determinining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
+<<Determining the Resource Bundle for an i18n Localization Context>>, using the configuration setting as the
 resource bundle basename). If the i18n localization context determined
 in this step does not contain any locale, go to the next step.
 
@@ -4515,7 +4515,7 @@ it is stored in the named scoped variable.
 *Formatting Options*
 
 The _groupingUsed_ attribute specifies
-whether the formatted ouput will contain any grouping separators. See
+whether the formatted output will contain any grouping separators. See
 the _java.text.NumberFormat_ method _setGroupingUsed()_ for more
 information.
 
@@ -4540,7 +4540,7 @@ If both _currencyCode_ and _currencySymbol_
 are present, _currencyCode_ takes precedence over _currencySymbol_ if
 the _java.util.Currency_ class is defined in the container's runtime
 (that is, if the container's runtime is Java SE 1.4 or greater), and
-_currencySymbol_ takes precendence otherwise. If only _currencyCode_ is
+_currencySymbol_ takes precedence otherwise. If only _currencyCode_ is
 given, it is used as a currency symbol if _java.util.Currency_ is not
 defined.
 
@@ -5455,7 +5455,7 @@ previous page.
 
 If `<sql:query>` is nested inside an
 `<sql:transaction>` action, the _Connection_ object is obtained from that
-parent `<sql:transaction>` which is reponsible for managing access to the
+parent `<sql:transaction>` which is responsible for managing access to the
 database.
 
 Otherwise, access to the database is
@@ -6211,7 +6211,7 @@ with dynamic attributes in the Expression Language version of the tag library).
 The context node for every XPath expression
 evaluation in the Jakarta Standard Tag Library that does not appear in the body of an `<x:forEach>`
 tag is the root of an empty document. Page authors wishing to work with
-documents must therefore suply their own node(s) using an XPath variable
+documents must therefore supply their own node(s) using an XPath variable
 (see <<XPath Variable Bindings>>).
 
 Action `<x:forEach>` establishes for its nested
