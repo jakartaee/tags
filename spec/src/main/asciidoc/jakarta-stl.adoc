@@ -8200,6 +8200,8 @@ changes in the Jakarta Standard Tag Library specification. This appendix is non-
 
 === Changed between Jakarta Standard Tag Library 3.0 and Jakarta Standard Tag Library 3.1
 
+** https://github.com/jakartaee/tags/issues/280 : Update Jakarta Tags to Java 21
+
 === Changed between Jakarta Standard Tag Library 2.0 and Jakarta Standard Tag Library 3.0
 
 ** https://github.com/eclipse-ee4j/jstl-api/issues/149 : Remove dependency on XML Binding from the API pom
