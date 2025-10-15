@@ -238,10 +238,15 @@ _jakarta.tags.xml_ | _x_
 _jakarta.tags.functions_ |fn
 |===
 
-=== Container Requirement
+=== Container / Dependency Requirement
 
-Jakarta Standard Tag Library requires a Jakarta Server Pages 3.0 web container.
-Please note that the expression language is an individual specification: Jakarta Expression Language 4.0.
+Jakarta Standard Tag Library requires the following, which are all part of Jakarta Enterprise Edition 12:
+- Jakarta Server Pages 4.1
+- Jakarta Servlet 6.2
+- Expression Language 6.1
+
+Minimum Runtime:
+- Java 21 is required
 
 == Conventions
 
@@ -8192,6 +8197,8 @@ using the Java EE package will need to change this to the Jakarta EE package.
 
 This appendix lists the
 changes in the Jakarta Standard Tag Library specification. This appendix is non-normative.
+
+=== Changed between Jakarta Standard Tag Library 3.0 and Jakarta Standard Tag Library 3.1
 
 === Changed between Jakarta Standard Tag Library 2.0 and Jakarta Standard Tag Library 3.0
 
