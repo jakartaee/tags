@@ -4710,7 +4710,7 @@ locale-sensitive or customized manner.
 
 [literal, subs="+quotes, +attributes"]
 <fmt:formatDate value="date"
-                {blank}[type="{time|[underline]#date#|both}"]
+                {blank}[type="{time|[underline]#date#|both|localDate|localTime|localDateTime|offsetTime|offsetDateTime|zonedDateTime}"]
                 {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
                 {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
                 [pattern="customPattern"]
@@ -4731,16 +4731,16 @@ Empty.
 |Type |Description
 | _value_ | _true_
 a|
-_java.util._
-
-_Date_
+_java.util.Date_, _java.time.temporal.Temporal_
 
 |Date and/or time to be formatted.
 
 |type | _true_
-|String |Specifies
-whether the time, the date, or both the time and date components of the
-given date are to be formatted.
+|String |Specifies the type of the given date.
+Valid values are "date", "time", "both", "localDate", "localDateTime", "localTime", "offsetTime", "offsetDateTime", and "zonedDateTime".
+The values "date", "time", and "both" correspond to java.util.Date and the value specifies whether the time, the date, or both the time and date components of the given date are to be formatted.
+The other values correspond to Java SE 8 Date Time API classes in package java.time with the name derived by upper casing the first letter.
+For example, java.time.LocalDate for the value "localDate". Default value is "date".
 
 |dateStyle |true
 |String
@@ -4762,9 +4762,8 @@ formatting style for dates and times.
 
 |timeZone | _true_
 a|
-String or java.util.
-
-TimeZone
+_String_ or _java.util.TimeZone_.
+Applied only when value is a _java.util.Date_; ignored otherwise.
 
 |Time zone in which to represent the
 formatted time.
@@ -4852,7 +4851,7 @@ _Syntax 1: without a body_
 
 [literal, subs="+quotes, +attributes"]
 <fmt:parseDate value="dateString"
-            {blank}[type="{time|[underline]#date#|both}"]
+            {blank}[type="{time|[underline]#date#|both|localDate|localTime|localDateTime|offsetTime|offsetDateTime|zonedDateTime}"]
             {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
             {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
             [pattern="customPattern"]
@@ -4865,7 +4864,7 @@ _Syntax 2: with a body to specify the date
 value to be parsed_
 
 [literal, subs="+quotes, +attributes"]
-<fmt:parseDate {blank}[type="{time|[underline]#date#|both}"]
+<fmt:parseDate {blank}[type="{time|[underline]#date#|both|localDate|localTime|localDateTime|offsetTime|offsetDateTime|zonedDateTime}"]
             {blank}[dateStyle="{[underline]#default#|short|medium|long|full}"]
             {blank}[timeStyle="{[underline]#default#|short|medium|long|full}"]
             [pattern="customPattern"]
@@ -4893,23 +4892,25 @@ content, then the action trims it and processes it further.
 string to be parsed.
 
 |type | _true_
-|String |Specifies
-whether the date string in the _value_ attribute is supposed to contain
-a time, a date, or both.
+|String |Specifies what type the string value will be parsed into.
+Valid values are "date", "time", "both", "localDate", "localDateTime", "localTime", "offsetTime", "offsetDateTime", and "zonedDateTime".
+The values "date", "time", and "both" correspond to java.util.Date and the value specifies whether the date string in the _value_ attribute is supposed to contain a time, a date, or both.
+The other values correspond to Java SE 8 Date Time API classes in package java.time with the name derived by upper casing the first letter.
+For example, java.time.LocalDate for the value "localDate". Default value is "date".
 
 |dateStyle |true
 |String
 |Predefined formatting style for days which
 determines how the date component of the date string is to be parsed.
 Applied only when formatting a date or both a date and time (i.e. if
-_type_ is missing or is equal to "date" or "both"); ignored otherwise.
+_type_ is missing or is equal to "date", "both", "localDate", "localDateTime", "offsetDateTime", or "zonedDateTime"); ignored otherwise.
 
 |timeStyle |true
 |String
 |Predefined formatting styles for times which
 determines how the time component in the date string is to be parsed.
 Applied only when formatting a time or both a date and time (i.e. if
-_type_ is equal to "time" or "both"); ignored otherwise.
+_type_ is equal to "time", "both", "localTime", "offsetTime", "localDateTime", "offsetDateTime", and "zonedDateTime); ignored otherwise.
 
 |pattern | _true_
 |String |Custom
@@ -4919,6 +4920,7 @@ formatting pattern which determines how the date string is to be parsed.
 |String or java.util.TimeZone
 |Time zone in which to interpret any time
 information in the date string.
+Applied only when _type_ corresponds to _java.util.Date_; ignored otherwise.
 
 |parseLocale |
 _true_ a|
@@ -4934,7 +4936,7 @@ applied.
 | _var_ | _false_
 | _String_ |Name
 of the exported scoped variable in which the parsing result (of type
-_java.util.Date_) is stored.
+_java.util.Date_ or _java.time.temporal.Temporal_) is stored.
 
 | _scope_ |
 _false_ | _String_
