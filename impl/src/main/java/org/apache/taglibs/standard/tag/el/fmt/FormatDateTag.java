@@ -17,65 +17,68 @@
 
 package org.apache.taglibs.standard.tag.el.fmt;
 
+import java.util.Date;
+
 import jakarta.servlet.jsp.JspException;
 
-import org.glassfish.wasp.taglibs.standard.lang.support.ExpressionEvaluatorManager;
-import org.glassfish.wasp.taglibs.standard.tag.common.fmt.FormatDateSupport;
+import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
+import org.apache.taglibs.standard.tag.common.fmt.FormatDateSupport;
 
 /**
- * <p>
- * A handler for &lt;formatDate&gt; that accepts attributes as Strings and evaluates them as expressions at runtime.
- * </p>
+ * <p>A handler for &lt;formatDate&gt; that accepts attributes as Strings
+ * and evaluates them as expressions at runtime.</p>
  *
  * @author Jan Luehe
  */
 
 public class FormatDateTag extends FormatDateSupport {
 
-    // *********************************************************************
+    //*********************************************************************
     // 'Private' state (implementation details)
 
-    private String value_; // stores EL-based property
-    private String type_; // stores EL-based property
-    private String dateStyle_; // stores EL-based property
-    private String timeStyle_; // stores EL-based property
-    private String pattern_; // stores EL-based property
-    private String timeZone_; // stores EL-based property
+    private String value_;                       // stores EL-based property
+    private String type_;                        // stores EL-based property
+    private String dateStyle_;		         // stores EL-based property
+    private String timeStyle_;		         // stores EL-based property
+    private String pattern_;		         // stores EL-based property
+    private String timeZone_;		         // stores EL-based property
 
-    // *********************************************************************
+
+    //*********************************************************************
     // Constructor
 
     /**
-     * Constructs a new FormatDateTag. As with TagSupport, subclasses should not provide other constructors and are expected
-     * to call the superclass constructor
+     * Constructs a new FormatDateTag.  As with TagSupport, subclasses
+     * should not provide other constructors and are expected to call
+     * the superclass constructor
      */
     public FormatDateTag() {
         super();
         init();
     }
 
-    // *********************************************************************
+
+    //*********************************************************************
     // Tag logic
 
     // evaluates expression and chains to parent
-    @Override
     public int doStartTag() throws JspException {
 
         // evaluate any expressions we were passed, once per invocation
         evaluateExpressions();
 
-        // chain to the parent implementation
-        return super.doStartTag();
+	// chain to the parent implementation
+	return super.doStartTag();
     }
 
     // Releases any resources we may have (or inherit)
-    @Override
     public void release() {
         super.release();
         init();
     }
 
-    // *********************************************************************
+
+    //*********************************************************************
     // Accessor methods
 
     // for EL-based attribute
@@ -108,49 +111,58 @@ public class FormatDateTag extends FormatDateSupport {
         this.timeZone_ = timeZone_;
     }
 
-    // *********************************************************************
+
+    //*********************************************************************
     // Private (utility) methods
 
     // (re)initializes state (during release() or construction)
     private void init() {
         // null implies "no expression"
-        value_ = type_ = dateStyle_ = timeStyle_ = pattern_ = timeZone_ = null;
+	value_ = type_ = dateStyle_ = timeStyle_ = pattern_ = timeZone_ = null;
     }
 
     // Evaluates expressions as necessary
     private void evaluateExpressions() throws JspException {
-        /*
-         * Note: we don't check for type mismatches here; we assume the expression evaluator will return the expected type (by
-         * virtue of knowledge we give it about what that type is). A ClassCastException here is truly unexpected, so we let it
+        /* 
+         * Note: we don't check for type mismatches here; we assume
+         * the expression evaluator will return the expected type
+         * (by virtue of knowledge we give it about what that type is).
+         * A ClassCastException here is truly unexpected, so we let it
          * propagate up.
          */
 
-        // 'value' attribute (mandatory)
-        value = ExpressionEvaluatorManager.evaluate("value", value_, Object.class, this, pageContext);
+	// 'value' attribute (mandatory)
+	value = (Date) ExpressionEvaluatorManager.evaluate(
+	    "value", value_, Date.class, this, pageContext);
 
-        // 'type' attribute
-        if (type_ != null) {
-            type = (String) ExpressionEvaluatorManager.evaluate("type", type_, String.class, this, pageContext);
-        }
+	// 'type' attribute
+	if (type_ != null) {
+	    type = (String) ExpressionEvaluatorManager.evaluate(
+	        "type", type_, String.class, this, pageContext);
+	}
 
-        // 'dateStyle' attribute
-        if (dateStyle_ != null) {
-            dateStyle = (String) ExpressionEvaluatorManager.evaluate("dateStyle", dateStyle_, String.class, this, pageContext);
-        }
+	// 'dateStyle' attribute
+	if (dateStyle_ != null) {
+	    dateStyle = (String) ExpressionEvaluatorManager.evaluate(
+	        "dateStyle", dateStyle_, String.class, this, pageContext);
+	}
 
-        // 'timeStyle' attribute
-        if (timeStyle_ != null) {
-            timeStyle = (String) ExpressionEvaluatorManager.evaluate("timeStyle", timeStyle_, String.class, this, pageContext);
-        }
+	// 'timeStyle' attribute
+	if (timeStyle_ != null) {
+	    timeStyle = (String) ExpressionEvaluatorManager.evaluate(
+	        "timeStyle", timeStyle_, String.class, this, pageContext);
+	}
 
-        // 'pattern' attribute
-        if (pattern_ != null) {
-            pattern = (String) ExpressionEvaluatorManager.evaluate("pattern", pattern_, String.class, this, pageContext);
-        }
+	// 'pattern' attribute
+	if (pattern_ != null) {
+	    pattern = (String) ExpressionEvaluatorManager.evaluate(
+	        "pattern", pattern_, String.class, this, pageContext);
+	}
 
-        // 'timeZone' attribute
-        if (timeZone_ != null) {
-            timeZone = ExpressionEvaluatorManager.evaluate("timeZone", timeZone_, Object.class, this, pageContext);
-        }
+	// 'timeZone' attribute
+	if (timeZone_ != null) {
+	    timeZone = ExpressionEvaluatorManager.evaluate(
+	        "timeZone", timeZone_, Object.class, this, pageContext);
+	}
     }
 }
