@@ -151,7 +151,7 @@
                 </executions>
             </plugin>
             
-            <!-- Restricts the Java version to 11 -->
+            <!-- Set the Java Version -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
