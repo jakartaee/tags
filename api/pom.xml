@@ -291,7 +291,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <source>11</source>
+                            <source>21</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Standard Tag Library API documentation</description>
                             <doctitle>Jakarta Standard Tag Library API documentation</doctitle>
@@ -325,20 +325,4 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
             </plugin>
         </plugins>
     </build>
-
-        <!-- Required if parent is a SNAPSHOT and to pick-up API SNAPSHOTs from Central-->
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    
 </project>

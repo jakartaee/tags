@@ -70,6 +70,22 @@
         <url>https://github.com/eclipse-ee4j/jstl-api</url>
         <tag>HEAD</tag>
     </scm>
+
+    <!-- Required if parent is a SNAPSHOT and to pick-up API SNAPSHOTs from Central-->
+    <repositories>
+        <repository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <issueManagement>
         <system>github</system>
         <url>https://github.com/eclipse-ee4j/jstl-api/issues</url>
