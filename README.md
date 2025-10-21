@@ -1,6 +1,6 @@
 # Prerequisites
 
-To build this project, JDK 11+ is required.
+To build this project, JDK 21+ is required.
 
 # Notes
 
