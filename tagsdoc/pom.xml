@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish.web</groupId>
     <artifactId>tagsdoc</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-M1</version>
     <licenses>
         <license>
             <name>New BSD License</name>
