@@ -34,7 +34,7 @@
 
 <!--
     Document   : function.html.xsl
-    Created on : Februrary 25, 2003, 7:39 PM
+    Created on : February 25, 2003, 7:39 PM
     Author     : mroth
     Description:
         Creates the function detail page (right frame), listing the known
