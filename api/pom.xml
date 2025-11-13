@@ -205,7 +205,7 @@
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
                         <Import-Package>
-                            <!-- Requires EE12 (or any other minor releases with API compatability), but can still allow EE11 -->
+                            <!-- Requires EE12 (or any other minor releases with API compatibility), but can still allow EE11 -->
                             jakarta.el;version="[6.0,7)"
                             jakarta.servlet;version="[6.1,7)"
                             jakarta.servlet.http;version="[6.1,7)"

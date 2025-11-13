@@ -119,7 +119,7 @@ public abstract class LoopTagSupport extends TagSupport implements LoopTag, Iter
 
     /*
      * State exclusively internal to the default, reference implementation. (While this state is kept private to ensure
-     * consistency, 'status' and 'item' happen to have one-for-one, read-only, accesor methods as part of the LoopTag
+     * consistency, 'status' and 'item' happen to have one-for-one, read-only, accessor methods as part of the LoopTag
      * interface.)
      *
      * 'last' is kept separately for two reasons: (a) to avoid running a computation every time it's requested, and (b) to
