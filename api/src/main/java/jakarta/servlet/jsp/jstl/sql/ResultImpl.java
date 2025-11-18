@@ -30,7 +30,7 @@ import java.util.TreeMap;
 /**
  * <p>
  * This class creates a cached version of a <code>ResultSet</code>. It's represented as a <code>Result</code> implementation,
- * capable of returing an array of <code>Row</code> objects containing a <code>Column</code> instance for each column in the
+ * capable of returning an array of <code>Row</code> objects containing a <code>Column</code> instance for each column in the
  * row. It is not part of the Jakarta Standard Tab Library API; it serves merely as a back-end to ResultSupport's static
  * methods. Thus, we scope its access to the package.
  *

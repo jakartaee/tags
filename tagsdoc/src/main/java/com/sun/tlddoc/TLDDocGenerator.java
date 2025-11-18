@@ -115,7 +115,7 @@ public class TLDDocGenerator {
     private static final String RESOURCE_PATH = "/com/sun/tlddoc/resources";
 
     /** 
-     * Helps uniquely generate subsitutute prefixes in the case of missing 
+     * Helps uniquely generate substitute prefixes in the case of missing 
      * or duplicate short-names 
      */
     private int substitutePrefix = 1;
