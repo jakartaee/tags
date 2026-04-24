@@ -45,7 +45,7 @@ public abstract class WhenTagSupport extends ConditionalTagSupport
     // Implementation of exclusive-conditional behavior
 
     /*
-     * Includes its body if condition() evalutes to true AND its parent
+     * Includes its body if condition() evaluates to true AND its parent
      * ChooseTag wants it to do so.  The condition will not even be
      * evaluated if ChooseTag instructs us not to run.
      */

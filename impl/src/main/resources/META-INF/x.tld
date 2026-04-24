@@ -79,8 +79,8 @@ value is true.
 
   <tag>
     <description>
-        XML conditional tag, which evalutes its body if the
-        supplied XPath expression evalutes to 'true' as a boolean
+        XML conditional tag, which evaluates its body if the
+        supplied XPath expression evaluates to 'true' as a boolean
     </description>
     <name>if</name>
     <tag-class>org.apache.taglibs.standard.tag.common.xml.IfTag</tag-class>
@@ -446,7 +446,7 @@ stylesheet.
   <tag>
     <description>
         Subtag of &lt;choose&gt; that includes its body if its
-        expression evalutes to 'true'
+        expression evaluates to 'true'
     </description>
     <name>when</name>
     <tag-class>org.apache.taglibs.standard.tag.common.xml.WhenTag</tag-class>
