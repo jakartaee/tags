@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright (c) 2022-2022 Contributors to the Eclipse Foundation
+    Copyright (c) 2022-2025 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,20 +18,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+        <relativePath />
+    </parent>
+    
     <groupId>org.glassfish.web</groupId>
     <artifactId>tagsdoc</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Tags Doc</name>
+    <description>
+            Jakarta Tags EE10+ Specific Tag Library Documentation Generator. This was branched off TLDDoc, version 1.3. 
+    </description>
+
     <licenses>
         <license>
             <name>New BSD License</name>
             <url>http://opensource.org/licenses/BSD-3-Clause</url>
         </license>
     </licenses>
-
-    <description>
-            Jakarta Tags EE10+ Specific Tag Library Documentation Generator. This was branched off TLDDoc, version 1.3. 
-    </description>
-
 
     <build>
         <plugins>
