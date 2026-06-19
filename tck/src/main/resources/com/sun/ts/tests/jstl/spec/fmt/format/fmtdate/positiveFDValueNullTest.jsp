@@ -22,7 +22,7 @@
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positiveFDValueNullEmptyTest">
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- If value is null and var (or scope and var) is specified,
              the scoped variable identified by var is removed.  If 

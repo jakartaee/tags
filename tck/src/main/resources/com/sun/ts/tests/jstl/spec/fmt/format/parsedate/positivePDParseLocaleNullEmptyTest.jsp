@@ -21,13 +21,13 @@
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positivePDParseLocaleNullEmptyTest">
     <fmt:setLocale value="en-US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- if parseLocale is null or empty, it is treated as if
              not specified. The locale configuration variable should be used.-->
     <fmt:parseDate value="Nov 21, 2000" parseLocale='<%= null %>' var="r1"/>
     <fmt:parseDate value="Nov 21, 2000" parseLocale="" var="r2"/>
-    <fmt:formatDate value="${r1}" timeZone="EST"/><br>
-    <fmt:formatDate value="${r2}" timeZone="EST"/><br>
+    <fmt:formatDate value="${r1}" timeZone="America/New_York"/><br>
+    <fmt:formatDate value="${r2}" timeZone="America/New_York"/><br>
 
 </tck:test>

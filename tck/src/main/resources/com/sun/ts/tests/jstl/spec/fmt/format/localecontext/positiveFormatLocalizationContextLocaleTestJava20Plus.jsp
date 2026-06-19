@@ -28,7 +28,7 @@
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <fmt:setLocale value="en_US"/>
     <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 

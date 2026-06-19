@@ -27,7 +27,7 @@
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>
 
     <!-- Validate that the action is able to dermine the

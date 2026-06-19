@@ -23,6 +23,6 @@
 
     <!-- Timezone can be exported for use by other actions.
              Type should be java.util.Timezone -->
-    <fmt:setTimeZone value="PST" var="rtz"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="rtz"/>
     <tck:isInstance varName="rtz" type="java.util.TimeZone"/>
 </tck:test>

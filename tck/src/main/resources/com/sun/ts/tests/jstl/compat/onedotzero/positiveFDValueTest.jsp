@@ -27,7 +27,7 @@
         pageContext.setAttribute("dte", date);
     %>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <!-- EL: Validate the the action can properly format a date
              Date -->
     <fmt:formatDate value="${dte}"/><br>

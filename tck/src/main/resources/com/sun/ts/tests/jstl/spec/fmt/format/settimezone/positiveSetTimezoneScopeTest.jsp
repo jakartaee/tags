@@ -24,11 +24,11 @@
     <!-- Validate that that var is exported to the appropriate
              scope as specified by the scope attribute explicitly
              or implicitly. -->
-    <fmt:setTimeZone value="PST" var="riPage"/>
-    <fmt:setTimeZone value="PST" var="rePage" scope="page"/>
-    <fmt:setTimeZone value="PST" var="reRequest" scope="request"/>
-    <fmt:setTimeZone value="PST" var="reSession" scope="session"/>
-    <fmt:setTimeZone value="PST" var="reApplication" scope="application"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="riPage"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="rePage" scope="page"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="reRequest" scope="request"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="reSession" scope="session"/>
+    <fmt:setTimeZone value="America/Los_Angeles" var="reApplication" scope="application"/>
     <tck:checkScope varName="riPage"/>
     <tck:checkScope varName="rePage"/>
     <tck:checkScope varName="reRequest" inScope="request"/>

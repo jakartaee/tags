@@ -28,7 +28,7 @@
     <c:set var="dte" value="Nov 21, 2000, 3:45:02 AM"/>
     <c:set var="us" value="en_US"/>
     <fmt:setLocale value="de_DE"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- parseLocale specifies the locale specific formatting pattern
              to apply when parsing the provided value.  The presence of this

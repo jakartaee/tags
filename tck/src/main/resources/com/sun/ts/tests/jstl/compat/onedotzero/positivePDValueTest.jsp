@@ -23,7 +23,7 @@
 <tck:test testName="positivePDValueTest">
     <c:set var="dte" value="Nov 21, 2000"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <!-- EL: Validate the the action can properly parse a date
              provided as a dynamic or static value. -->
     <fmt:parseDate value="${dte}" var="e1"/>

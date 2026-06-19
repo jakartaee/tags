@@ -79,7 +79,7 @@ public class JSTLClientIT extends AbstractUrlClient {
      * JSTL:SPEC:93.1.5; JSTL:SPEC:93.1.6
      * 
      * @testStrategy: Validate that the value attribute can accept dynamic values as well as three letter timezones (ex.
-     * PST) or fully qualified values (ex. America/Los_Angeles).
+     * America/Los_Angeles).
      */
     @Test
     public void positiveSetTimezoneValueTest() throws Exception {

@@ -26,7 +26,7 @@
         Date date = new Date(883192294202L);
     %>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- Validate the the action can properly format a date
              Date -->
