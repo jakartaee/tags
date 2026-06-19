@@ -457,7 +457,7 @@ public class JSTLClientIT extends AbstractUrlClient {
      * @assertion_ids: JSTL:SPEC:58.25
      * 
      * @testStrategy: Validate that if timeZone is null or empty, the value will be formatted as if it was missing. In this
-     * case, the time will be formatted using the page's time zone of EST. Pass the parsed value to formatDate to display
+     * case, the time will be formatted using the page's time zone of America/New_York. Pass the parsed value to formatDate to display
      * (due to possible timezone difference).
      */
     @Test

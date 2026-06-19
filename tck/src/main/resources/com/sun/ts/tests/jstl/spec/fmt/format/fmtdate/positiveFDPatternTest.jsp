@@ -28,7 +28,7 @@
     %>
     <c:set var="pat" value="yyyy.MM.dd G 'at' HH:mm:ss z"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- the pattern attribute specifies a custom pattern
              to be applied when formatting the provided date. -->

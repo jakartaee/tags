@@ -28,7 +28,7 @@
         pageContext.setAttribute("dte", date);
     %>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- If timeZone is null or empty, it will be treated as
              if it was not present. -->

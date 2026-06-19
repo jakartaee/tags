@@ -27,7 +27,7 @@
     <c:set var="lon" value="long"/>
     <c:set var="ful" value="full"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
      <!-- dateStyle specifies the formatting style that determines how
              the provided value will be parsed. dateStyle should be

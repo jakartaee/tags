@@ -25,12 +25,12 @@
 <%@ page import="java.util.TimeZone,java.util.Date" %>
 <tck:test testName="positiveTimezoneValueTest">
    <%
-        TimeZone tz = TimeZone.getTimeZone("PST");
+        TimeZone tz = TimeZone.getTimeZone("America/Los_Angeles");
         pageContext.setAttribute("tz", tz);
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
-    <c:set var="mtz" value="PST"/>
+    <c:set var="mtz" value="America/Los_Angeles"/>
     <!-- EL: Behavioral test of value attribute -->
     <!-- Timezone object -->
     <fmt:setTimeZone value="${tz}"/>

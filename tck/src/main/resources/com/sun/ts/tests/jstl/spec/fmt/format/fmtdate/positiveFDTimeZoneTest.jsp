@@ -26,18 +26,18 @@
     <%  
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
-        pageContext.setAttribute("tz", TimeZone.getTimeZone("PST"));
+        pageContext.setAttribute("tz", TimeZone.getTimeZone("America/Los_Angeles"));
     %>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- The time zone to be applied to the formatted value can
              be explicitly provided to the action.  This will effectively
              overried the timezone of the page -->
-    <br>Page is using EST for the timezone.  The formatting action will use PST.  Value should be minus 3 hours.<br>
+    <br>Page is using America/New_York for the timezone.  The formatting action will use America/Los_Angeles.  Value should be minus 3 hours.<br>
     No timeZone attribute: <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' type="both"/><br>
     <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>'
                        timeZone='<%= (TimeZone) pageContext.getAttribute("tz") %>' type="both"/><br>
     <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>'
-                       timeZone="PST" type="both"/><br>
+                       timeZone="America/Los_Angeles" type="both"/><br>
 </tck:test>

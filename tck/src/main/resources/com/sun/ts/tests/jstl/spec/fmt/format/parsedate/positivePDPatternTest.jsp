@@ -22,9 +22,9 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <tck:test testName="positivePDPatternTest">
     <c:set var="pat" value="yyyy.MM.dd G 'at' HH:mm:ss z"/>
-    <c:set var="dte" value="2000.11.21 AD at 03:45:02 EST"/>
+    <c:set var="dte" value="2000.11.21 AD at 03:45:02 GMT-05:00"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- the pattern attribute specifies a custom pattern
              to be applied when parsing the provided date. -->
@@ -32,6 +32,6 @@
                        pattern='<%= (String) pageContext.getAttribute("pat") %>' var="r1"/>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>'
                        pattern="yyyy.MM.dd G 'at' HH:mm:ss z" var="r2"/>
-    <fmt:formatDate value="${r1}" timeZone="EST" pattern="${pat}"/><br>
-    <fmt:formatDate value="${r2}" timeZone="EST" pattern="${pat}"/><br>
+    <fmt:formatDate value="${r1}" timeZone="America/New_York" pattern="${pat}"/><br>
+    <fmt:formatDate value="${r2}" timeZone="America/New_York" pattern="${pat}"/><br>
 </tck:test>

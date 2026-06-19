@@ -27,7 +27,7 @@
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <tck:config op="set" configVar="fallback" value="en-US"/>
     <!-- The fallbackLocale configuration variable will be
              used if no locale match can be determined. -->

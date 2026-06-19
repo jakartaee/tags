@@ -32,7 +32,7 @@
     <c:set var="dat" value="date"/>
     <c:set var="bot" value="both"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- the type attribute specifies if either the time or date
              or both components of the provided date value will

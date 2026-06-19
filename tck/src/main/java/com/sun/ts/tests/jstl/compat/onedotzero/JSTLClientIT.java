@@ -757,7 +757,7 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
      * @assertion_ids: JSTL:SPEC:57.1; JSTL:SPEC:57.1.1; JSTL:SPEC:57.1.2; JSTL:SPEC:57.1.3
      * 
      * @testStrategy: Validate that the value attribute can accept both static values as well as three letter timezones (ex.
-     * PST) or fully qualified values (ex. America/Los_Angeles).
+     * America/Los_Angeles).
      */
     @Test
     public void positiveSetTimezoneValueTest() throws Exception {
@@ -779,7 +779,7 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
      * @assertion_ids: JSTL:SPEC:57.1; JSTL:SPEC:57.1.1; JSTL:SPEC:57.1.2; JSTL:SPEC:57.1.3
      * 
      * @testStrategy: Validate that the value attribute can accept both static values as well as three letter timezones (ex.
-     * PST) or fully qualified values (ex. America/Los_Angeles).
+     * America/Los_Angeles).
      */
     @Test
     public void positiveTimezoneValueTest() throws Exception {

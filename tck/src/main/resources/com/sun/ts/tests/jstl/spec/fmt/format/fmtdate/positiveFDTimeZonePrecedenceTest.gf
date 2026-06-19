@@ -15,22 +15,22 @@
                 value.
               - Use the value of the scoped attribute
                 jakarta.servlet.jsp.jstl.fmt.timeZone. -->
-    <br>TimeZone attribute specified with a value of PST:<br>
-      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be 7:11:34 PM:<br>
+    <br>TimeZone attribute specified with a value of America/Los_Angeles:<br>
+      Wrapped by &lt;fmt:timeZone&gt; action with America/Denver.  Time should be 7:11:34 PM:<br>
       
         Dec 26, 1997, 7:11:34 PM<br>
       
 
-      Not wrapped.  Page has a time zone of EST.  Time should be 7:11:34 PM<br>
+      Not wrapped.  Page has a time zone of America/New_York.  Time should be 7:11:34 PM<br>
       Dec 26, 1997, 7:11:34 PM<br>
 
     <br>No TimeZone attribute specified:<br>
-      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be 8:11:34 PM:<br>
+      Wrapped by &lt;fmt:timeZone&gt; action with America/Denver.  Time should be 8:11:34 PM:<br>
       
         Dec 26, 1997, 8:11:34 PM<br>
       
 
-      Not wrapped.  Page has a time zone of EST.  Time should be 10:11:34 PM<br>
+      Not wrapped.  Page has a time zone of America/New_York.  Time should be 10:11:34 PM<br>
       Dec 26, 1997, 10:11:34 PM<br>
     <br>
 

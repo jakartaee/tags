@@ -23,22 +23,22 @@
 <%@ page import="java.util.TimeZone" %>
 <tck:test testName="positivePDTimeZoneTest">
     <%
-        pageContext.setAttribute("tz", TimeZone.getTimeZone("PST"));
+        pageContext.setAttribute("tz", TimeZone.getTimeZone("America/Los_Angeles"));
     %>
     <c:set var="dte" value="Nov 21, 2000, 3:45 AM"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- The time zone to be applied to the formatted value can
              be explicitly provided to the action.  This will effectively
              overried the timezone of the page -->
-    <br>Page is using EST for the timezone.  The formatting action will use PST.  Value should be offset 3 hours.<br>
+    <br>Page is using America/New_York for the timezone.  The formatting action will use America/Los_Angeles.  Value should be offset 3 hours.<br>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' type="both" timeStyle="short" var="rdef"/>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>'
                        timeZone='<%= (TimeZone) pageContext.getAttribute("tz") %>' type="both" timeStyle="short" var="rpst1"/>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>'
-                       timeZone="PST" type="both" timeStyle="short" var="rpst2"/>
-    No timeZone attribute: <fmt:formatDate value="${rdef}" timeZone="EST" type="both" timeStyle="short"/><br>
-    <fmt:formatDate value="${rpst1}" timeZone="EST" type="both" timeStyle="short"/><br>
-    <fmt:formatDate value="${rpst2}" timeZone="EST" type="both" timeStyle="short"/><br>
+                       timeZone="America/Los_Angeles" type="both" timeStyle="short" var="rpst2"/>
+    No timeZone attribute: <fmt:formatDate value="${rdef}" timeZone="America/New_York" type="both" timeStyle="short"/><br>
+    <fmt:formatDate value="${rpst1}" timeZone="America/New_York" type="both" timeStyle="short"/><br>
+    <fmt:formatDate value="${rpst2}" timeZone="America/New_York" type="both" timeStyle="short"/><br>
 </tck:test>

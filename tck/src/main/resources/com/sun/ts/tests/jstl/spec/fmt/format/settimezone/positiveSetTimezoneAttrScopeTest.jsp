@@ -25,19 +25,19 @@
     <!-- If scope is specified and var is not, the
              jakarta.servlet.jsp.jstl.fmt.timeZone attribute will
              be set to the scope specified (implicit or explicit). -->
-    <fmt:setTimeZone value="PST"/>
+    <fmt:setTimeZone value="America/Los_Angeles"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>
-    <fmt:setTimeZone value="PST" scope="page"/>
+    <fmt:setTimeZone value="America/Los_Angeles" scope="page"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>
-    <fmt:setTimeZone value="PST" scope="request"/>
+    <fmt:setTimeZone value="America/Los_Angeles" scope="request"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="request" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.request"/>
-    <fmt:setTimeZone value="PST" scope="session"/>
+    <fmt:setTimeZone value="America/Los_Angeles" scope="session"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="session" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.session"/>
-    <fmt:setTimeZone value="PST" scope="application"/>
+    <fmt:setTimeZone value="America/Los_Angeles" scope="application"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="application" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.applciation"/>
 </tck:test>

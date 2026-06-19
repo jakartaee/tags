@@ -25,7 +25,7 @@
     <!-- timezone action with no var will set the
              jakarta.servlet.jsp.jstl.fmt.timeZone scoped
              attribute -->
-    <fmt:setTimeZone value="PST"/>
+    <fmt:setTimeZone value="America/Los_Angeles"/>
     <tck:config op="get" configVar="timezone" var="rtz"/>
     <tck:isInstance varName="rtz" type="java.util.TimeZone"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>

@@ -34,7 +34,7 @@
     <c:set var="lon" value="long"/>
     <c:set var="ful" value="full"/>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
      <!-- dateStyle specifies what date style the formated value
              will be returned in.  This will only be applied

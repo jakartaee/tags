@@ -12,7 +12,7 @@
     <!-- The time zone to be applied to the formatted value can
              be explicitly provided to the action.  This will effectively
              overried the timezone of the page -->
-    <br>Page is using EST for the timezone.  The formatting action will use PST.  Value should be offset 3 hours.<br>
+    <br>Page is using America/New_York for the timezone.  The formatting action will use America/Los_Angeles.  Value should be offset 3 hours.<br>
     
     
     

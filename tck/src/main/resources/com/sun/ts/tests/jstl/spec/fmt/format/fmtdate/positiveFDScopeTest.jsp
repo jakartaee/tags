@@ -27,7 +27,7 @@
         pageContext.setAttribute("dte", date);
     %>
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
 
     <!-- The presence of the scope attribute will cause var to be
              exported to the available scopes of the PageContext.

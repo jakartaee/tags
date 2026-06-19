@@ -25,7 +25,7 @@
 <%@ page import="java.util.TimeZone,java.util.Date" %>
 <tck:test testName="positiveTimezoneValueTest">
    <%
-        TimeZone tz = TimeZone.getTimeZone("PST");
+        TimeZone tz = TimeZone.getTimeZone("America/Los_Angeles");
         pageContext.setAttribute("tz", tz);
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);

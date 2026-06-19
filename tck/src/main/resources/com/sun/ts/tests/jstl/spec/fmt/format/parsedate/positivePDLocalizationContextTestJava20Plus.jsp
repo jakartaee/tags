@@ -23,7 +23,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positivePDLocalizationContextTest">
-    <fmt:setTimeZone value="EST"/>
+    <fmt:setTimeZone value="America/New_York"/>
     <c:set var="dte" value="Nov 21, 2000"/>
     <c:set var="dtim" value="3:45:02 AM"/>
     <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
@@ -35,8 +35,8 @@
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' var="r1"/>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dtim") %>' type="time" var="r2"/>
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="r3"/>
-    <fmt:formatDate value="${r1}" timeZone="EST"/><br>
-    <fmt:formatDate value="${r2}" timeZone="EST" type="time"/><br>
-    <fmt:formatDate value="${r3}" timeZone="EST" type="both"/><br>
+    <fmt:formatDate value="${r1}" timeZone="America/New_York"/><br>
+    <fmt:formatDate value="${r2}" timeZone="America/New_York" type="time"/><br>
+    <fmt:formatDate value="${r3}" timeZone="America/New_York" type="both"/><br>
 
 </tck:test>
