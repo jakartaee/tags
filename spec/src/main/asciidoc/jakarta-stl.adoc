@@ -3100,7 +3100,7 @@ Given a basename and an ordered set of
 preferred locales, the resource bundle for an i18n localization context
 is determined according to the algorithm described in this section.
 
-Tthis algorithm is also exposed as a general
+This algorithm is also exposed as a general
 convenience method in the _jakarta.servlet.jsp.jstl.fmt.LocaleSupport_ class so that it may be used by
 any tag handler implementation that needs to produce localized messages.
 For example, this is useful for exception messages that are intended
